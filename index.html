@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Excellence League — Partner Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Tokens ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:      #080D1A;
+  --navy-2:    #0F1629;
+  --navy-3:    #1A2440;
+  --navy-4:    #253158;
+  --ink:       #0A0E1A;
+  --sky:       #1E3A8A;
+  --electric:  #2563EB;
+  --electric-2:#3B82F6;
+  --electric-3:#60A5FA;
+  --gold:      #F59E0B;
+  --gold-2:    #FCD34D;
+  --gold-3:    #FEF3C7;
+  --rose:      #F43F5E;
+  --teal:      #14B8A6;
+  --teal-2:    #5EEAD4;
+  --violet:    #8B5CF6;
+  --white:     #FFFFFF;
+  --muted:     rgba(255,255,255,.45);
+  --muted-2:   rgba(255,255,255,.25);
+  --muted-3:   rgba(255,255,255,.1);
+  --border:    rgba(255,255,255,.08);
+  --border-2:  rgba(255,255,255,.14);
+
+  --r:    8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --glow-electric: 0 0 40px rgba(37,99,235,.3);
+  --glow-gold:     0 0 40px rgba(245,158,11,.25);
+  --shadow-card:   0 4px 24px rgba(0,0,0,.35), 0 1px 4px rgba(0,0,0,.2);
+  --shadow-elevated: 0 20px 60px rgba(0,0,0,.5), 0 4px 12px rgba(0,0,0,.3);
+
+  --nav-h: 68px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--navy-2); }
+::-webkit-scrollbar-thumb { background: var(--navy-4); border-radius: 3px; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(8,13,26,.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  gap: 2rem;
+}
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--electric), var(--gold), var(--electric), transparent);
+  opacity: .5;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 22px; letter-spacing: .04em;
+  color: var(--white); text-decoration: none; white-space: nowrap;
+}
+.nav-logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--electric), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(37,99,235,.4);
+  transition: box-shadow .3s, transform .3s;
+}
+.nav-logo:hover .nav-logo-mark { box-shadow: 0 0 30px rgba(37,99,235,.7); transform: rotate(-5deg) scale(1.05); }
+.nav-logo-mark svg { width: 18px; height: 18px; fill: #fff; }
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex; gap: 2px; list-style: none; flex: 1;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  text-decoration: none; padding: 7px 14px; border-radius: var(--r);
+  transition: color .2s, background .2s;
+  letter-spacing: .02em;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 50%; right: 50%;
+  height: 2px; background: var(--electric);
+  border-radius: 1px;
+  transition: left .2s, right .2s;
+}
+.nav-links a:hover { color: var(--white); background: var(--muted-3); }
+.nav-links a:hover::after, .nav-links a.active::after { left: 14px; right: 14px; }
+.nav-links a.active { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  padding: 9px 20px; border-radius: var(--r); border: none; cursor: pointer;
+  text-decoration: none; transition: all .2s; white-space: nowrap;
+  letter-spacing: .02em;
+}
+.btn-ghost {
+  background: transparent; color: var(--muted-2);
+  border: 1px solid var(--border-2);
+}
+.btn-ghost:hover { border-color: var(--electric-2); color: var(--white); background: rgba(37,99,235,.1); }
+.btn-primary {
+  background: var(--electric); color: #fff;
+  box-shadow: 0 0 20px rgba(37,99,235,.35);
+}
+.btn-primary:hover { background: var(--electric-2); transform: translateY(-2px); box-shadow: 0 0 30px rgba(37,99,235,.55); }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all .25s; }
+.mobile-menu {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+  background: var(--navy-2); border-bottom: 1px solid var(--border);
+  padding: 1rem; z-index: 99; flex-direction: column; gap: 4px;
+  box-shadow: var(--shadow-elevated);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 15px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 10px 14px; border-radius: 10px; transition: background .15s, color .15s; }
+.mobile-menu a:hover { background: var(--muted-3); color: var(--white); }
+
+/* ── HERO ── */
+.hero {
+  position: relative; overflow: hidden;
+  padding: clamp(4rem,10vw,8rem) clamp(1.25rem,4vw,3rem) clamp(3rem,8vw,6rem);
+  background: var(--navy);
+  min-height: 95vh; display: flex; align-items: center;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+.hero-noise {
+  position: absolute; inset: 0;
+  opacity: .03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-orb {
+  position: absolute; border-radius: 50%; filter: blur(90px);
+}
+.orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(37,99,235,.35) 0%, transparent 70%); top: -250px; right: -150px; animation: drift1 14s ease-in-out infinite; }
+.orb-2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(139,92,246,.2) 0%, transparent 70%); bottom: -100px; left: 10%; animation: drift2 18s ease-in-out infinite; }
+.orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 70%); top: 20%; left: -100px; animation: drift3 22s ease-in-out infinite; }
+@keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,40px) scale(1.05)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-50px)} }
+@keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(25px,25px)} }
+
+.hero-corner {
+  position: absolute; width: 150px; height: 150px;
+  border: 1px solid rgba(37,99,235,.2);
+}
+.hero-corner-tl { top: 2rem; left: 2rem; border-right: none; border-bottom: none; }
+.hero-corner-br { bottom: 2rem; right: 2rem; border-left: none; border-top: none; }
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--gold); letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.2);
+  padding: 6px 14px; border-radius: 4px; margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); display:inline-block; animation: pulse-dot 2s ease-in-out infinite; box-shadow: 0 0 8px var(--gold); }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(3.5rem, 6.5vw, 6rem);
+  font-weight: 400; line-height: .95; color: #fff; margin-bottom: 1.5rem;
+  letter-spacing: .02em;
+  animation: fadeUp .7s ease both;
+}
+.hero h1 em { font-style: normal; color: var(--electric-3); display: block; }
+.hero h1 strong { color: var(--gold); font-weight: 400; }
+.hero-sub {
+  font-size: clamp(.95rem, 1.8vw, 1.1rem); color: rgba(255,255,255,.55);
+  font-weight: 400; max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75;
+  animation: fadeUp .7s .15s ease both;
+}
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp .7s .25s ease both;
+}
+.btn-hero-primary {
+  background: var(--electric); color: #fff;
+  font-family: var(--font-body); font-size: 14px; font-weight: 700;
+  padding: 14px 30px; border-radius: var(--r-md); border: none; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 0 30px rgba(37,99,235,.4);
+  transition: all .25s; letter-spacing: .02em;
+  position: relative; overflow: hidden;
+}
+.btn-hero-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+  opacity: 0; transition: opacity .25s;
+}
+.btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 4px 40px rgba(37,99,235,.6); }
+.btn-hero-primary:hover::before { opacity: 1; }
+.btn-hero-outline {
+  background: transparent; color: var(--white);
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  padding: 14px 28px; border-radius: var(--r-md); border: 1px solid var(--border-2);
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: all .25s;
+}
+.btn-hero-outline:hover { background: var(--muted-3); border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp .7s .35s ease both;
+}
+.hero-stat-val {
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 400; color: #fff;
+  letter-spacing: .02em; line-height: 1;
+}
+.hero-stat-lbl { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+
+.hero-card {
+  background: var(--navy-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xl); padding: 1.75rem;
+  box-shadow: var(--shadow-elevated);
+  animation: fadeUp .7s .2s ease both;
+  position: relative; overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--electric), var(--violet), var(--gold));
+}
+.hero-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.hero-card-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.quarterbadge { font-family: var(--font-mono); font-size: 10px; color: var(--gold); background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.2); padding: 4px 10px; border-radius: 4px; letter-spacing: .06em; }
+.rank-display { text-align: center; padding: 1rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
+.rank-num { font-family: var(--font-display); font-size: 4.5rem; font-weight: 400; color: #fff; line-height: 1; letter-spacing: .02em; }
+.rank-label { font-size: 11px; color: var(--muted); margin-top: 6px; letter-spacing: .04em; }
+.points-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.points-label { font-size: 12px; color: rgba(255,255,255,.45); font-weight: 500; }
+.points-val { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--gold); }
+.prog-track { height: 5px; background: var(--muted-3); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
+.prog-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--electric), var(--violet), var(--gold)); transition: width 1.4s cubic-bezier(.4,0,.2,1); }
+.mini-activity { display: flex; flex-direction: column; gap: 6px; }
+.mini-act-row {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.03); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 8px 12px;
+  transition: background .2s, border-color .2s;
+}
+.mini-act-row:hover { background: rgba(255,255,255,.05); border-color: var(--border-2); }
+.act-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.act-dot.done { background: var(--teal); box-shadow: 0 0 8px rgba(20,184,166,.5); }
+.act-dot.pending { background: var(--gold); box-shadow: 0 0 8px rgba(245,158,11,.5); animation: pulse-dot 2s ease-in-out infinite; }
+.act-dot.locked { background: rgba(255,255,255,.15); }
+.act-name { font-size: 12px; color: rgba(255,255,255,.7); flex: 1; font-weight: 500; }
+.act-pts { font-family: var(--font-mono); font-size: 11px; color: var(--muted); font-weight: 500; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── STATS TICKER ── */
+.stats-bar {
+  background: var(--electric);
+  padding: .6rem 0; overflow: hidden;
+  position: relative;
+}
+.stats-bar::before, .stats-bar::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+}
+.stats-bar::before { left: 0; background: linear-gradient(90deg, var(--electric), transparent); }
+.stats-bar::after { right: 0; background: linear-gradient(-90deg, var(--electric), transparent); }
+.stats-ticker { display: flex; gap: 3rem; animation: tickerScroll 22s linear infinite; width: max-content; }
+@keyframes tickerScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.ticker-val { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; color: #fff; letter-spacing: .04em; }
+.ticker-lbl { font-size: 12px; color: rgba(255,255,255,.7); font-weight: 500; }
+.ticker-sep { color: rgba(255,255,255,.3); font-size: .8rem; }
+
+/* ── SECTIONS COMMON ── */
+.section { padding: clamp(4rem,9vw,7rem) clamp(1.25rem,4vw,3rem); }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--electric-3); margin-bottom: .75rem; font-weight: 500;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4rem);
+  font-weight: 400; line-height: .95; color: var(--white); margin-bottom: 1rem;
+  letter-spacing: .02em;
+}
+.section-sub { font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.75; font-weight: 400; }
+
+/* ── ACTIVITIES ── */
+#activities { background: var(--navy-2); }
+.activity-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px; margin-top: 3rem;
+}
+.activity-card {
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  padding: 1.75rem; background: var(--navy-3);
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden; cursor: pointer;
+}
+.activity-card::before {
+  content: ''; position: absolute; inset: 0; opacity: 0;
+  transition: opacity .3s;
+  background: radial-gradient(ellipse at top left, rgba(255,255,255,.04), transparent 60%);
+}
+.activity-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity .3s;
+}
+.activity-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-elevated); border-color: var(--border-2); }
+.activity-card:hover::before { opacity: 1; }
+.activity-card:hover::after { opacity: 1; }
+.act-card-dpu::after { background: linear-gradient(90deg, var(--electric), var(--violet)); }
+.act-card-dpu:hover { box-shadow: 0 20px 60px rgba(37,99,235,.2), 0 4px 12px rgba(0,0,0,.4); }
+.act-card-master::after { background: linear-gradient(90deg, var(--teal), var(--electric-3)); }
+.act-card-master:hover { box-shadow: 0 20px 60px rgba(20,184,166,.15), 0 4px 12px rgba(0,0,0,.4); }
+.act-card-mkt::after { background: linear-gradient(90deg, var(--rose), var(--violet)); }
+.act-card-mkt:hover { box-shadow: 0 20px 60px rgba(244,63,94,.15), 0 4px 12px rgba(0,0,0,.4); }
+.act-card-deal::after { background: linear-gradient(90deg, var(--gold), var(--gold-2)); }
+.act-card-deal:hover { box-shadow: 0 20px 60px rgba(245,158,11,.2), 0 4px 12px rgba(0,0,0,.4); }
+.act-icon {
+  width: 54px; height: 54px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 1.25rem;
+  transition: transform .3s;
+}
+.activity-card:hover .act-icon { transform: scale(1.1) rotate(-5deg); }
+.act-icon-dpu  { background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.2); }
+.act-icon-master { background: rgba(20,184,166,.12); border: 1px solid rgba(20,184,166,.2); }
+.act-icon-mkt  { background: rgba(244,63,94,.12); border: 1px solid rgba(244,63,94,.2); }
+.act-icon-deal { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.2); }
+.act-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--white); margin-bottom: .5rem; letter-spacing: .02em; }
+.act-card p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; font-weight: 400; }
+.act-pts-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 4px; margin-bottom: 1.25rem; letter-spacing: .04em;
+}
+.pts-dpu   { background: rgba(37,99,235,.12); color: var(--electric-3); border: 1px solid rgba(37,99,235,.2); }
+.pts-master{ background: rgba(20,184,166,.1);  color: var(--teal-2);    border: 1px solid rgba(20,184,166,.2); }
+.pts-mkt   { background: rgba(244,63,94,.1);   color: #FB7185;           border: 1px solid rgba(244,63,94,.2); }
+.pts-deal  { background: rgba(245,158,11,.1);  color: var(--gold-2);    border: 1px solid rgba(245,158,11,.2); }
+.act-reward {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--muted); padding: 9px 12px;
+  background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.act-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--electric-3);
+  text-decoration: none; letter-spacing: .02em;
+  transition: gap .2s, opacity .2s;
+}
+.act-cta:hover { gap: 12px; }
+.act-cta .arrow {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(37,99,235,.2); font-size: 11px;
+  transition: background .2s, transform .2s;
+}
+.act-cta:hover .arrow { background: var(--electric); transform: translateX(3px); }
+
+/* ── LEARNING JOURNEY ── */
+#learning { background: var(--navy); }
+.journey-tabs { display: flex; gap: 8px; margin: 2rem 0; flex-wrap: wrap; }
+.jtab {
+  font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--navy-2);
+  cursor: pointer; transition: all .2s; font-family: var(--font-body);
+  color: var(--muted); letter-spacing: .02em;
+  position: relative; overflow: hidden;
+}
+.jtab::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 100%; height: 2px;
+  background: var(--electric); transition: right .2s;
+}
+.jtab:hover::before { right: 0; }
+.jtab.active { background: rgba(37,99,235,.15); border-color: rgba(37,99,235,.35); color: #fff; }
+.jtab.active::before { right: 0; }
+.jtab:hover:not(.active) { color: var(--white); background: var(--navy-3); }
+.roadmap {
+  background: var(--navy-2); border-radius: var(--r-xl);
+  border: 1px solid var(--border); padding: 2.5rem; overflow-x: auto;
+}
+.roadmap-track { display: flex; align-items: flex-start; gap: 0; min-width: 600px; position: relative; }
+.roadmap-track::before {
+  content: ''; position: absolute; top: 27px; left: 28px;
+  right: 28px; height: 1px; z-index: 0;
+  background: linear-gradient(90deg, var(--teal), var(--electric), var(--violet), var(--border), var(--border));
+}
+.roadmap-node { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+.rnode-circle { position: relative; z-index: 2; }
+.rnode-circle {
+  width: 56px; height: 56px; border-radius: 50%; border: 2px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px; background: var(--navy-2);
+  transition: all .3s cubic-bezier(.4,0,.2,1); cursor: pointer;
+}
+.rnode-circle:hover { transform: scale(1.15) translateY(-4px); }
+.rnode-done  { border-color: var(--teal); background: #0e2130; box-shadow: 0 0 20px rgba(20,184,166,.25); }
+.rnode-done:hover  { box-shadow: 0 0 30px rgba(20,184,166,.5); }
+.rnode-active{ border-color: var(--electric); background: #0d1a36; box-shadow: 0 0 0 6px rgba(37,99,235,.12), 0 0 20px rgba(37,99,235,.3); }
+.rnode-active:hover { box-shadow: 0 0 0 8px rgba(37,99,235,.15), 0 0 30px rgba(37,99,235,.5); }
+.rnode-locked{ border-color: var(--border-2); background: var(--navy-3); filter: grayscale(.6) opacity(.6); }
+.rnode-label { font-size: 12px; font-weight: 600; color: var(--muted); text-align: center; max-width: 90px; line-height: 1.4; }
+.rnode-pts   { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,.3); margin-top: 5px; letter-spacing: .04em; }
+.journey-filters { display: flex; gap: 8px; margin: 1.5rem 0; flex-wrap: wrap; align-items: center; }
+.filter-label { font-size: 11px; font-weight: 600; color: var(--muted); margin-right: 4px; text-transform: uppercase; letter-spacing: .06em; }
+.filter-chip {
+  font-size: 12px; padding: 6px 14px; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--navy-2);
+  cursor: pointer; color: var(--muted); transition: all .2s;
+  font-family: var(--font-body); font-weight: 500;
+}
+.filter-chip:hover { border-color: var(--electric-2); color: var(--electric-3); background: rgba(37,99,235,.08); }
+.filter-chip.sel { background: rgba(37,99,235,.12); border-color: rgba(37,99,235,.3); color: var(--electric-3); }
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 1.5rem; }
+.course-card {
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--navy-2); overflow: hidden; transition: all .3s;
+}
+.course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--border-2); }
+.course-card:hover .course-thumb-emoji { transform: scale(1.2) rotate(-8deg); }
+.course-thumb {
+  height: 100px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.course-thumb-emoji { font-size: 2.8rem; transition: transform .3s; position: relative; z-index: 1; }
+.course-thumb-dpu { background: linear-gradient(135deg, rgba(37,99,235,.2), rgba(139,92,246,.15)); }
+.course-thumb-win { background: linear-gradient(135deg, rgba(59,130,246,.2), rgba(37,99,235,.1)); }
+.course-thumb-cop { background: linear-gradient(135deg, rgba(139,92,246,.2), rgba(37,99,235,.1)); }
+.course-thumb-mkt { background: linear-gradient(135deg, rgba(244,63,94,.15), rgba(139,92,246,.1)); }
+.course-badge {
+  position: absolute; top: 8px; right: 8px; font-size: 9px; font-weight: 700;
+  padding: 3px 8px; border-radius: 3px; font-family: var(--font-mono); letter-spacing: .08em;
+}
+.badge-new  { background: var(--electric); color: #fff; }
+.badge-hot  { background: var(--rose); color: #fff; }
+.badge-done { background: var(--teal); color: #fff; }
+.course-body { padding: 1rem 1.15rem; }
+.course-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.course-meta { font-size: 11px; color: var(--muted); display: flex; gap: 10px; margin-bottom: 10px; font-weight: 500; }
+.course-pts { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--electric-3); margin-bottom: 8px; }
+.course-prog { height: 3px; background: var(--muted-3); border-radius: 2px; margin-bottom: 10px; }
+.course-prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--electric)); }
+.course-enrol {
+  font-size: 12px; font-weight: 700; color: var(--electric-3); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 4px; transition: gap .15s; letter-spacing: .02em;
+}
+.course-enrol:hover { gap: 8px; }
+
+/* ── LEADERBOARD ── */
+#leaderboard { background: var(--navy-2); }
+.lb-scope-tabs { display: flex; gap: 6px; margin: 2rem 0; flex-wrap: wrap; }
+.lb-tab {
+  font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--navy-3);
+  cursor: pointer; color: var(--muted); font-family: var(--font-body);
+  transition: all .2s; letter-spacing: .02em;
+}
+.lb-tab.active { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.3); color: var(--gold); }
+.lb-tab:hover:not(.active) { color: var(--white); border-color: var(--border-2); background: var(--navy-4); }
+.lb-layout { display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start; }
+.lb-main {
+  background: var(--navy-3); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden;
+}
+.lb-header-row {
+  display: grid; grid-template-columns: 52px 1fr 120px 80px; gap: 12px; align-items: center;
+  padding: 12px 20px; border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,.02);
+}
+.lb-header-row span { font-size: 10px; font-weight: 600; color: rgba(255,255,255,.25); letter-spacing: .1em; text-transform: uppercase; font-family: var(--font-mono); }
+.lb-row {
+  display: grid; grid-template-columns: 52px 1fr 120px 80px; gap: 12px; align-items: center;
+  padding: 13px 20px; border-bottom: 1px solid var(--border);
+  transition: background .15s; cursor: pointer;
+  position: relative;
+}
+.lb-row::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  opacity: 0; transition: opacity .2s;
+}
+.lb-row:last-child { border-bottom: none; }
+.lb-row:hover { background: rgba(255,255,255,.025); }
+.lb-row:hover::before { opacity: 1; background: var(--electric); }
+.lb-row.gold-row   { background: rgba(245,158,11,.05); }
+.lb-row.gold-row::before { opacity: 1; background: var(--gold); }
+.lb-row.silver-row { background: rgba(148,163,184,.04); }
+.lb-row.silver-row::before { opacity: 1; background: #94A3B8; }
+.lb-row.bronze-row { background: rgba(205,127,50,.04); }
+.lb-row.bronze-row::before { opacity: 1; background: #CD7F32; }
+.lb-row.you-row    { background: rgba(37,99,235,.07); }
+.lb-row.you-row::before { opacity: 1; background: var(--electric); }
+.rank-badge-lb {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+}
+.r1 { background: var(--gold); color: #3a2800; }
+.r2 { background: #94A3B8; color: #1E293B; }
+.r3 { background: #CD7F32; color: #fff; }
+.rn { background: rgba(255,255,255,.07); color: rgba(255,255,255,.45); font-size: 12px; }
+.lb-partner { display: flex; align-items: center; gap: 10px; }
+.lb-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.lb-name { font-size: 13px; font-weight: 600; color: #fff; }
+.lb-city { font-size: 11px; color: rgba(255,255,255,.3); margin-top: 1px; }
+.lb-bar-wrap { display: flex; align-items: center; gap: 8px; }
+.lb-bar-bg { flex: 1; height: 3px; background: rgba(255,255,255,.06); border-radius: 2px; overflow: hidden; }
+.lb-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--electric), var(--violet)); }
+.lb-pts-val { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--gold); text-align: right; }
+.lb-delta { font-family: var(--font-mono); font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 3px; margin-left: 4px; }
+.delta-up { background: rgba(20,184,166,.15); color: var(--teal-2); }
+.delta-dn { background: rgba(244,63,94,.12); color: #FDA4AF; }
+.delta-flat{ background: rgba(255,255,255,.05); color: rgba(255,255,255,.25); }
+
+.lb-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.my-pos-card {
+  background: var(--navy-3); border: 1px solid rgba(37,99,235,.25); border-radius: var(--r-lg); padding: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.my-pos-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--electric), var(--violet)); }
+.my-pos-card h4 { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
+.my-rank-big { font-family: var(--font-display); font-size: 3.5rem; font-weight: 400; color: #fff; line-height: 1; margin-bottom: 4px; letter-spacing: .02em; }
+.my-rank-sub { font-size: 11px; color: rgba(255,255,255,.35); margin-bottom: 1.25rem; font-weight: 500; }
+.my-pts-info { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: var(--r); padding: 12px; margin-bottom: 12px; }
+.my-pts-row { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 6px; font-weight: 500; }
+.my-pts-row span:last-child { font-family: var(--font-mono); color: var(--gold); font-weight: 600; }
+.my-prog-track { height: 4px; background: rgba(255,255,255,.07); border-radius: 3px; margin-top: 8px; }
+.my-prog-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--electric), var(--gold)); }
+.nudge-card {
+  background: var(--navy-3); border: 1px solid rgba(20,184,166,.2); border-radius: var(--r-lg); padding: 1.25rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.nudge-card:hover { border-color: rgba(20,184,166,.4); box-shadow: 0 0 20px rgba(20,184,166,.1); }
+.nudge-card h4 { font-size: 12px; font-weight: 700; color: var(--teal-2); margin-bottom: 6px; letter-spacing: .02em; }
+.nudge-card p { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.65; }
+.weekly-card {
+  background: var(--navy-3); border: 1px solid rgba(245,158,11,.2); border-radius: var(--r-lg); padding: 1.25rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.weekly-card:hover { border-color: rgba(245,158,11,.4); box-shadow: 0 0 20px rgba(245,158,11,.1); }
+.weekly-card h4 { font-size: 12px; font-weight: 700; color: var(--gold-2); margin-bottom: 6px; letter-spacing: .02em; }
+.weekly-card p { font-size: 12px; color: rgba(255,255,255,.45); }
+.sprint-timer { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: #fff; margin-top: 8px; letter-spacing: .06em; }
+
+/* ── AI ASSISTANT ── */
+#ai-assistant { background: var(--navy); }
+.ai-layout { display: grid; grid-template-columns: 1fr 420px; gap: 32px; margin-top: 3rem; align-items: start; }
+.ai-features { display: flex; flex-direction: column; gap: 14px; }
+.ai-feat-card {
+  background: var(--navy-2); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 1.25rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
+  transition: all .25s; cursor: pointer;
+}
+.ai-feat-card:hover { box-shadow: var(--shadow-card); transform: translateX(6px); border-color: rgba(37,99,235,.3); background: var(--navy-3); }
+.ai-feat-icon {
+  width: 44px; height: 44px; border-radius: var(--r); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+  transition: transform .25s;
+}
+.ai-feat-card:hover .ai-feat-icon { transform: scale(1.1) rotate(-5deg); }
+.ai-feat-body h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.ai-feat-body p { font-size: 12px; color: var(--muted); line-height: 1.65; }
+.ai-chat-demo {
+  background: var(--navy-2); border: 1px solid var(--border);
+  border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-elevated);
+}
+.chat-topbar {
+  padding: 1rem 1.25rem; background: var(--navy-3); display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.chat-avatar {
+  width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--electric), var(--violet));
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+  box-shadow: 0 0 14px rgba(37,99,235,.4);
+}
+.chat-title { font-size: 13px; font-weight: 700; color: #fff; }
+.chat-sub { font-size: 10px; color: rgba(255,255,255,.35); font-family: var(--font-mono); letter-spacing: .04em; }
+.online-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); margin-left: auto; box-shadow: 0 0 10px var(--teal); animation: pulse-dot 2s ease-in-out infinite; }
+.chat-messages { padding: 1.25rem; display: flex; flex-direction: column; gap: 12px; max-height: 340px; overflow-y: auto; }
+.chat-msg { display: flex; gap: 8px; align-items: flex-end; }
+.chat-msg.user { flex-direction: row-reverse; }
+.chat-bubble { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size: 13px; line-height: 1.55; }
+.bubble-ai { background: var(--navy-3); border: 1px solid var(--border); color: rgba(255,255,255,.8); border-radius: 4px 16px 16px 16px; }
+.bubble-user { background: var(--electric); color: #fff; border-radius: 16px 4px 16px 16px; }
+.msg-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.ai-msg-avatar { background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.2); }
+.user-msg-avatar { background: rgba(244,63,94,.12); border: 1px solid rgba(244,63,94,.15); }
+.chat-input-area { padding: 1rem 1.25rem; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; background: rgba(255,255,255,.02); }
+.chat-input {
+  flex: 1; border: 1px solid var(--border); border-radius: var(--r);
+  padding: 9px 14px; font-size: 13px; font-family: var(--font-body);
+  background: var(--navy-3); color: var(--white); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.chat-input:focus { border-color: var(--electric); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+.chat-input::placeholder { color: rgba(255,255,255,.25); }
+.chat-send {
+  width: 36px; height: 36px; border-radius: var(--r); background: var(--electric);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; flex-shrink: 0;
+}
+.chat-send:hover { background: var(--electric-2); transform: scale(1.08); box-shadow: 0 0 16px rgba(37,99,235,.4); }
+.chat-send svg { width: 16px; height: 16px; fill: #fff; }
+.suggested-prompts { padding: 0 1.25rem 1rem; display: flex; gap: 6px; flex-wrap: wrap; }
+.s-prompt {
+  font-size: 11px; padding: 5px 12px; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--navy-3);
+  cursor: pointer; color: var(--muted); transition: all .2s; font-family: var(--font-body); font-weight: 500;
+}
+.s-prompt:hover { border-color: var(--electric-2); color: var(--electric-3); background: rgba(37,99,235,.08); }
+
+/* ── ACHIEVERS ── */
+#achievers { background: var(--navy-2); }
+.achievers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-top: 3rem; }
+.achiever-card {
+  background: var(--navy-3); border-radius: var(--r-lg); padding: 1.5rem 1rem;
+  text-align: center; border: 1px solid var(--border);
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.achiever-card::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(37,99,235,.08), transparent 60%);
+  opacity: 0; transition: opacity .3s;
+}
+.achiever-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.4); border-color: var(--border-2); }
+.achiever-card:hover::before { opacity: 1; }
+.achiever-card:hover .achiever-avatar { transform: scale(1.1); }
+.achiever-avatar {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; font-weight: 700; font-family: var(--font-display); color: #fff;
+  transition: transform .3s;
+}
+.av-purple { background: linear-gradient(135deg, var(--electric), var(--violet)); box-shadow: 0 0 20px rgba(37,99,235,.3); }
+.av-teal   { background: linear-gradient(135deg, var(--teal), #0D9488); box-shadow: 0 0 20px rgba(20,184,166,.25); }
+.av-pink   { background: linear-gradient(135deg, var(--rose), #E11D48); box-shadow: 0 0 20px rgba(244,63,94,.25); }
+.av-gold   { background: linear-gradient(135deg, var(--gold), #D97706); box-shadow: 0 0 20px rgba(245,158,11,.25); }
+.av-blue   { background: linear-gradient(135deg, var(--electric-3), var(--electric)); box-shadow: 0 0 20px rgba(96,165,250,.25); }
+.av-green  { background: linear-gradient(135deg, #22C55E, #15803D); box-shadow: 0 0 20px rgba(34,197,94,.2); }
+.achiever-name { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+.achiever-badge-tag {
+  display: inline-block; font-size: 10px; padding: 4px 10px; border-radius: 3px;
+  font-weight: 600; margin-top: 6px; font-family: var(--font-mono); letter-spacing: .04em;
+}
+
+/* ── FOOTER ── */
+footer { background: var(--navy); border-top: 1px solid var(--border); padding: 3rem clamp(1.25rem,4vw,3rem); }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+.footer-brand h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: #fff; margin-bottom: .75rem; letter-spacing: .02em; }
+.footer-brand p { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,.4); }
+.footer-col h4 { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.5); margin-bottom: 1rem; font-family: var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,.3); text-decoration: none; margin-bottom: 8px; transition: color .15s; font-weight: 500; }
+.footer-col a:hover { color: rgba(255,255,255,.75); }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; gap: 1rem; flex-wrap: wrap; color: rgba(255,255,255,.25); font-family: var(--font-mono);
+}
+.footer-partners { display: flex; align-items: center; gap: 8px; }
+.partner-pill {
+  background: rgba(255,255,255,.05); border: 1px solid var(--border);
+  border-radius: 4px; padding: 4px 12px; font-size: 10px; font-weight: 600;
+  color: rgba(255,255,255,.45); font-family: var(--font-mono); letter-spacing: .06em;
+  transition: all .2s;
+}
+.partner-pill:hover { background: rgba(37,99,235,.1); border-color: rgba(37,99,235,.25); color: var(--electric-3); }
+.security-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,255,255,.25); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-card { display: none; }
+  .lb-layout { grid-template-columns: 1fr; }
+  .lb-sidebar { display: none; }
+  .ai-layout { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+}
+@media (max-width: 600px) {
+  .lb-header-row, .lb-row { grid-template-columns: 40px 1fr 70px; }
+  .lb-pts-val { display: none; }
+  .courses-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-col:nth-child(3), .footer-col:nth-child(4) { display: none; }
+}
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+.fade-in { animation: fadeUp .6s ease both; }
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="Sales Excellence League home">
+    <div class="nav-logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 2L3 7l9 5 9-5-9-5zM3 17l9 5 9-5M3 12l9 5 9-5"/></svg>
+    </div>
+    Sales <span>Excellence</span> League
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#activities" class="active">Activities</a></li>
+    <li><a href="#learning">Learning</a></li>
+    <li><a href="#leaderboard">Leaderboard</a></li>
+    <li><a href="#ai-assistant">AI Assistant</a></li>
+    <li><a href="#achievers">Achievers</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="btn btn-ghost">Sign in</a>
+    <a href="#" class="btn btn-primary">Join free &rarr;</a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="#activities" onclick="closeMenu()">Activities</a>
+  <a href="#learning" onclick="closeMenu()">Learning Journey</a>
+  <a href="#leaderboard" onclick="closeMenu()">Leaderboard</a>
+  <a href="#ai-assistant" onclick="closeMenu()">AI Assistant</a>
+  <a href="#achievers" onclick="closeMenu()">Partner Achievers</a>
+  <a href="#" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    <div class="hero-orb orb-3"></div>
+    <div class="hero-corner hero-corner-tl"></div>
+    <div class="hero-corner hero-corner-br"></div>
+  </div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow" aria-label="Q1 2026 Programme Active">Q1 2026 &middot; Programme Active</div>
+      <h1 id="hero-heading">Build skills.<br><em>Earn points.</em><br><strong>Win rewards.</strong></h1>
+      <p class="hero-sub">Microsoft partner enablement for Redington &amp; Ingram resellers. Accreditations, masterclasses, and marketing tools &mdash; all in one place, at no cost.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-hero-primary">
+          Start learning free
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#activities" class="btn-hero-outline">Explore activities &darr;</a>
+      </div>
+      <div class="hero-stats" role="list" aria-label="Platform statistics">
+        <div role="listitem">
+          <div class="hero-stat-val" id="stat-trainings">0</div>
+          <div class="hero-stat-lbl">Trainings available</div>
+        </div>
+        <div role="listitem">
+          <div class="hero-stat-val" id="stat-attendees">0</div>
+          <div class="hero-stat-lbl">Masterclass attendees</div>
+        </div>
+        <div role="listitem">
+          <div class="hero-stat-val" id="stat-campaigns">0</div>
+          <div class="hero-stat-lbl">Marketing campaigns</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card" aria-label="Dashboard preview" role="img">
+      <div class="hero-card-header">
+        <span class="hero-card-title">My Dashboard</span>
+        <span class="quarterbadge">Q1 2026</span>
+      </div>
+      <div class="rank-display">
+        <div class="rank-num">#23</div>
+        <div class="rank-label">National ranking &middot; &uarr;4 this week</div>
+      </div>
+      <div class="points-row">
+        <span class="points-label">Total points</span>
+        <span class="points-val">6,450 pts</span>
+      </div>
+      <div class="points-row">
+        <span class="points-label">Next milestone</span>
+        <span class="points-val" style="color:var(--teal-2)">10,000 pts</span>
+      </div>
+      <div class="prog-track" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
+        <div class="prog-fill" id="heroProg" style="width:0%"></div>
+      </div>
+      <div class="mini-activity" role="list">
+        <div class="mini-act-row" role="listitem">
+          <div class="act-dot done"></div>
+          <span class="act-name">Windows 11 Pro Accreditation</span>
+          <span class="act-pts">+100 pts</span>
+        </div>
+        <div class="mini-act-row" role="listitem">
+          <div class="act-dot done"></div>
+          <span class="act-name">May Masterclass + Quiz</span>
+          <span class="act-pts">+250 pts</span>
+        </div>
+        <div class="mini-act-row" role="listitem">
+          <div class="act-dot pending"></div>
+          <span class="act-name">Marketing Campaign #2</span>
+          <span class="act-pts">+500 pts</span>
+        </div>
+        <div class="mini-act-row" role="listitem">
+          <div class="act-dot locked"></div>
+          <span class="act-name">Deal Closure submission</span>
+          <span class="act-pts">+1000 pts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS TICKER -->
+<div class="stats-bar" aria-hidden="true">
+  <div class="stats-ticker">
+    <div class="ticker-item"><span class="ticker-val">3,600+</span><span class="ticker-lbl">Trainings completed</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">8,500+</span><span class="ticker-lbl">Masterclass attendees</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">550+</span><span class="ticker-lbl">Marketing campaigns run</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">&#8377;1,000+</span><span class="ticker-lbl">Max reward per milestone</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">3,600+</span><span class="ticker-lbl">Trainings completed</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">8,500+</span><span class="ticker-lbl">Masterclass attendees</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">550+</span><span class="ticker-lbl">Marketing campaigns run</span></div>
+    <div class="ticker-sep">&#10022;</div>
+    <div class="ticker-item"><span class="ticker-val">&#8377;1,000+</span><span class="ticker-lbl">Max reward per milestone</span></div>
+  </div>
+</div>
+
+<!-- ACTIVITIES -->
+<section class="section" id="activities" aria-labelledby="activities-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Choose your activity</div>
+    <h2 class="section-title" id="activities-heading">Four ways to earn.<br>One platform.</h2>
+    <p class="section-sub">Each activity rewards you with points that count toward milestone gifts, cash vouchers, and quarterly prizes.</p>
+    <div class="activity-grid" role="list">
+      <article class="activity-card act-card-dpu" role="listitem" tabindex="0">
+        <div class="act-icon act-icon-dpu" aria-hidden="true">📘</div>
+        <div class="act-pts-badge pts-dpu">+100 pts per accreditation</div>
+        <h3>DPU Training</h3>
+        <p>Get Microsoft-certified with Device Partner University on Microsoft Learn. Curated content designed to build expertise and drive better customer outcomes.</p>
+        <div class="act-reward">
+          <span>🎁</span> &#8377;500 reward for first 25 completions &middot; +50 pts for LinkedIn share
+        </div>
+        <a href="#" class="act-cta">View catalogue <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="activity-card act-card-master" role="listitem" tabindex="0">
+        <div class="act-icon act-icon-master" aria-hidden="true">🎯</div>
+        <div class="act-pts-badge pts-master">+150 pts per session</div>
+        <h3>Masterclass</h3>
+        <p>Live expert-led sessions with Microsoft product specialists. Attend, take the quiz, and score 75%+ to win meal vouchers. Dates added every quarter.</p>
+        <div class="act-reward">
+          <span>🍽️</span> &#8377;300 meal voucher for 75%+ quiz score
+        </div>
+        <a href="#" class="act-cta">View calendar <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="activity-card act-card-mkt" role="listitem" tabindex="0">
+        <div class="act-icon act-icon-mkt" aria-hidden="true">📣</div>
+        <div class="act-pts-badge pts-mkt">+500 pts per campaign</div>
+        <h3>Marketing Campaign</h3>
+        <p>Download ready-made Microsoft co-branded assets and run customer campaigns. Submit proof of execution to earn points and unlock marketing funds.</p>
+        <div class="act-reward">
+          <span>💰</span> Marketing development funds for top campaigns
+        </div>
+        <a href="#" class="act-cta">Get assets <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="activity-card act-card-deal" role="listitem" tabindex="0">
+        <div class="act-icon act-icon-deal" aria-hidden="true">🤝</div>
+        <div class="act-pts-badge pts-deal">+1000 pts per deal</div>
+        <h3>Deal Closure</h3>
+        <p>Close a qualifying Microsoft deal and submit your proof. Earn the highest points of any activity and accelerate your path to the top of the leaderboard.</p>
+        <div class="act-reward">
+          <span>🏆</span> Bonus multiplier for deals closed before Q1 deadline
+        </div>
+        <a href="#" class="act-cta">Submit a deal <span class="arrow">&rarr;</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING JOURNEY -->
+<section class="section" id="learning" aria-labelledby="learning-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Learning journey</div>
+    <h2 class="section-title" id="learning-heading">Your roadmap to<br>accreditation</h2>
+    <p class="section-sub">Pick a product track and follow a structured path from foundation to expert &mdash; earning points at every step.</p>
+
+    <div class="journey-tabs" role="tablist" aria-label="Product learning tracks">
+      <button class="jtab active" role="tab" aria-selected="true" onclick="switchTrack(this,'windows')">Windows 11</button>
+      <button class="jtab" role="tab" aria-selected="false" onclick="switchTrack(this,'m365')">Microsoft 365</button>
+      <button class="jtab" role="tab" aria-selected="false" onclick="switchTrack(this,'copilot')">Copilot+</button>
+      <button class="jtab" role="tab" aria-selected="false" onclick="switchTrack(this,'surface')">Surface</button>
+    </div>
+
+    <div class="roadmap" id="roadmap-windows" role="region">
+      <div class="roadmap-track">
+        <div class="roadmap-node">
+          <div class="rnode-circle rnode-done" tabindex="0" aria-label="Completed: Windows 11 Fundamentals">✓</div>
+          <div class="rnode-label">Win 11 Fundamentals</div>
+          <div class="rnode-pts">100 pts ✓</div>
+        </div>
+        <div class="roadmap-node">
+          <div class="rnode-circle rnode-done" tabindex="0">🔐</div>
+          <div class="rnode-label">Security &amp; Management</div>
+          <div class="rnode-pts">100 pts ✓</div>
+        </div>
+        <div class="roadmap-node">
+          <div class="rnode-circle rnode-active" tabindex="0">⭐</div>
+          <div class="rnode-label">Win 11 Pro Accreditation</div>
+          <div class="rnode-pts" style="color:var(--electric-3)">100 pts &middot; Active</div>
+        </div>
+        <div class="roadmap-node">
+          <div class="rnode-circle rnode-locked" tabindex="0">🔒</div>
+          <div class="rnode-label">Modern Endpoints</div>
+          <div class="rnode-pts">100 pts</div>
+        </div>
+        <div class="roadmap-node">
+          <div class="rnode-circle rnode-locked" tabindex="0">🔒</div>
+          <div class="rnode-label">Expert Certification</div>
+          <div class="rnode-pts">200 pts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-filters" role="group">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-chip sel" onclick="toggleFilter(this)">All</button>
+      <button class="filter-chip" onclick="toggleFilter(this)">In progress</button>
+      <button class="filter-chip" onclick="toggleFilter(this)">New this quarter</button>
+      <button class="filter-chip" onclick="toggleFilter(this)">High points</button>
+      <button class="filter-chip" onclick="toggleFilter(this)">Under 2 hrs</button>
+    </div>
+
+    <div class="courses-grid" role="list">
+      <article class="course-card" role="listitem">
+        <div class="course-thumb course-thumb-win">
+          <span class="course-thumb-emoji" aria-hidden="true">🪟</span>
+          <span class="course-badge badge-hot">HOT</span>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Windows 11 Pro Accreditation 2025</div>
+          <div class="course-meta"><span>⏱ 2.5 hrs</span><span>📶 Intermediate</span></div>
+          <div class="course-prog" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+            <div class="course-prog-fill" style="width:45%"></div>
+          </div>
+          <div class="course-pts">+100 pts</div>
+          <a href="#" class="course-enrol">Continue &rarr;</a>
+        </div>
+      </article>
+      <article class="course-card" role="listitem">
+        <div class="course-thumb course-thumb-cop">
+          <span class="course-thumb-emoji" aria-hidden="true">🤖</span>
+          <span class="course-badge badge-new">NEW</span>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Copilot+ PC Accreditation 2024&ndash;25</div>
+          <div class="course-meta"><span>⏱ 3 hrs</span><span>📶 Advanced</span></div>
+          <div class="course-prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="course-prog-fill" style="width:0%"></div>
+          </div>
+          <div class="course-pts">+100 pts</div>
+          <a href="#" class="course-enrol">Enrol &rarr;</a>
+        </div>
+      </article>
+      <article class="course-card" role="listitem">
+        <div class="course-thumb course-thumb-dpu">
+          <span class="course-thumb-emoji" aria-hidden="true">📧</span>
+          <span class="course-badge badge-done">DONE</span>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Microsoft 365 Accreditation 2024</div>
+          <div class="course-meta"><span>⏱ 2 hrs</span><span>📶 Foundation</span></div>
+          <div class="course-prog" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            <div class="course-prog-fill" style="width:100%"></div>
+          </div>
+          <div class="course-pts">+100 pts ✓</div>
+          <a href="#" class="course-enrol">View certificate &rarr;</a>
+        </div>
+      </article>
+      <article class="course-card" role="listitem">
+        <div class="course-thumb course-thumb-mkt">
+          <span class="course-thumb-emoji" aria-hidden="true">💼</span>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Modern Endpoints Accreditation</div>
+          <div class="course-meta"><span>⏱ 4 hrs</span><span>📶 Advanced</span></div>
+          <div class="course-prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="course-prog-fill" style="width:0%"></div>
+          </div>
+          <div class="course-pts">+100 pts</div>
+          <a href="#" class="course-enrol">Enrol &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="section" id="leaderboard" aria-labelledby="lb-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Live rankings</div>
+    <h2 class="section-title" id="lb-heading">Who's leading<br>the league?</h2>
+    <p class="section-sub">Updated in real-time. See where you stand nationally, by state, or by city &mdash; and what it takes to climb.</p>
+
+    <div class="lb-scope-tabs" role="tablist">
+      <button class="lb-tab active" role="tab" aria-selected="true" onclick="switchLbTab(this)">🌍 National</button>
+      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">🗺️ State</button>
+      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">🏙️ City</button>
+      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">⚡ This Week</button>
+    </div>
+
+    <div class="lb-layout">
+      <div>
+        <div class="lb-main" role="table">
+          <div class="lb-header-row" role="row">
+            <span>#</span><span>Partner</span><span>Progress</span><span style="text-align:right">Points</span>
+          </div>
+          <div class="lb-row gold-row" role="row" tabindex="0">
+            <div class="rank-badge-lb r1">1</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#2563EB,#8B5CF6)">HV</div>
+              <div><div class="lb-name">Harminder Virk <span class="lb-delta delta-up">&uarr;2</span></div><div class="lb-city">Delhi</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:100%"></div></div></div>
+            <div class="lb-pts-val">9,840</div>
+          </div>
+          <div class="lb-row silver-row" role="row" tabindex="0">
+            <div class="rank-badge-lb r2">2</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#14B8A6,#0D9488)">AC</div>
+              <div><div class="lb-name">Ajay Chauhan <span class="lb-delta delta-flat">&mdash;</span></div><div class="lb-city">Mumbai</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:82%"></div></div></div>
+            <div class="lb-pts-val">8,100</div>
+          </div>
+          <div class="lb-row bronze-row" role="row" tabindex="0">
+            <div class="rank-badge-lb r3">3</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#F43F5E,#E11D48)">AK</div>
+              <div><div class="lb-name">Anantha Kumar MJ <span class="lb-delta delta-dn">&darr;1</span></div><div class="lb-city">Bangalore</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:71%"></div></div></div>
+            <div class="lb-pts-val">6,950</div>
+          </div>
+          <div class="lb-row" role="row" tabindex="0">
+            <div class="rank-badge-lb rn">4</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">CD</div>
+              <div><div class="lb-name">Chaitrali Dhamankar <span class="lb-delta delta-up">&uarr;1</span></div><div class="lb-city">Pune</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:55%"></div></div></div>
+            <div class="lb-pts-val">5,400</div>
+          </div>
+          <div class="lb-row" role="row" tabindex="0">
+            <div class="rank-badge-lb rn">5</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#22C55E,#15803D)">AS</div>
+              <div><div class="lb-name">Abhay Shukla <span class="lb-delta delta-dn">&darr;1</span></div><div class="lb-city">Hyderabad</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:42%"></div></div></div>
+            <div class="lb-pts-val">4,150</div>
+          </div>
+          <div class="lb-row" role="row" tabindex="0">
+            <div class="rank-badge-lb rn">6</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#60A5FA,#2563EB)">AK</div>
+              <div><div class="lb-name">Ashish Kumar <span class="lb-delta delta-flat">&mdash;</span></div><div class="lb-city">Chennai</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:38%"></div></div></div>
+            <div class="lb-pts-val">3,800</div>
+          </div>
+          <div class="lb-row you-row" role="row" tabindex="0">
+            <div class="rank-badge-lb rn" style="background:rgba(37,99,235,.2);color:var(--electric-3)">23</div>
+            <div class="lb-partner">
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#2563EB,#F43F5E)">YO</div>
+              <div><div class="lb-name" style="color:#fff">You <span style="font-size:11px;opacity:.4">(Priya Sharma)</span> <span class="lb-delta delta-up">&uarr;4</span></div><div class="lb-city">Noida</div></div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar-bg"><div class="lb-bar-fill" style="width:66%;background:linear-gradient(90deg,var(--electric),var(--gold))"></div></div></div>
+            <div class="lb-pts-val">6,450</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lb-sidebar">
+        <div class="my-pos-card">
+          <h4>Your position</h4>
+          <div class="my-rank-big">#23</div>
+          <div class="my-rank-sub">National ranking &middot; &uarr;4 this week</div>
+          <div class="my-pts-info">
+            <div class="my-pts-row"><span>Your points</span><span>6,450</span></div>
+            <div class="my-pts-row"><span>Points above you (#22)</span><span>&minus;320 pts</span></div>
+            <div class="my-pts-row"><span>To next milestone</span><span>3,550 pts</span></div>
+            <div class="my-prog-track">
+              <div class="my-prog-fill" style="width:65%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="nudge-card">
+          <h4>🤔 AI Nudge</h4>
+          <p>Complete the Copilot+ PC Accreditation (100 pts) + one more masterclass (150 pts) to overtake rank #22 this week. Takes ~3 hrs total.</p>
+        </div>
+        <div class="weekly-card">
+          <h4>⚡ Weekly Sprint</h4>
+          <p>Resets every Monday. Current sprint ends in:</p>
+          <div class="sprint-timer" aria-live="polite" id="sprintTimer">03:14:22:08</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI ASSISTANT -->
+<section class="section" id="ai-assistant" aria-labelledby="ai-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">AI-powered features</div>
+    <h2 class="section-title" id="ai-heading">Your intelligent<br>partner coach</h2>
+    <p class="section-sub">From personalised learning recommendations to instant quiz prep &mdash; AI works alongside you to maximise your quarter.</p>
+    <div class="ai-layout">
+      <div class="ai-features" role="list">
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon" style="background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.2)">🧠</div>
+          <div class="ai-feat-body">
+            <h4>Personalised Learning Path</h4>
+            <p>AI analyses your accreditation history and recommends the highest-impact activities based on current leaderboard gaps.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.15)">⚡</div>
+          <div class="ai-feat-body">
+            <h4>Quiz Preparation Mode</h4>
+            <p>Practice with AI-generated questions aligned to each masterclass. Improve your score and claim more rewards.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon" style="background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.15)">📊</div>
+          <div class="ai-feat-body">
+            <h4>Rank Intelligence</h4>
+            <p>Real-time analysis of what separates your rank from the competition &mdash; and the exact actions to bridge that gap fastest.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon" style="background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.15)">📦</div>
+          <div class="ai-feat-body">
+            <h4>Asset Discovery</h4>
+            <p>Instantly find the right co-branded marketing materials for your campaigns. Filtered by product, audience, and format.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-chat-demo">
+        <div class="chat-topbar">
+          <div class="chat-avatar">🤖</div>
+          <div>
+            <div class="chat-title">SEL Coach</div>
+            <div class="chat-sub">Powered by Copilot</div>
+          </div>
+          <div class="online-dot" aria-label="Online"></div>
+        </div>
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+          <div class="chat-msg">
+            <div class="msg-avatar ai-msg-avatar">🤖</div>
+            <div class="chat-bubble bubble-ai">Hi Priya! You're at <strong>rank #23</strong> with 6,450 points. You need just 3,550 more to hit the 10,000-point milestone. Want me to show you the fastest path? 🎯</div>
+          </div>
+          <div class="chat-msg user">
+            <div class="msg-avatar user-msg-avatar">👤</div>
+            <div class="chat-bubble bubble-user">Yes! What should I do first?</div>
+          </div>
+          <div class="chat-msg">
+            <div class="msg-avatar ai-msg-avatar">🤖</div>
+            <div class="chat-bubble bubble-ai">Here's your optimised plan:<br><br><strong>1. Copilot+ PC Accreditation</strong> &mdash; 100 pts, ~3 hrs.<br><strong>2. Next Masterclass (May 2)</strong> &mdash; 150&ndash;250 pts with quiz pass.<br><strong>3. Marketing Campaign</strong> &mdash; 500 pts, assets ready.<br><br>That's <strong>850&ndash;950 pts</strong> this week alone! 🚀</div>
+          </div>
+        </div>
+        <div class="suggested-prompts">
+          <button class="s-prompt" onclick="sendPrompt(this)">How do I prep for the quiz?</button>
+          <button class="s-prompt" onclick="sendPrompt(this)">Show me marketing assets</button>
+          <button class="s-prompt" onclick="sendPrompt(this)">Why did my rank drop?</button>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Ask about progress, activities, rewards&hellip;" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="chat-send" onclick="sendChat()">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVERS -->
+<section class="section" id="achievers" aria-labelledby="achievers-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Hall of fame</div>
+    <h2 class="section-title" id="achievers-heading">Proud partner<br>achievers</h2>
+    <p class="section-sub">These partners earned their accreditations and claimed their rewards. Your name could be next.</p>
+    <div class="achievers-grid" role="list">
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-purple">AC</div>
+        <div class="achiever-name">Ajay Chauhan</div>
+        <div style="font-size:11px;color:var(--muted)">Mumbai</div>
+        <div class="achiever-badge-tag" style="background:rgba(37,99,235,.1);color:var(--electric-3);border:1px solid rgba(37,99,235,.2)">Office 2021 H&amp;B</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-teal">HV</div>
+        <div class="achiever-name">Harminder Virk</div>
+        <div style="font-size:11px;color:var(--muted)">Delhi</div>
+        <div class="achiever-badge-tag" style="background:rgba(20,184,166,.08);color:var(--teal-2);border:1px solid rgba(20,184,166,.2)">Win 11 Pro 2025</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-pink">AK</div>
+        <div class="achiever-name">Ashish Kumar</div>
+        <div style="font-size:11px;color:var(--muted)">Chennai</div>
+        <div class="achiever-badge-tag" style="background:rgba(244,63,94,.08);color:#FDA4AF;border:1px solid rgba(244,63,94,.2)">Modern Endpoints</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-gold">AM</div>
+        <div class="achiever-name">Anantha Kumar MJ</div>
+        <div style="font-size:11px;color:var(--muted)">Bangalore</div>
+        <div class="achiever-badge-tag" style="background:rgba(245,158,11,.08);color:var(--gold-2);border:1px solid rgba(245,158,11,.2)">Microsoft 365</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-blue">AB</div>
+        <div class="achiever-name">Abhay Shukla</div>
+        <div style="font-size:11px;color:var(--muted)">Hyderabad</div>
+        <div class="achiever-badge-tag" style="background:rgba(96,165,250,.08);color:var(--electric-3);border:1px solid rgba(96,165,250,.2)">Copilot+ PC 2025</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-green">CD</div>
+        <div class="achiever-name">Chaitrali Dhamankar</div>
+        <div style="font-size:11px;color:var(--muted)">Pune</div>
+        <div class="achiever-badge-tag" style="background:rgba(34,197,94,.07);color:#86EFAC;border:1px solid rgba(34,197,94,.15)">Copilot+ Commercial</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Sales Excellence League</h3>
+        <p>Enabling Microsoft partner sellers across India through trainings, accreditations, masterclasses, and meaningful rewards &mdash; at no cost.</p>
+        <p style="margin-top:1rem">Programme period: <strong style="color:rgba(255,255,255,.5)">Jan 1 &ndash; Mar 31, 2026</strong></p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="#activities">Activities &amp; points</a>
+        <a href="#learning">Learning journey</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#ai-assistant">AI assistant</a>
+        <a href="#achievers">Hall of fame</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Training catalogue</a>
+        <a href="#">Masterclass calendar</a>
+        <a href="#">Marketing kit</a>
+        <a href="#">Submit POE</a>
+        <a href="#">Help &amp; support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Terms &amp; conditions</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Data protection (DPDP)</a>
+        <a href="mailto:se-league@timeus.in">Contact us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Timeus Interactive Services Pvt Ltd. All rights reserved. Valid in India only.</span>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <div class="footer-partners">
+          <span class="partner-pill">Redington</span>
+          <span class="partner-pill">Ingram Micro</span>
+          <span class="partner-pill">Microsoft</span>
+        </div>
+        <div class="security-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          HTTPS secured
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu */
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+/* Counter animation */
+function animateCounter(id, target, suffix) {
+  var el = document.getElementById(id);
+  var start = 0, duration = 2200, step = 16;
+  var increment = target / (duration / step);
+  var timer = setInterval(function(){
+    start += increment;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = Math.floor(start).toLocaleString() + (suffix || '');
+  }, step);
+}
+window.addEventListener('load', function(){
+  animateCounter('stat-trainings', 3600, '+');
+  animateCounter('stat-attendees', 8500, '+');
+  animateCounter('stat-campaigns', 550, '+');
+  setTimeout(function(){ var p = document.getElementById('heroProg'); if(p) p.style.width = '64%'; }, 500);
+});
+
+/* Learning track switch */
+var tracks = {
+  windows: [
+    {e:'✓',cls:'rnode-done',lbl:'Win 11 Fundamentals',pts:'100 pts ✓',ptsclr:''},
+    {e:'🔐',cls:'rnode-done',lbl:'Security & Management',pts:'100 pts ✓',ptsclr:''},
+    {e:'⭐',cls:'rnode-active',lbl:'Win 11 Pro Accreditation',pts:'100 pts · Active',ptsclr:'color:var(--electric-3)'},
+    {e:'🔒',cls:'rnode-locked',lbl:'Modern Endpoints',pts:'100 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'Expert Certification',pts:'200 pts',ptsclr:''}
+  ],
+  m365: [
+    {e:'✓',cls:'rnode-done',lbl:'M365 Fundamentals',pts:'100 pts ✓',ptsclr:''},
+    {e:'⭐',cls:'rnode-active',lbl:'M365 Accreditation 2024',pts:'100 pts · Active',ptsclr:'color:var(--electric-3)'},
+    {e:'🔒',cls:'rnode-locked',lbl:'Teams & Collaboration',pts:'100 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'Security Compliance',pts:'100 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'M365 Expert',pts:'200 pts',ptsclr:''}
+  ],
+  copilot: [
+    {e:'🔒',cls:'rnode-locked',lbl:'AI Basics for Sellers',pts:'50 pts',ptsclr:''},
+    {e:'🤖',cls:'rnode-locked',lbl:'Copilot+ PC Overview',pts:'100 pts',ptsclr:''},
+    {e:'💼',cls:'rnode-locked',lbl:'Commercial Accrdn.',pts:'100 pts',ptsclr:''},
+    {e:'🎯',cls:'rnode-locked',lbl:'AI Sales Mastery',pts:'150 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'Copilot Expert',pts:'200 pts',ptsclr:''}
+  ],
+  surface: [
+    {e:'✓',cls:'rnode-done',lbl:'Surface Portfolio',pts:'50 pts ✓',ptsclr:''},
+    {e:'💻',cls:'rnode-active',lbl:'Surface Pro & Laptop',pts:'100 pts · Active',ptsclr:'color:var(--electric-3)'},
+    {e:'🔒',cls:'rnode-locked',lbl:'Surface for Business',pts:'100 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'Device Management',pts:'100 pts',ptsclr:''},
+    {e:'🔒',cls:'rnode-locked',lbl:'Surface Expert',pts:'200 pts',ptsclr:''}
+  ]
+};
+function switchTrack(btn, track){
+  document.querySelectorAll('.jtab').forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+  var nodes = document.querySelectorAll('.roadmap-node');
+  var data = tracks[track];
+  nodes.forEach(function(node, i){
+    var d = data[i];
+    var circle = node.querySelector('.rnode-circle');
+    circle.className = 'rnode-circle ' + d.cls;
+    circle.textContent = d.e;
+    node.querySelector('.rnode-label').textContent = d.lbl;
+    var ptsEl = node.querySelector('.rnode-pts');
+    ptsEl.textContent = d.pts;
+    ptsEl.style.cssText = d.ptsclr;
+  });
+}
+
+function toggleFilter(chip){
+  document.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('sel'); });
+  chip.classList.add('sel');
+}
+
+function switchLbTab(btn){
+  document.querySelectorAll('.lb-tab').forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+}
+
+/* Sprint timer */
+function updateTimer(){
+  var el = document.getElementById('sprintTimer'); if(!el) return;
+  var now = new Date();
+  var nextMonday = new Date(now);
+  nextMonday.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7 || 7);
+  nextMonday.setHours(0,0,0,0);
+  var diff = Math.max(0, nextMonday - now);
+  var d = Math.floor(diff/86400000);
+  var h = Math.floor((diff%86400000)/3600000);
+  var m = Math.floor((diff%3600000)/60000);
+  var s = Math.floor((diff%60000)/1000);
+  el.textContent = String(d).padStart(2,'0')+':'+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+
+/* Chat */
+var aiReplies = {
+  'how do i prep for the quiz': "Great question! Here are my top tips:\n\n1. Review the module summary\n2. Take the practice quiz first — it covers 70% of real questions\n3. Focus on product specs and customer benefit messaging\n4. You need 75%+ to unlock the ₹300 meal voucher! 🎯",
+  'show me marketing assets': "I've found 6 ready-to-use assets:\n\n📧 Email template (Copilot+)\n📱 Social banner pack (4 sizes)\n📖 Copilot+ PC eBook\n📊 Windows 11 infographic\n\nWhich would you like to download? Each campaign submission earns 500 pts! 🚀",
+  'why did my rank drop': "Your rank didn't drop — you're actually up ↑4 places this week! 🎉\n\nTwo partners submitted new POEs yesterday. The good news: completing the Copilot+ Accreditation would add 100 pts and push you up 3 more spots."
+};
+function sendPrompt(btn){
+  var text = btn.textContent; addMsg(text, true); btn.remove();
+  setTimeout(function(){
+    var key = text.toLowerCase().trim();
+    var reply = aiReplies[key] || "I'm looking that up for you... Based on your profile and current standings, I recommend focusing on your next DPU accreditation for maximum points this week. Want a step-by-step plan?";
+    addMsg(reply, false);
+  }, 800);
+}
+function sendChat(){
+  var input = document.getElementById('chatInput');
+  var text = input.value.trim(); if(!text) return;
+  addMsg(text, true); input.value = '';
+  setTimeout(function(){
+    var key = text.toLowerCase();
+    var reply = "Great question! Based on your profile — rank #23 with 6,450 pts — I'd suggest completing the Copilot+ PC Accreditation next. It's 100 pts and takes about 3 hours. Want me to open it for you?";
+    for(var k in aiReplies){ if(key.includes(k.split(' ')[0])) { reply = aiReplies[k]; break; } }
+    addMsg(reply, false);
+  }, 900);
+}
+function addMsg(text, isUser){
+  var msgs = document.getElementById('chatMessages');
+  var div = document.createElement('div');
+  div.className = 'chat-msg' + (isUser ? ' user' : '');
+  var avatar = document.createElement('div');
+  avatar.className = 'msg-avatar ' + (isUser ? 'user-msg-avatar' : 'ai-msg-avatar');
+  avatar.textContent = isUser ? '👤' : '🤖';
+  var bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + (isUser ? 'bubble-user' : 'bubble-ai');
+  bubble.innerHTML = text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  div.appendChild(avatar); div.appendChild(bubble);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+/* Nav active state on scroll */
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', function(){
+  var scroll = window.scrollY + 100;
+  sections.forEach(function(s){
+    if(scroll >= s.offsetTop && scroll < s.offsetTop + s.offsetHeight){
+      navLinks.forEach(function(l){ l.classList.remove('active'); });
+      var active = document.querySelector('.nav-links a[href="#'+s.id+'"]');
+      if(active) active.classList.add('active');
+    }
+  });
+}, {passive:true});
+
+/* Scroll reveal */
+var reveals = document.querySelectorAll('.activity-card, .course-card, .achiever-card, .ai-feat-card');
+reveals.forEach(function(el){ el.classList.add('reveal'); });
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) { e.target.classList.add('in-view'); } });
+}, { threshold: 0.1 });
+reveals.forEach(function(el){ observer.observe(el); });
+</script>
+</body>
+</html>
