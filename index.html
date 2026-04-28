@@ -464,36 +464,53 @@ nav::after {
 .course-card {
   border-radius: var(--r-lg); border: 1px solid var(--border);
   background: var(--navy-2); overflow: hidden; transition: all .3s;
+  padding: 1.4rem 1.4rem 1.4rem 1.7rem;
+  display: flex; flex-direction: column; gap: .9rem;
+  position: relative;
 }
+.course-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px;
+}
+.cc-win::before  { background: linear-gradient(180deg, var(--electric), var(--electric-3)); }
+.cc-cop::before  { background: linear-gradient(180deg, var(--violet), var(--electric)); }
+.cc-m365::before { background: linear-gradient(180deg, var(--teal), var(--electric-3)); }
+.cc-ep::before   { background: linear-gradient(180deg, var(--rose), var(--violet)); }
 .course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--border-2); }
-.course-card:hover .course-thumb-emoji { transform: scale(1.2) rotate(-8deg); }
-.course-thumb {
-  height: 100px; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
+.course-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.course-icon-wrap {
+  width: 38px; height: 38px; border-radius: var(--r); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+  transition: transform .25s;
 }
-.course-thumb-emoji { font-size: 2.8rem; transition: transform .3s; position: relative; z-index: 1; }
-.course-thumb-dpu { background: linear-gradient(135deg, rgba(37,99,235,.2), rgba(139,92,246,.15)); }
-.course-thumb-win { background: linear-gradient(135deg, rgba(59,130,246,.2), rgba(37,99,235,.1)); }
-.course-thumb-cop { background: linear-gradient(135deg, rgba(139,92,246,.2), rgba(37,99,235,.1)); }
-.course-thumb-mkt { background: linear-gradient(135deg, rgba(244,63,94,.15), rgba(139,92,246,.1)); }
+.course-card:hover .course-icon-wrap { transform: scale(1.1) rotate(-4deg); }
+.ci-win  { background: rgba(37,99,235,.15);  border: 1px solid rgba(37,99,235,.25); }
+.ci-cop  { background: rgba(139,92,246,.15); border: 1px solid rgba(139,92,246,.25); }
+.ci-m365 { background: rgba(20,184,166,.12); border: 1px solid rgba(20,184,166,.25); }
+.ci-ep   { background: rgba(244,63,94,.12);  border: 1px solid rgba(244,63,94,.25); }
 .course-badge {
-  position: absolute; top: 8px; right: 8px; font-size: 9px; font-weight: 700;
-  padding: 3px 8px; border-radius: 3px; font-family: var(--font-mono); letter-spacing: .08em;
+  font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 3px;
+  font-family: var(--font-mono); letter-spacing: .08em; flex-shrink: 0; margin-top: 2px;
 }
-.badge-new  { background: var(--electric); color: #fff; }
-.badge-hot  { background: var(--rose); color: #fff; }
-.badge-done { background: var(--teal); color: #fff; }
-.course-body { padding: 1rem 1.15rem; }
-.course-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-.course-meta { font-size: 11px; color: var(--muted); display: flex; gap: 10px; margin-bottom: 10px; font-weight: 500; }
-.course-pts { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--electric-3); margin-bottom: 8px; }
-.course-prog { height: 3px; background: var(--muted-3); border-radius: 2px; margin-bottom: 10px; }
+.badge-new  { background: rgba(37,99,235,.18);  color: var(--electric-3); border: 1px solid rgba(37,99,235,.3); }
+.badge-hot  { background: rgba(244,63,94,.15);  color: #FDA4AF;            border: 1px solid rgba(244,63,94,.3); }
+.badge-done { background: rgba(20,184,166,.15); color: var(--teal-2);      border: 1px solid rgba(20,184,166,.3); }
+.course-info { display: flex; flex-direction: column; gap: 5px; }
+.course-title { font-size: 13px; font-weight: 700; color: var(--white); line-height: 1.45; }
+.course-meta { display: flex; gap: 12px; font-size: 10px; color: rgba(255,255,255,.35); font-weight: 600; font-family: var(--font-mono); letter-spacing: .04em; }
+.course-prog-wrap { display: flex; flex-direction: column; gap: 5px; }
+.course-prog-label { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,.25); font-family: var(--font-mono); }
+.course-prog { height: 4px; background: rgba(255,255,255,.06); border-radius: 2px; }
 .course-prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--electric)); }
+.course-footer { display: flex; align-items: center; justify-content: space-between; padding-top: .75rem; border-top: 1px solid var(--border); }
+.course-pts { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--gold); }
 .course-enrol {
-  font-size: 12px; font-weight: 700; color: var(--electric-3); text-decoration: none;
-  display: inline-flex; align-items: center; gap: 4px; transition: gap .15s; letter-spacing: .02em;
+  font-size: 11px; font-weight: 700; color: var(--electric-3); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px; letter-spacing: .04em;
+  background: rgba(37,99,235,.1); border: 1px solid rgba(37,99,235,.2);
+  padding: 5px 12px; border-radius: var(--r);
+  transition: background .2s, border-color .2s, color .2s, gap .15s;
 }
-.course-enrol:hover { gap: 8px; }
+.course-enrol:hover { background: rgba(37,99,235,.22); border-color: rgba(37,99,235,.45); color: #fff; gap: 8px; }
 
 /* ── LEADERBOARD ── */
 #leaderboard { background: var(--navy-2); }
@@ -996,61 +1013,84 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
 
     <div class="courses-grid" role="list">
-      <article class="course-card" role="listitem">
-        <div class="course-thumb course-thumb-win">
-          <span class="course-thumb-emoji" aria-hidden="true">🪟</span>
+      <article class="course-card cc-win" role="listitem">
+        <div class="course-card-top">
+          <div class="course-icon-wrap ci-win" aria-hidden="true">🪟</div>
           <span class="course-badge badge-hot">HOT</span>
         </div>
-        <div class="course-body">
+        <div class="course-info">
           <div class="course-title">Windows 11 Pro Accreditation 2025</div>
-          <div class="course-meta"><span>⏱ 2.5 hrs</span><span>📶 Intermediate</span></div>
+          <div class="course-meta"><span>2.5 HRS</span><span>INTERMEDIATE</span></div>
+        </div>
+        <div class="course-prog-wrap">
+          <div class="course-prog-label"><span>Progress</span><span>45%</span></div>
           <div class="course-prog" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
             <div class="course-prog-fill" style="width:45%"></div>
           </div>
+        </div>
+        <div class="course-footer">
           <div class="course-pts">+100 pts</div>
           <a href="#" class="course-enrol">Continue &rarr;</a>
         </div>
       </article>
-      <article class="course-card" role="listitem">
-        <div class="course-thumb course-thumb-cop">
-          <span class="course-thumb-emoji" aria-hidden="true">🤖</span>
+
+      <article class="course-card cc-cop" role="listitem">
+        <div class="course-card-top">
+          <div class="course-icon-wrap ci-cop" aria-hidden="true">🤖</div>
           <span class="course-badge badge-new">NEW</span>
         </div>
-        <div class="course-body">
+        <div class="course-info">
           <div class="course-title">Copilot+ PC Accreditation 2024&ndash;25</div>
-          <div class="course-meta"><span>⏱ 3 hrs</span><span>📶 Advanced</span></div>
+          <div class="course-meta"><span>3 HRS</span><span>ADVANCED</span></div>
+        </div>
+        <div class="course-prog-wrap">
+          <div class="course-prog-label"><span>Progress</span><span>0%</span></div>
           <div class="course-prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             <div class="course-prog-fill" style="width:0%"></div>
           </div>
+        </div>
+        <div class="course-footer">
           <div class="course-pts">+100 pts</div>
           <a href="#" class="course-enrol">Enrol &rarr;</a>
         </div>
       </article>
-      <article class="course-card" role="listitem">
-        <div class="course-thumb course-thumb-dpu">
-          <span class="course-thumb-emoji" aria-hidden="true">📧</span>
+
+      <article class="course-card cc-m365" role="listitem">
+        <div class="course-card-top">
+          <div class="course-icon-wrap ci-m365" aria-hidden="true">📧</div>
           <span class="course-badge badge-done">DONE</span>
         </div>
-        <div class="course-body">
+        <div class="course-info">
           <div class="course-title">Microsoft 365 Accreditation 2024</div>
-          <div class="course-meta"><span>⏱ 2 hrs</span><span>📶 Foundation</span></div>
+          <div class="course-meta"><span>2 HRS</span><span>FOUNDATION</span></div>
+        </div>
+        <div class="course-prog-wrap">
+          <div class="course-prog-label"><span>Progress</span><span>100%</span></div>
           <div class="course-prog" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
             <div class="course-prog-fill" style="width:100%"></div>
           </div>
-          <div class="course-pts">+100 pts ✓</div>
-          <a href="#" class="course-enrol">View certificate &rarr;</a>
+        </div>
+        <div class="course-footer">
+          <div class="course-pts" style="color:var(--teal-2)">+100 pts ✓</div>
+          <a href="#" class="course-enrol" style="background:rgba(20,184,166,.1);border-color:rgba(20,184,166,.25);color:var(--teal-2)">Certificate &rarr;</a>
         </div>
       </article>
-      <article class="course-card" role="listitem">
-        <div class="course-thumb course-thumb-mkt">
-          <span class="course-thumb-emoji" aria-hidden="true">💼</span>
+
+      <article class="course-card cc-ep" role="listitem">
+        <div class="course-card-top">
+          <div class="course-icon-wrap ci-ep" aria-hidden="true">💼</div>
         </div>
-        <div class="course-body">
+        <div class="course-info">
           <div class="course-title">Modern Endpoints Accreditation</div>
-          <div class="course-meta"><span>⏱ 4 hrs</span><span>📶 Advanced</span></div>
+          <div class="course-meta"><span>4 HRS</span><span>ADVANCED</span></div>
+        </div>
+        <div class="course-prog-wrap">
+          <div class="course-prog-label"><span>Progress</span><span>0%</span></div>
           <div class="course-prog" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             <div class="course-prog-fill" style="width:0%"></div>
           </div>
+        </div>
+        <div class="course-footer">
           <div class="course-pts">+100 pts</div>
           <a href="#" class="course-enrol">Enrol &rarr;</a>
         </div>
