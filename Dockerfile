@@ -1,5 +1,4 @@
 FROM nginx:alpine
 COPY index.html /usr/share/nginx/html/index.html
-COPY default.conf.template /etc/nginx/templates/default.conf.template
-RUN rm /etc/nginx/conf.d/default.conf
+RUN printf 'server {\n    listen 8080;\n    root /usr/share/nginx/html;\n    index index.html;\n}\n' > /etc/nginx/conf.d/default.conf
 EXPOSE 8080
