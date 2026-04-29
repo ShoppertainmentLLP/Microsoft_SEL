@@ -813,21 +813,71 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .security-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(221,226,246,.2); }
 
 /* ── RESPONSIVE ── */
+/* ── 900px (tablet) ── */
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .lb-layout { grid-template-columns: 1fr; }
   .lb-sidebar { display: none; }
   .ai-layout { grid-template-columns: 1fr; }
+  .ai-chat-demo { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .hero-stats { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+  .roadmap { overflow-x: auto; }
+  .roadmap-track { min-width: 560px; }
+  .courses-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .achievers-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
+
+/* ── 600px (mobile) ── */
 @media (max-width: 600px) {
-  .lb-header-row, .lb-row { grid-template-columns: 40px 1fr 70px; }
-  .lb-pts-val { display: none; }
+  .section-inner { padding: 3rem 1rem; }
+
+  /* Hero */
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .btn-hero-primary, .btn-hero-outline { width: 100%; justify-content: center; }
+  .hero-stats { gap: 1.25rem; }
+  .hero-stat-val { font-size: 1.6rem; }
+
+  /* Activity cards */
+  .activity-grid { grid-template-columns: 1fr; }
+
+  /* Roadmap */
+  .roadmap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .roadmap-track { min-width: 520px; }
+
+  /* Course cards */
   .courses-grid { grid-template-columns: 1fr; }
+
+  /* Leaderboard — podium stacks, table trims to 3 cols */
+  .lb-podium { grid-template-columns: 1fr; gap: 10px; }
+  .lb-podium .podium-card.rank-1 { order: -1; }
+  .lb-header-row,
+  .lb-row { grid-template-columns: 48px 1fr 80px; }
+  .lb-header-row > *:nth-child(3),
+  .lb-header-row > *:nth-child(4),
+  .lb-row > *:nth-child(3),
+  .lb-row > *:nth-child(4) { display: none; }
+  .lb-scope-tabs { gap: 4px; }
+  .lb-tab { font-size: 11px; padding: 6px 12px; }
+
+  /* Achievers */
+  .achievers-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Footer */
   .footer-grid { grid-template-columns: 1fr; }
   .footer-col:nth-child(3), .footer-col:nth-child(4) { display: none; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* ── 480px (small phones) ── */
+@media (max-width: 480px) {
+  .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .lb-podium { gap: 8px; }
+  .podium-card { padding: 1.25rem .75rem 1rem; }
+  .achievers-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .nav-logo { font-size: 14px; }
+  .theme-toggle { width: 28px; height: 28px; font-size: 12px; }
 }
 
 /* ── Theme toggle button ── */
