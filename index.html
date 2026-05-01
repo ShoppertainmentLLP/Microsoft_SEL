@@ -1052,6 +1052,196 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .delay-3 { animation-delay: .3s; }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
+
+/* ── WEBINARS ── */
+.wb-tabs { display: flex; gap: 6px; margin-bottom: 2rem; flex-wrap: wrap; }
+.wb-tab {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 600; padding: 9px 22px;
+  border-radius: var(--r-full); border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer; transition: all .2s;
+}
+.wb-tab.active { background: rgba(173,198,254,.1); border-color: rgba(173,198,254,.3); color: var(--electric); }
+.wb-panel { display: none; }
+.wb-panel.active { display: block; }
+.wb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+.wb-card {
+  background: var(--navy-3); border: 1px solid var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.wb-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-elevated); border-color: rgba(173,198,254,.3); }
+.wb-thumb {
+  height: 130px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.wb-thumb > i { font-size: 2rem; color: rgba(173,198,254,.5); position: relative; z-index: 1; }
+.wb-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,14,28,.6) 0%, transparent 60%); }
+.wb-pts-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(13,19,33,.8); backdrop-filter: blur(8px);
+  border: 1px solid rgba(173,198,254,.25); border-radius: var(--r-full);
+  font-size: 11px; font-weight: 700; color: var(--electric); padding: 3px 10px; z-index: 2;
+}
+.wb-play-btn {
+  position: absolute; z-index: 2;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(173,198,254,.15); border: 2px solid rgba(173,198,254,.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--electric); backdrop-filter: blur(4px); transition: all .2s;
+}
+.wb-card:hover .wb-play-btn { background: rgba(173,198,254,.25); border-color: var(--electric); transform: scale(1.08); }
+.wb-body { padding: 1.25rem; }
+.wb-event-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.35; }
+.wb-meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+.wb-meta-row { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.wb-meta-row i { width: 13px; text-align: center; color: var(--electric); font-size: 10px; opacity: .8; }
+.wb-earned { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #22c55e; margin-bottom: 10px; }
+.wb-action {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  font-size: 13px; font-weight: 600; padding: 9px 18px;
+  border-radius: var(--r-full); cursor: pointer; text-decoration: none; transition: all .2s;
+  border: 1px solid rgba(173,198,254,.3); background: rgba(173,198,254,.08); color: var(--electric); width: 100%;
+}
+.wb-action:hover { background: rgba(173,198,254,.18); border-color: rgba(173,198,254,.5); }
+.wb-action.wb-register { background: var(--gold); border-color: transparent; color: #fff; }
+.wb-action.wb-register:hover { filter: brightness(1.12); }
+
+/* ── ADMIN DASHBOARD ── */
+.dash-role-switcher { display: flex; gap: 6px; margin-bottom: 2rem; flex-wrap: wrap; }
+.dash-role-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 600; padding: 9px 22px;
+  border-radius: var(--r-full); border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer; transition: all .2s;
+}
+.dash-role-btn i { font-size: 12px; }
+.dash-role-btn.active { background: rgba(173,198,254,.1); border-color: rgba(173,198,254,.3); color: var(--electric); }
+.dash-view { display: none; }
+.dash-view.active { display: block; }
+.dash-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+.dash-kpi {
+  background: var(--navy-3); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.25rem; position: relative; overflow: hidden;
+}
+.dash-kpi::before { content:''; position: absolute; top:0; left:0; right:0; height:2px; background: var(--electric); opacity:.4; }
+.dash-kpi-icon {
+  width: 36px; height: 36px; border-radius: var(--r); flex-shrink: 0;
+  background: rgba(173,198,254,.1); border: 1px solid rgba(173,198,254,.15);
+  color: var(--electric); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; margin-bottom: 12px;
+}
+.dash-kpi-val { font-size: 1.75rem; font-weight: 700; color: var(--white); letter-spacing: -.02em; line-height: 1; margin-bottom: 4px; }
+.dash-kpi-label { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: .02em; }
+.dash-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 6px; }
+.dash-kpi-delta.up { color: #22c55e; }
+.dash-kpi-delta.dn { color: #f87171; }
+.dash-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+.dash-card { background: var(--navy-3); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.dash-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+}
+.dash-card-title { font-size: 13px; font-weight: 700; color: var(--white); }
+.dash-filter-pill {
+  font-size: 11px; font-weight: 500; color: var(--muted);
+  padding: 4px 11px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: transparent; cursor: pointer; transition: all .2s;
+}
+.dash-filter-pill:hover { border-color: rgba(173,198,254,.3); color: var(--electric); }
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-th { padding: 9px 1.25rem; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; text-align: left; background: rgba(173,198,254,.03); border-bottom: 1px solid var(--border); }
+.dash-td { padding: 11px 1.25rem; font-size: 13px; color: var(--white); border-bottom: 1px solid rgba(173,198,254,.05); }
+.dash-tr:last-child .dash-td { border-bottom: none; }
+.dash-tr:hover .dash-td { background: rgba(173,198,254,.03); }
+.dash-td.muted { color: var(--muted); font-size: 12px; }
+.dash-name-cell { display: flex; flex-direction: column; gap: 2px; }
+.dash-partner-name { font-weight: 600; }
+.dash-partner-loc { font-size: 11px; color: var(--muted); }
+.dash-status {
+  display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700;
+  padding: 3px 9px; border-radius: var(--r-full);
+}
+.dash-status.active { background: rgba(34,197,94,.1); color: #22c55e; border: 1px solid rgba(34,197,94,.2); }
+.dash-status.pending { background: rgba(245,158,11,.1); color: #f59e0b; border: 1px solid rgba(245,158,11,.2); }
+.dash-status.inactive { background: rgba(173,198,254,.06); color: var(--muted); border: 1px solid var(--border); }
+.dash-pts-chip { font-size: 12px; font-weight: 700; color: var(--electric); }
+.dash-chart-body { padding: 1.25rem; }
+.dash-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
+.dash-bar-row:last-child { margin-bottom: 0; }
+.dash-bar-label { font-size: 11px; color: var(--muted); width: 72px; flex-shrink: 0; }
+.dash-bar-track { flex: 1; height: 6px; background: rgba(173,198,254,.08); border-radius: 3px; overflow: hidden; }
+.dash-bar-fill { height: 100%; border-radius: 3px; background: var(--electric); opacity: .65; }
+.dash-bar-val { font-size: 11px; font-weight: 700; color: var(--white); width: 36px; text-align: right; flex-shrink: 0; }
+.dash-log-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 1.25rem; border-bottom: 1px solid rgba(173,198,254,.05); }
+.dash-log-item:last-child { border-bottom: none; }
+.dash-log-icon {
+  width: 30px; height: 30px; border-radius: var(--r); flex-shrink: 0;
+  background: rgba(173,198,254,.1); border: 1px solid rgba(173,198,254,.15);
+  color: var(--electric); display: flex; align-items: center; justify-content: center; font-size: 12px;
+}
+.dash-log-body { flex: 1; }
+.dash-log-text { font-size: 12px; color: var(--white); line-height: 1.45; }
+.dash-log-time { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.dash-log-pts { font-size: 11px; font-weight: 700; color: var(--electric); flex-shrink: 0; align-self: center; }
+.dash-prog-item { margin-bottom: 14px; }
+.dash-prog-item:last-child { margin-bottom: 0; }
+.dash-prog-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.dash-prog-name { font-size: 12px; font-weight: 600; color: var(--white); }
+.dash-prog-val { font-size: 12px; font-weight: 700; color: var(--electric); }
+.dash-prog-track { height: 6px; background: rgba(173,198,254,.08); border-radius: 3px; overflow: hidden; }
+.dash-prog-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--electric), var(--electric-2)); opacity: .7; }
+
+/* Responsive — webinars & dashboard */
+@media (max-width: 900px) {
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+  .dash-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .wb-grid { grid-template-columns: 1fr; }
+  .dash-kpis { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .dash-th:nth-child(3), .dash-th:nth-child(4),
+  .dash-td:nth-child(3), .dash-td:nth-child(4) { display: none; }
+}
+@media (max-width: 480px) {
+  .dash-kpis { grid-template-columns: 1fr 1fr; }
+  .wb-tab { font-size: 12px; padding: 7px 16px; }
+}
+
+/* Light theme — webinars */
+[data-theme="light"] .wb-tab { border-color: rgba(10,17,40,.1); color: rgba(10,17,40,.45); }
+[data-theme="light"] .wb-tab.active { background: rgba(45,82,176,.1); border-color: rgba(45,82,176,.3); color: var(--electric); }
+[data-theme="light"] .wb-card { background: #fff; border-color: rgba(10,17,40,.09); }
+[data-theme="light"] .wb-card:hover { border-color: rgba(45,82,176,.25); }
+[data-theme="light"] .wb-event-title { color: var(--ink); }
+[data-theme="light"] .wb-meta-row { color: #6b7280; }
+[data-theme="light"] .wb-pts-badge { background: rgba(244,247,255,.92); border-color: rgba(45,82,176,.2); color: var(--electric); }
+[data-theme="light"] .wb-action { background: rgba(45,82,176,.07); border-color: rgba(45,82,176,.2); color: var(--electric); }
+[data-theme="light"] .wb-action:hover { background: rgba(45,82,176,.15); border-color: rgba(45,82,176,.4); }
+[data-theme="light"] .wb-play-btn { background: rgba(45,82,176,.1); border-color: rgba(45,82,176,.25); color: var(--electric); }
+
+/* Light theme — dashboard */
+[data-theme="light"] .dash-role-btn { border-color: rgba(10,17,40,.1); color: rgba(10,17,40,.45); }
+[data-theme="light"] .dash-role-btn.active { background: rgba(45,82,176,.1); border-color: rgba(45,82,176,.3); color: var(--electric); }
+[data-theme="light"] .dash-kpi { background: #fff; border-color: rgba(10,17,40,.09); }
+[data-theme="light"] .dash-kpi-icon { background: rgba(45,82,176,.08); border-color: rgba(45,82,176,.12); color: var(--electric); }
+[data-theme="light"] .dash-kpi-val { color: var(--ink); }
+[data-theme="light"] .dash-card { background: #fff; border-color: rgba(10,17,40,.09); }
+[data-theme="light"] .dash-card-head { border-color: rgba(10,17,40,.08); }
+[data-theme="light"] .dash-card-title { color: var(--ink); }
+[data-theme="light"] .dash-filter-pill { border-color: rgba(10,17,40,.1); color: rgba(10,17,40,.4); }
+[data-theme="light"] .dash-filter-pill:hover { border-color: rgba(45,82,176,.3); color: var(--electric); }
+[data-theme="light"] .dash-th { background: rgba(10,17,40,.02); color: rgba(10,17,40,.4); border-color: rgba(10,17,40,.08); }
+[data-theme="light"] .dash-td { color: var(--ink); border-color: rgba(10,17,40,.06); }
+[data-theme="light"] .dash-tr:hover .dash-td { background: rgba(45,82,176,.03); }
+[data-theme="light"] .dash-td.muted { color: #6b7280; }
+[data-theme="light"] .dash-partner-loc { color: #9ca3af; }
+[data-theme="light"] .dash-bar-track { background: rgba(10,17,40,.07); }
+[data-theme="light"] .dash-bar-val { color: var(--ink); }
+[data-theme="light"] .dash-log-icon { background: rgba(45,82,176,.08); border-color: rgba(45,82,176,.12); color: var(--electric); }
+[data-theme="light"] .dash-log-text { color: var(--ink); }
+[data-theme="light"] .dash-prog-name { color: var(--ink); }
+[data-theme="light"] .dash-prog-track { background: rgba(10,17,40,.07); }
 </style>
 </head>
 <body>
@@ -1068,8 +1258,10 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <li><a href="#activities" class="active">Activities</a></li>
     <li><a href="#learning">Learning</a></li>
     <li><a href="#leaderboard">Leaderboard</a></li>
+    <li><a href="#webinars">Webinars</a></li>
     <li><a href="#ai-assistant">AI Assistant</a></li>
     <li><a href="#achievers">Achievers</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
   </ul>
   <div class="nav-right">
     <a href="#" class="btn btn-ghost">Sign in</a>
@@ -1083,8 +1275,10 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <a href="#activities" onclick="closeMenu()">Activities</a>
   <a href="#learning" onclick="closeMenu()">Learning Journey</a>
   <a href="#leaderboard" onclick="closeMenu()">Leaderboard</a>
+  <a href="#webinars" onclick="closeMenu()">Webinars</a>
   <a href="#ai-assistant" onclick="closeMenu()">AI Assistant</a>
   <a href="#achievers" onclick="closeMenu()">Partner Achievers</a>
+  <a href="#dashboard" onclick="closeMenu()">Dashboard</a>
   <a href="#" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
 </nav>
 
@@ -1709,6 +1903,390 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   </div>
 </section>
 
+<!-- WEBINARS -->
+<section class="section" id="webinars" aria-labelledby="wb-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Knowledge exchange</div>
+    <h2 class="section-title" id="wb-heading">Live &amp; On-demand<br>Webinars</h2>
+    <p class="section-sub">Join upcoming sessions to earn points. Missed one? Rewatch recordings anytime and still get rewarded.</p>
+
+    <div class="wb-tabs" role="tablist">
+      <button class="wb-tab active" data-tab="upcoming" role="tab" aria-selected="true" onclick="wbTab('upcoming')"><i class="fa-solid fa-calendar-check"></i> Upcoming Events</button>
+      <button class="wb-tab" data-tab="past" role="tab" aria-selected="false" onclick="wbTab('past')"><i class="fa-solid fa-circle-play"></i> Past Events</button>
+    </div>
+
+    <!-- UPCOMING EVENTS -->
+    <div class="wb-panel active" id="wb-upcoming" role="tabpanel">
+      <div class="wb-grid">
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#1a2a52,#2d4080)">
+            <i class="fa-solid fa-robot"></i>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-event-title">Microsoft Copilot for Sales Teams</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 15 May 2026, 3:00 PM IST</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 60 minutes</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Priya Sharma, Microsoft India</div>
+            </div>
+            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#12293a,#1e4a6a)">
+            <i class="fa-solid fa-cloud"></i>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>200 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-event-title">Azure Infrastructure Deep Dive</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 22 May 2026, 11:00 AM IST</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 90 minutes</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Aakash Mehta, Azure Partner Team</div>
+            </div>
+            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#1e2a40,#2d3a5f)">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-event-title">Microsoft 365 Security Masterclass</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 5 Jun 2026, 2:00 PM IST</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 60 minutes</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Sunita Rao, Security Practice Lead</div>
+            </div>
+            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#1a2a3a,#2a4050)">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>100 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-event-title">Partner Incentives Q2 Playbook</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 12 Jun 2026, 10:00 AM IST</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 45 minutes</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Vikram Nair, Partner Programs</div>
+            </div>
+            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- PAST EVENTS -->
+    <div class="wb-panel" id="wb-past" role="tabpanel">
+      <div class="wb-grid">
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#141e30,#1e2d45)">
+            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 284 attendees</div>
+            <div class="wb-event-title">Copilot+ PC Launch Playbook</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 10 Apr 2026</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 284 attendees</div>
+            </div>
+            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#122030,#1a3048)">
+            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 312 attendees</div>
+            <div class="wb-event-title">Surface Pro 11 Sales Tactics</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 28 Mar 2026</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 312 attendees</div>
+            </div>
+            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#162035,#22305a)">
+            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>200 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 198 attendees</div>
+            <div class="wb-event-title">Microsoft 365 Commercial Deals</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 14 Mar 2026</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 198 attendees</div>
+            </div>
+            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+          </div>
+        </article>
+        <article class="wb-card">
+          <div class="wb-thumb" style="background:linear-gradient(135deg,#151d30,#1e2d48)">
+            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="wb-thumb-overlay"></div>
+            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 241 attendees</div>
+            <div class="wb-event-title">Security &amp; Compliance Workshop</div>
+            <div class="wb-meta">
+              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 28 Feb 2026</div>
+              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 241 attendees</div>
+            </div>
+            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section class="section" id="dashboard" aria-labelledby="dash-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Control centre</div>
+    <h2 class="section-title" id="dash-heading">Partner Performance<br>Hub</h2>
+    <p class="section-sub">Real-time visibility into partner activity, training progress, and incentive redemption across all roles.</p>
+
+    <div class="dash-role-switcher" role="tablist">
+      <button class="dash-role-btn active" data-role="admin" onclick="dashRole('admin')" role="tab"><i class="fa-solid fa-crown"></i> Admin View</button>
+      <button class="dash-role-btn" data-role="distributor" onclick="dashRole('distributor')" role="tab"><i class="fa-solid fa-building"></i> Distributor View</button>
+      <button class="dash-role-btn" data-role="reseller" onclick="dashRole('reseller')" role="tab"><i class="fa-solid fa-store"></i> Reseller View</button>
+    </div>
+
+    <!-- ADMIN VIEW -->
+    <div class="dash-view active" id="dash-admin">
+      <div class="dash-kpis">
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="dash-kpi-val">247</div>
+          <div class="dash-kpi-label">Total Partners</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +18 this quarter</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="dash-kpi-val">189</div>
+          <div class="dash-kpi-label">Active This Month</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 76.5% activity rate</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="dash-kpi-val">142.8K</div>
+          <div class="dash-kpi-label">Points Issued</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +22% vs last quarter</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-gift"></i></div>
+          <div class="dash-kpi-val">38</div>
+          <div class="dash-kpi-label">Pending Redemptions</div>
+          <div class="dash-kpi-delta dn"><i class="fa-solid fa-clock"></i> Avg 3.2 day turnaround</div>
+        </div>
+      </div>
+      <div class="dash-layout">
+        <div class="dash-card">
+          <div class="dash-card-head">
+            <span class="dash-card-title">Top Partners &mdash; Q2 2026</span>
+            <button class="dash-filter-pill">All Regions <i class="fa-solid fa-chevron-down" style="font-size:9px;margin-left:4px"></i></button>
+          </div>
+          <table class="dash-table">
+            <thead><tr>
+              <th class="dash-th">Partner</th>
+              <th class="dash-th">Type</th>
+              <th class="dash-th">Points</th>
+              <th class="dash-th">Trainings</th>
+              <th class="dash-th">Status</th>
+            </tr></thead>
+            <tbody>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Techno Hub Solutions</span><span class="dash-partner-loc">Mumbai</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">8,420</span></td><td class="dash-td muted">14</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Infinity Networks</span><span class="dash-partner-loc">Bengaluru</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">7,690</span></td><td class="dash-td muted">12</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">NextGen IT Services</span><span class="dash-partner-loc">Delhi</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">6,850</span></td><td class="dash-td muted">11</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">CloudEdge Pvt Ltd</span><span class="dash-partner-loc">Hyderabad</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">5,920</span></td><td class="dash-td muted">9</td><td class="dash-td"><span class="dash-status pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Digital Frontiers</span><span class="dash-partner-loc">Chennai</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">4,180</span></td><td class="dash-td muted">7</td><td class="dash-td"><span class="dash-status inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-head"><span class="dash-card-title">Activity Breakdown</span></div>
+          <div class="dash-chart-body">
+            <div class="dash-bar-row"><span class="dash-bar-label">Trainings</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:82%"></div></div><span class="dash-bar-val">1,847</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Webinars</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:61%"></div></div><span class="dash-bar-val">1,035</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Campaigns</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%"></div></div><span class="dash-bar-val">552</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Deal Reg.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:38%"></div></div><span class="dash-bar-val">284</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Accreditat.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:27%"></div></div><span class="dash-bar-val">118</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">POE Submit</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:19%"></div></div><span class="dash-bar-val">74</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISTRIBUTOR VIEW -->
+    <div class="dash-view" id="dash-distributor">
+      <div class="dash-kpis">
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-store"></i></div>
+          <div class="dash-kpi-val">52</div>
+          <div class="dash-kpi-label">Your Resellers</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +5 this quarter</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="dash-kpi-val">41</div>
+          <div class="dash-kpi-label">Active Resellers</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 78.8% engagement</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="dash-kpi-val">38.4K</div>
+          <div class="dash-kpi-label">Points Pool</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +14% vs last quarter</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="dash-kpi-val">#3</div>
+          <div class="dash-kpi-label">Distributor Rank</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> Up from #5 last month</div>
+        </div>
+      </div>
+      <div class="dash-layout">
+        <div class="dash-card">
+          <div class="dash-card-head">
+            <span class="dash-card-title">Your Resellers &mdash; Q2 2026</span>
+            <button class="dash-filter-pill">All Cities <i class="fa-solid fa-chevron-down" style="font-size:9px;margin-left:4px"></i></button>
+          </div>
+          <table class="dash-table">
+            <thead><tr>
+              <th class="dash-th">Reseller</th>
+              <th class="dash-th">Points</th>
+              <th class="dash-th">Trainings</th>
+              <th class="dash-th">Webinars</th>
+              <th class="dash-th">Status</th>
+            </tr></thead>
+            <tbody>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Techno Hub Solutions</span><span class="dash-partner-loc">Mumbai</span></div></td><td class="dash-td"><span class="dash-pts-chip">8,420</span></td><td class="dash-td muted">14</td><td class="dash-td muted">6</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Infinity Networks</span><span class="dash-partner-loc">Pune</span></div></td><td class="dash-td"><span class="dash-pts-chip">7,690</span></td><td class="dash-td muted">12</td><td class="dash-td muted">5</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">SkyBridge Systems</span><span class="dash-partner-loc">Nashik</span></div></td><td class="dash-td"><span class="dash-pts-chip">5,120</span></td><td class="dash-td muted">8</td><td class="dash-td muted">4</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Prime Connect</span><span class="dash-partner-loc">Aurangabad</span></div></td><td class="dash-td"><span class="dash-pts-chip">3,840</span></td><td class="dash-td muted">6</td><td class="dash-td muted">2</td><td class="dash-td"><span class="dash-status pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></td></tr>
+              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Horizon IT</span><span class="dash-partner-loc">Kolhapur</span></div></td><td class="dash-td"><span class="dash-pts-chip">1,250</span></td><td class="dash-td muted">2</td><td class="dash-td muted">1</td><td class="dash-td"><span class="dash-status inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-head"><span class="dash-card-title">Activity Breakdown</span></div>
+          <div class="dash-chart-body">
+            <div class="dash-bar-row"><span class="dash-bar-label">Trainings</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:88%"></div></div><span class="dash-bar-val">412</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Webinars</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:54%"></div></div><span class="dash-bar-val">224</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Campaigns</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%"></div></div><span class="dash-bar-val">88</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Deal Reg.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:31%"></div></div><span class="dash-bar-val">52</span></div>
+            <div class="dash-bar-row"><span class="dash-bar-label">Accreditat.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%"></div></div><span class="dash-bar-val">28</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESELLER VIEW -->
+    <div class="dash-view" id="dash-reseller">
+      <div class="dash-kpis">
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="dash-kpi-val">4,850</div>
+          <div class="dash-kpi-label">My Points</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +650 this month</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="dash-kpi-val">#12</div>
+          <div class="dash-kpi-label">My Rank</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> Up 4 places</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="dash-kpi-val">9</div>
+          <div class="dash-kpi-label">Trainings Done</div>
+          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 3 this quarter</div>
+        </div>
+        <div class="dash-kpi">
+          <div class="dash-kpi-icon"><i class="fa-solid fa-gift"></i></div>
+          <div class="dash-kpi-val">2</div>
+          <div class="dash-kpi-label">Pending Claims</div>
+          <div class="dash-kpi-delta dn"><i class="fa-solid fa-clock"></i> Est. 2&ndash;3 days</div>
+        </div>
+      </div>
+      <div class="dash-layout">
+        <div class="dash-card">
+          <div class="dash-card-head"><span class="dash-card-title">Recent Activity</span></div>
+          <div class="dash-log-item">
+            <div class="dash-log-icon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="dash-log-body"><div class="dash-log-text">Watched <strong>Copilot+ PC Launch Playbook</strong> recording</div><div class="dash-log-time">Today, 10:24 AM</div></div>
+            <span class="dash-log-pts">+150 pts</span>
+          </div>
+          <div class="dash-log-item">
+            <div class="dash-log-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="dash-log-body"><div class="dash-log-text">Completed <strong>Microsoft 365 Fundamentals</strong> course</div><div class="dash-log-time">Yesterday, 3:45 PM</div></div>
+            <span class="dash-log-pts">+200 pts</span>
+          </div>
+          <div class="dash-log-item">
+            <div class="dash-log-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="dash-log-body"><div class="dash-log-text">Attended <strong>Azure Infrastructure Deep Dive</strong> webinar</div><div class="dash-log-time">28 Apr 2026</div></div>
+            <span class="dash-log-pts">+200 pts</span>
+          </div>
+          <div class="dash-log-item">
+            <div class="dash-log-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div class="dash-log-body"><div class="dash-log-text">Deal registration submitted for <strong>Contoso Networks</strong></div><div class="dash-log-time">25 Apr 2026</div></div>
+            <span class="dash-log-pts">+300 pts</span>
+          </div>
+          <div class="dash-log-item">
+            <div class="dash-log-icon"><i class="fa-solid fa-certificate"></i></div>
+            <div class="dash-log-body"><div class="dash-log-text">Earned <strong>Copilot Specialist</strong> accreditation</div><div class="dash-log-time">20 Apr 2026</div></div>
+            <span class="dash-log-pts">+500 pts</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-head"><span class="dash-card-title">Goal Progress</span></div>
+          <div class="dash-chart-body">
+            <div class="dash-prog-item">
+              <div class="dash-prog-head"><span class="dash-prog-name">Q2 Points Target</span><span class="dash-prog-val">4,850 / 6,000</span></div>
+              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:81%"></div></div>
+            </div>
+            <div class="dash-prog-item">
+              <div class="dash-prog-head"><span class="dash-prog-name">Training Hours</span><span class="dash-prog-val">27 / 40 hrs</span></div>
+              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
+            </div>
+            <div class="dash-prog-item">
+              <div class="dash-prog-head"><span class="dash-prog-name">Accreditations</span><span class="dash-prog-val">2 / 3</span></div>
+              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
+            </div>
+            <div class="dash-prog-item">
+              <div class="dash-prog-head"><span class="dash-prog-name">Webinars Attended</span><span class="dash-prog-val">4 / 6</span></div>
+              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
+            </div>
+            <div class="dash-prog-item">
+              <div class="dash-prog-head"><span class="dash-prog-name">Deal Registrations</span><span class="dash-prog-val">3 / 5</span></div>
+              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:60%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer role="contentinfo">
   <div class="footer-inner">
@@ -1726,8 +2304,10 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         <a href="#activities">Activities &amp; points</a>
         <a href="#learning">Learning journey</a>
         <a href="#leaderboard">Leaderboard</a>
+        <a href="#webinars">Webinars</a>
         <a href="#ai-assistant">AI assistant</a>
         <a href="#achievers">Hall of fame</a>
+        <a href="#dashboard">Dashboard</a>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
@@ -1912,6 +2492,18 @@ function addMsg(text, isUser){
   div.appendChild(avatar); div.appendChild(bubble);
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
+}
+
+/* Webinar tabs */
+function wbTab(t) {
+  document.querySelectorAll('.wb-tab').forEach(function(b){ b.classList.toggle('active', b.dataset.tab === t); b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'); });
+  document.querySelectorAll('.wb-panel').forEach(function(p){ p.classList.toggle('active', p.id === 'wb-' + t); });
+}
+
+/* Dashboard role switcher */
+function dashRole(r) {
+  document.querySelectorAll('.dash-role-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.role === r); });
+  document.querySelectorAll('.dash-view').forEach(function(v){ v.classList.toggle('active', v.id === 'dash-' + r); });
 }
 
 /* Nav active state on scroll */
