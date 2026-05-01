@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-auth="loggedout">
 <head>
 <script>(function(){var t=localStorage.getItem('sel-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 <meta charset="UTF-8">
@@ -1053,6 +1053,149 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
 
+/* ── AUTH VISIBILITY ── */
+[data-auth="loggedout"] .logged-in-only { display: none !important; }
+[data-auth="admin"]       .loggedout-only,
+[data-auth="distributor"] .loggedout-only,
+[data-auth="reseller"]    .loggedout-only { display: none !important; }
+/* Role-specific tabs in dashboard */
+[data-auth="distributor"] .dash-role-btn[data-role="admin"] { display: none !important; }
+[data-auth="reseller"]    .dash-role-btn[data-role="admin"],
+[data-auth="reseller"]    .dash-role-btn[data-role="distributor"] { display: none !important; }
+/* Dashboard gate */
+.dash-lock-gate { display: none; }
+[data-auth="loggedout"] .dash-lock-gate { display: flex; }
+[data-auth="loggedout"] .dash-content  { display: none; }
+/* Leaderboard gate */
+.lb-lock-card { display: none; flex-direction: column; align-items: center; text-align: center; }
+[data-auth="loggedout"] .lb-lock-card    { display: flex; }
+[data-auth="loggedout"] .your-perf-card  { display: none; }
+/* Hero welcome bars — hidden by default, shown per role */
+.hero-welcome-bar { display: none; }
+[data-auth="admin"]       .hero-bar-admin   { display: flex; }
+[data-auth="distributor"] .hero-bar-dist     { display: flex; }
+[data-auth="reseller"]    .hero-bar-reseller { display: flex; }
+
+/* ── LOGIN MODAL ── */
+.login-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(8,14,28,.88); backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.login-overlay.open { opacity: 1; pointer-events: all; }
+.login-box {
+  background: var(--navy-2); border: 1px solid var(--border-2);
+  border-radius: var(--r-xl); padding: 2.25rem; width: 100%; max-width: 400px;
+  box-shadow: var(--shadow-elevated); position: relative;
+  animation: fadeUp .3s ease both;
+}
+.login-box-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; color: var(--muted); cursor: pointer;
+  width: 30px; height: 30px; border-radius: var(--r); display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: color .15s, background .15s;
+}
+.login-box-close:hover { color: var(--white); background: var(--muted-3); }
+.login-title { font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 4px; text-align: center; }
+.login-sub { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 1.75rem; }
+.login-divider { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; text-align: center; margin-bottom: 1.25rem; }
+.login-roles { display: flex; flex-direction: column; gap: 10px; }
+.login-role-btn {
+  display: flex; align-items: center; gap: 14px;
+  padding: 1rem 1.25rem; border-radius: var(--r-lg);
+  border: 1px solid var(--border); background: var(--navy-3);
+  cursor: pointer; transition: all .2s; text-align: left; width: 100%;
+}
+.login-role-btn:hover { border-color: rgba(173,198,254,.4); background: var(--navy-4); transform: translateX(3px); }
+.login-role-icon {
+  width: 42px; height: 42px; border-radius: var(--r-md); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.lri-admin { background: rgba(197,164,75,.15); color: #c5a44b; border: 1px solid rgba(197,164,75,.25); }
+.lri-dist  { background: rgba(173,198,254,.1);  color: var(--electric); border: 1px solid rgba(173,198,254,.2); }
+.lri-resl  { background: rgba(34,197,94,.1);   color: #22c55e; border: 1px solid rgba(34,197,94,.2); }
+.login-role-label { font-size: 14px; font-weight: 700; color: var(--white); }
+.login-role-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── NAV USER PILL ── */
+.nav-user-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px 4px 5px; border-radius: var(--r-full);
+  background: rgba(173,198,254,.08); border: 1px solid rgba(173,198,254,.15);
+}
+.nav-user-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #fff;
+}
+.nav-user-name { font-size: 12px; font-weight: 700; color: var(--white); line-height: 1.2; }
+.nav-user-org  { font-size: 10px; color: var(--muted); }
+.nav-logout-btn {
+  background: none; border: 1px solid var(--border); color: var(--muted);
+  font-size: 11px; font-weight: 600; padding: 4px 10px;
+  border-radius: var(--r-full); cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.nav-logout-btn:hover { border-color: rgba(173,198,254,.3); color: var(--electric); }
+[data-theme="light"] .nav-user-pill { background: rgba(45,82,176,.07); border-color: rgba(45,82,176,.15); }
+[data-theme="light"] .nav-user-name { color: var(--ink); }
+[data-theme="light"] .nav-logout-btn { border-color: rgba(10,17,40,.12); color: rgba(10,17,40,.5); }
+[data-theme="light"] .nav-logout-btn:hover { border-color: rgba(45,82,176,.3); color: var(--electric); }
+
+/* ── HERO WELCOME BARS ── */
+.hero-welcome-wrap { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.hero-role-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 600; padding: 5px 14px;
+  border-radius: var(--r-full); border: 1px solid rgba(173,198,254,.25);
+  background: rgba(173,198,254,.1); color: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);
+}
+.hero-welcome-bar {
+  width: 100%; max-width: 640px;
+  background: rgba(8,14,28,.65); border: 1px solid rgba(173,198,254,.18);
+  border-radius: var(--r-lg); padding: .875rem 1.5rem;
+  backdrop-filter: blur(10px);
+  align-items: center; justify-content: center; gap: 0; flex-wrap: wrap;
+}
+.hwb-item { text-align: center; padding: .375rem 1.25rem; }
+.hwb-val { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -.02em; line-height: 1; }
+.hwb-lbl { font-size: 10px; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+.hwb-sep { width: 1px; height: 32px; background: rgba(255,255,255,.1); flex-shrink: 0; }
+
+/* ── DASHBOARD LOCK GATE ── */
+.dash-lock-gate {
+  flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  background: var(--navy-3); border: 1px solid var(--border-2);
+  border-radius: var(--r-xl); padding: 5rem 2rem; position: relative; overflow: hidden;
+}
+.dash-lock-gate::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--electric), var(--gold));
+}
+.dlg-icon { font-size: 2.75rem; color: rgba(173,198,254,.25); margin-bottom: 1.25rem; }
+.dlg-title { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.dlg-sub { font-size: 13px; color: var(--muted); max-width: 380px; line-height: 1.65; margin-bottom: 1.75rem; }
+.dlg-roles { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+.dlg-role-pill {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: var(--r-full); border: 1px solid var(--border); color: var(--muted);
+}
+.dlg-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; padding: 12px 28px;
+  border-radius: var(--r-full); border: none; cursor: pointer;
+  background: var(--gold); color: #fff; transition: all .2s;
+}
+.dlg-btn:hover { filter: brightness(1.12); transform: translateY(-2px); }
+[data-theme="light"] .dash-lock-gate { background: #fff; border-color: rgba(10,17,40,.09); }
+[data-theme="light"] .dlg-title { color: var(--ink); }
+[data-theme="light"] .login-box { background: #fff; border-color: rgba(10,17,40,.12); }
+[data-theme="light"] .login-title { color: var(--ink); }
+[data-theme="light"] .login-role-btn { background: #f8faff; border-color: rgba(10,17,40,.09); }
+[data-theme="light"] .login-role-btn:hover { background: #edf1ff; border-color: rgba(45,82,176,.3); }
+[data-theme="light"] .login-role-label { color: var(--ink); }
+
 /* ── WEBINARS ── */
 .wb-tabs { display: flex; gap: 6px; margin-bottom: 2rem; flex-wrap: wrap; }
 .wb-tab {
@@ -1264,8 +1407,16 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <li><a href="#dashboard">Dashboard</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" class="btn btn-ghost">Sign in</a>
-    <a href="#" class="btn btn-primary">Claim Rewards</a>
+    <a href="#" class="btn btn-ghost loggedout-only" onclick="event.preventDefault();showLoginModal()">Sign in</a>
+    <a href="#" class="btn btn-primary loggedout-only" onclick="event.preventDefault();showLoginModal()">Join free</a>
+    <div class="nav-user-pill logged-in-only" id="navUserPill">
+      <div class="nav-user-avatar" id="navUserAvatar" style="background:var(--gold)">A</div>
+      <div>
+        <div class="nav-user-name" id="navUserName">Admin</div>
+        <div class="nav-user-org"  id="navUserOrg">Timeus Interactive</div>
+      </div>
+      <button class="nav-logout-btn" onclick="logout()">Sign out</button>
+    </div>
     <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -1295,8 +1446,11 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <h1 id="hero-heading">Build skills.<br><em>Earn points.</em><br>Win rewards.</h1>
     <p class="hero-sub">Microsoft partner enablement for Redington &amp; Ingram resellers. Accreditations, masterclasses, and marketing tools &mdash; all in one place, at no cost.</p>
     <div class="hero-ctas">
-      <a href="#" class="btn-hero-primary">
+      <a href="#activities" class="btn-hero-primary loggedout-only" onclick="if(document.documentElement.dataset.auth==='loggedout'){event.preventDefault();showLoginModal();}">
         Enter the Arena &nbsp;&rarr;
+      </a>
+      <a href="#activities" class="btn-hero-primary logged-in-only">
+        Go to Activities &nbsp;&rarr;
       </a>
       <a href="#leaderboard" class="btn-hero-outline">View standings</a>
     </div>
@@ -1312,6 +1466,49 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
       <div role="listitem">
         <div class="hero-stat-val" id="stat-campaigns">0</div>
         <div class="hero-stat-lbl">Marketing campaigns</div>
+      </div>
+    </div>
+
+    <!-- Role-specific welcome bars (shown post-login) -->
+    <div class="hero-welcome-wrap">
+      <!-- Admin bar -->
+      <div class="hero-role-tag hero-welcome-bar hero-bar-admin" style="margin-bottom:-4px">
+        <i class="fa-solid fa-crown" style="color:#c5a44b;font-size:11px"></i> Welcome back, Admin &mdash; Timeus Interactive
+      </div>
+      <div class="hero-welcome-bar hero-bar-admin">
+        <div class="hwb-item"><div class="hwb-val">247</div><div class="hwb-lbl">Total Partners</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">189</div><div class="hwb-lbl">Active This Month</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">142.8K</div><div class="hwb-lbl">Points Issued</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">38</div><div class="hwb-lbl">Pending Claims</div></div>
+      </div>
+      <!-- Distributor bar -->
+      <div class="hero-role-tag hero-welcome-bar hero-bar-dist" style="margin-bottom:-4px">
+        <i class="fa-solid fa-building" style="color:var(--electric);font-size:11px"></i> Welcome back, Redington &mdash; Distributor
+      </div>
+      <div class="hero-welcome-bar hero-bar-dist">
+        <div class="hwb-item"><div class="hwb-val">52</div><div class="hwb-lbl">Your Resellers</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">41</div><div class="hwb-lbl">Active</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">38.4K</div><div class="hwb-lbl">Points Pool</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">#3</div><div class="hwb-lbl">Distributor Rank</div></div>
+      </div>
+      <!-- Reseller bar -->
+      <div class="hero-role-tag hero-welcome-bar hero-bar-reseller" style="margin-bottom:-4px">
+        <i class="fa-solid fa-store" style="color:#22c55e;font-size:11px"></i> Welcome back, Harpreet Virk &mdash; Techno Hub Solutions
+      </div>
+      <div class="hero-welcome-bar hero-bar-reseller">
+        <div class="hwb-item"><div class="hwb-val">#1</div><div class="hwb-lbl">National Rank</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">8,420</div><div class="hwb-lbl">My Points</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">14</div><div class="hwb-lbl">Trainings Done</div></div>
+        <div class="hwb-sep"></div>
+        <div class="hwb-item"><div class="hwb-val">Mumbai</div><div class="hwb-lbl">City</div></div>
       </div>
     </div>
   </div>
@@ -1727,6 +1924,16 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Right: Your Performance sidebar -->
       <div class="lb-sidebar">
+        <!-- Shown when logged out -->
+        <div class="lb-lock-card your-perf-card">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(173,198,254,.1);border:1px solid rgba(173,198,254,.15);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--electric);margin-bottom:1rem;flex-shrink:0">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">Your ranking is private</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6">Sign in to see your national rank, points total, and how close you are to the next reward milestone.</div>
+          <button class="sprint-cta" onclick="showLoginModal()" style="width:100%">Sign in to view ranking</button>
+        </div>
+        <!-- Shown when logged in -->
         <div class="your-perf-card">
           <div class="your-perf-label">Your Performance</div>
           <div class="your-perf-rank">
@@ -2064,6 +2271,21 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <h2 class="section-title" id="dash-heading">Partner Performance<br>Hub</h2>
     <p class="section-sub">Real-time visibility into partner activity, training progress, and incentive redemption across all roles.</p>
 
+    <!-- Gate: shown when logged out -->
+    <div class="dash-lock-gate">
+      <div class="dlg-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="dlg-title">Role-based access required</div>
+      <div class="dlg-sub">This dashboard shows different data depending on your role. Sign in to see your slice of the platform.</div>
+      <div class="dlg-roles">
+        <span class="dlg-role-pill"><i class="fa-solid fa-crown" style="color:#c5a44b;font-size:10px"></i> Admin</span>
+        <span class="dlg-role-pill"><i class="fa-solid fa-building" style="color:var(--electric);font-size:10px"></i> Distributor</span>
+        <span class="dlg-role-pill"><i class="fa-solid fa-store" style="color:#22c55e;font-size:10px"></i> Reseller</span>
+      </div>
+      <button class="dlg-btn" onclick="showLoginModal()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in to access</button>
+    </div>
+
+    <!-- Dashboard content: shown when logged in -->
+    <div class="dash-content">
     <div class="dash-role-switcher" role="tablist">
       <button class="dash-role-btn active" data-role="admin" onclick="dashRole('admin')" role="tab"><i class="fa-solid fa-crown"></i> Admin View</button>
       <button class="dash-role-btn" data-role="distributor" onclick="dashRole('distributor')" role="tab"><i class="fa-solid fa-building"></i> Distributor View</button>
@@ -2283,6 +2505,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         </div>
       </div>
     </div>
+    </div><!-- /dash-content -->
 
   </div>
 </section>
@@ -2341,6 +2564,48 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </footer>
+
+<!-- LOGIN MODAL -->
+<div class="login-overlay" id="loginOverlay" role="dialog" aria-modal="true" aria-label="Sign in" onclick="if(event.target===this)hideLoginModal()">
+  <div class="login-box">
+    <button class="login-box-close" onclick="hideLoginModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <div style="width:48px;height:48px;border-radius:var(--r-md);background:var(--gold);display:inline-flex;align-items:center;justify-content:center;font-size:20px;color:#fff;margin-bottom:.875rem">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+      <div class="login-title">Sales Excellence League</div>
+      <div class="login-sub">Select your role to access your dashboard</div>
+    </div>
+    <div class="login-divider">Sign in as</div>
+    <div class="login-roles">
+      <button class="login-role-btn" onclick="loginAs('admin')">
+        <div class="login-role-icon lri-admin"><i class="fa-solid fa-crown"></i></div>
+        <div>
+          <div class="login-role-label">Admin</div>
+          <div class="login-role-desc">Timeus Interactive · Full platform visibility</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="margin-left:auto;font-size:11px;color:var(--muted)"></i>
+      </button>
+      <button class="login-role-btn" onclick="loginAs('distributor')">
+        <div class="login-role-icon lri-dist"><i class="fa-solid fa-building"></i></div>
+        <div>
+          <div class="login-role-label">Distributor</div>
+          <div class="login-role-desc">Redington / Ingram Micro · Your reseller network</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="margin-left:auto;font-size:11px;color:var(--muted)"></i>
+      </button>
+      <button class="login-role-btn" onclick="loginAs('reseller')">
+        <div class="login-role-icon lri-resl"><i class="fa-solid fa-store"></i></div>
+        <div>
+          <div class="login-role-label">Reseller</div>
+          <div class="login-role-desc">Techno Hub Solutions · Your personal scorecard</div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="margin-left:auto;font-size:11px;color:var(--muted)"></i>
+      </button>
+    </div>
+    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:1.25rem">This is a demo environment — no password required.</p>
+  </div>
+</div>
 
 <script>
 /* Theme toggle */
@@ -2493,6 +2758,62 @@ function addMsg(text, isUser){
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
+
+/* ── Login / Auth ── */
+var roleConfig = {
+  admin: {
+    name: 'Admin', org: 'Timeus Interactive',
+    avatarBg: 'linear-gradient(135deg,#c5a44b,#a07830)', avatarLetter: 'A',
+    dashRole: 'admin'
+  },
+  distributor: {
+    name: 'Redington', org: 'Distributor',
+    avatarBg: 'linear-gradient(135deg,#2d52b0,#1e3a80)', avatarLetter: 'R',
+    dashRole: 'distributor'
+  },
+  reseller: {
+    name: 'Harpreet Virk', org: 'Techno Hub Solutions',
+    avatarBg: 'linear-gradient(135deg,#166534,#15803d)', avatarLetter: 'H',
+    dashRole: 'reseller'
+  }
+};
+
+function showLoginModal() {
+  document.getElementById('loginOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function hideLoginModal() {
+  document.getElementById('loginOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function loginAs(role) {
+  hideLoginModal();
+  var cfg = roleConfig[role];
+  document.documentElement.dataset.auth = role;
+  /* Update nav pill */
+  document.getElementById('navUserAvatar').textContent = cfg.avatarLetter;
+  document.getElementById('navUserAvatar').style.background = cfg.avatarBg;
+  document.getElementById('navUserName').textContent = cfg.name;
+  document.getElementById('navUserOrg').textContent  = cfg.org;
+  /* Auto-select correct dashboard tab */
+  dashRole(cfg.dashRole);
+  /* Scroll hint toward dashboard if not reseller */
+  setTimeout(function(){
+    var dash = document.getElementById('dashboard');
+    if(dash) dash.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 300);
+}
+
+function logout() {
+  document.documentElement.dataset.auth = 'loggedout';
+  /* Reset dashboard to admin view for next login */
+  dashRole('admin');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* Close modal on Escape */
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') hideLoginModal(); });
 
 /* Webinar tabs */
 function wbTab(t) {
