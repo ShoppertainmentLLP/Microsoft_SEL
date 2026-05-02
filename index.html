@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark" data-auth="loggedout">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
 <script>(function(){var t=localStorage.getItem('sel-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 <meta charset="UTF-8">
@@ -1053,28 +1053,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
 
-/* ── AUTH VISIBILITY ── */
-[data-auth="loggedout"] .logged-in-only { display: none !important; }
-[data-auth="admin"]       .loggedout-only,
-[data-auth="distributor"] .loggedout-only,
-[data-auth="reseller"]    .loggedout-only { display: none !important; }
-/* Role-specific tabs in dashboard */
-[data-auth="distributor"] .dash-role-btn[data-role="admin"] { display: none !important; }
-[data-auth="reseller"]    .dash-role-btn[data-role="admin"],
-[data-auth="reseller"]    .dash-role-btn[data-role="distributor"] { display: none !important; }
-/* Dashboard gate */
-.dash-lock-gate { display: none; }
-[data-auth="loggedout"] .dash-lock-gate { display: flex; }
-[data-auth="loggedout"] .dash-content  { display: none; }
-/* Leaderboard gate */
-.lb-lock-card { display: none; flex-direction: column; align-items: center; text-align: center; }
-[data-auth="loggedout"] .lb-lock-card    { display: flex; }
-[data-auth="loggedout"] .your-perf-card  { display: none; }
-/* Hero welcome bars — hidden by default, shown per role */
-.hero-welcome-bar { display: none; }
-[data-auth="admin"]       .hero-bar-admin   { display: flex; }
-[data-auth="distributor"] .hero-bar-dist     { display: flex; }
-[data-auth="reseller"]    .hero-bar-reseller { display: flex; }
 
 /* ── LOGIN MODAL ── */
 .login-overlay {
@@ -1118,78 +1096,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 .login-role-label { font-size: 14px; font-weight: 700; color: var(--white); }
 .login-role-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-/* ── NAV USER PILL ── */
-.nav-user-pill {
-  display: flex; align-items: center; gap: 8px;
-  padding: 4px 10px 4px 5px; border-radius: var(--r-full);
-  background: rgba(173,198,254,.08); border: 1px solid rgba(173,198,254,.15);
-}
-.nav-user-avatar {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 800; color: #fff;
-}
-.nav-user-name { font-size: 12px; font-weight: 700; color: var(--white); line-height: 1.2; }
-.nav-user-org  { font-size: 10px; color: var(--muted); }
-.nav-logout-btn {
-  background: none; border: 1px solid var(--border); color: var(--muted);
-  font-size: 11px; font-weight: 600; padding: 4px 10px;
-  border-radius: var(--r-full); cursor: pointer; transition: all .2s; white-space: nowrap;
-}
-.nav-logout-btn:hover { border-color: rgba(173,198,254,.3); color: var(--electric); }
-[data-theme="light"] .nav-user-pill { background: rgba(45,82,176,.07); border-color: rgba(45,82,176,.15); }
-[data-theme="light"] .nav-user-name { color: var(--ink); }
-[data-theme="light"] .nav-logout-btn { border-color: rgba(10,17,40,.12); color: rgba(10,17,40,.5); }
-[data-theme="light"] .nav-logout-btn:hover { border-color: rgba(45,82,176,.3); color: var(--electric); }
-
-/* ── HERO WELCOME BARS ── */
-.hero-welcome-wrap { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.hero-role-tag {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 12px; font-weight: 600; padding: 5px 14px;
-  border-radius: var(--r-full); border: 1px solid rgba(173,198,254,.25);
-  background: rgba(173,198,254,.1); color: rgba(255,255,255,.85);
-  backdrop-filter: blur(8px);
-}
-.hero-welcome-bar {
-  width: 100%; max-width: 640px;
-  background: rgba(8,14,28,.65); border: 1px solid rgba(173,198,254,.18);
-  border-radius: var(--r-lg); padding: .875rem 1.5rem;
-  backdrop-filter: blur(10px);
-  align-items: center; justify-content: center; gap: 0; flex-wrap: wrap;
-}
-.hwb-item { text-align: center; padding: .375rem 1.25rem; }
-.hwb-val { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -.02em; line-height: 1; }
-.hwb-lbl { font-size: 10px; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
-.hwb-sep { width: 1px; height: 32px; background: rgba(255,255,255,.1); flex-shrink: 0; }
-
-/* ── DASHBOARD LOCK GATE ── */
-.dash-lock-gate {
-  flex-direction: column; align-items: center; justify-content: center; text-align: center;
-  background: var(--navy-3); border: 1px solid var(--border-2);
-  border-radius: var(--r-xl); padding: 5rem 2rem; position: relative; overflow: hidden;
-}
-.dash-lock-gate::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--electric), var(--gold));
-}
-.dlg-icon { font-size: 2.75rem; color: rgba(173,198,254,.25); margin-bottom: 1.25rem; }
-.dlg-title { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.dlg-sub { font-size: 13px; color: var(--muted); max-width: 380px; line-height: 1.65; margin-bottom: 1.75rem; }
-.dlg-roles { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
-.dlg-role-pill {
-  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
-  padding: 6px 14px; border-radius: var(--r-full); border: 1px solid var(--border); color: var(--muted);
-}
-.dlg-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 14px; font-weight: 700; padding: 12px 28px;
-  border-radius: var(--r-full); border: none; cursor: pointer;
-  background: var(--gold); color: #fff; transition: all .2s;
-}
-.dlg-btn:hover { filter: brightness(1.12); transform: translateY(-2px); }
-[data-theme="light"] .dash-lock-gate { background: #fff; border-color: rgba(10,17,40,.09); }
-[data-theme="light"] .dlg-title { color: var(--ink); }
 [data-theme="light"] .login-box { background: #fff; border-color: rgba(10,17,40,.12); }
 [data-theme="light"] .login-title { color: var(--ink); }
 [data-theme="light"] .login-role-btn { background: #f8faff; border-color: rgba(10,17,40,.09); }
@@ -1404,19 +1310,10 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <li><a href="#webinars">Webinars</a></li>
     <li><a href="#ai-assistant">AI Assistant</a></li>
     <li><a href="#achievers">Achievers</a></li>
-    <li><a href="#dashboard">Dashboard</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" class="btn btn-ghost loggedout-only" onclick="event.preventDefault();showLoginModal()">Sign in</a>
-    <a href="#" class="btn btn-primary loggedout-only" onclick="event.preventDefault();showLoginModal()">Join free</a>
-    <div class="nav-user-pill logged-in-only" id="navUserPill">
-      <div class="nav-user-avatar" id="navUserAvatar" style="background:var(--gold)">A</div>
-      <div>
-        <div class="nav-user-name" id="navUserName">Admin</div>
-        <div class="nav-user-org"  id="navUserOrg">Timeus Interactive</div>
-      </div>
-      <button class="nav-logout-btn" onclick="logout()">Sign out</button>
-    </div>
+    <a href="#" class="btn btn-ghost" onclick="event.preventDefault();showLoginModal()">Sign in</a>
+    <a href="#" class="btn btn-primary" onclick="event.preventDefault();showLoginModal()">Join free</a>
     <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -1429,8 +1326,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <a href="#webinars" onclick="closeMenu()">Webinars</a>
   <a href="#ai-assistant" onclick="closeMenu()">AI Assistant</a>
   <a href="#achievers" onclick="closeMenu()">Partner Achievers</a>
-  <a href="#dashboard" onclick="closeMenu()">Dashboard</a>
-  <a href="#" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
+  <a href="#" onclick="closeMenu();showLoginModal();" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
 </nav>
 
 <!-- HERO -->
@@ -1446,11 +1342,8 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <h1 id="hero-heading">Build skills.<br><em>Earn points.</em><br>Win rewards.</h1>
     <p class="hero-sub">Microsoft partner enablement for Redington &amp; Ingram resellers. Accreditations, masterclasses, and marketing tools &mdash; all in one place, at no cost.</p>
     <div class="hero-ctas">
-      <a href="#activities" class="btn-hero-primary loggedout-only" onclick="if(document.documentElement.dataset.auth==='loggedout'){event.preventDefault();showLoginModal();}">
+      <a href="#" class="btn-hero-primary" onclick="event.preventDefault();showLoginModal()">
         Enter the Arena &nbsp;&rarr;
-      </a>
-      <a href="#activities" class="btn-hero-primary logged-in-only">
-        Go to Activities &nbsp;&rarr;
       </a>
       <a href="#leaderboard" class="btn-hero-outline">View standings</a>
     </div>
@@ -1469,48 +1362,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
       </div>
     </div>
 
-    <!-- Role-specific welcome bars (shown post-login) -->
-    <div class="hero-welcome-wrap">
-      <!-- Admin bar -->
-      <div class="hero-role-tag hero-welcome-bar hero-bar-admin" style="margin-bottom:-4px">
-        <i class="fa-solid fa-crown" style="color:#c5a44b;font-size:11px"></i> Welcome back, Admin &mdash; Timeus Interactive
-      </div>
-      <div class="hero-welcome-bar hero-bar-admin">
-        <div class="hwb-item"><div class="hwb-val">247</div><div class="hwb-lbl">Total Partners</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">189</div><div class="hwb-lbl">Active This Month</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">142.8K</div><div class="hwb-lbl">Points Issued</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">38</div><div class="hwb-lbl">Pending Claims</div></div>
-      </div>
-      <!-- Distributor bar -->
-      <div class="hero-role-tag hero-welcome-bar hero-bar-dist" style="margin-bottom:-4px">
-        <i class="fa-solid fa-building" style="color:var(--electric);font-size:11px"></i> Welcome back, Redington &mdash; Distributor
-      </div>
-      <div class="hero-welcome-bar hero-bar-dist">
-        <div class="hwb-item"><div class="hwb-val">52</div><div class="hwb-lbl">Your Resellers</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">41</div><div class="hwb-lbl">Active</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">38.4K</div><div class="hwb-lbl">Points Pool</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">#3</div><div class="hwb-lbl">Distributor Rank</div></div>
-      </div>
-      <!-- Reseller bar -->
-      <div class="hero-role-tag hero-welcome-bar hero-bar-reseller" style="margin-bottom:-4px">
-        <i class="fa-solid fa-store" style="color:#22c55e;font-size:11px"></i> Welcome back, Harpreet Virk &mdash; Techno Hub Solutions
-      </div>
-      <div class="hero-welcome-bar hero-bar-reseller">
-        <div class="hwb-item"><div class="hwb-val">#1</div><div class="hwb-lbl">National Rank</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">8,420</div><div class="hwb-lbl">My Points</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">14</div><div class="hwb-lbl">Trainings Done</div></div>
-        <div class="hwb-sep"></div>
-        <div class="hwb-item"><div class="hwb-val">Mumbai</div><div class="hwb-lbl">City</div></div>
-      </div>
-    </div>
   </div>
   <div class="hero-scroll-hint" aria-hidden="true">
     <i class="fa-solid fa-chevron-down"></i>
@@ -1924,16 +1775,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Right: Your Performance sidebar -->
       <div class="lb-sidebar">
-        <!-- Shown when logged out -->
-        <div class="lb-lock-card your-perf-card">
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(173,198,254,.1);border:1px solid rgba(173,198,254,.15);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--electric);margin-bottom:1rem;flex-shrink:0">
-            <i class="fa-solid fa-lock"></i>
-          </div>
-          <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px">Your ranking is private</div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6">Sign in to see your national rank, points total, and how close you are to the next reward milestone.</div>
-          <button class="sprint-cta" onclick="showLoginModal()" style="width:100%">Sign in to view ranking</button>
-        </div>
-        <!-- Shown when logged in -->
         <div class="your-perf-card">
           <div class="your-perf-label">Your Performance</div>
           <div class="your-perf-rank">
@@ -2264,251 +2105,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   </div>
 </section>
 
-<!-- ADMIN DASHBOARD -->
-<section class="section" id="dashboard" aria-labelledby="dash-heading">
-  <div class="section-inner">
-    <div class="section-eyebrow">Control centre</div>
-    <h2 class="section-title" id="dash-heading">Partner Performance<br>Hub</h2>
-    <p class="section-sub">Real-time visibility into partner activity, training progress, and incentive redemption across all roles.</p>
-
-    <!-- Gate: shown when logged out -->
-    <div class="dash-lock-gate">
-      <div class="dlg-icon"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="dlg-title">Role-based access required</div>
-      <div class="dlg-sub">This dashboard shows different data depending on your role. Sign in to see your slice of the platform.</div>
-      <div class="dlg-roles">
-        <span class="dlg-role-pill"><i class="fa-solid fa-crown" style="color:#c5a44b;font-size:10px"></i> Admin</span>
-        <span class="dlg-role-pill"><i class="fa-solid fa-building" style="color:var(--electric);font-size:10px"></i> Distributor</span>
-        <span class="dlg-role-pill"><i class="fa-solid fa-store" style="color:#22c55e;font-size:10px"></i> Reseller</span>
-      </div>
-      <button class="dlg-btn" onclick="showLoginModal()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in to access</button>
-    </div>
-
-    <!-- Dashboard content: shown when logged in -->
-    <div class="dash-content">
-    <div class="dash-role-switcher" role="tablist">
-      <button class="dash-role-btn active" data-role="admin" onclick="dashRole('admin')" role="tab"><i class="fa-solid fa-crown"></i> Admin View</button>
-      <button class="dash-role-btn" data-role="distributor" onclick="dashRole('distributor')" role="tab"><i class="fa-solid fa-building"></i> Distributor View</button>
-      <button class="dash-role-btn" data-role="reseller" onclick="dashRole('reseller')" role="tab"><i class="fa-solid fa-store"></i> Reseller View</button>
-    </div>
-
-    <!-- ADMIN VIEW -->
-    <div class="dash-view active" id="dash-admin">
-      <div class="dash-kpis">
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-users"></i></div>
-          <div class="dash-kpi-val">247</div>
-          <div class="dash-kpi-label">Total Partners</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +18 this quarter</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div class="dash-kpi-val">189</div>
-          <div class="dash-kpi-label">Active This Month</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 76.5% activity rate</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="dash-kpi-val">142.8K</div>
-          <div class="dash-kpi-label">Points Issued</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +22% vs last quarter</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-gift"></i></div>
-          <div class="dash-kpi-val">38</div>
-          <div class="dash-kpi-label">Pending Redemptions</div>
-          <div class="dash-kpi-delta dn"><i class="fa-solid fa-clock"></i> Avg 3.2 day turnaround</div>
-        </div>
-      </div>
-      <div class="dash-layout">
-        <div class="dash-card">
-          <div class="dash-card-head">
-            <span class="dash-card-title">Top Partners &mdash; Q2 2026</span>
-            <button class="dash-filter-pill">All Regions <i class="fa-solid fa-chevron-down" style="font-size:9px;margin-left:4px"></i></button>
-          </div>
-          <table class="dash-table">
-            <thead><tr>
-              <th class="dash-th">Partner</th>
-              <th class="dash-th">Type</th>
-              <th class="dash-th">Points</th>
-              <th class="dash-th">Trainings</th>
-              <th class="dash-th">Status</th>
-            </tr></thead>
-            <tbody>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Techno Hub Solutions</span><span class="dash-partner-loc">Mumbai</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">8,420</span></td><td class="dash-td muted">14</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Infinity Networks</span><span class="dash-partner-loc">Bengaluru</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">7,690</span></td><td class="dash-td muted">12</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">NextGen IT Services</span><span class="dash-partner-loc">Delhi</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">6,850</span></td><td class="dash-td muted">11</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">CloudEdge Pvt Ltd</span><span class="dash-partner-loc">Hyderabad</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">5,920</span></td><td class="dash-td muted">9</td><td class="dash-td"><span class="dash-status pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Digital Frontiers</span><span class="dash-partner-loc">Chennai</span></div></td><td class="dash-td muted">Reseller</td><td class="dash-td"><span class="dash-pts-chip">4,180</span></td><td class="dash-td muted">7</td><td class="dash-td"><span class="dash-status inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="dash-card">
-          <div class="dash-card-head"><span class="dash-card-title">Activity Breakdown</span></div>
-          <div class="dash-chart-body">
-            <div class="dash-bar-row"><span class="dash-bar-label">Trainings</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:82%"></div></div><span class="dash-bar-val">1,847</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Webinars</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:61%"></div></div><span class="dash-bar-val">1,035</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Campaigns</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%"></div></div><span class="dash-bar-val">552</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Deal Reg.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:38%"></div></div><span class="dash-bar-val">284</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Accreditat.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:27%"></div></div><span class="dash-bar-val">118</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">POE Submit</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:19%"></div></div><span class="dash-bar-val">74</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DISTRIBUTOR VIEW -->
-    <div class="dash-view" id="dash-distributor">
-      <div class="dash-kpis">
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-store"></i></div>
-          <div class="dash-kpi-val">52</div>
-          <div class="dash-kpi-label">Your Resellers</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +5 this quarter</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div class="dash-kpi-val">41</div>
-          <div class="dash-kpi-label">Active Resellers</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 78.8% engagement</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="dash-kpi-val">38.4K</div>
-          <div class="dash-kpi-label">Points Pool</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +14% vs last quarter</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-trophy"></i></div>
-          <div class="dash-kpi-val">#3</div>
-          <div class="dash-kpi-label">Distributor Rank</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> Up from #5 last month</div>
-        </div>
-      </div>
-      <div class="dash-layout">
-        <div class="dash-card">
-          <div class="dash-card-head">
-            <span class="dash-card-title">Your Resellers &mdash; Q2 2026</span>
-            <button class="dash-filter-pill">All Cities <i class="fa-solid fa-chevron-down" style="font-size:9px;margin-left:4px"></i></button>
-          </div>
-          <table class="dash-table">
-            <thead><tr>
-              <th class="dash-th">Reseller</th>
-              <th class="dash-th">Points</th>
-              <th class="dash-th">Trainings</th>
-              <th class="dash-th">Webinars</th>
-              <th class="dash-th">Status</th>
-            </tr></thead>
-            <tbody>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Techno Hub Solutions</span><span class="dash-partner-loc">Mumbai</span></div></td><td class="dash-td"><span class="dash-pts-chip">8,420</span></td><td class="dash-td muted">14</td><td class="dash-td muted">6</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Infinity Networks</span><span class="dash-partner-loc">Pune</span></div></td><td class="dash-td"><span class="dash-pts-chip">7,690</span></td><td class="dash-td muted">12</td><td class="dash-td muted">5</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">SkyBridge Systems</span><span class="dash-partner-loc">Nashik</span></div></td><td class="dash-td"><span class="dash-pts-chip">5,120</span></td><td class="dash-td muted">8</td><td class="dash-td muted">4</td><td class="dash-td"><span class="dash-status active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Prime Connect</span><span class="dash-partner-loc">Aurangabad</span></div></td><td class="dash-td"><span class="dash-pts-chip">3,840</span></td><td class="dash-td muted">6</td><td class="dash-td muted">2</td><td class="dash-td"><span class="dash-status pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></td></tr>
-              <tr class="dash-tr"><td class="dash-td"><div class="dash-name-cell"><span class="dash-partner-name">Horizon IT</span><span class="dash-partner-loc">Kolhapur</span></div></td><td class="dash-td"><span class="dash-pts-chip">1,250</span></td><td class="dash-td muted">2</td><td class="dash-td muted">1</td><td class="dash-td"><span class="dash-status inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="dash-card">
-          <div class="dash-card-head"><span class="dash-card-title">Activity Breakdown</span></div>
-          <div class="dash-chart-body">
-            <div class="dash-bar-row"><span class="dash-bar-label">Trainings</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:88%"></div></div><span class="dash-bar-val">412</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Webinars</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:54%"></div></div><span class="dash-bar-val">224</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Campaigns</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%"></div></div><span class="dash-bar-val">88</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Deal Reg.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:31%"></div></div><span class="dash-bar-val">52</span></div>
-            <div class="dash-bar-row"><span class="dash-bar-label">Accreditat.</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%"></div></div><span class="dash-bar-val">28</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RESELLER VIEW -->
-    <div class="dash-view" id="dash-reseller">
-      <div class="dash-kpis">
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="dash-kpi-val">4,850</div>
-          <div class="dash-kpi-label">My Points</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> +650 this month</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-trophy"></i></div>
-          <div class="dash-kpi-val">#12</div>
-          <div class="dash-kpi-label">My Rank</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> Up 4 places</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <div class="dash-kpi-val">9</div>
-          <div class="dash-kpi-label">Trainings Done</div>
-          <div class="dash-kpi-delta up"><i class="fa-solid fa-arrow-trend-up"></i> 3 this quarter</div>
-        </div>
-        <div class="dash-kpi">
-          <div class="dash-kpi-icon"><i class="fa-solid fa-gift"></i></div>
-          <div class="dash-kpi-val">2</div>
-          <div class="dash-kpi-label">Pending Claims</div>
-          <div class="dash-kpi-delta dn"><i class="fa-solid fa-clock"></i> Est. 2&ndash;3 days</div>
-        </div>
-      </div>
-      <div class="dash-layout">
-        <div class="dash-card">
-          <div class="dash-card-head"><span class="dash-card-title">Recent Activity</span></div>
-          <div class="dash-log-item">
-            <div class="dash-log-icon"><i class="fa-solid fa-circle-play"></i></div>
-            <div class="dash-log-body"><div class="dash-log-text">Watched <strong>Copilot+ PC Launch Playbook</strong> recording</div><div class="dash-log-time">Today, 10:24 AM</div></div>
-            <span class="dash-log-pts">+150 pts</span>
-          </div>
-          <div class="dash-log-item">
-            <div class="dash-log-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="dash-log-body"><div class="dash-log-text">Completed <strong>Microsoft 365 Fundamentals</strong> course</div><div class="dash-log-time">Yesterday, 3:45 PM</div></div>
-            <span class="dash-log-pts">+200 pts</span>
-          </div>
-          <div class="dash-log-item">
-            <div class="dash-log-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <div class="dash-log-body"><div class="dash-log-text">Attended <strong>Azure Infrastructure Deep Dive</strong> webinar</div><div class="dash-log-time">28 Apr 2026</div></div>
-            <span class="dash-log-pts">+200 pts</span>
-          </div>
-          <div class="dash-log-item">
-            <div class="dash-log-icon"><i class="fa-solid fa-handshake"></i></div>
-            <div class="dash-log-body"><div class="dash-log-text">Deal registration submitted for <strong>Contoso Networks</strong></div><div class="dash-log-time">25 Apr 2026</div></div>
-            <span class="dash-log-pts">+300 pts</span>
-          </div>
-          <div class="dash-log-item">
-            <div class="dash-log-icon"><i class="fa-solid fa-certificate"></i></div>
-            <div class="dash-log-body"><div class="dash-log-text">Earned <strong>Copilot Specialist</strong> accreditation</div><div class="dash-log-time">20 Apr 2026</div></div>
-            <span class="dash-log-pts">+500 pts</span>
-          </div>
-        </div>
-        <div class="dash-card">
-          <div class="dash-card-head"><span class="dash-card-title">Goal Progress</span></div>
-          <div class="dash-chart-body">
-            <div class="dash-prog-item">
-              <div class="dash-prog-head"><span class="dash-prog-name">Q2 Points Target</span><span class="dash-prog-val">4,850 / 6,000</span></div>
-              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:81%"></div></div>
-            </div>
-            <div class="dash-prog-item">
-              <div class="dash-prog-head"><span class="dash-prog-name">Training Hours</span><span class="dash-prog-val">27 / 40 hrs</span></div>
-              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
-            </div>
-            <div class="dash-prog-item">
-              <div class="dash-prog-head"><span class="dash-prog-name">Accreditations</span><span class="dash-prog-val">2 / 3</span></div>
-              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
-            </div>
-            <div class="dash-prog-item">
-              <div class="dash-prog-head"><span class="dash-prog-name">Webinars Attended</span><span class="dash-prog-val">4 / 6</span></div>
-              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:67%"></div></div>
-            </div>
-            <div class="dash-prog-item">
-              <div class="dash-prog-head"><span class="dash-prog-name">Deal Registrations</span><span class="dash-prog-val">3 / 5</span></div>
-              <div class="dash-prog-track"><div class="dash-prog-fill" style="width:60%"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div><!-- /dash-content -->
-
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer role="contentinfo">
@@ -2530,7 +2126,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         <a href="#webinars">Webinars</a>
         <a href="#ai-assistant">AI assistant</a>
         <a href="#achievers">Hall of fame</a>
-        <a href="#dashboard">Dashboard</a>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
@@ -2760,24 +2355,6 @@ function addMsg(text, isUser){
 }
 
 /* ── Login / Auth ── */
-var roleConfig = {
-  admin: {
-    name: 'Admin', org: 'Timeus Interactive',
-    avatarBg: 'linear-gradient(135deg,#c5a44b,#a07830)', avatarLetter: 'A',
-    dashRole: 'admin'
-  },
-  distributor: {
-    name: 'Redington', org: 'Distributor',
-    avatarBg: 'linear-gradient(135deg,#2d52b0,#1e3a80)', avatarLetter: 'R',
-    dashRole: 'distributor'
-  },
-  reseller: {
-    name: 'Harpreet Virk', org: 'Techno Hub Solutions',
-    avatarBg: 'linear-gradient(135deg,#166534,#15803d)', avatarLetter: 'H',
-    dashRole: 'reseller'
-  }
-};
-
 function showLoginModal() {
   document.getElementById('loginOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -2789,27 +2366,8 @@ function hideLoginModal() {
 
 function loginAs(role) {
   hideLoginModal();
-  var cfg = roleConfig[role];
-  document.documentElement.dataset.auth = role;
-  /* Update nav pill */
-  document.getElementById('navUserAvatar').textContent = cfg.avatarLetter;
-  document.getElementById('navUserAvatar').style.background = cfg.avatarBg;
-  document.getElementById('navUserName').textContent = cfg.name;
-  document.getElementById('navUserOrg').textContent  = cfg.org;
-  /* Auto-select correct dashboard tab */
-  dashRole(cfg.dashRole);
-  /* Scroll hint toward dashboard if not reseller */
-  setTimeout(function(){
-    var dash = document.getElementById('dashboard');
-    if(dash) dash.scrollIntoView({behavior:'smooth', block:'start'});
-  }, 300);
-}
-
-function logout() {
-  document.documentElement.dataset.auth = 'loggedout';
-  /* Reset dashboard to admin view for next login */
-  dashRole('admin');
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  localStorage.setItem('sel-role', role);
+  window.location.href = 'dashboard.html';
 }
 
 /* Close modal on Escape */
@@ -2819,12 +2377,6 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') hideLogin
 function wbTab(t) {
   document.querySelectorAll('.wb-tab').forEach(function(b){ b.classList.toggle('active', b.dataset.tab === t); b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'); });
   document.querySelectorAll('.wb-panel').forEach(function(p){ p.classList.toggle('active', p.id === 'wb-' + t); });
-}
-
-/* Dashboard role switcher */
-function dashRole(r) {
-  document.querySelectorAll('.dash-role-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.role === r); });
-  document.querySelectorAll('.dash-view').forEach(function(v){ v.classList.toggle('active', v.id === 'dash-' + r); });
 }
 
 /* Nav active state on scroll */
