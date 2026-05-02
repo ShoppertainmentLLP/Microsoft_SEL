@@ -394,7 +394,7 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 [data-theme="light"] .dash-nav-logo,[data-theme="light"] .guild-name,[data-theme="light"] .cmd-title,[data-theme="light"] .player-name{color:var(--ink)}
 [data-theme="light"] .player-hero,[data-theme="light"] .guild-hero,[data-theme="light"] .cmd-hero{background:linear-gradient(135deg,#e8ecf5 0%,#f0f3f9 100%)}
 [data-theme="light"] .stat-card,[data-theme="light"] .chart-card,[data-theme="light"] .mission-card,[data-theme="light"] .table-card{background:#fff;border-color:rgba(10,17,40,.09)}
-[data-theme="light"] .stat-card-val,[data-theme="light"] .chart-title,[data-theme="light"] .table-title,[data-theme="light"] .quest-name,.af-text,[data-theme="light"] .ach-name{color:var(--ink)}
+[data-theme="light"] .stat-card-val,[data-theme="light"] .chart-title,[data-theme="light"] .table-title,[data-theme="light"] .quest-name,[data-theme="light"] .af-text,[data-theme="light"] .ach-name{color:var(--ink)}
 [data-theme="light"] .nav-pill{background:rgba(45,82,176,.07);border-color:rgba(45,82,176,.15)}
 [data-theme="light"] .nav-uname{color:var(--ink)}
 [data-theme="light"] .chart-head{border-color:rgba(10,17,40,.08)}
@@ -404,12 +404,116 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 [data-theme="light"] .bc-track{background:rgba(10,17,40,.07)}
 [data-theme="light"] .bc-val{color:var(--ink)}
 [data-theme="light"] .guild-rank-badge{background:rgba(45,82,176,.1);border-color:rgba(45,82,176,.25)}
+[data-theme="light"] .dash-sidebar{background:#f0f2f8;border-right-color:rgba(10,17,40,.1)}
+[data-theme="light"] .sidebar-item{color:rgba(10,17,40,.5)}
+[data-theme="light"] .sidebar-item:hover{color:var(--ink);background:rgba(10,17,40,.04)}
+[data-theme="light"] .sidebar-item.s-active{color:var(--ink);background:rgba(45,82,176,.07);border-left-color:#2d52b0}
+[data-theme="light"] .sidebar-bottom{border-top-color:rgba(10,17,40,.1)}
+[data-theme="light"] .add-reseller-card,[data-theme="light"] .invite-modal{background:#fff;border-color:rgba(10,17,40,.09)}
 
+/* ── SIDEBAR LAYOUT ── */
+.dash-layout{display:flex;min-height:calc(100vh - var(--nav-h))}
+.dash-sidebar{
+  width:220px;flex-shrink:0;
+  background:var(--navy-2);border-right:1px solid var(--border);
+  position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+}
+.dash-sidebar::-webkit-scrollbar{width:3px}
+.dash-sidebar::-webkit-scrollbar-thumb{background:var(--navy-4)}
+.dash-main{flex:1;min-width:0;padding-bottom:5rem}
+.sidebar-logo-area{padding:1.25rem 1.25rem .75rem;border-bottom:1px solid var(--border)}
+.sidebar-role-badge{
+  display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.09em;padding:3px 10px;border-radius:var(--r-full);
+  background:rgba(173,198,254,.08);border:1px solid rgba(173,198,254,.18);color:var(--electric);
+}
+.sidebar-nav{padding:.75rem 0;flex:1}
+.sidebar-section-label{
+  padding:.625rem 1.25rem .3rem;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--muted-2);
+}
+.sidebar-item{
+  display:flex;align-items:center;gap:10px;
+  padding:.55rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);
+  cursor:pointer;transition:all .15s;border-left:2px solid transparent;
+  text-decoration:none;user-select:none;
+}
+.sidebar-item:hover{color:var(--white);background:rgba(173,198,254,.04)}
+.sidebar-item.s-active{color:var(--white);background:rgba(173,198,254,.07);border-left-color:var(--electric)}
+.sidebar-item i{width:15px;text-align:center;font-size:12px;flex-shrink:0}
+.sidebar-role-group{display:none}
+.sidebar-role-group.active{display:block}
+.sidebar-bottom{padding:.875rem 1.25rem;border-top:1px solid var(--border);margin-top:auto}
+/* Invite button */
+.invite-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;padding:7px 16px;border-radius:var(--r-full);
+  background:rgba(173,198,254,.1);border:1px solid rgba(173,198,254,.25);
+  color:var(--electric);cursor:pointer;font-family:var(--font);transition:all .2s;
+  white-space:nowrap;
+}
+.invite-btn:hover{background:rgba(173,198,254,.18);border-color:rgba(173,198,254,.4);color:#fff}
+/* Invite modal */
+.invite-modal-bg{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(8,14,28,.75);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+}
+.invite-modal-bg.open{display:flex}
+.invite-modal{
+  background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:2rem;width:min(480px,90vw);
+  animation:fade-up .25s ease both;
+}
+.im-title{font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px}
+.im-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem}
+.im-label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;display:block}
+.im-input{
+  width:100%;padding:9px 14px;border-radius:var(--r-md);
+  background:var(--navy-3);border:1px solid var(--border);
+  color:var(--white);font-family:var(--font);font-size:13px;
+  transition:border-color .2s;outline:none;
+}
+.im-input:focus{border-color:rgba(173,198,254,.4)}
+.im-actions{display:flex;gap:10px;margin-top:1.25rem;justify-content:flex-end}
+.im-btn-cancel{
+  padding:8px 18px;border-radius:var(--r-full);border:1px solid var(--border);
+  background:none;color:var(--muted);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;
+}
+.im-btn-send{
+  padding:8px 20px;border-radius:var(--r-full);border:none;
+  background:var(--electric);color:var(--ink);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;
+  transition:opacity .2s;
+}
+.im-btn-send:hover{opacity:.88}
+/* Admin add-reseller section */
+.add-reseller-card{
+  background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);
+  overflow:hidden;margin-bottom:1.75rem;
+}
+.add-reseller-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.125rem 1.5rem .875rem;border-bottom:1px solid var(--border);
+}
+.add-reseller-title{font-size:13px;font-weight:700;color:var(--white)}
+.add-reseller-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;padding:6px 16px;border-radius:var(--r-full);
+  background:rgba(173,198,254,.1);border:1px solid rgba(173,198,254,.25);
+  color:var(--electric);cursor:pointer;font-family:var(--font);transition:all .2s;
+}
+.add-reseller-btn:hover{background:rgba(173,198,254,.18);border-color:rgba(173,198,254,.4)}
+.add-reseller-body{padding:0}
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
   .stat-grid{grid-template-columns:repeat(2,1fr)}
   .chart-row{grid-template-columns:1fr}
   .ach-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:900px){
+  .dash-sidebar{display:none}
 }
 @media(max-width:768px){
   .mission-grid{grid-template-columns:1fr}
@@ -445,7 +549,87 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
   </div>
 </nav>
 
-<div class="dash-page">
+<!-- Invite modal -->
+<div class="invite-modal-bg" id="inviteModal" onclick="if(event.target===this)closeInvite()">
+  <div class="invite-modal">
+    <div class="im-title"><i class="fa-solid fa-envelope" style="color:var(--electric);margin-right:8px;font-size:16px"></i>Invite via Email</div>
+    <div class="im-sub">Send an invitation to a partner to join Sales Excellence League.</div>
+    <label class="im-label">Recipient Email Address</label>
+    <input class="im-input" id="inviteEmail" type="email" placeholder="partner@company.com">
+    <label class="im-label" style="margin-top:1rem">Personal Message (optional)</label>
+    <textarea class="im-input" id="inviteMsg" rows="3" style="resize:vertical" placeholder="Hi, I'd like to invite you to join the SEL platform…"></textarea>
+    <div class="im-actions">
+      <button class="im-btn-cancel" onclick="closeInvite()">Cancel</button>
+      <button class="im-btn-send" onclick="sendInvite()"><i class="fa-solid fa-paper-plane" style="margin-right:6px"></i>Send Invite</button>
+    </div>
+  </div>
+</div>
+
+<div class="dash-layout">
+
+<!-- SIDEBAR -->
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="sidebar-logo-area">
+    <div class="sidebar-role-badge"><span id="sbRoleLabel">Dashboard</span></div>
+  </div>
+  <nav class="sidebar-nav">
+
+    <!-- Reseller sidebar -->
+    <div class="sidebar-role-group" id="sb-reseller">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-line"></i> My Progress</a>
+      <div class="sidebar-section-label">Learn &amp; Earn</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <div class="sidebar-section-label">Performance</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-handshake"></i> Deals</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-award"></i> Achievements</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-gift"></i> Rewards</a>
+    </div>
+
+    <!-- Distributor sidebar -->
+    <div class="sidebar-role-group" id="sb-distributor">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section-label">Network</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-store"></i> My Resellers</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-sitemap"></i> Network Map</a>
+      <div class="sidebar-section-label">Activity</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <div class="sidebar-section-label">Reports</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-bar"></i> Performance</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-star"></i> Points Summary</a>
+    </div>
+
+    <!-- Admin sidebar -->
+    <div class="sidebar-role-group" id="sb-admin">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Command Centre</a>
+      <div class="sidebar-section-label">Partners</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-users"></i> All Partners</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-store"></i> Resellers</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-truck"></i> Distributors</a>
+      <div class="sidebar-section-label">Platform</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <div class="sidebar-section-label">Finance</div>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-gift"></i> Redemptions</a>
+      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-bar"></i> Analytics</a>
+    </div>
+
+  </nav>
+  <div class="sidebar-bottom">
+    <a class="sidebar-item" href="index.html" style="padding-left:0;padding-right:0;border-left:none"><i class="fa-solid fa-house"></i> Back to Portal</a>
+  </div>
+</aside>
+
+<div class="dash-main">
 
 <!-- ═══════════════════════════════════════════
      RESELLER VIEW — PLAYER CARD
@@ -498,6 +682,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <div style="font-size:10px;color:var(--muted);margin-bottom:4px">Next reward milestone</div>
           <div style="font-size:13px;font-weight:700;color:var(--gold-tier)"><i class="fa-solid fa-gift" style="font-size:11px"></i>&nbsp;&#8377;750 gift voucher at 6,000 pts</div>
           <div style="font-size:11px;color:var(--muted);margin-top:2px">1,150 pts away &mdash; ~2 trainings</div>
+        </div>
+        <div style="margin-top:.875rem;padding-top:.875rem;border-top:1px solid var(--border)">
+          <button class="invite-btn" onclick="openInvite()"><i class="fa-solid fa-envelope"></i> Invite via Email</button>
         </div>
       </div>
     </div>
@@ -806,6 +993,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
         <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:4px">
           <span>W1: 15K pts</span><span style="color:var(--electric);font-weight:700">Now: 38.4K</span>
         </div>
+        <div style="margin-top:.875rem">
+          <button class="invite-btn" onclick="openInvite()"><i class="fa-solid fa-envelope"></i> Invite Reseller</button>
+        </div>
       </div>
     </div>
   </div>
@@ -936,7 +1126,7 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
     <div class="cmd-hero-grid"></div>
     <div class="cmd-inner">
       <div class="cmd-left">
-        <div class="cmd-tag"><i class="fa-solid fa-crown" style="font-size:9px"></i> Admin — Timeus Interactive</div>
+        <div class="cmd-tag"><i class="fa-solid fa-crown" style="font-size:9px"></i> Admin — Microsoft India</div>
         <div class="cmd-title">Platform Command Centre</div>
         <div class="cmd-sub">Sales Excellence League &middot; Season 04 &middot; Week 18 of 26</div>
       </div>
@@ -1141,10 +1331,77 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
         </tbody>
       </table>
     </div>
+
+    <!-- Manage Resellers -->
+    <div class="add-reseller-card">
+      <div class="add-reseller-head">
+        <span class="add-reseller-title"><i class="fa-solid fa-store" style="color:var(--electric);margin-right:7px"></i>Manage Resellers</span>
+        <button class="add-reseller-btn" onclick="openInvite()"><i class="fa-solid fa-plus"></i> Add Reseller</button>
+      </div>
+      <table class="dash-table">
+        <thead><tr>
+          <th class="dash-th">Reseller</th>
+          <th class="dash-th">Distributor</th>
+          <th class="dash-th">City</th>
+          <th class="dash-th">Points</th>
+          <th class="dash-th">Last Active</th>
+          <th class="dash-th">Status</th>
+          <th class="dash-th">Actions</th>
+        </tr></thead>
+        <tbody>
+          <tr class="dash-tr">
+            <td class="dash-td"><div style="display:flex;flex-direction:column;gap:2px"><span class="pname">Techno Hub Solutions</span><span style="font-size:11px;color:var(--muted)">Harpreet Virk</span></div></td>
+            <td class="dash-td dim">Redington India</td>
+            <td class="dash-td dim">Mumbai</td>
+            <td class="dash-td"><span class="pts-chip">8,420</span></td>
+            <td class="dash-td dim">Today</td>
+            <td class="dash-td"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td>
+            <td class="dash-td"><button class="table-filter" style="font-size:10px;padding:3px 9px">View</button></td>
+          </tr>
+          <tr class="dash-tr">
+            <td class="dash-td"><div style="display:flex;flex-direction:column;gap:2px"><span class="pname">Infinity Networks</span><span style="font-size:11px;color:var(--muted)">Priya Sharma</span></div></td>
+            <td class="dash-td dim">Ingram Micro</td>
+            <td class="dash-td dim">Bengaluru</td>
+            <td class="dash-td"><span class="pts-chip">7,690</span></td>
+            <td class="dash-td dim">Yesterday</td>
+            <td class="dash-td"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td>
+            <td class="dash-td"><button class="table-filter" style="font-size:10px;padding:3px 9px">View</button></td>
+          </tr>
+          <tr class="dash-tr">
+            <td class="dash-td"><div style="display:flex;flex-direction:column;gap:2px"><span class="pname">NextGen IT Services</span><span style="font-size:11px;color:var(--muted)">Arjun Mehta</span></div></td>
+            <td class="dash-td dim">Redington India</td>
+            <td class="dash-td dim">Delhi</td>
+            <td class="dash-td"><span class="pts-chip">6,850</span></td>
+            <td class="dash-td dim">2 days ago</td>
+            <td class="dash-td"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></td>
+            <td class="dash-td"><button class="table-filter" style="font-size:10px;padding:3px 9px">View</button></td>
+          </tr>
+          <tr class="dash-tr">
+            <td class="dash-td"><div style="display:flex;flex-direction:column;gap:2px"><span class="pname">CloudEdge Pvt Ltd</span><span style="font-size:11px;color:var(--muted)">Sneha Iyer</span></div></td>
+            <td class="dash-td dim">Ingram Micro</td>
+            <td class="dash-td dim">Hyderabad</td>
+            <td class="dash-td"><span class="pts-chip">5,920</span></td>
+            <td class="dash-td dim">4 days ago</td>
+            <td class="dash-td"><span class="status-badge sb-pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></td>
+            <td class="dash-td"><button class="table-filter" style="font-size:10px;padding:3px 9px">View</button></td>
+          </tr>
+          <tr class="dash-tr">
+            <td class="dash-td"><div style="display:flex;flex-direction:column;gap:2px"><span class="pname">Digital Frontiers</span><span style="font-size:11px;color:var(--muted)">Rohan Das</span></div></td>
+            <td class="dash-td dim">Redington India</td>
+            <td class="dash-td dim">Chennai</td>
+            <td class="dash-td"><span class="pts-chip">4,180</span></td>
+            <td class="dash-td dim">1 week ago</td>
+            <td class="dash-td"><span class="status-badge sb-inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></td>
+            <td class="dash-td"><button class="table-filter" style="font-size:10px;padding:3px 9px">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div><!-- /view-admin -->
 
-</div><!-- /dash-page -->
+</div><!-- /dash-main -->
+</div><!-- /dash-layout -->
 
 <script>
 /* Theme */
@@ -1166,7 +1423,7 @@ function signOut(){localStorage.removeItem('sel-role');window.location.href='ind
 
 /* Role config */
 var roles={
-  admin:{name:'Admin',org:'Timeus Interactive',bg:'linear-gradient(135deg,#c5a44b,#a07830)',letter:'A',view:'view-admin'},
+  admin:{name:'Admin',org:'Microsoft India',bg:'linear-gradient(135deg,#c5a44b,#a07830)',letter:'A',view:'view-admin'},
   distributor:{name:'Redington',org:'Redington India — Distributor',bg:'linear-gradient(135deg,#2d52b0,#1e3a80)',letter:'R',view:'view-distributor'},
   reseller:{name:'Harpreet Virk',org:'Techno Hub Solutions',bg:'linear-gradient(135deg,#166534,#15803d)',letter:'H',view:'view-reseller'}
 };
@@ -1182,6 +1439,12 @@ var roles={
   document.getElementById('navOrg').textContent=cfg.org;
   document.getElementById(cfg.view).classList.add('active');
 
+  /* Show role-specific sidebar */
+  var sbGroup=document.getElementById('sb-'+role);
+  if(sbGroup) sbGroup.classList.add('active');
+  var sbLabel=document.getElementById('sbRoleLabel');
+  if(sbLabel) sbLabel.textContent=role.charAt(0).toUpperCase()+role.slice(1)+' View';
+
   /* Animate bar-fill elements inside this view */
   setTimeout(function(){
     document.querySelectorAll('#'+cfg.view+' .bc-fill, #'+cfg.view+' .sp-fill, #'+cfg.view+' .quest-prog-fill').forEach(function(el){
@@ -1190,6 +1453,35 @@ var roles={
     });
   }, 80);
 })();
+
+/* Invite modal */
+function openInvite(){document.getElementById('inviteModal').classList.add('open')}
+function closeInvite(){
+  document.getElementById('inviteModal').classList.remove('open');
+  document.getElementById('inviteEmail').value='';
+  document.getElementById('inviteMsg').value='';
+}
+function sendInvite(){
+  var email=document.getElementById('inviteEmail').value.trim();
+  if(!email){document.getElementById('inviteEmail').focus();return;}
+  closeInvite();
+  /* Show brief confirmation */
+  var toast=document.createElement('div');
+  toast.style.cssText='position:fixed;bottom:24px;right:24px;z-index:600;background:#22c55e;color:#052e16;font-size:13px;font-weight:700;padding:10px 20px;border-radius:999px;box-shadow:0 4px 20px rgba(0,0,0,.3);animation:fade-up .25s ease';
+  toast.textContent='Invite sent to '+email;
+  document.body.appendChild(toast);
+  setTimeout(function(){toast.remove();},3000);
+}
+
+/* Sidebar nav item active state */
+document.querySelectorAll('.sidebar-item').forEach(function(el){
+  el.addEventListener('click',function(e){
+    var group=this.closest('.sidebar-role-group,.sidebar-bottom');
+    if(!group) return;
+    group.querySelectorAll('.sidebar-item').forEach(function(s){s.classList.remove('s-active');});
+    this.classList.add('s-active');
+  });
+});
 </script>
 </body>
 </html>
