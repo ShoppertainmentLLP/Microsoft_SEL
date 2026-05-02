@@ -1827,130 +1827,6 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   </div>
 </section>
 
-<!-- AI ASSISTANT -->
-<section class="section" id="ai-assistant" aria-labelledby="ai-heading">
-  <div class="section-inner">
-    <div class="section-eyebrow">AI-powered features</div>
-    <h2 class="section-title" id="ai-heading">Your intelligent<br>partner coach</h2>
-    <p class="section-sub">From personalised learning recommendations to instant quiz prep &mdash; AI works alongside you to maximise your quarter.</p>
-    <div class="ai-layout">
-      <div class="ai-features" role="list">
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-brain"></i></div>
-          <div class="ai-feat-body">
-            <h4>Personalised Learning Path</h4>
-            <p>AI analyses your accreditation history and recommends the highest-impact activities based on current leaderboard gaps.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div class="ai-feat-body">
-            <h4>Quiz Preparation Mode</h4>
-            <p>Practice with AI-generated questions aligned to each masterclass. Improve your score and claim more rewards.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <div class="ai-feat-body">
-            <h4>Rank Intelligence</h4>
-            <p>Real-time analysis of what separates your rank from the competition &mdash; and the exact actions to bridge that gap fastest.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <div class="ai-feat-body">
-            <h4>Asset Discovery</h4>
-            <p>Instantly find the right co-branded marketing materials for your campaigns. Filtered by product, audience, and format.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ai-chat-demo">
-        <div class="chat-topbar">
-          <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
-          <div>
-            <div class="chat-title">SEL Coach</div>
-            <div class="chat-sub">Powered by Copilot</div>
-          </div>
-          <div class="online-dot" aria-label="Online"></div>
-        </div>
-        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
-          <div class="chat-msg">
-            <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-            <div class="chat-bubble bubble-ai">Hi Priya! You're at <strong>rank #23</strong> with 6,450 points. You need just 3,550 more to hit the 10,000-point milestone. Want me to show you the fastest path?</div>
-          </div>
-          <div class="chat-msg user">
-            <div class="msg-avatar user-msg-avatar"><i class="fa-solid fa-user"></i></div>
-            <div class="chat-bubble bubble-user">Yes! What should I do first?</div>
-          </div>
-          <div class="chat-msg">
-            <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-            <div class="chat-bubble bubble-ai">Here's your optimised plan:<br><br><strong>1. Copilot+ PC Accreditation</strong> &mdash; 100 pts, ~3 hrs.<br><strong>2. Next Masterclass (May 2)</strong> &mdash; 150&ndash;250 pts with quiz pass.<br><strong>3. Marketing Campaign</strong> &mdash; 500 pts, assets ready.<br><br>That's <strong>850&ndash;950 pts</strong> this week alone.</div>
-          </div>
-        </div>
-        <div class="suggested-prompts">
-          <button class="s-prompt" onclick="sendPrompt(this)">How do I prep for the quiz?</button>
-          <button class="s-prompt" onclick="sendPrompt(this)">Show me marketing assets</button>
-          <button class="s-prompt" onclick="sendPrompt(this)">Why did my rank drop?</button>
-        </div>
-        <div class="chat-input-area">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Ask about progress, activities, rewards&hellip;" onkeydown="if(event.key==='Enter')sendChat()">
-          <button class="chat-send" onclick="sendChat()">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVERS -->
-<section class="section" id="achievers" aria-labelledby="achievers-heading">
-  <div class="section-inner">
-    <div class="section-eyebrow">Hall of fame</div>
-    <h2 class="section-title" id="achievers-heading">Proud partner<br>achievers</h2>
-    <p class="section-sub">These partners earned their accreditations and claimed their rewards. Your name could be next.</p>
-    <div class="achievers-grid" role="list">
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-1">AC</div>
-        <div class="achiever-name">Ajay Chauhan</div>
-        <div class="achiever-city">Mumbai</div>
-        <div class="achiever-badge-tag">Office 2021 H&amp;B</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-2">HV</div>
-        <div class="achiever-name">Harminder Virk</div>
-        <div class="achiever-city">Delhi</div>
-        <div class="achiever-badge-tag">Win 11 Pro 2025</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-3">AK</div>
-        <div class="achiever-name">Ashish Kumar</div>
-        <div class="achiever-city">Chennai</div>
-        <div class="achiever-badge-tag">Modern Endpoints</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-4">AM</div>
-        <div class="achiever-name">Anantha Kumar MJ</div>
-        <div class="achiever-city">Bangalore</div>
-        <div class="achiever-badge-tag">Microsoft 365</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-5">AS</div>
-        <div class="achiever-name">Abhay Shukla</div>
-        <div class="achiever-city">Hyderabad</div>
-        <div class="achiever-badge-tag">Copilot+ PC 2025</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-6">CD</div>
-        <div class="achiever-name">Chaitrali Dhamankar</div>
-        <div class="achiever-city">Pune</div>
-        <div class="achiever-badge-tag">Copilot+ Commercial</div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- WEBINARS -->
 <section class="section" id="webinars" aria-labelledby="wb-heading">
   <div class="section-inner">
@@ -2104,6 +1980,132 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     </div>
   </div>
 </section>
+
+<!-- AI ASSISTANT -->
+<section class="section" id="ai-assistant" aria-labelledby="ai-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">AI-powered features</div>
+    <h2 class="section-title" id="ai-heading">Your intelligent<br>partner coach</h2>
+    <p class="section-sub">From personalised learning recommendations to instant quiz prep &mdash; AI works alongside you to maximise your quarter.</p>
+    <div class="ai-layout">
+      <div class="ai-features" role="list">
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon"><i class="fa-solid fa-brain"></i></div>
+          <div class="ai-feat-body">
+            <h4>Personalised Learning Path</h4>
+            <p>AI analyses your accreditation history and recommends the highest-impact activities based on current leaderboard gaps.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="ai-feat-body">
+            <h4>Quiz Preparation Mode</h4>
+            <p>Practice with AI-generated questions aligned to each masterclass. Improve your score and claim more rewards.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="ai-feat-body">
+            <h4>Rank Intelligence</h4>
+            <p>Real-time analysis of what separates your rank from the competition &mdash; and the exact actions to bridge that gap fastest.</p>
+          </div>
+        </div>
+        <div class="ai-feat-card" role="listitem" tabindex="0">
+          <div class="ai-feat-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div class="ai-feat-body">
+            <h4>Asset Discovery</h4>
+            <p>Instantly find the right co-branded marketing materials for your campaigns. Filtered by product, audience, and format.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-chat-demo">
+        <div class="chat-topbar">
+          <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+          <div>
+            <div class="chat-title">SEL Coach</div>
+            <div class="chat-sub">Powered by Copilot</div>
+          </div>
+          <div class="online-dot" aria-label="Online"></div>
+        </div>
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+          <div class="chat-msg">
+            <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="chat-bubble bubble-ai">Hi Priya! You're at <strong>rank #23</strong> with 6,450 points. You need just 3,550 more to hit the 10,000-point milestone. Want me to show you the fastest path?</div>
+          </div>
+          <div class="chat-msg user">
+            <div class="msg-avatar user-msg-avatar"><i class="fa-solid fa-user"></i></div>
+            <div class="chat-bubble bubble-user">Yes! What should I do first?</div>
+          </div>
+          <div class="chat-msg">
+            <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="chat-bubble bubble-ai">Here's your optimised plan:<br><br><strong>1. Copilot+ PC Accreditation</strong> &mdash; 100 pts, ~3 hrs.<br><strong>2. Next Masterclass (May 2)</strong> &mdash; 150&ndash;250 pts with quiz pass.<br><strong>3. Marketing Campaign</strong> &mdash; 500 pts, assets ready.<br><br>That's <strong>850&ndash;950 pts</strong> this week alone.</div>
+          </div>
+        </div>
+        <div class="suggested-prompts">
+          <button class="s-prompt" onclick="sendPrompt(this)">How do I prep for the quiz?</button>
+          <button class="s-prompt" onclick="sendPrompt(this)">Show me marketing assets</button>
+          <button class="s-prompt" onclick="sendPrompt(this)">Why did my rank drop?</button>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Ask about progress, activities, rewards&hellip;" onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="chat-send" onclick="sendChat()">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVERS -->
+<section class="section" id="achievers" aria-labelledby="achievers-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Hall of fame</div>
+    <h2 class="section-title" id="achievers-heading">Proud partner<br>achievers</h2>
+    <p class="section-sub">These partners earned their accreditations and claimed their rewards. Your name could be next.</p>
+    <div class="achievers-grid" role="list">
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-1">AC</div>
+        <div class="achiever-name">Ajay Chauhan</div>
+        <div class="achiever-city">Mumbai</div>
+        <div class="achiever-badge-tag">Office 2021 H&amp;B</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-2">HV</div>
+        <div class="achiever-name">Harminder Virk</div>
+        <div class="achiever-city">Delhi</div>
+        <div class="achiever-badge-tag">Win 11 Pro 2025</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-3">AK</div>
+        <div class="achiever-name">Ashish Kumar</div>
+        <div class="achiever-city">Chennai</div>
+        <div class="achiever-badge-tag">Modern Endpoints</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-4">AM</div>
+        <div class="achiever-name">Anantha Kumar MJ</div>
+        <div class="achiever-city">Bangalore</div>
+        <div class="achiever-badge-tag">Microsoft 365</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-5">AS</div>
+        <div class="achiever-name">Abhay Shukla</div>
+        <div class="achiever-city">Hyderabad</div>
+        <div class="achiever-badge-tag">Copilot+ PC 2025</div>
+      </article>
+      <article class="achiever-card" role="listitem" tabindex="0">
+        <div class="achiever-avatar av-6">CD</div>
+        <div class="achiever-name">Chaitrali Dhamankar</div>
+        <div class="achiever-city">Pune</div>
+        <div class="achiever-badge-tag">Copilot+ Commercial</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
 
 
 <!-- FOOTER -->
