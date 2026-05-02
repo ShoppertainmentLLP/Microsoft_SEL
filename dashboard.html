@@ -506,6 +506,89 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 }
 .add-reseller-btn:hover{background:rgba(173,198,254,.18);border-color:rgba(173,198,254,.4)}
 .add-reseller-body{padding:0}
+/* ── SECTION PANELS (sidebar navigation targets) ── */
+.dash-section{display:none;animation:fade-up .3s ease both}
+.dash-section.active{display:block}
+/* Section page header (used in non-overview sections) */
+.sec-head{
+  padding:1.75rem clamp(1rem,4vw,2.5rem) 0;
+  border-bottom:1px solid var(--border);
+  margin-bottom:1.75rem;
+}
+.sec-head-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-bottom:1.25rem}
+.sec-title{font-size:1.5rem;font-weight:800;color:var(--white);letter-spacing:-.03em}
+.sec-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.sec-actions{display:flex;gap:10px;flex-wrap:wrap}
+/* Tabs */
+.tab-row{display:flex;gap:4px;padding:0 clamp(1rem,4vw,2.5rem);margin-bottom:1.75rem}
+.tab-btn{
+  padding:7px 18px;border-radius:var(--r-full);border:none;
+  background:rgba(173,198,254,.06);color:var(--muted);
+  font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;
+}
+.tab-btn.active{background:rgba(173,198,254,.14);color:var(--white);border:1px solid rgba(173,198,254,.25)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+/* Webinar / Training card */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:0 clamp(1rem,4vw,2.5rem)}
+.content-card{
+  background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);
+  overflow:hidden;transition:border-color .2s,box-shadow .2s;
+}
+.content-card:hover{border-color:rgba(173,198,254,.22);box-shadow:var(--shadow-card)}
+.cc-img{height:6px;background:var(--cc-accent,linear-gradient(90deg,var(--electric),var(--gold)))}
+.cc-body{padding:1.25rem}
+.cc-meta{display:flex;align-items:center;gap:6px;margin-bottom:.75rem;flex-wrap:wrap}
+.cc-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 9px;border-radius:var(--r-full)}
+.cc-tag-blue{background:rgba(173,198,254,.1);color:var(--electric);border:1px solid rgba(173,198,254,.2)}
+.cc-tag-green{background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.cc-tag-gold{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.2)}
+.cc-tag-purple{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.2)}
+.cc-tag-red{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+.cc-tag-muted{background:rgba(173,198,254,.05);color:var(--muted);border:1px solid var(--border)}
+.cc-title{font-size:14px;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:.5rem}
+.cc-detail{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.cc-detail i{width:12px;text-align:center;font-size:11px}
+.cc-pts{font-size:13px;font-weight:800;color:var(--gold-tier);margin-top:.75rem}
+.cc-footer{padding:.875rem 1.25rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cc-prog-label{font-size:11px;color:var(--muted)}
+.cc-prog-bar{height:5px;background:rgba(173,198,254,.07);border-radius:3px;overflow:hidden;margin-top:5px;width:120px}
+.cc-prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--electric),rgba(173,198,254,.6))}
+.cc-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 16px;border-radius:var(--r-full);border:none;
+  font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.cc-btn-primary{background:var(--electric);color:var(--ink)}
+.cc-btn-primary:hover{opacity:.88}
+.cc-btn-ghost{background:rgba(173,198,254,.08);color:var(--electric);border:1px solid rgba(173,198,254,.22)}
+.cc-btn-ghost:hover{background:rgba(173,198,254,.16)}
+.cc-btn-done{background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.2);cursor:default}
+/* Content section body padding */
+.sec-body{padding:0 clamp(1rem,4vw,2.5rem) 2rem}
+/* List-style rows (leaderboard, deals, etc.) */
+.content-list{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:1.5rem}
+.cl-head{padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cl-title{font-size:13px;font-weight:700;color:var(--white)}
+.cl-item{display:flex;align-items:center;gap:14px;padding:.875rem 1.5rem;border-bottom:1px solid rgba(68,71,79,.3);transition:background .15s}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{background:rgba(173,198,254,.025)}
+.cl-rank{font-size:14px;font-weight:800;color:var(--gold-tier);width:28px;flex-shrink:0;text-align:center}
+.cl-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.cl-info{flex:1;min-width:0}
+.cl-name{font-size:13px;font-weight:600;color:var(--white);line-height:1.3}
+.cl-sub{font-size:11px;color:var(--muted)}
+.cl-pts{font-size:13px;font-weight:800;color:var(--electric)}
+.cl-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:var(--r-full)}
+/* Summary stat row */
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:1.75rem}
+.sum-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:1rem 1.25rem}
+.sum-val{font-size:1.6rem;font-weight:800;color:var(--white);letter-spacing:-.04em;line-height:1;margin-bottom:3px}
+.sum-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+/* Light theme overrides for new elements */
+[data-theme="light"] .content-card,[data-theme="light"] .content-list,[data-theme="light"] .sum-card{background:#fff;border-color:rgba(10,17,40,.09)}
+[data-theme="light"] .cc-title,[data-theme="light"] .cl-name,[data-theme="light"] .cl-title,[data-theme="light"] .sum-val,[data-theme="light"] .sec-title{color:var(--ink)}
+[data-theme="light"] .tab-btn.active{background:rgba(45,82,176,.1);color:var(--ink);border-color:rgba(45,82,176,.25)}
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
   .stat-grid{grid-template-columns:repeat(2,1fr)}
@@ -577,50 +660,48 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
     <!-- Reseller sidebar -->
     <div class="sidebar-role-group" id="sb-reseller">
       <div class="sidebar-section-label">Overview</div>
-      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-line"></i> My Progress</a>
+      <a class="sidebar-item s-active" href="#" data-target="rs-dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a class="sidebar-item" href="#" data-target="rs-progress"><i class="fa-solid fa-chart-line"></i> My Progress</a>
       <div class="sidebar-section-label">Learn &amp; Earn</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <a class="sidebar-item" href="#" data-target="rs-trainings"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#" data-target="rs-webinars"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#" data-target="rs-campaigns"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
       <div class="sidebar-section-label">Performance</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-handshake"></i> Deals</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-award"></i> Achievements</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-gift"></i> Rewards</a>
+      <a class="sidebar-item" href="#" data-target="rs-leaderboard"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+      <a class="sidebar-item" href="#" data-target="rs-deals"><i class="fa-solid fa-handshake"></i> Deals</a>
+      <a class="sidebar-item" href="#" data-target="rs-achievements"><i class="fa-solid fa-award"></i> Achievements</a>
+      <a class="sidebar-item" href="#" data-target="rs-rewards"><i class="fa-solid fa-gift"></i> Rewards</a>
     </div>
 
     <!-- Distributor sidebar -->
     <div class="sidebar-role-group" id="sb-distributor">
       <div class="sidebar-section-label">Overview</div>
-      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a class="sidebar-item s-active" href="#" data-target="ds-dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
       <div class="sidebar-section-label">Network</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-store"></i> My Resellers</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-sitemap"></i> Network Map</a>
+      <a class="sidebar-item" href="#" data-target="ds-resellers"><i class="fa-solid fa-store"></i> My Resellers</a>
       <div class="sidebar-section-label">Activity</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <a class="sidebar-item" href="#" data-target="ds-trainings"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#" data-target="ds-webinars"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#" data-target="ds-campaigns"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
       <div class="sidebar-section-label">Reports</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-bar"></i> Performance</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-star"></i> Points Summary</a>
+      <a class="sidebar-item" href="#" data-target="ds-performance"><i class="fa-solid fa-chart-bar"></i> Performance</a>
+      <a class="sidebar-item" href="#" data-target="ds-points"><i class="fa-solid fa-star"></i> Points Summary</a>
     </div>
 
     <!-- Admin sidebar -->
     <div class="sidebar-role-group" id="sb-admin">
       <div class="sidebar-section-label">Overview</div>
-      <a class="sidebar-item s-active" href="#"><i class="fa-solid fa-gauge-high"></i> Command Centre</a>
+      <a class="sidebar-item s-active" href="#" data-target="ad-dashboard"><i class="fa-solid fa-gauge-high"></i> Command Centre</a>
       <div class="sidebar-section-label">Partners</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-users"></i> All Partners</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-store"></i> Resellers</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-truck"></i> Distributors</a>
+      <a class="sidebar-item" href="#" data-target="ad-partners"><i class="fa-solid fa-users"></i> All Partners</a>
+      <a class="sidebar-item" href="#" data-target="ad-resellers"><i class="fa-solid fa-store"></i> Resellers</a>
+      <a class="sidebar-item" href="#" data-target="ad-distributors"><i class="fa-solid fa-truck"></i> Distributors</a>
       <div class="sidebar-section-label">Platform</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-circle-play"></i> Webinars</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-bullhorn"></i> Campaigns</a>
+      <a class="sidebar-item" href="#" data-target="ad-trainings"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
+      <a class="sidebar-item" href="#" data-target="ad-webinars"><i class="fa-solid fa-circle-play"></i> Webinars</a>
       <div class="sidebar-section-label">Finance</div>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-gift"></i> Redemptions</a>
-      <a class="sidebar-item" href="#"><i class="fa-solid fa-chart-bar"></i> Analytics</a>
+      <a class="sidebar-item" href="#" data-target="ad-redemptions"><i class="fa-solid fa-gift"></i> Redemptions</a>
+      <a class="sidebar-item" href="#" data-target="ad-analytics"><i class="fa-solid fa-chart-bar"></i> Analytics</a>
     </div>
 
   </nav>
@@ -635,6 +716,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
      RESELLER VIEW — PLAYER CARD
 ═══════════════════════════════════════════ -->
 <div class="view" id="view-reseller">
+
+<!-- ─── RS: Dashboard (default) ─── -->
+<div class="dash-section active" id="rs-dashboard">
 
   <!-- Player Hero Banner -->
   <div class="player-hero">
@@ -950,6 +1034,201 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
     </div>
 
   </div>
+</div><!-- /rs-dashboard -->
+
+<!-- ─── RS: My Progress ─── -->
+<div class="dash-section" id="rs-progress">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">My Progress</div><div class="sec-sub">Season 04 — Week 18 of 26</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">4,850</div><div class="sum-lbl">Total Points</div></div>
+      <div class="sum-card"><div class="sum-val">#12</div><div class="sum-lbl">National Rank</div></div>
+      <div class="sum-card"><div class="sum-val">9</div><div class="sum-lbl">Trainings Done</div></div>
+      <div class="sum-card"><div class="sum-val">7</div><div class="sum-lbl">Day Streak</div></div>
+      <div class="sum-card"><div class="sum-val">Gold</div><div class="sum-lbl">Current Tier</div></div>
+      <div class="sum-card"><div class="sum-val">2</div><div class="sum-lbl">Accreditations</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Points History — Season 04</span></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">+200 pts — Microsoft 365 Fundamentals training completed</div><div class="cl-sub">Yesterday, 3:45 PM</div></div><div class="cl-pts">+200</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">+150 pts — Copilot+ PC Launch Playbook webinar watched</div><div class="cl-sub">Today, 10:24 AM</div></div><div class="cl-pts">+150</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">+200 pts — Azure Infrastructure Deep Dive attended</div><div class="cl-sub">28 Apr</div></div><div class="cl-pts">+200</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">+300 pts — Deal registered: Contoso Networks</div><div class="cl-sub">25 Apr</div></div><div class="cl-pts">+300</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">+500 pts — Copilot Specialist accreditation earned</div><div class="cl-sub">20 Apr</div></div><div class="cl-pts">+500</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Tier Progress</span></div>
+      <div class="cl-item"><div class="cl-rank" style="color:#cd7f32"><i class="fa-solid fa-circle-check"></i></div><div class="cl-info"><div class="cl-name">Bronze Tier</div><div class="cl-sub">0 – 1,000 pts &bull; Completed</div></div><div class="cl-badge" style="background:rgba(205,127,50,.1);color:#cd7f32">Done</div></div>
+      <div class="cl-item"><div class="cl-rank" style="color:var(--silver)"><i class="fa-solid fa-circle-check"></i></div><div class="cl-info"><div class="cl-name">Silver Tier</div><div class="cl-sub">1,000 – 2,500 pts &bull; Completed</div></div><div class="cl-badge" style="background:rgba(176,184,200,.1);color:var(--silver)">Done</div></div>
+      <div class="cl-item"><div class="cl-rank" style="color:var(--gold-tier)"><i class="fa-solid fa-bolt"></i></div><div class="cl-info"><div class="cl-name">Gold Tier (Current)</div><div class="cl-sub">2,500 – 6,000 pts &bull; 4,850 / 6,000 pts</div><div class="cc-prog-bar" style="width:200px;margin-top:6px"><div class="cc-prog-fill" style="width:80%"></div></div></div><div class="cl-badge" style="background:rgba(245,158,11,.1);color:var(--gold-tier)">Active</div></div>
+      <div class="cl-item" style="opacity:.45"><div class="cl-rank" style="color:var(--plat)"><i class="fa-solid fa-lock"></i></div><div class="cl-info"><div class="cl-name">Platinum Tier</div><div class="cl-sub">6,000 – 10,000 pts &bull; Locked</div></div></div>
+      <div class="cl-item" style="opacity:.45"><div class="cl-rank" style="color:var(--diamond)"><i class="fa-solid fa-lock"></i></div><div class="cl-info"><div class="cl-name">Diamond Tier</div><div class="cl-sub">10,000+ pts &bull; Locked</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Trainings ─── -->
+<div class="dash-section" id="rs-trainings">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Trainings</div><div class="sec-sub">9 completed · 3 in progress · 12 available</div></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="available">Available</button>
+    <button class="tab-btn" data-tab="in-progress">In Progress</button>
+    <button class="tab-btn" data-tab="completed">Completed</button>
+  </div>
+  <div class="tab-panel active" data-tab="available">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Intermediate</span><span class="cc-tag cc-tag-muted">3 hrs</span></div><div class="cc-title">Microsoft Copilot for Sales Teams</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Always available</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +300 pts on completion</div></div><div class="cc-footer"><span class="cc-prog-label">Not started</span><button class="cc-btn cc-btn-primary">Start Training</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Beginner</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Azure Fundamentals for Partners</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Always available</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts on completion</div></div><div class="cc-footer"><span class="cc-prog-label">Not started</span><button class="cc-btn cc-btn-primary">Start Training</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Advanced</span><span class="cc-tag cc-tag-muted">5 hrs</span></div><div class="cc-title">Security + Compliance for M365</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Always available</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +500 pts on completion</div></div><div class="cc-footer"><span class="cc-prog-label">Not started</span><button class="cc-btn cc-btn-primary">Start Training</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Intermediate</span><span class="cc-tag cc-tag-muted">4 hrs</span></div><div class="cc-title">Surface for Business — Sales Playbook</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Always available</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Device Sales</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +350 pts on completion</div></div><div class="cc-footer"><span class="cc-prog-label">Not started</span><button class="cc-btn cc-btn-primary">Start Training</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="in-progress">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Intermediate</span><span class="cc-tag cc-tag-muted">4 hrs</span></div><div class="cc-title">Microsoft Teams Rooms Deployment</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Started 25 Apr</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +300 pts on completion</div></div><div class="cc-footer"><div><div class="cc-prog-label">65% complete</div><div class="cc-prog-bar"><div class="cc-prog-fill" style="width:65%"></div></div></div><button class="cc-btn cc-btn-ghost">Continue</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Beginner</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Dynamics 365 Business Central Basics</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Started 28 Apr</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts on completion</div></div><div class="cc-footer"><div><div class="cc-prog-label">30% complete</div><div class="cc-prog-bar"><div class="cc-prog-fill" style="width:30%"></div></div></div><button class="cc-btn cc-btn-ghost">Continue</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Advanced</span><span class="cc-tag cc-tag-muted">3 hrs</span></div><div class="cc-title">Copilot+ PC — Technical Enablement</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Started 1 May</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Device Sales</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +400 pts on completion</div></div><div class="cc-footer"><div><div class="cc-prog-label">10% complete</div><div class="cc-prog-bar"><div class="cc-prog-fill" style="width:10%"></div></div></div><button class="cc-btn cc-btn-ghost">Continue</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="completed">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#4ade80,#22c55e)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Completed</span><span class="cc-tag cc-tag-muted">3 hrs</span></div><div class="cc-title">Microsoft 365 Fundamentals</div><div class="cc-detail"><i class="fa-solid fa-calendar-check"></i> Completed 29 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts earned</div></div><div class="cc-footer"><span class="cc-prog-label">Score: 94%</span><button class="cc-btn cc-btn-done"><i class="fa-solid fa-check"></i> Completed</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#4ade80,#22c55e)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Completed</span><span class="cc-tag cc-tag-muted">4 hrs</span></div><div class="cc-title">Azure Sales Fundamentals</div><div class="cc-detail"><i class="fa-solid fa-calendar-check"></i> Completed 20 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Learning</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-star" style="font-size:10px"></i> +250 pts earned</div></div><div class="cc-footer"><span class="cc-prog-label">Score: 88%</span><button class="cc-btn cc-btn-done"><i class="fa-solid fa-check"></i> Completed</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#4ade80,#22c55e)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Completed</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Partner Network Onboarding</div><div class="cc-detail"><i class="fa-solid fa-calendar-check"></i> Completed 10 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Partner</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-star" style="font-size:10px"></i> +150 pts earned</div></div><div class="cc-footer"><span class="cc-prog-label">Score: 100%</span><button class="cc-btn cc-btn-done"><i class="fa-solid fa-check"></i> Completed</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Webinars ─── -->
+<div class="dash-section" id="rs-webinars">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Webinars</div><div class="sec-sub">Live sessions, recordings & your registrations</div></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+    <button class="tab-btn" data-tab="past">Past Recordings</button>
+    <button class="tab-btn" data-tab="registered">Registered</button>
+  </div>
+  <div class="tab-panel active" data-tab="upcoming">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Live</span><span class="cc-tag cc-tag-muted">1.5 hrs</span></div><div class="cc-title">Microsoft Copilot+ PC Partner Enablement</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Sat 10 May 2026, 3:00 PM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Priya Rajagopalan — Microsoft India</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 142 registered</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts for attending</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green" style="font-size:10px"><i class="fa-solid fa-check" style="font-size:9px"></i> Registered</span><button class="cc-btn cc-btn-ghost">Add to Calendar</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Live</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Azure AI Services for Partners — Q2 Update</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Thu 15 May 2026, 11:00 AM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Ankit Sharma — Microsoft Azure</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 89 registered</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts for attending</div></div><div class="cc-footer"><span class="cc-prog-label">Open for registration</span><button class="cc-btn cc-btn-primary" onclick="this.textContent='Registering…';setTimeout(()=>{this.parentElement.innerHTML='<span class=\'cc-tag cc-tag-green\'><i class=\'fa-solid fa-check\'></i> Registered</span>'},700)">Register</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Live</span><span class="cc-tag cc-tag-muted">1 hr</span></div><div class="cc-title">Surface for Business — Q3 2026 Launch Prep</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Thu 22 May 2026, 2:00 PM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Deepa Nair — Microsoft Devices</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 56 registered</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +150 pts for attending</div></div><div class="cc-footer"><span class="cc-prog-label">Open for registration</span><button class="cc-btn cc-btn-primary" onclick="this.textContent='Registering…';setTimeout(()=>{this.parentElement.innerHTML='<span class=\'cc-tag cc-tag-green\'><i class=\'fa-solid fa-check\'></i> Registered</span>'},700)">Register</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Live</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">M365 Copilot — Partner Go-To-Market Playbook</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Fri 30 May 2026, 4:00 PM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Rahul Mehta — Microsoft 365</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 34 registered</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +250 pts for attending</div></div><div class="cc-footer"><span class="cc-prog-label">Open for registration</span><button class="cc-btn cc-btn-primary" onclick="this.textContent='Registering…';setTimeout(()=>{this.parentElement.innerHTML='<span class=\'cc-tag cc-tag-green\'><i class=\'fa-solid fa-check\'></i> Registered</span>'},700)">Register</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="past">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span><span class="cc-tag cc-tag-muted">1.5 hrs</span></div><div class="cc-title">Copilot+ PC Launch Playbook</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 12 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Devices Team</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-check-circle" style="font-size:10px"></i> +150 pts earned (attended)</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Attended</span><button class="cc-btn cc-btn-ghost"><i class="fa-solid fa-circle-play"></i> Watch Recording</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#5d76a9,#adc6fe)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Azure Infrastructure Migration Best Practices</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 20 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Ankit Sharma — Microsoft Azure</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-check-circle" style="font-size:10px"></i> +200 pts earned (attended)</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Attended</span><button class="cc-btn cc-btn-ghost"><i class="fa-solid fa-circle-play"></i> Watch Recording</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#9ca3af,#6b7280)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span><span class="cc-tag cc-tag-muted">1 hr</span></div><div class="cc-title">Microsoft 365 Business Premium Deep Dive</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 28 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Priya Rajagopalan — Microsoft India</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +100 pts (watch to earn)</div></div><div class="cc-footer"><span class="cc-tag cc-tag-muted">Missed</span><button class="cc-btn cc-btn-primary"><i class="fa-solid fa-circle-play"></i> Watch Now</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#9ca3af,#6b7280)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span><span class="cc-tag cc-tag-muted">1.5 hrs</span></div><div class="cc-title">Dynamics 365 CRM for SMBs</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 15 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Microsoft Business Apps</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +100 pts (watch to earn)</div></div><div class="cc-footer"><span class="cc-tag cc-tag-muted">Missed</span><button class="cc-btn cc-btn-primary"><i class="fa-solid fa-circle-play"></i> Watch Now</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="registered">
+    <div class="sec-body" style="padding-top:0">
+      <div class="content-list">
+        <div class="cl-head"><span class="cl-title">Your Registered Webinars</span><span style="font-size:12px;color:var(--muted)">1 upcoming</span></div>
+        <div class="cl-item">
+          <div class="cl-avatar" style="background:linear-gradient(135deg,#adc6fe,#5d76a9)"><i class="fa-solid fa-circle-play" style="font-size:14px"></i></div>
+          <div class="cl-info">
+            <div class="cl-name">Microsoft Copilot+ PC Partner Enablement</div>
+            <div class="cl-sub">Sat 10 May 2026, 3:00 PM IST &bull; Priya Rajagopalan &bull; 1.5 hrs</div>
+            <div class="cl-sub" style="color:#f59e0b;margin-top:3px"><i class="fa-solid fa-clock" style="font-size:10px"></i> In 7 days</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <span class="cc-tag cc-tag-green"><i class="fa-solid fa-check" style="font-size:9px"></i> Registered</span>
+            <button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 12px">Add to Calendar</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;padding:2rem;color:var(--muted)"><i class="fa-solid fa-circle-play" style="font-size:2rem;opacity:.2;display:block;margin-bottom:.75rem"></i>Register for upcoming webinars to see them here</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Campaigns ─── -->
+<div class="dash-section" id="rs-campaigns">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Campaigns</div><div class="sec-sub">Active co-marketing opportunities</div></div></div></div>
+  <div class="sec-body">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Active</span><span class="cc-tag cc-tag-muted">Ends 31 May</span></div><div class="cc-title">Copilot+ PC Spring Push</div><div class="cc-detail"><i class="fa-solid fa-bullhorn"></i> Co-marketing campaign</div><div class="cc-detail"><i class="fa-solid fa-file-invoice"></i> Submit POE to claim reward</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +500 pts on POE approval</div></div><div class="cc-footer"><span class="cc-prog-label">POE not submitted</span><button class="cc-btn cc-btn-primary">Submit POE</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Active</span><span class="cc-tag cc-tag-muted">Ends 30 Jun</span></div><div class="cc-title">Azure SMB Accelerator</div><div class="cc-detail"><i class="fa-solid fa-bullhorn"></i> Demand generation</div><div class="cc-detail"><i class="fa-solid fa-file-invoice"></i> Submit proof of activity</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +400 pts on approval</div></div><div class="cc-footer"><span class="cc-prog-label">POE not submitted</span><button class="cc-btn cc-btn-primary">Submit POE</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Submitted</span><span class="cc-tag cc-tag-muted">Ends 15 May</span></div><div class="cc-title">M365 Upsell Sprint</div><div class="cc-detail"><i class="fa-solid fa-bullhorn"></i> Customer upsell drive</div><div class="cc-detail"><i class="fa-solid fa-hourglass-half"></i> POE under review</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +350 pts pending</div></div><div class="cc-footer"><span class="cc-tag cc-tag-gold">Under Review</span><button class="cc-btn cc-btn-ghost">View Details</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Leaderboard ─── -->
+<div class="dash-section" id="rs-leaderboard">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Leaderboard</div><div class="sec-sub">National rankings — Season 04, Week 18</div></div></div></div>
+  <div class="sec-body">
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Top Resellers — India</span><span class="cc-tag cc-tag-muted">Week 18</span></div>
+      <div class="cl-item"><div class="cl-rank" style="font-size:18px">🥇</div><div class="cl-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div><div class="cl-info"><div class="cl-name">Techno Hub Solutions</div><div class="cl-sub">Mumbai &bull; Gold Tier</div></div><div class="cl-pts">8,420 pts</div></div>
+      <div class="cl-item"><div class="cl-rank" style="font-size:18px">🥈</div><div class="cl-avatar" style="background:linear-gradient(135deg,#9ca3af,#6b7280)">I</div><div class="cl-info"><div class="cl-name">Infinity Networks</div><div class="cl-sub">Bengaluru &bull; Gold Tier</div></div><div class="cl-pts">7,690 pts</div></div>
+      <div class="cl-item"><div class="cl-rank" style="font-size:18px">🥉</div><div class="cl-avatar" style="background:linear-gradient(135deg,#cd7f32,#92400e)">N</div><div class="cl-info"><div class="cl-name">NextGen IT Services</div><div class="cl-sub">Delhi &bull; Gold Tier</div></div><div class="cl-pts">6,850 pts</div></div>
+      <div class="cl-item"><div class="cl-rank">4</div><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">C</div><div class="cl-info"><div class="cl-name">CloudEdge Pvt Ltd</div><div class="cl-sub">Hyderabad &bull; Silver Tier</div></div><div class="cl-pts">5,920 pts</div></div>
+      <div class="cl-item"><div class="cl-rank">5</div><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">D</div><div class="cl-info"><div class="cl-name">Digital Frontiers</div><div class="cl-sub">Chennai &bull; Silver Tier</div></div><div class="cl-pts">4,180 pts</div></div>
+      <div class="cl-item"><div class="cl-rank">6</div><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">A</div><div class="cl-info"><div class="cl-name">Apex Solutions India</div><div class="cl-sub">Pune &bull; Silver Tier</div></div><div class="cl-pts">3,990 pts</div></div>
+      <div class="cl-item"><div class="cl-rank">7</div><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">B</div><div class="cl-info"><div class="cl-name">Bright Tech Partners</div><div class="cl-sub">Ahmedabad &bull; Silver Tier</div></div><div class="cl-pts">3,750 pts</div></div>
+      <div class="cl-item" style="background:rgba(173,198,254,.04);border:1px solid rgba(173,198,254,.15);border-radius:var(--r-md);margin:8px 12px"><div class="cl-rank" style="color:var(--electric)">#12</div><div class="cl-avatar" style="background:linear-gradient(135deg,#166534,#15803d)">H</div><div class="cl-info"><div class="cl-name" style="color:var(--electric)">Harpreet Virk — Techno Hub (You)</div><div class="cl-sub">Mumbai &bull; Gold Tier</div></div><div class="cl-pts">4,850 pts</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Deals ─── -->
+<div class="dash-section" id="rs-deals">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Deals</div><div class="sec-sub">Register deals to earn points</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Register Deal</button></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">6</div><div class="sum-lbl">Total Deals</div></div>
+      <div class="sum-card"><div class="sum-val">4</div><div class="sum-lbl">Approved</div></div>
+      <div class="sum-card"><div class="sum-val">1</div><div class="sum-lbl">Pending</div></div>
+      <div class="sum-card"><div class="sum-val">900</div><div class="sum-lbl">Points Earned</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">My Deals</span></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:rgba(34,197,94,.15);color:#22c55e;font-size:14px"><i class="fa-solid fa-handshake"></i></div><div class="cl-info"><div class="cl-name">Contoso Networks — Azure 3-year commit</div><div class="cl-sub">Registered 25 Apr &bull; ₹18.5L deal value</div></div><div style="text-align:right"><div class="cl-pts">+300 pts</div><span class="cc-tag cc-tag-green" style="font-size:10px">Approved</span></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:rgba(34,197,94,.15);color:#22c55e;font-size:14px"><i class="fa-solid fa-handshake"></i></div><div class="cl-info"><div class="cl-name">Fabrikam Ltd — M365 E3 50 seats</div><div class="cl-sub">Registered 10 Apr &bull; ₹9.2L deal value</div></div><div style="text-align:right"><div class="cl-pts">+200 pts</div><span class="cc-tag cc-tag-green" style="font-size:10px">Approved</span></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:rgba(251,191,36,.15);color:#fbbf24;font-size:14px"><i class="fa-solid fa-clock"></i></div><div class="cl-info"><div class="cl-name">WoodGrove Corp — Surface for Business 30 units</div><div class="cl-sub">Registered 1 May &bull; ₹24.0L deal value &bull; Under review</div></div><div style="text-align:right"><div class="cl-pts">+300 pts</div><span class="cc-tag cc-tag-gold" style="font-size:10px">Pending</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Achievements ─── -->
+<div class="dash-section" id="rs-achievements">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Achievements</div><div class="sec-sub">4 unlocked · 8 locked</div></div></div></div>
+  <div class="sec-body">
+    <div class="ach-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">
+      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)"><i class="fa-solid fa-fire" style="color:#f59e0b"></i></div><div class="ach-name">First Blood</div><div class="ach-pts">+100 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First training done</div></div>
+      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i></div><div class="ach-name">Scholar</div><div class="ach-pts">+200 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">5 trainings done</div></div>
+      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(173,198,254,.12);border:1px solid rgba(173,198,254,.25)"><i class="fa-solid fa-calendar-check" style="color:var(--electric)"></i></div><div class="ach-name">Show Up</div><div class="ach-pts">+150 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">3 webinars attended</div></div>
+      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.25)"><i class="fa-solid fa-certificate" style="color:#c084fc"></i></div><div class="ach-name">Certified</div><div class="ach-pts">+500 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First accreditation</div></div>
+      <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-bolt" style="color:var(--muted)"></i></div><div class="ach-name">Speed Runner</div><div class="ach-pts">+300 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">5 trainings in 7 days</div></div>
+      <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-crown" style="color:var(--muted)"></i></div><div class="ach-name">Champion</div><div class="ach-pts">+1,000 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Reach Platinum tier</div></div>
+      <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-handshake" style="color:var(--muted)"></i></div><div class="ach-name">Closer</div><div class="ach-pts">+400 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Register 5 deals</div></div>
+      <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-star" style="color:var(--muted)"></i></div><div class="ach-name">Elite</div><div class="ach-pts">+750 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Top 5 nationally</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── RS: Rewards ─── -->
+<div class="dash-section" id="rs-rewards">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Rewards</div><div class="sec-sub">Redeem your points for exclusive rewards</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">4,850</div><div class="sum-lbl">Available Points</div></div>
+      <div class="sum-card"><div class="sum-val">2</div><div class="sum-lbl">Redeemed</div></div>
+      <div class="sum-card"><div class="sum-val">₹2,500</div><div class="sum-lbl">Value Claimed</div></div>
+    </div>
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Gift Voucher</span></div><div class="cc-title">₹500 Amazon Gift Card</div><div class="cc-detail"><i class="fa-solid fa-star"></i> 1,000 points</div><div class="cc-detail"><i class="fa-solid fa-clock"></i> Delivered in 3–5 days</div></div><div class="cc-footer"><span class="cc-prog-label">You have 4,850 pts</span><button class="cc-btn cc-btn-primary">Redeem</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Experience</span></div><div class="cc-title">₹750 Swiggy/Zomato Voucher</div><div class="cc-detail"><i class="fa-solid fa-star"></i> 1,500 points</div><div class="cc-detail"><i class="fa-solid fa-clock"></i> Instant digital delivery</div></div><div class="cc-footer"><span class="cc-prog-label">You have 4,850 pts</span><button class="cc-btn cc-btn-primary">Redeem</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Tech</span></div><div class="cc-title">Microsoft Surface Accessories Bundle</div><div class="cc-detail"><i class="fa-solid fa-star"></i> 8,000 points</div><div class="cc-detail"><i class="fa-solid fa-clock"></i> Shipped in 7–10 days</div></div><div class="cc-footer"><span class="cc-prog-label" style="color:#f59e0b">Need 3,150 more pts</span><button class="cc-btn cc-btn-ghost" disabled style="opacity:.5;cursor:not-allowed">Locked</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#67e8f9,#0891b2)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Experience</span></div><div class="cc-title">Microsoft India Campus Visit + Lunch</div><div class="cc-detail"><i class="fa-solid fa-star"></i> 12,000 points</div><div class="cc-detail"><i class="fa-solid fa-clock"></i> Slot booking required</div></div><div class="cc-footer"><span class="cc-prog-label" style="color:#f59e0b">Need 7,150 more pts</span><button class="cc-btn cc-btn-ghost" disabled style="opacity:.5;cursor:not-allowed">Locked</button></div></div>
+    </div>
+  </div>
+</div>
+
 </div><!-- /view-reseller -->
 
 
@@ -957,6 +1236,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
      DISTRIBUTOR VIEW — GUILD MASTER
 ═══════════════════════════════════════════ -->
 <div class="view" id="view-distributor">
+
+<!-- ─── DS: Dashboard (default) ─── -->
+<div class="dash-section active" id="ds-dashboard">
 
   <div class="guild-hero">
     <div class="guild-hero-grid"></div>
@@ -1114,6 +1396,140 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
       </table>
     </div>
   </div>
+</div><!-- /ds-dashboard -->
+
+<!-- ─── DS: My Resellers ─── -->
+<div class="dash-section" id="ds-resellers">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">My Resellers</div><div class="sec-sub">52 resellers · 41 active this month</div></div><div class="sec-actions"><button class="invite-btn" onclick="openInvite()"><i class="fa-solid fa-plus"></i> Add Reseller</button></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">52</div><div class="sum-lbl">Total Resellers</div></div>
+      <div class="sum-card"><div class="sum-val">41</div><div class="sum-lbl">Active</div></div>
+      <div class="sum-card"><div class="sum-val">8</div><div class="sum-lbl">Inactive</div></div>
+      <div class="sum-card"><div class="sum-val">3</div><div class="sum-lbl">Pending Onboard</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Reseller Directory</span></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#166534,#15803d)">H</div><div class="cl-info"><div class="cl-name">Techno Hub Solutions — Harpreet Virk</div><div class="cl-sub">Mumbai &bull; 8,420 pts &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 10px">View</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">P</div><div class="cl-info"><div class="cl-name">Infinity Networks — Priya Sharma</div><div class="cl-sub">Bengaluru &bull; 7,690 pts &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 10px">View</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#2d52b0,#1e3a80)">A</div><div class="cl-info"><div class="cl-name">NextGen IT Services — Arjun Mehta</div><div class="cl-sub">Delhi &bull; 6,850 pts &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 10px">View</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">S</div><div class="cl-info"><div class="cl-name">CloudEdge Pvt Ltd — Sneha Iyer</div><div class="cl-sub">Hyderabad &bull; 5,920 pts &bull; Silver Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="status-badge sb-pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 10px">View</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#b45309,#92400e)">R</div><div class="cl-info"><div class="cl-name">Digital Frontiers — Rohan Das</div><div class="cl-sub">Chennai &bull; 4,180 pts &bull; Silver Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="status-badge sb-inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:4px 10px">View</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DS: Trainings ─── -->
+<div class="dash-section" id="ds-trainings">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Trainings</div><div class="sec-sub">Network-wide training completion for your resellers</div></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="network">Network Overview</button>
+    <button class="tab-btn" data-tab="my-trainings">My Trainings</button>
+  </div>
+  <div class="tab-panel active" data-tab="network">
+    <div class="sec-body" style="padding-top:0">
+      <div class="sum-grid">
+        <div class="sum-card"><div class="sum-val">412</div><div class="sum-lbl">Trainings Completed</div></div>
+        <div class="sum-card"><div class="sum-val">88%</div><div class="sum-lbl">Completion Rate</div></div>
+        <div class="sum-card"><div class="sum-val">8.5</div><div class="sum-lbl">Avg per Reseller</div></div>
+      </div>
+      <div class="content-list">
+        <div class="cl-head"><span class="cl-title">Top Training Completions — Q2 2026</span></div>
+        <div class="cl-item"><div class="cl-info"><div class="cl-name">Microsoft 365 Fundamentals</div><div class="cl-sub">Completed by 48 / 52 resellers</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:92%"></div></div></div><div class="cl-pts">92%</div></div>
+        <div class="cl-item"><div class="cl-info"><div class="cl-name">Azure Sales Fundamentals</div><div class="cl-sub">Completed by 39 / 52 resellers</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:75%"></div></div></div><div class="cl-pts">75%</div></div>
+        <div class="cl-item"><div class="cl-info"><div class="cl-name">Copilot+ PC Technical Enablement</div><div class="cl-sub">Completed by 28 / 52 resellers</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:54%"></div></div></div><div class="cl-pts">54%</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="my-trainings">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#4ade80,#22c55e)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Completed</span></div><div class="cc-title">Distributor Sales Leadership</div><div class="cc-detail"><i class="fa-solid fa-calendar-check"></i> Completed 15 Mar 2026</div><div class="cc-pts" style="color:#4ade80"><i class="fa-solid fa-star" style="font-size:10px"></i> +400 pts earned</div></div><div class="cc-footer"><span></span><button class="cc-btn cc-btn-done"><i class="fa-solid fa-check"></i> Completed</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Available</span></div><div class="cc-title">Channel Management Excellence</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Always available &bull; 3 hrs</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +350 pts on completion</div></div><div class="cc-footer"><span></span><button class="cc-btn cc-btn-primary">Start Training</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DS: Webinars ─── -->
+<div class="dash-section" id="ds-webinars">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Webinars</div><div class="sec-sub">Sessions for you and your reseller network</div></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+    <button class="tab-btn" data-tab="past">Past Recordings</button>
+    <button class="tab-btn" data-tab="registered">Registered</button>
+  </div>
+  <div class="tab-panel active" data-tab="upcoming">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#2d52b0,#adc6fe)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Distributor Only</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Distributor Strategy Session — Q3 2026</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Mon 12 May 2026, 10:00 AM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Channel Director — Microsoft India</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +300 pts for attending</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green"><i class="fa-solid fa-check" style="font-size:9px"></i> Registered</span><button class="cc-btn cc-btn-ghost">Add to Calendar</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">All Partners</span><span class="cc-tag cc-tag-muted">1.5 hrs</span></div><div class="cc-title">Microsoft Copilot+ PC Partner Enablement</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> Sat 10 May 2026, 3:00 PM IST</div><div class="cc-detail"><i class="fa-solid fa-user"></i> Priya Rajagopalan — Microsoft India</div><div class="cc-pts"><i class="fa-solid fa-star" style="font-size:10px"></i> +200 pts for attending</div></div><div class="cc-footer"><span class="cc-prog-label">Open for registration</span><button class="cc-btn cc-btn-primary" onclick="this.textContent='Registering…';setTimeout(()=>{this.parentElement.innerHTML='<span class=\'cc-tag cc-tag-green\'><i class=\'fa-solid fa-check\'></i> Registered</span>'},700)">Register</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="past">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#2d52b0,#adc6fe)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span></div><div class="cc-title">Distributor Strategy Session — Q2 2026</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 10 Feb 2026</div><div class="cc-pts" style="color:#4ade80">+300 pts earned</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Attended</span><button class="cc-btn cc-btn-ghost"><i class="fa-solid fa-circle-play"></i> Watch Again</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Recording</span></div><div class="cc-title">Reseller Enablement Masterclass</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 5 Mar 2026</div><div class="cc-pts" style="color:#4ade80">+200 pts earned</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Attended</span><button class="cc-btn cc-btn-ghost"><i class="fa-solid fa-circle-play"></i> Watch Again</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="registered">
+    <div class="sec-body" style="padding-top:0">
+      <div class="content-list">
+        <div class="cl-head"><span class="cl-title">Your Registered Webinars</span></div>
+        <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#2d52b0,#adc6fe);font-size:14px"><i class="fa-solid fa-circle-play"></i></div><div class="cl-info"><div class="cl-name">Distributor Strategy Session — Q3 2026</div><div class="cl-sub">Mon 12 May 2026, 10:00 AM IST &bull; 2 hrs</div><div class="cl-sub" style="color:#f59e0b;margin-top:3px"><i class="fa-solid fa-clock" style="font-size:10px"></i> In 9 days</div></div><span class="cc-tag cc-tag-green"><i class="fa-solid fa-check" style="font-size:9px"></i> Registered</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DS: Campaigns ─── -->
+<div class="dash-section" id="ds-campaigns">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Campaigns</div><div class="sec-sub">Network-wide campaign performance</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">5</div><div class="sum-lbl">Active Campaigns</div></div>
+      <div class="sum-card"><div class="sum-val">88</div><div class="sum-lbl">POEs Submitted</div></div>
+      <div class="sum-card"><div class="sum-val">62</div><div class="sum-lbl">Approved</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Active Campaigns</span></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Copilot+ PC Spring Push</div><div class="cl-sub">32 / 52 resellers participating &bull; Ends 31 May</div></div><div class="cl-pts" style="color:#f59e0b">62%</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Azure SMB Accelerator</div><div class="cl-sub">28 / 52 resellers participating &bull; Ends 30 Jun</div></div><div class="cl-pts" style="color:#f59e0b">54%</div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">M365 Upsell Sprint</div><div class="cl-sub">41 / 52 resellers participating &bull; Ends 15 May</div></div><div class="cl-pts" style="color:#22c55e">79%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DS: Performance ─── -->
+<div class="dash-section" id="ds-performance">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Performance Reports</div><div class="sec-sub">Network activity and engagement analytics</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">38.4K</div><div class="sum-lbl">Points Pool</div></div>
+      <div class="sum-card"><div class="sum-val">78.8%</div><div class="sum-lbl">Engagement Rate</div></div>
+      <div class="sum-card"><div class="sum-val">+14%</div><div class="sum-lbl">QoQ Growth</div></div>
+      <div class="sum-card"><div class="sum-val">#3</div><div class="sum-lbl">Distributor Rank</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Top Performing Resellers</span></div>
+      <div class="cl-item"><div class="cl-rank">1</div><div class="cl-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div><div class="cl-info"><div class="cl-name">Techno Hub Solutions</div><div class="cl-sub">8,420 pts &bull; 14 trainings</div></div><div class="cl-pts">+12% MoM</div></div>
+      <div class="cl-item"><div class="cl-rank">2</div><div class="cl-avatar" style="background:linear-gradient(135deg,#9ca3af,#6b7280)">I</div><div class="cl-info"><div class="cl-name">Infinity Networks</div><div class="cl-sub">7,690 pts &bull; 12 trainings</div></div><div class="cl-pts">+8% MoM</div></div>
+      <div class="cl-item"><div class="cl-rank">3</div><div class="cl-avatar" style="background:linear-gradient(135deg,#cd7f32,#92400e)">N</div><div class="cl-info"><div class="cl-name">NextGen IT Services</div><div class="cl-sub">6,850 pts &bull; 11 trainings</div></div><div class="cl-pts">+15% MoM</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DS: Points Summary ─── -->
+<div class="dash-section" id="ds-points">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Points Summary</div><div class="sec-sub">Network-wide points breakdown — Season 04</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">38.4K</div><div class="sum-lbl">Total Pool</div></div>
+      <div class="sum-card"><div class="sum-val">22.8K</div><div class="sum-lbl">Trainings</div></div>
+      <div class="sum-card"><div class="sum-val">8.6K</div><div class="sum-lbl">Webinars</div></div>
+      <div class="sum-card"><div class="sum-val">5.2K</div><div class="sum-lbl">Campaigns</div></div>
+      <div class="sum-card"><div class="sum-val">1.8K</div><div class="sum-lbl">Deal Reg.</div></div>
+    </div>
+  </div>
+</div>
+
 </div><!-- /view-distributor -->
 
 
@@ -1121,6 +1537,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
      ADMIN VIEW — COMMAND CENTER
 ═══════════════════════════════════════════ -->
 <div class="view" id="view-admin">
+
+<!-- ─── AD: Dashboard (default) ─── -->
+<div class="dash-section active" id="ad-dashboard">
 
   <div class="cmd-hero">
     <div class="cmd-hero-grid"></div>
@@ -1398,6 +1817,178 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
       </table>
     </div>
   </div>
+</div><!-- /ad-dashboard -->
+
+<!-- ─── AD: All Partners ─── -->
+<div class="dash-section" id="ad-partners">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">All Partners</div><div class="sec-sub">247 partners across all tiers — Season 04</div></div><div class="sec-actions"><button class="invite-btn" onclick="openInvite()"><i class="fa-solid fa-plus"></i> Add Partner</button></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">247</div><div class="sum-lbl">Total Partners</div></div>
+      <div class="sum-card"><div class="sum-val">189</div><div class="sum-lbl">Active</div></div>
+      <div class="sum-card"><div class="sum-val">38</div><div class="sum-lbl">Inactive</div></div>
+      <div class="sum-card"><div class="sum-val">20</div><div class="sum-lbl">Onboarding</div></div>
+      <div class="sum-card"><div class="sum-val">12</div><div class="sum-lbl">Distributors</div></div>
+      <div class="sum-card"><div class="sum-val">235</div><div class="sum-lbl">Resellers</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Partner Directory</span><span style="font-size:12px;color:var(--muted)">Showing top partners</span></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#166534,#15803d)">T</div><div class="cl-info"><div class="cl-name">Techno Hub Solutions</div><div class="cl-sub">Reseller &bull; Mumbai &bull; Gold Tier &bull; Redington India</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">8,420</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">I</div><div class="cl-info"><div class="cl-name">Infinity Networks</div><div class="cl-sub">Reseller &bull; Bengaluru &bull; Gold Tier &bull; Ingram Micro</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">7,690</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#2d52b0,#1e3a80)">R</div><div class="cl-info"><div class="cl-name">Redington India</div><div class="cl-sub">Distributor &bull; Chennai &bull; 52 resellers under management</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">38.4K</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#0891b2,#67e8f9)">G</div><div class="cl-info"><div class="cl-name">Ingram Micro India</div><div class="cl-sub">Distributor &bull; Mumbai &bull; 61 resellers under management</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">47.2K</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Resellers ─── -->
+<div class="dash-section" id="ad-resellers">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Resellers</div><div class="sec-sub">235 resellers across all distributors</div></div><div class="sec-actions"><button class="invite-btn" onclick="openInvite()"><i class="fa-solid fa-plus"></i> Add Reseller</button></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">235</div><div class="sum-lbl">Total</div></div>
+      <div class="sum-card"><div class="sum-val">181</div><div class="sum-lbl">Active</div></div>
+      <div class="sum-card"><div class="sum-val">34</div><div class="sum-lbl">Gold Tier</div></div>
+      <div class="sum-card"><div class="sum-val">89</div><div class="sum-lbl">Silver Tier</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Reseller Directory</span></div>
+      <div class="cl-item"><div class="cl-rank">1</div><div class="cl-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div><div class="cl-info"><div class="cl-name">Techno Hub Solutions — Harpreet Virk</div><div class="cl-sub">Mumbai &bull; Redington &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">8,420</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-rank">2</div><div class="cl-avatar" style="background:linear-gradient(135deg,#9ca3af,#6b7280)">I</div><div class="cl-info"><div class="cl-name">Infinity Networks — Priya Sharma</div><div class="cl-sub">Bengaluru &bull; Ingram Micro &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">7,690</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-rank">3</div><div class="cl-avatar" style="background:linear-gradient(135deg,#cd7f32,#92400e)">N</div><div class="cl-info"><div class="cl-name">NextGen IT Services — Arjun Mehta</div><div class="cl-sub">Delhi &bull; Redington &bull; Gold Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">6,850</span><span class="status-badge sb-active"><i class="fa-solid fa-circle" style="font-size:6px"></i> Active</span></div></div>
+      <div class="cl-item"><div class="cl-rank">4</div><div class="cl-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">C</div><div class="cl-info"><div class="cl-name">CloudEdge Pvt Ltd — Sneha Iyer</div><div class="cl-sub">Hyderabad &bull; Ingram Micro &bull; Silver Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">5,920</span><span class="status-badge sb-pending"><i class="fa-solid fa-circle" style="font-size:6px"></i> Pending</span></div></div>
+      <div class="cl-item"><div class="cl-rank">5</div><div class="cl-avatar" style="background:linear-gradient(135deg,#b45309,#92400e)">D</div><div class="cl-info"><div class="cl-name">Digital Frontiers — Rohan Das</div><div class="cl-sub">Chennai &bull; Redington &bull; Silver Tier</div></div><div style="display:flex;gap:8px;align-items:center"><span class="pts-chip">4,180</span><span class="status-badge sb-inactive"><i class="fa-solid fa-circle" style="font-size:6px"></i> Inactive</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Distributors ─── -->
+<div class="dash-section" id="ad-distributors">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Distributors</div><div class="sec-sub">12 active distributors — Season 04</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">12</div><div class="sum-lbl">Distributors</div></div>
+      <div class="sum-card"><div class="sum-val">235</div><div class="sum-lbl">Resellers Managed</div></div>
+      <div class="sum-card"><div class="sum-val">78.2%</div><div class="sum-lbl">Avg Engagement</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Distributor Rankings</span></div>
+      <div class="cl-item"><div class="cl-rank">1</div><div class="cl-avatar" style="background:linear-gradient(135deg,#0891b2,#67e8f9)">G</div><div class="cl-info"><div class="cl-name">Ingram Micro India</div><div class="cl-sub">Mumbai &bull; 61 resellers &bull; 84% engagement</div></div><div class="cl-pts">47.2K pts</div></div>
+      <div class="cl-item"><div class="cl-rank">2</div><div class="cl-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">S</div><div class="cl-info"><div class="cl-name">Synnex India Pvt Ltd</div><div class="cl-sub">Bengaluru &bull; 48 resellers &bull; 79% engagement</div></div><div class="cl-pts">42.8K pts</div></div>
+      <div class="cl-item"><div class="cl-rank">3</div><div class="cl-avatar" style="background:linear-gradient(135deg,#2d52b0,#1e3a80)">R</div><div class="cl-info"><div class="cl-name">Redington India</div><div class="cl-sub">Chennai &bull; 52 resellers &bull; 78.8% engagement</div></div><div class="cl-pts">38.4K pts</div></div>
+      <div class="cl-item"><div class="cl-rank">4</div><div class="cl-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div><div class="cl-info"><div class="cl-name">TD SYNNEX India</div><div class="cl-sub">Delhi &bull; 44 resellers &bull; 72% engagement</div></div><div class="cl-pts">31.6K pts</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Trainings ─── -->
+<div class="dash-section" id="ad-trainings">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Trainings</div><div class="sec-sub">Platform-wide training analytics</div></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="platform">Platform Overview</button>
+    <button class="tab-btn" data-tab="catalog">Training Catalog</button>
+  </div>
+  <div class="tab-panel active" data-tab="platform">
+    <div class="sec-body" style="padding-top:0">
+      <div class="sum-grid">
+        <div class="sum-card"><div class="sum-val">1,847</div><div class="sum-lbl">Total Completions</div></div>
+        <div class="sum-card"><div class="sum-val">74%</div><div class="sum-lbl">Avg Completion Rate</div></div>
+        <div class="sum-card"><div class="sum-val">18</div><div class="sum-lbl">Courses Available</div></div>
+        <div class="sum-card"><div class="sum-val">67.2K</div><div class="sum-lbl">Points Awarded</div></div>
+      </div>
+      <div class="content-list">
+        <div class="cl-head"><span class="cl-title">Top Courses by Completion</span></div>
+        <div class="cl-item"><div class="cl-rank">1</div><div class="cl-info"><div class="cl-name">Microsoft 365 Fundamentals</div><div class="cl-sub">192 completions &bull; 82% completion rate</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:82%"></div></div></div><div class="cl-pts">82%</div></div>
+        <div class="cl-item"><div class="cl-rank">2</div><div class="cl-info"><div class="cl-name">Azure Sales Fundamentals</div><div class="cl-sub">164 completions &bull; 70% completion rate</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:70%"></div></div></div><div class="cl-pts">70%</div></div>
+        <div class="cl-item"><div class="cl-rank">3</div><div class="cl-info"><div class="cl-name">Copilot+ PC Technical Enablement</div><div class="cl-sub">118 completions &bull; 50% completion rate</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:50%"></div></div></div><div class="cl-pts">50%</div></div>
+        <div class="cl-item"><div class="cl-rank">4</div><div class="cl-info"><div class="cl-name">Security + Compliance for M365</div><div class="cl-sub">89 completions &bull; 38% completion rate</div><div class="cc-prog-bar" style="width:200px;margin-top:5px"><div class="cc-prog-fill" style="width:38%"></div></div></div><div class="cl-pts">38%</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="catalog">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Live</span><span class="cc-tag cc-tag-muted">3 hrs</span></div><div class="cc-title">Microsoft 365 Fundamentals</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 192 completions &bull; 82% rate</div></div><div class="cc-footer"><span class="cc-prog-label">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Live</span><span class="cc-tag cc-tag-muted">4 hrs</span></div><div class="cc-title">Azure Sales Fundamentals</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 164 completions &bull; 70% rate</div></div><div class="cc-footer"><span class="cc-prog-label">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Live</span><span class="cc-tag cc-tag-muted">3 hrs</span></div><div class="cc-title">Copilot+ PC Technical Enablement</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 118 completions &bull; 50% rate</div></div><div class="cc-footer"><span class="cc-prog-label">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Webinars ─── -->
+<div class="dash-section" id="ad-webinars">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Webinars</div><div class="sec-sub">Manage platform webinars — all partners</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Schedule Webinar</button></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+    <button class="tab-btn" data-tab="past">Past</button>
+    <button class="tab-btn" data-tab="analytics">Analytics</button>
+  </div>
+  <div class="tab-panel active" data-tab="upcoming">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">All Partners</span><span class="cc-tag cc-tag-muted">1.5 hrs</span></div><div class="cc-title">Microsoft Copilot+ PC Partner Enablement</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 10 May 2026, 3:00 PM IST</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 142 registered</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">All Partners</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Azure AI Services for Partners — Q2 Update</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 15 May 2026, 11:00 AM IST</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 89 registered</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#2d52b0,#adc6fe)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Distributor Only</span><span class="cc-tag cc-tag-muted">2 hrs</span></div><div class="cc-title">Distributor Strategy Session — Q3 2026</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 12 May 2026, 10:00 AM IST</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 28 registered</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Manage</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="past">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Completed</span></div><div class="cc-title">Copilot+ PC Launch Playbook</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 12 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 184 attended &bull; 91% satisfaction</div></div><div class="cc-footer"><span></span><button class="cc-btn cc-btn-ghost">View Report</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#5d76a9,#adc6fe)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Completed</span></div><div class="cc-title">Azure Infrastructure Migration Best Practices</div><div class="cc-detail"><i class="fa-solid fa-calendar"></i> 20 Apr 2026</div><div class="cc-detail"><i class="fa-solid fa-users"></i> 156 attended &bull; 88% satisfaction</div></div><div class="cc-footer"><span></span><button class="cc-btn cc-btn-ghost">View Report</button></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" data-tab="analytics">
+    <div class="sec-body" style="padding-top:0">
+      <div class="sum-grid">
+        <div class="sum-card"><div class="sum-val">1,035</div><div class="sum-lbl">Total Attendees</div></div>
+        <div class="sum-card"><div class="sum-val">89%</div><div class="sum-lbl">Avg Satisfaction</div></div>
+        <div class="sum-card"><div class="sum-val">18</div><div class="sum-lbl">Sessions Held</div></div>
+        <div class="sum-card"><div class="sum-val">38.1K</div><div class="sum-lbl">Points Awarded</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Redemptions ─── -->
+<div class="dash-section" id="ad-redemptions">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Redemptions</div><div class="sec-sub">38 pending approvals</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">192</div><div class="sum-lbl">Total Requests</div></div>
+      <div class="sum-card"><div class="sum-val" style="color:#22c55e">142</div><div class="sum-lbl">Approved</div></div>
+      <div class="sum-card"><div class="sum-val" style="color:#fbbf24">38</div><div class="sum-lbl">Pending</div></div>
+      <div class="sum-card"><div class="sum-val" style="color:#f87171">12</div><div class="sum-lbl">Rejected</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Pending Approvals</span><span class="cc-tag cc-tag-gold">38 awaiting</span></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#166534,#15803d)">H</div><div class="cl-info"><div class="cl-name">Harpreet Virk — ₹750 Gift Voucher</div><div class="cl-sub">Techno Hub Solutions &bull; 1,500 pts &bull; Requested 30 Apr</div></div><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-primary" style="background:#22c55e;color:#052e16" onclick="this.closest('.cl-item').style.opacity='.4'">Approve</button><button class="cc-btn cc-btn-ghost" style="color:#f87171;border-color:rgba(248,113,113,.3)" onclick="this.closest('.cl-item').style.opacity='.4'">Reject</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#5d76a9,#3b4964)">P</div><div class="cl-info"><div class="cl-name">Priya Sharma — ₹500 Amazon Gift Card</div><div class="cl-sub">Infinity Networks &bull; 1,000 pts &bull; Requested 1 May</div></div><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-primary" style="background:#22c55e;color:#052e16" onclick="this.closest('.cl-item').style.opacity='.4'">Approve</button><button class="cc-btn cc-btn-ghost" style="color:#f87171;border-color:rgba(248,113,113,.3)" onclick="this.closest('.cl-item').style.opacity='.4'">Reject</button></div></div>
+      <div class="cl-item"><div class="cl-avatar" style="background:linear-gradient(135deg,#2d52b0,#1e3a80)">A</div><div class="cl-info"><div class="cl-name">Arjun Mehta — Surface Accessories Bundle</div><div class="cl-sub">NextGen IT Services &bull; 8,000 pts &bull; Requested 2 May</div></div><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-primary" style="background:#22c55e;color:#052e16" onclick="this.closest('.cl-item').style.opacity='.4'">Approve</button><button class="cc-btn cc-btn-ghost" style="color:#f87171;border-color:rgba(248,113,113,.3)" onclick="this.closest('.cl-item').style.opacity='.4'">Reject</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── AD: Analytics ─── -->
+<div class="dash-section" id="ad-analytics">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Analytics</div><div class="sec-sub">Platform-wide performance — Season 04</div></div></div></div>
+  <div class="sec-body">
+    <div class="sum-grid">
+      <div class="sum-card"><div class="sum-val">142.8K</div><div class="sum-lbl">Points Issued</div></div>
+      <div class="sum-card"><div class="sum-val">76.5%</div><div class="sum-lbl">Activity Rate</div></div>
+      <div class="sum-card"><div class="sum-val">+22%</div><div class="sum-lbl">QoQ Growth</div></div>
+      <div class="sum-card"><div class="sum-val">3,794</div><div class="sum-lbl">Total Activities</div></div>
+      <div class="sum-card"><div class="sum-val">1,847</div><div class="sum-lbl">Training Completions</div></div>
+      <div class="sum-card"><div class="sum-val">1,035</div><div class="sum-lbl">Webinar Attendances</div></div>
+    </div>
+    <div class="content-list">
+      <div class="cl-head"><span class="cl-title">Activity Breakdown by Category</span></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Trainings</div><div class="cc-prog-bar" style="width:100%;max-width:400px;margin-top:5px"><div class="cc-prog-fill" style="width:82%"></div></div></div><div style="text-align:right"><div class="cl-pts">1,847</div><div style="font-size:11px;color:var(--muted)">48.7%</div></div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Webinars</div><div class="cc-prog-bar" style="width:100%;max-width:400px;margin-top:5px"><div class="cc-prog-fill" style="width:56%"></div></div></div><div style="text-align:right"><div class="cl-pts">1,035</div><div style="font-size:11px;color:var(--muted)">27.3%</div></div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Campaigns / POE</div><div class="cc-prog-bar" style="width:100%;max-width:400px;margin-top:5px"><div class="cc-prog-fill" style="width:30%"></div></div></div><div style="text-align:right"><div class="cl-pts">552</div><div style="font-size:11px;color:var(--muted)">14.5%</div></div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Deal Registrations</div><div class="cc-prog-bar" style="width:100%;max-width:400px;margin-top:5px"><div class="cc-prog-fill" style="width:15%"></div></div></div><div style="text-align:right"><div class="cl-pts">284</div><div style="font-size:11px;color:var(--muted)">7.5%</div></div></div>
+      <div class="cl-item"><div class="cl-info"><div class="cl-name">Accreditations</div><div class="cc-prog-bar" style="width:100%;max-width:400px;margin-top:5px"><div class="cc-prog-fill" style="width:7%"></div></div></div><div style="text-align:right"><div class="cl-pts">118</div><div style="font-size:11px;color:var(--muted)">3.1%</div></div></div>
+    </div>
+  </div>
+</div>
+
 </div><!-- /view-admin -->
 
 </div><!-- /dash-main -->
@@ -1473,14 +2064,52 @@ function sendInvite(){
   setTimeout(function(){toast.remove();},3000);
 }
 
-/* Sidebar nav item active state */
-document.querySelectorAll('.sidebar-item').forEach(function(el){
-  el.addEventListener('click',function(e){
-    var group=this.closest('.sidebar-role-group,.sidebar-bottom');
-    if(!group) return;
-    group.querySelectorAll('.sidebar-item').forEach(function(s){s.classList.remove('s-active');});
-    this.classList.add('s-active');
+/* ── SECTION NAVIGATION ── */
+document.querySelectorAll('.sidebar-item[data-target]').forEach(function(item){
+  item.addEventListener('click', function(e){
+    e.preventDefault();
+    var targetId = this.getAttribute('data-target');
+    var targetEl = document.getElementById(targetId);
+    if(!targetEl) return;
+
+    /* Find which view this section belongs to */
+    var view = targetEl.closest('.view');
+    if(!view) return;
+
+    /* Deactivate all sections in this view */
+    view.querySelectorAll('.dash-section').forEach(function(s){ s.classList.remove('active'); });
+
+    /* Activate target */
+    targetEl.classList.add('active');
+
+    /* Update sidebar active state */
+    var roleGroup = this.closest('.sidebar-role-group');
+    if(roleGroup){
+      roleGroup.querySelectorAll('.sidebar-item').forEach(function(s){ s.classList.remove('s-active'); });
+      this.classList.add('s-active');
+    }
+
+    /* Scroll main content to top */
+    var main = document.querySelector('.dash-main');
+    if(main) main.scrollTo({top:0,behavior:'smooth'});
   });
+});
+
+/* ── TAB SWITCHING ── */
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  e.preventDefault();
+  var panel = btn.closest('.dash-section');
+  if(!panel) return;
+  var tab = btn.getAttribute('data-tab');
+  /* Update buttons */
+  panel.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  /* Update panels */
+  panel.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  var target = panel.querySelector('.tab-panel[data-tab="'+tab+'"]');
+  if(target) target.classList.add('active');
 });
 </script>
 </body>
