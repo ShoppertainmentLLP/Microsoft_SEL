@@ -767,10 +767,10 @@ nav::after { display: none; }
 .reward-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.35); border-color:rgba(173,198,254,.25); }
 .reward-card.locked { opacity:.65; }
 .rc-thumb {
-  height:130px; display:flex; align-items:center; justify-content:center;
-  position:relative; overflow:hidden;
+  height:160px; position:relative; overflow:hidden;
+  background-size:cover; background-position:center;
 }
-.rc-thumb-icon { font-size:3rem; opacity:.25; color:#fff; position:relative; z-index:1; }
+.rc-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55) 100%); pointer-events:none; }
 .rc-type-pill { position:absolute; top:10px; left:10px; z-index:2; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; padding:2px 9px; border-radius:var(--r-full); background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.75); }
 .rc-stock-pill { position:absolute; top:10px; right:10px; z-index:2; font-size:9px; font-weight:700; padding:2px 8px; border-radius:var(--r-full); }
 .rc-body { padding:1rem 1.1rem; }
@@ -1035,8 +1035,8 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 [data-theme="light"] .s-prompt { border-color: rgba(10,17,40,.1); color: rgba(10,17,40,.45); }
 [data-theme="light"] .s-prompt:hover { border-color: rgba(45,82,176,.35); color: var(--electric); background: rgba(45,82,176,.07); }
 
-/* Achievers */
-[data-theme="light"] .achiever-card { background: #fff; border-color: rgba(10,17,40,.09); }
+/* Reward shop light theme */
+[data-theme="light"] .reward-card { background: #fff; border-color: rgba(10,17,40,.09); }
 [data-theme="light"] .achiever-card:hover { border-color: rgba(45,82,176,.25); }
 [data-theme="light"] .achiever-name { color: var(--ink); }
 
@@ -1316,7 +1316,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
     <li><a href="#leaderboard">Leaderboard</a></li>
     <li><a href="#webinars">Webinars</a></li>
     <li><a href="#ai-assistant">AI Assistant</a></li>
-    <li><a href="#achievers">Achievers</a></li>
+    <li><a href="#rewards">Reward Shop</a></li>
   </ul>
   <div class="nav-right">
     <a href="#" class="btn btn-ghost" onclick="event.preventDefault();showLoginModal()">Sign in</a>
@@ -1332,7 +1332,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <a href="#leaderboard" onclick="closeMenu()">Leaderboard</a>
   <a href="#webinars" onclick="closeMenu()">Webinars</a>
   <a href="#ai-assistant" onclick="closeMenu()">AI Assistant</a>
-  <a href="#achievers" onclick="closeMenu()">Partner Achievers</a>
+  <a href="#rewards" onclick="closeMenu()">Reward Shop</a>
   <a href="#" onclick="closeMenu();showLoginModal();" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
 </nav>
 
@@ -2096,8 +2096,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Digital: Microsoft Store Credit $50 -->
       <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#0f1f45,#1a3575)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-gift-card"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(10,25,80,.65),rgba(30,60,160,.5)),url(https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Digital</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
         </div>
@@ -2114,8 +2113,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Digital: Microsoft Store Credit $100 -->
       <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#1a0a3a,#3a1a75)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(30,10,70,.65),rgba(80,20,160,.5)),url(https://images.unsplash.com/photo-1607082349566-187342175e2f?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Digital</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
         </div>
@@ -2132,8 +2130,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Digital: SEL Gold Badge -->
       <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#2a1a00,#5a3800)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-medal"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(60,30,0,.65),rgba(130,70,0,.5)),url(https://images.unsplash.com/photo-1567880905822-56f8e06fe630?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Digital</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
         </div>
@@ -2150,8 +2147,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Digital: Microsoft 365 Personal -->
       <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1f1a,#0d3a30)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-grid-2"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(5,40,25,.65),rgba(10,90,50,.5)),url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Digital</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
         </div>
@@ -2168,8 +2164,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Physical: SEL T-Shirt -->
       <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#0f1f30,#1a3050)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-shirt"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(10,22,50,.5),rgba(20,45,90,.4)),url(https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Physical</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">48 left</div>
         </div>
@@ -2186,8 +2181,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Physical: Microsoft Branded Cap -->
       <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#1a1025,#2d1a45)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-hat-wizard"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(25,10,50,.55),rgba(55,20,100,.45)),url(https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Physical</div>
           <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">22 left</div>
         </div>
@@ -2204,8 +2198,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Physical: Surface Arc Mouse -->
       <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1a2f,#0f2a4a)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-computer-mouse"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(8,18,45,.55),rgba(15,38,80,.45)),url(https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Physical</div>
           <div class="rc-stock-pill" style="background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3)">12 left</div>
         </div>
@@ -2222,8 +2215,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Physical: SEL Trophy Kit -->
       <div class="reward-card locked" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#1f1200,#3a2200)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(50,25,0,.6),rgba(110,55,0,.5)),url(https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Physical</div>
           <div class="rc-stock-pill" style="background:rgba(245,158,11,.2);color:#f59e0b;border:1px solid rgba(245,158,11,.3)">Limited</div>
         </div>
@@ -2240,8 +2232,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
       <!-- Physical: Microsoft Wireless Headset -->
       <div class="reward-card locked" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1f1a,#102a25)">
-          <div class="rc-thumb-icon"><i class="fa-solid fa-headset"></i></div>
+        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(5,20,15,.55),rgba(10,45,35,.45)),url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
           <div class="rc-type-pill">Physical</div>
           <div class="rc-stock-pill" style="background:rgba(248,113,113,.2);color:#f87171;border:1px solid rgba(248,113,113,.3)">Low Stock</div>
         </div>
