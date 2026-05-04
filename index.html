@@ -749,36 +749,43 @@ nav::after { display: none; }
 }
 .s-prompt:hover { border-color: rgba(173,198,254,.35); color: var(--electric); background: rgba(173,198,254,.07); }
 
-/* ── ACHIEVERS ── */
-#achievers { background: var(--navy-2); }
-.achievers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-top: 3rem; }
-.achiever-card {
-  background: var(--navy-3); border-radius: var(--r-lg); padding: 1.5rem 1rem;
-  text-align: center; border: 1px solid var(--border);
-  transition: border-color .2s, transform .2s, box-shadow .2s;
-  position: relative; overflow: hidden;
+/* ── REWARD SHOP ── */
+#rewards { background: var(--navy-2); }
+.rshop-balance-bar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:2rem; padding:1rem 1.5rem; background:rgba(173,198,254,.06); border:1px solid rgba(173,198,254,.14); border-radius:var(--r-lg); }
+.rshop-balance-label { font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:.07em; }
+.rshop-balance-val { font-size:1.5rem; font-weight:800; color:#f59e0b; letter-spacing:-.04em; }
+.rshop-balance-sub { font-size:11px; color:#6b7280; }
+.rshop-tabs { display:flex; gap:6px; margin-bottom:2rem; flex-wrap:wrap; }
+.rshop-tab { background:rgba(173,198,254,.06); border:1px solid rgba(173,198,254,.12); color:#6b7280; border-radius:var(--r-full); padding:7px 18px; font-size:12px; font-weight:700; cursor:pointer; transition:all .18s; }
+.rshop-tab.active { background:rgba(173,198,254,.14); border-color:rgba(173,198,254,.28); color:#fff; }
+.rshop-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.reward-card {
+  background:var(--navy-3); border-radius:var(--r-lg); border:1px solid var(--border);
+  overflow:hidden; transition:border-color .2s, transform .2s, box-shadow .2s;
+  position:relative;
 }
-.achiever-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.35); border-color: rgba(173,198,254,.25); }
-.achiever-card:hover .achiever-avatar { transform: scale(1.06); }
-.achiever-avatar {
-  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; font-weight: 700; color: #fff;
-  transition: transform .25s;
+.reward-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.35); border-color:rgba(173,198,254,.25); }
+.reward-card.locked { opacity:.65; }
+.rc-thumb {
+  height:130px; display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
 }
-.av-1 { background: linear-gradient(135deg, #1e3a5f, #2d5a8e); }
-.av-2 { background: linear-gradient(135deg, #1e3a4a, #2d5a6e); }
-.av-3 { background: linear-gradient(135deg, #2a1e3a, #4a3060); }
-.av-4 { background: linear-gradient(135deg, #3a2a1a, #5a4030); }
-.av-5 { background: linear-gradient(135deg, #1a2a3a, #2a3a5a); }
-.av-6 { background: linear-gradient(135deg, #1a3a2a, #2a5a40); }
-.achiever-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
-.achiever-city { font-size: 11px; color: #6b7280; margin-bottom: 2px; }
-.achiever-badge-tag {
-  display: inline-block; font-size: 10px; padding: 4px 10px; border-radius: var(--r-full);
-  font-weight: 600; margin-top: 8px; letter-spacing: .03em;
-  background: rgba(173,198,254,.1); border: 1px solid rgba(173,198,254,.2); color: var(--electric);
-}
+.rc-thumb-icon { font-size:3rem; opacity:.25; color:#fff; position:relative; z-index:1; }
+.rc-type-pill { position:absolute; top:10px; left:10px; z-index:2; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; padding:2px 9px; border-radius:var(--r-full); background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.75); }
+.rc-stock-pill { position:absolute; top:10px; right:10px; z-index:2; font-size:9px; font-weight:700; padding:2px 8px; border-radius:var(--r-full); }
+.rc-body { padding:1rem 1.1rem; }
+.rc-name { font-size:13px; font-weight:700; color:#fff; margin-bottom:4px; line-height:1.4; }
+.rc-desc { font-size:11px; color:#6b7280; line-height:1.5; margin-bottom:.75rem; }
+.rc-pts-row { display:flex; align-items:center; justify-content:space-between; margin-top:auto; }
+.rc-pts { font-size:15px; font-weight:800; color:#f59e0b; letter-spacing:-.02em; }
+.rc-pts-lbl { font-size:10px; color:#6b7280; font-weight:600; }
+.rc-btn { display:inline-flex; align-items:center; gap:5px; padding:6px 14px; border-radius:var(--r-full); border:none; font-size:11px; font-weight:700; cursor:pointer; transition:all .18s; white-space:nowrap; }
+.rc-btn-primary { background:linear-gradient(90deg,#adc6fe,#7c9fe8); color:#0a1128; }
+.rc-btn-primary:hover { opacity:.88; }
+.rc-btn-locked { background:rgba(173,198,254,.07); border:1px solid rgba(173,198,254,.15); color:#6b7280; cursor:default; }
+.rc-divider { height:1px; background:var(--border); margin:0 1.1rem .875rem; }
+[data-theme="light"] .reward-card { background:#fff; border-color:rgba(10,17,40,.09); }
+[data-theme="light"] .rc-name { color:var(--ink); }
 
 /* ── FOOTER ── */
 footer { background: var(--navy); border-top: 1px solid var(--border); padding: 3rem clamp(1.25rem,4vw,3rem); }
@@ -826,7 +833,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   .roadmap { overflow-x: auto; }
   .roadmap-track { min-width: 560px; }
   .courses-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-  .achievers-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .rshop-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
 
 /* ── 600px (mobile) ── */
@@ -861,8 +868,8 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   .lb-scope-tabs { gap: 4px; }
   .lb-tab { font-size: 11px; padding: 6px 12px; }
 
-  /* Achievers */
-  .achievers-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Reward shop */
+  .rshop-grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Footer */
   .footer-grid { grid-template-columns: 1fr; }
@@ -875,7 +882,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
   .lb-podium { gap: 8px; }
   .podium-card { padding: 1.25rem .75rem 1rem; }
-  .achievers-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .rshop-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .nav-logo { font-size: 14px; }
   .theme-toggle { width: 28px; height: 28px; font-size: 12px; }
 }
@@ -2058,52 +2065,209 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   </div>
 </section>
 
-<!-- ACHIEVERS -->
-<section class="section" id="achievers" aria-labelledby="achievers-heading">
+<!-- REWARD SHOP -->
+<section class="section" id="rewards" aria-labelledby="rewards-heading">
   <div class="section-inner">
-    <div class="section-eyebrow">Hall of fame</div>
-    <h2 class="section-title" id="achievers-heading">Proud partner<br>achievers</h2>
-    <p class="section-sub">These partners earned their accreditations and claimed their rewards. Your name could be next.</p>
-    <div class="achievers-grid" role="list">
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-1">AC</div>
-        <div class="achiever-name">Ajay Chauhan</div>
-        <div class="achiever-city">Mumbai</div>
-        <div class="achiever-badge-tag">Office 2021 H&amp;B</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-2">HV</div>
-        <div class="achiever-name">Harminder Virk</div>
-        <div class="achiever-city">Delhi</div>
-        <div class="achiever-badge-tag">Win 11 Pro 2025</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-3">AK</div>
-        <div class="achiever-name">Ashish Kumar</div>
-        <div class="achiever-city">Chennai</div>
-        <div class="achiever-badge-tag">Modern Endpoints</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-4">AM</div>
-        <div class="achiever-name">Anantha Kumar MJ</div>
-        <div class="achiever-city">Bangalore</div>
-        <div class="achiever-badge-tag">Microsoft 365</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-5">AS</div>
-        <div class="achiever-name">Abhay Shukla</div>
-        <div class="achiever-city">Hyderabad</div>
-        <div class="achiever-badge-tag">Copilot+ PC 2025</div>
-      </article>
-      <article class="achiever-card" role="listitem" tabindex="0">
-        <div class="achiever-avatar av-6">CD</div>
-        <div class="achiever-name">Chaitrali Dhamankar</div>
-        <div class="achiever-city">Pune</div>
-        <div class="achiever-badge-tag">Copilot+ Commercial</div>
-      </article>
+    <div class="section-eyebrow">Reward Shop</div>
+    <h2 class="section-title" id="rewards-heading">Redeem your<br>hard-earned points</h2>
+    <p class="section-sub">Spend your points on exclusive digital rewards and physical merchandise — delivered to your door.</p>
+
+    <!-- Balance bar -->
+    <div class="rshop-balance-bar">
+      <div>
+        <div class="rshop-balance-label">Your points balance</div>
+        <div class="rshop-balance-val">4,850 pts</div>
+      </div>
+      <div style="text-align:right">
+        <div class="rshop-balance-sub">Gold Tier &bull; Season 04</div>
+        <div class="rshop-balance-sub" style="color:#f59e0b;margin-top:2px"><i class="fa-solid fa-arrow-trend-up" style="font-size:10px"></i> +320 pts this week</div>
+      </div>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="rshop-tabs" role="tablist">
+      <button class="rshop-tab active" onclick="filterRewards('all',this)">All Rewards</button>
+      <button class="rshop-tab" onclick="filterRewards('digital',this)">Digital</button>
+      <button class="rshop-tab" onclick="filterRewards('physical',this)">Physical</button>
+    </div>
+
+    <!-- Reward grid -->
+    <div class="rshop-grid" id="rewardGrid">
+
+      <!-- Digital: Microsoft Store Credit $50 -->
+      <div class="reward-card" data-type="digital">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#0f1f45,#1a3575)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-gift-card"></i></div>
+          <div class="rc-type-pill">Digital</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Microsoft Store Credit — $50</div>
+          <div class="rc-desc">Redeemable on Microsoft Store for apps, games, devices, and subscriptions.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">2,000 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital: Microsoft Store Credit $100 -->
+      <div class="reward-card" data-type="digital">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#1a0a3a,#3a1a75)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-credit-card"></i></div>
+          <div class="rc-type-pill">Digital</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Microsoft Store Credit — $100</div>
+          <div class="rc-desc">Double the value — perfect for a Surface accessory or a Microsoft 365 upgrade.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">3,500 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital: SEL Gold Badge -->
+      <div class="reward-card" data-type="digital">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#2a1a00,#5a3800)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-medal"></i></div>
+          <div class="rc-type-pill">Digital</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">SEL Gold Champion Badge</div>
+          <div class="rc-desc">Exclusive premium digital credential — shareable on LinkedIn and your partner profile.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">1,500 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital: Microsoft 365 Personal -->
+      <div class="reward-card" data-type="digital">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1f1a,#0d3a30)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-grid-2"></i></div>
+          <div class="rc-type-pill">Digital</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Microsoft 365 Personal — 1 Year</div>
+          <div class="rc-desc">Full suite of Word, Excel, PowerPoint, OneDrive 1TB and more for 12 months.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">5,000 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Need 150 more</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical: SEL T-Shirt -->
+      <div class="reward-card" data-type="physical">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#0f1f30,#1a3050)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-shirt"></i></div>
+          <div class="rc-type-pill">Physical</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">48 left</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">SEL Champion T-Shirt</div>
+          <div class="rc-desc">Premium 100% cotton tee with embroidered Sales Excellence League branding. Sizes S–XXL.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">2,500 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical: Microsoft Branded Cap -->
+      <div class="reward-card" data-type="physical">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#1a1025,#2d1a45)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-hat-wizard"></i></div>
+          <div class="rc-type-pill">Physical</div>
+          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">22 left</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Microsoft Partner Cap</div>
+          <div class="rc-desc">Structured dad cap with Microsoft partner logo. One size fits all with adjustable strap.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">1,800 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical: Surface Arc Mouse -->
+      <div class="reward-card" data-type="physical">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1a2f,#0f2a4a)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-computer-mouse"></i></div>
+          <div class="rc-type-pill">Physical</div>
+          <div class="rc-stock-pill" style="background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3)">12 left</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Surface Arc Mouse</div>
+          <div class="rc-desc">Microsoft's iconic arc-form Bluetooth mouse. Snaps flat to travel, curves to use.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">4,000 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Need more pts</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical: SEL Trophy Kit -->
+      <div class="reward-card locked" data-type="physical">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#1f1200,#3a2200)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="rc-type-pill">Physical</div>
+          <div class="rc-stock-pill" style="background:rgba(245,158,11,.2);color:#f59e0b;border:1px solid rgba(245,158,11,.3)">Limited</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">SEL Award Trophy Kit</div>
+          <div class="rc-desc">Engraved crystal trophy + certificate of excellence. Delivered in premium gift packaging.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">6,000 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical: Microsoft Wireless Headset -->
+      <div class="reward-card locked" data-type="physical">
+        <div class="rc-thumb" style="background:linear-gradient(135deg,#0a1f1a,#102a25)">
+          <div class="rc-thumb-icon"><i class="fa-solid fa-headset"></i></div>
+          <div class="rc-type-pill">Physical</div>
+          <div class="rc-stock-pill" style="background:rgba(248,113,113,.2);color:#f87171;border:1px solid rgba(248,113,113,.3)">Low Stock</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name">Microsoft Modern Wireless Headset</div>
+          <div class="rc-desc">Teams-certified wireless headset with noise-isolating mic and all-day comfort.</div>
+          <div class="rc-divider"></div>
+          <div class="rc-pts-row">
+            <div><div class="rc-pts">8,000 pts</div><div class="rc-pts-lbl">Required</div></div>
+            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+<script>
+function filterRewards(type,btn){
+  document.querySelectorAll('.rshop-tab').forEach(function(t){t.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('.reward-card').forEach(function(c){
+    c.style.display=(type==='all'||c.dataset.type===type)?'':'none';
+  });
+}
+</script>
 
 
 
@@ -2117,7 +2281,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
           <div class="footer-logo-icon"><i class="fa-solid fa-trophy"></i></div>
           <div class="footer-logo-text">Sales <span>Excellence</span> League</div>
         </div>
-        <p>Enabling Microsoft partner sellers across India through trainings, accreditations, masterclasses, and meaningful rewards &mdash; at no cost.</p>
+        <p>Enabling Microsoft partner sellers across Australia through trainings, accreditations, masterclasses, and meaningful rewards &mdash; at no cost.</p>
         <p class="footer-period">Programme period: <strong>Jan 1 &ndash; Mar 31, 2026</strong></p>
       </div>
       <div class="footer-col">
@@ -2127,7 +2291,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         <a href="#leaderboard">Leaderboard</a>
         <a href="#webinars">Webinars</a>
         <a href="#ai-assistant">AI assistant</a>
-        <a href="#achievers">Hall of fame</a>
+        <a href="#rewards">Reward shop</a>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
@@ -2141,16 +2305,16 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         <h4>Legal</h4>
         <a href="#">Terms &amp; conditions</a>
         <a href="#">Privacy policy</a>
-        <a href="#">Data protection (DPDP)</a>
+        <a href="#">Privacy Act 1988 (AU)</a>
         <a href="mailto:se-league@timeus.in">Contact us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Timeus Interactive Services Pvt Ltd. All rights reserved. Valid in India only.</span>
+      <span>&copy; 2026 Timeus Interactive Services Pty Ltd. All rights reserved. Valid in Australia only.</span>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <div class="footer-partners">
-          <span class="partner-pill">Redington</span>
-          <span class="partner-pill">Ingram Micro</span>
+          <span class="partner-pill">Dicker Data</span>
+          <span class="partner-pill">Ingram Micro AU</span>
           <span class="partner-pill">Microsoft</span>
         </div>
         <div class="security-badge">
