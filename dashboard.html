@@ -682,6 +682,124 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 [data-theme="light"] .ph-stat-val{color:var(--ink)}
 
 /* ═══════════════════════════════════════════
+   ACHIEVEMENT BADGES — SHARE ON LINKEDIN
+═══════════════════════════════════════════ */
+/* Card hover state */
+.ach-card.unlocked{position:relative;cursor:pointer}
+.ach-share-hint{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  padding:5px 4px;
+  background:linear-gradient(0deg,rgba(10,102,194,.92),rgba(10,102,194,.7));
+  font-size:9px;font-weight:700;color:#fff;letter-spacing:.04em;
+  transform:translateY(100%);
+  transition:transform .18s ease;
+  border-radius:0 0 var(--r-lg) var(--r-lg);
+}
+.ach-card.unlocked:hover .ach-share-hint{transform:translateY(0)}
+.ach-card.unlocked:hover{border-color:rgba(10,102,194,.5);box-shadow:0 4px 20px rgba(10,102,194,.2)}
+/* Badge share modal */
+.badge-share-bg{
+  display:none;position:fixed;inset:0;z-index:600;
+  background:rgba(8,14,28,.88);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;
+}
+.badge-share-bg.open{display:flex}
+.badge-share-modal{
+  background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-xl);
+  width:min(460px,92vw);animation:fade-up .22s ease both;overflow:hidden;
+}
+/* Credential card */
+.bsm-cred-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--navy-3) 0%,var(--navy) 100%);
+  padding:2rem 1.75rem 1.5rem;text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.bsm-card-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;
+}
+.bsm-card-glow{
+  position:absolute;top:-40px;left:50%;transform:translateX(-50%);
+  width:200px;height:200px;border-radius:50%;
+  pointer-events:none;opacity:.18;
+}
+.bsm-issuer-row{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  margin-bottom:1.5rem;
+}
+.bsm-issuer-mark{
+  width:24px;height:24px;border-radius:6px;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:#fff;flex-shrink:0;
+}
+.bsm-issuer-name{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.bsm-badge-icon-wrap{
+  width:80px;height:80px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin:0 auto 1rem;
+  position:relative;z-index:2;
+}
+.bsm-cred-name{
+  font-size:1.35rem;font-weight:800;color:#fff;
+  letter-spacing:-.03em;line-height:1.2;margin-bottom:4px;
+}
+.bsm-cred-org{font-size:12px;color:var(--electric);font-weight:600;margin-bottom:4px}
+.bsm-cred-date{font-size:11px;color:var(--muted);margin-bottom:1rem}
+.bsm-verified{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:700;color:#22c55e;
+  background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);
+  padding:4px 12px;border-radius:var(--r-full);letter-spacing:.04em;
+}
+/* Share body */
+.bsm-body{padding:1.5rem 1.75rem}
+.bsm-modal-title{font-size:16px;font-weight:800;color:var(--white);margin-bottom:3px}
+.bsm-modal-sub{font-size:12px;color:var(--muted);margin-bottom:1.25rem}
+.bsm-share-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.bsm-li-post{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 16px;border-radius:var(--r-md);border:none;
+  background:#0a66c2;color:#fff;font-family:var(--font);font-size:13px;font-weight:700;
+  cursor:pointer;transition:opacity .2s;
+}
+.bsm-li-post:hover{opacity:.9}
+.bsm-li-profile{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 16px;border-radius:var(--r-md);
+  background:rgba(10,102,194,.12);border:1px solid rgba(10,102,194,.35);
+  color:#5ba4f5;font-family:var(--font);font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+.bsm-li-profile:hover{background:rgba(10,102,194,.2);border-color:rgba(10,102,194,.5)}
+.bsm-copy-row{display:flex;gap:8px}
+.bsm-copy-input{
+  flex:1;padding:8px 12px;border-radius:var(--r-md);
+  background:rgba(8,14,28,.5);border:1px solid var(--border);
+  color:var(--muted);font-family:var(--font);font-size:12px;outline:none;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.bsm-copy-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:var(--r-md);border:1px solid var(--border);
+  background:rgba(173,198,254,.07);color:var(--electric);
+  font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.bsm-copy-btn:hover{background:rgba(173,198,254,.14)}
+.bsm-close-row{
+  display:flex;justify-content:flex-end;
+  padding:.875rem 1rem .5rem;
+}
+/* Light theme */
+[data-theme="light"] .badge-share-modal{background:#fff}
+[data-theme="light"] .bsm-cred-card{background:linear-gradient(160deg,#f0f3f9,#e8ecf4)}
+[data-theme="light"] .bsm-cred-name{color:var(--ink)}
+[data-theme="light"] .bsm-modal-title{color:var(--ink)}
+[data-theme="light"] .bsm-copy-input{background:rgba(10,17,40,.04);border-color:rgba(10,17,40,.12);color:rgba(10,17,40,.5)}
+[data-theme="light"] .bsm-copy-btn{background:rgba(45,82,176,.06);border-color:rgba(45,82,176,.2)}
+
+/* ═══════════════════════════════════════════
    ADMIN CREATE / MANAGE MODAL
 ═══════════════════════════════════════════ */
 .admin-modal-bg{display:none;position:fixed;inset:0;z-index:500;background:rgba(8,14,28,.82);backdrop-filter:blur(10px);align-items:center;justify-content:center}
@@ -794,6 +912,50 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
     <div class="im-actions">
       <button class="im-btn-cancel" onclick="closeInvite()">Cancel</button>
       <button class="im-btn-send" onclick="sendInvite()"><i class="fa-solid fa-paper-plane" style="margin-right:6px"></i>Send Invite</button>
+    </div>
+  </div>
+</div>
+
+<!-- Badge Share Modal -->
+<div class="badge-share-bg" id="badgeShareModal" onclick="if(event.target===this)closeBadgeShare()">
+  <div class="badge-share-modal">
+    <div class="bsm-close-row">
+      <button class="am-close" onclick="closeBadgeShare()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <!-- Credential card preview -->
+    <div class="bsm-cred-card">
+      <div class="bsm-card-accent" id="bsmAccent"></div>
+      <div class="bsm-card-glow" id="bsmGlow"></div>
+      <div class="bsm-issuer-row">
+        <div class="bsm-issuer-mark"><i class="fa-solid fa-trophy" style="font-size:10px"></i></div>
+        <span class="bsm-issuer-name">Sales Excellence League &bull; Microsoft India</span>
+      </div>
+      <div class="bsm-badge-icon-wrap" id="bsmIconWrap">
+        <i id="bsmIcon" class="fa-solid fa-award"></i>
+      </div>
+      <div class="bsm-cred-name" id="bsmName">Achievement</div>
+      <div class="bsm-cred-org">Sales Excellence League</div>
+      <div class="bsm-cred-date" id="bsmDate">Earned May 2026</div>
+      <div class="bsm-verified"><i class="fa-solid fa-shield-halved" style="font-size:9px"></i>&nbsp;Verified Digital Credential</div>
+    </div>
+    <!-- Actions -->
+    <div class="bsm-body">
+      <div class="bsm-modal-title">Share Your Achievement</div>
+      <div class="bsm-modal-sub">Let your network know about your success</div>
+      <div class="bsm-share-btns">
+        <button class="bsm-li-post" onclick="shareBadgeLinkedIn('post')">
+          <i class="fa-brands fa-linkedin" style="font-size:16px"></i> Share as Post
+        </button>
+        <button class="bsm-li-profile" onclick="shareBadgeLinkedIn('profile')">
+          <i class="fa-brands fa-linkedin" style="font-size:16px"></i> Add to Profile
+        </button>
+      </div>
+      <div class="bsm-copy-row">
+        <input class="bsm-copy-input" id="bsmCopyInput" type="text" readonly value="https://shoppertainmentllp.github.io/Microsoft_SEL/">
+        <button class="bsm-copy-btn" id="bsmCopyBtn" onclick="copyBadgeLink()">
+          <i class="fa-solid fa-copy"></i> Copy Link
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -1339,27 +1501,31 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
     </div>
 
     <!-- Achievements -->
-    <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:1rem"><i class="fa-solid fa-award" style="color:var(--gold-tier);margin-right:7px"></i>Achievements</div>
+    <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:1rem"><i class="fa-solid fa-award" style="color:var(--gold-tier);margin-right:7px"></i>Achievements <span style="font-size:10px;font-weight:500;color:var(--muted);margin-left:6px">Hover to share on LinkedIn</span></div>
     <div class="ach-grid">
-      <div class="ach-card unlocked">
+      <div class="ach-card unlocked" onclick="openBadgeShare('First Blood','fa-fire','rgba(245,158,11,.2)','rgba(245,158,11,1)','+100 pts','Apr 10, 2026')">
         <div class="ach-icon" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)"><i class="fa-solid fa-fire" style="color:#f59e0b"></i></div>
         <div class="ach-name">First Blood</div>
         <div class="ach-pts">+100 pts</div>
+        <div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share</div>
       </div>
-      <div class="ach-card unlocked">
+      <div class="ach-card unlocked" onclick="openBadgeShare('Scholar','fa-graduation-cap','rgba(34,197,94,.18)','rgba(34,197,94,1)','+200 pts','Apr 18, 2026')">
         <div class="ach-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i></div>
         <div class="ach-name">Scholar</div>
         <div class="ach-pts">+200 pts</div>
+        <div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share</div>
       </div>
-      <div class="ach-card unlocked">
-        <div class="ach-icon" style="background:rgba(173,198,254,.12);border:1px solid rgba(173,198,254,.25)"><i class="fa-solid fa-calendar-check" style="color:var(--electric)"></i></div>
+      <div class="ach-card unlocked" onclick="openBadgeShare('Show Up','fa-calendar-check','rgba(173,198,254,.18)','rgba(173,198,254,1)','+150 pts','Apr 22, 2026')">
+        <div class="ach-icon" style="background:rgba(173,198,254,.12);border:1px solid rgba(173,198,254,.25)"><i class="fa-solid fa-calendar-check" style="color:#adc6fe"></i></div>
         <div class="ach-name">Show Up</div>
         <div class="ach-pts">+150 pts</div>
+        <div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share</div>
       </div>
-      <div class="ach-card unlocked">
+      <div class="ach-card unlocked" onclick="openBadgeShare('Certified','fa-certificate','rgba(192,132,252,.18)','rgba(192,132,252,1)','+500 pts','Apr 20, 2026')">
         <div class="ach-icon" style="background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.25)"><i class="fa-solid fa-certificate" style="color:#c084fc"></i></div>
         <div class="ach-name">Certified</div>
         <div class="ach-pts">+500 pts</div>
+        <div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share</div>
       </div>
       <div class="ach-card locked">
         <div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-bolt" style="color:var(--muted)"></i></div>
@@ -1539,10 +1705,10 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
   <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Achievements</div><div class="sec-sub">4 unlocked · 8 locked</div></div></div></div>
   <div class="sec-body">
     <div class="ach-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">
-      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)"><i class="fa-solid fa-fire" style="color:#f59e0b"></i></div><div class="ach-name">First Blood</div><div class="ach-pts">+100 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First training done</div></div>
-      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i></div><div class="ach-name">Scholar</div><div class="ach-pts">+200 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">5 trainings done</div></div>
-      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(173,198,254,.12);border:1px solid rgba(173,198,254,.25)"><i class="fa-solid fa-calendar-check" style="color:var(--electric)"></i></div><div class="ach-name">Show Up</div><div class="ach-pts">+150 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">3 webinars attended</div></div>
-      <div class="ach-card unlocked"><div class="ach-icon" style="background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.25)"><i class="fa-solid fa-certificate" style="color:#c084fc"></i></div><div class="ach-name">Certified</div><div class="ach-pts">+500 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First accreditation</div></div>
+      <div class="ach-card unlocked" onclick="openBadgeShare('First Blood','fa-fire','rgba(245,158,11,.2)','rgba(245,158,11,1)','+100 pts','Apr 10, 2026')"><div class="ach-icon" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)"><i class="fa-solid fa-fire" style="color:#f59e0b"></i></div><div class="ach-name">First Blood</div><div class="ach-pts">+100 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First training done</div><div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share on LinkedIn</div></div>
+      <div class="ach-card unlocked" onclick="openBadgeShare('Scholar','fa-graduation-cap','rgba(34,197,94,.18)','rgba(34,197,94,1)','+200 pts','Apr 18, 2026')"><div class="ach-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)"><i class="fa-solid fa-graduation-cap" style="color:#22c55e"></i></div><div class="ach-name">Scholar</div><div class="ach-pts">+200 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">5 trainings done</div><div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share on LinkedIn</div></div>
+      <div class="ach-card unlocked" onclick="openBadgeShare('Show Up','fa-calendar-check','rgba(173,198,254,.18)','rgba(173,198,254,1)','+150 pts','Apr 22, 2026')"><div class="ach-icon" style="background:rgba(173,198,254,.12);border:1px solid rgba(173,198,254,.25)"><i class="fa-solid fa-calendar-check" style="color:#adc6fe"></i></div><div class="ach-name">Show Up</div><div class="ach-pts">+150 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">3 webinars attended</div><div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share on LinkedIn</div></div>
+      <div class="ach-card unlocked" onclick="openBadgeShare('Certified','fa-certificate','rgba(192,132,252,.18)','rgba(192,132,252,1)','+500 pts','Apr 20, 2026')"><div class="ach-icon" style="background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.25)"><i class="fa-solid fa-certificate" style="color:#c084fc"></i></div><div class="ach-name">Certified</div><div class="ach-pts">+500 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">First accreditation</div><div class="ach-share-hint"><i class="fa-brands fa-linkedin"></i> Share on LinkedIn</div></div>
       <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-bolt" style="color:var(--muted)"></i></div><div class="ach-name">Speed Runner</div><div class="ach-pts">+300 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">5 trainings in 7 days</div></div>
       <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-crown" style="color:var(--muted)"></i></div><div class="ach-name">Champion</div><div class="ach-pts">+1,000 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Reach Platinum tier</div></div>
       <div class="ach-card locked"><div class="ach-icon" style="background:rgba(173,198,254,.06);border:1px solid var(--border)"><i class="fa-solid fa-handshake" style="color:var(--muted)"></i></div><div class="ach-name">Closer</div><div class="ach-pts">+400 pts</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Register 5 deals</div></div>
@@ -2503,6 +2669,66 @@ document.addEventListener('click', function(e){
   var target = panel.querySelector('.tab-panel[data-tab="'+tab+'"]');
   if(target) target.classList.add('active');
 });
+
+/* ── LINKEDIN BADGE SHARING ── */
+var _badge = {};
+function openBadgeShare(name, faIcon, iconBg, iconColor, pts, earnedDate){
+  _badge = {name:name, faIcon:faIcon, iconBg:iconBg, iconColor:iconColor, pts:pts, earnedDate:earnedDate};
+  /* Credential card */
+  var iconWrap = document.getElementById('bsmIconWrap');
+  iconWrap.style.background = iconBg;
+  iconWrap.style.boxShadow = '0 0 32px '+iconColor.replace('rgba(','').replace('1)','').split(',').slice(0,3).map(function(v,i){return i===0?'rgba('+v:v}).join(',')+', .45), 0 0 0 3px '+iconColor.replace('1)','0.3)');
+  var iconEl = document.getElementById('bsmIcon');
+  iconEl.className = 'fa-solid '+faIcon;
+  iconEl.style.color = iconColor;
+  document.getElementById('bsmName').textContent = name;
+  document.getElementById('bsmDate').textContent = 'Earned '+earnedDate+' · '+pts;
+  /* Accent line + glow in badge color */
+  document.getElementById('bsmAccent').style.background = 'linear-gradient(90deg,'+iconColor+',transparent)';
+  document.getElementById('bsmGlow').style.background = iconBg.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/,'rgba($1,$2,$3,1)');
+  document.getElementById('bsmGlow').style.filter = 'blur(40px)';
+  /* Copy link */
+  document.getElementById('bsmCopyInput').value = 'https://shoppertainmentllp.github.io/Microsoft_SEL/';
+  /* Reset copy button */
+  var cb = document.getElementById('bsmCopyBtn');
+  cb.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Link';
+  cb.style.background = '';cb.style.color = '';cb.style.borderColor = '';
+  document.getElementById('badgeShareModal').classList.add('open');
+}
+function closeBadgeShare(){
+  document.getElementById('badgeShareModal').classList.remove('open');
+}
+function shareBadgeLinkedIn(type){
+  var base = 'https://shoppertainmentllp.github.io/Microsoft_SEL/';
+  var name = _badge.name || 'Achievement';
+  var url;
+  if(type === 'post'){
+    var msg = '🏆 I just earned the "'+name+'" achievement badge on Sales Excellence League — Microsoft India\'s partner enablement platform!\n\nBuilding skills, earning rewards, and leveling up every day 🚀\n\n#MicrosoftPartner #SalesExcellence #Microsoft #MicrosoftIndia #SEL';
+    url = 'https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(base)+'&summary='+encodeURIComponent(msg);
+  } else {
+    url = 'https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME'
+      +'&name='+encodeURIComponent(name+' — Sales Excellence League')
+      +'&organizationId=1035'
+      +'&issueYear=2026&issueMonth=4'
+      +'&certUrl='+encodeURIComponent(base)
+      +'&certId='+encodeURIComponent('SEL-'+name.toUpperCase().replace(/\s/g,'-'));
+  }
+  window.open(url,'_blank','width=820,height=620,noopener,noreferrer');
+}
+function copyBadgeLink(){
+  var input = document.getElementById('bsmCopyInput');
+  input.select(); input.setSelectionRange(0,99999);
+  try{ document.execCommand('copy'); } catch(e){}
+  var btn = document.getElementById('bsmCopyBtn');
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+  btn.style.background = 'rgba(34,197,94,.12)';
+  btn.style.color = '#22c55e';
+  btn.style.borderColor = 'rgba(34,197,94,.3)';
+  setTimeout(function(){
+    btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Link';
+    btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = '';
+  }, 2500);
+}
 
 /* ── CHART.JS INITIALIZATION ── */
 (function(){
