@@ -680,6 +680,86 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 [data-theme="light"] .ph-vdivider{background:rgba(10,17,40,.1)}
 [data-theme="light"] .ph-stats-row{border-top-color:rgba(10,17,40,.07)}
 [data-theme="light"] .ph-stat-val{color:var(--ink)}
+
+/* ═══════════════════════════════════════════
+   ADMIN CREATE / MANAGE MODAL
+═══════════════════════════════════════════ */
+.admin-modal-bg{display:none;position:fixed;inset:0;z-index:500;background:rgba(8,14,28,.82);backdrop-filter:blur(10px);align-items:center;justify-content:center}
+.admin-modal-bg.open{display:flex}
+.admin-modal{
+  background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-xl);
+  width:min(580px,93vw);max-height:90vh;overflow-y:auto;position:relative;
+  animation:fade-up .22s ease both;
+  display:flex;flex-direction:column;
+}
+.admin-modal::-webkit-scrollbar{width:3px}
+.admin-modal::-webkit-scrollbar-thumb{background:var(--navy-4)}
+.am-header{
+  padding:1.5rem 2rem 1.25rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+  position:sticky;top:0;background:var(--navy-2);z-index:2;
+}
+.am-header-left{display:flex;align-items:center;gap:14px}
+.am-icon{width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.am-title{font-size:17px;font-weight:800;color:var(--white);line-height:1.2}
+.am-sub-text{font-size:12px;color:var(--muted);margin-top:1px}
+.am-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:6px;border-radius:var(--r-md);transition:color .2s;line-height:1}
+.am-close:hover{color:var(--white)}
+.am-body{padding:1.5rem 2rem;flex:1}
+.am-form{display:none}
+.am-form.active{display:block}
+.am-group-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--muted-2);margin:1.25rem 0 .875rem;padding-top:1.25rem;
+  border-top:1px solid rgba(68,71,79,.35);
+}
+.am-group-label:first-child{margin-top:0;padding-top:0;border-top:none}
+.am-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.am-row.full{grid-template-columns:1fr}
+.am-field{display:flex;flex-direction:column;gap:5px}
+.am-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.am-required{color:#f87171;margin-left:2px}
+.am-input,.am-select,.am-textarea{
+  width:100%;padding:9px 12px;border-radius:var(--r-md);
+  background:rgba(8,14,28,.5);border:1px solid rgba(68,71,79,.7);
+  color:var(--white);font-family:var(--font);font-size:13px;
+  transition:border-color .2s;outline:none;
+}
+.am-input:focus,.am-select:focus,.am-textarea:focus{border-color:rgba(173,198,254,.45);background:rgba(173,198,254,.04)}
+.am-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(221,226,246,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;cursor:pointer}
+.am-textarea{resize:vertical;min-height:76px}
+.am-pts-hint{font-size:11px;color:var(--gold-tier);margin-top:4px}
+.am-pts-hint i{font-size:9px;margin-right:3px}
+.am-chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.am-chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:var(--r-full);
+  font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;
+  background:rgba(173,198,254,.06);border:1px solid var(--border);color:var(--muted);
+  user-select:none;
+}
+.am-chip.sel{background:rgba(173,198,254,.14);border-color:rgba(173,198,254,.35);color:var(--white)}
+/* footer */
+.am-footer{
+  padding:1.125rem 2rem 1.5rem;border-top:1px solid var(--border);
+  display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;
+  position:sticky;bottom:0;background:var(--navy-2);
+}
+.am-cancel{padding:8px 20px;border-radius:var(--r-full);border:1px solid var(--border);background:none;color:var(--muted);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.am-cancel:hover{border-color:rgba(173,198,254,.3);color:var(--white)}
+.am-submit{padding:9px 24px;border-radius:var(--r-full);border:none;background:var(--electric);color:var(--ink);font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;gap:7px}
+.am-submit:hover{opacity:.88}
+/* success overlay */
+.am-success{display:none;flex-direction:column;align-items:center;padding:3.5rem 2rem;text-align:center}
+.am-success.show{display:flex}
+.am-success-ring{width:72px;height:72px;border-radius:50%;background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:30px;color:#22c55e;margin-bottom:1.25rem;animation:count-tick .4s ease both}
+.am-success-title{font-size:19px;font-weight:800;color:var(--white);margin-bottom:6px}
+.am-success-desc{font-size:13px;color:var(--muted);max-width:320px;line-height:1.6;margin-bottom:1.75rem}
+/* light overrides */
+[data-theme="light"] .admin-modal,[data-theme="light"] .am-header,[data-theme="light"] .am-footer{background:#fff}
+[data-theme="light"] .am-input,[data-theme="light"] .am-select,[data-theme="light"] .am-textarea{background:rgba(10,17,40,.04);border-color:rgba(10,17,40,.12);color:var(--ink)}
+[data-theme="light"] .am-title,[data-theme="light"] .am-success-title{color:var(--ink)}
+[data-theme="light"] .am-chip{background:rgba(10,17,40,.04);border-color:rgba(10,17,40,.1)}
+[data-theme="light"] .am-chip.sel{background:rgba(45,82,176,.08);border-color:rgba(45,82,176,.25);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -715,6 +795,238 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
       <button class="im-btn-cancel" onclick="closeInvite()">Cancel</button>
       <button class="im-btn-send" onclick="sendInvite()"><i class="fa-solid fa-paper-plane" style="margin-right:6px"></i>Send Invite</button>
     </div>
+  </div>
+</div>
+
+<!-- Admin Create Modal -->
+<div class="admin-modal-bg" id="adminModal" onclick="if(event.target===this)closeAdminModal()">
+  <div class="admin-modal">
+
+    <!-- Header (populated by JS) -->
+    <div class="am-header">
+      <div class="am-header-left">
+        <div class="am-icon" id="amIcon"></div>
+        <div>
+          <div class="am-title" id="amTitle">Create</div>
+          <div class="am-sub-text" id="amSubText"></div>
+        </div>
+      </div>
+      <button class="am-close" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Forms (one shown at a time) -->
+    <div class="am-body">
+
+      <!-- ── TRAINING FORM ── -->
+      <div class="am-form" data-form="training">
+        <div class="am-group-label">Course Details</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Course Title <span class="am-required">*</span></label>
+          <input class="am-input" type="text" placeholder="e.g. Microsoft Copilot for Sales Teams">
+        </div></div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Category</label>
+            <select class="am-select">
+              <option>Microsoft 365</option><option>Azure</option><option>Copilot+</option>
+              <option>Surface</option><option>Security</option><option>Dynamics 365</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Difficulty Level</label>
+            <select class="am-select">
+              <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+            </select>
+          </div>
+        </div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Duration</label>
+            <select class="am-select">
+              <option>30 min</option><option>1 hr</option><option>2 hrs</option>
+              <option>3 hrs</option><option>4 hrs</option><option>5+ hrs</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Points on Completion</label>
+            <input class="am-input" type="number" placeholder="e.g. 300" min="50" step="50">
+            <span class="am-pts-hint"><i class="fa-solid fa-star"></i>Partners earn these on 100% completion</span>
+          </div>
+        </div>
+
+        <div class="am-group-label">Content</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Video / LMS URL <span class="am-required">*</span></label>
+          <input class="am-input" type="url" placeholder="https://learn.microsoft.com/...">
+        </div></div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Course Description</label>
+          <textarea class="am-textarea" placeholder="What will partners learn from this training?"></textarea>
+        </div></div>
+
+        <div class="am-group-label">Audience &amp; Visibility</div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Target Audience</label>
+            <select class="am-select">
+              <option>All Partners</option><option>Resellers Only</option><option>Distributors Only</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Publish Status</label>
+            <select class="am-select">
+              <option>Publish immediately</option><option>Save as draft</option>
+            </select>
+          </div>
+        </div>
+      </div><!-- /training form -->
+
+      <!-- ── WEBINAR FORM ── -->
+      <div class="am-form" data-form="webinar">
+        <div class="am-group-label">Session Details</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Webinar Title <span class="am-required">*</span></label>
+          <input class="am-input" type="text" placeholder="e.g. Microsoft Copilot+ PC Partner Enablement">
+        </div></div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Date <span class="am-required">*</span></label>
+            <input class="am-input" type="date" style="color-scheme:dark">
+          </div>
+          <div class="am-field">
+            <label class="am-label">Time (IST) <span class="am-required">*</span></label>
+            <input class="am-input" type="time" style="color-scheme:dark">
+          </div>
+        </div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Duration</label>
+            <select class="am-select">
+              <option>30 min</option><option>45 min</option><option>1 hr</option>
+              <option>1.5 hrs</option><option>2 hrs</option><option>2.5 hrs</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Points for Attending</label>
+            <input class="am-input" type="number" placeholder="e.g. 200" min="50" step="50">
+            <span class="am-pts-hint"><i class="fa-solid fa-star"></i>Awarded after attendance is confirmed</span>
+          </div>
+        </div>
+
+        <div class="am-group-label">Presenter &amp; Description</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Presenter Name(s)</label>
+          <input class="am-input" type="text" placeholder="e.g. Sanjay Kumar, Microsoft India">
+        </div></div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Webinar Description</label>
+          <textarea class="am-textarea" placeholder="What topics will be covered? What will attendees learn?"></textarea>
+        </div></div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Meeting / Webinar Link</label>
+          <input class="am-input" type="url" placeholder="https://teams.microsoft.com/...">
+        </div></div>
+
+        <div class="am-group-label">Audience</div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Target Audience</label>
+            <select class="am-select">
+              <option>All Partners</option><option>Resellers Only</option><option>Distributors Only</option><option>Gold &amp; Above Tier</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Registration Cap</label>
+            <input class="am-input" type="number" placeholder="Leave blank for unlimited">
+          </div>
+        </div>
+      </div><!-- /webinar form -->
+
+      <!-- ── MARKETING ASSET FORM ── -->
+      <div class="am-form" data-form="asset">
+        <div class="am-group-label">Asset Information</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Asset Title <span class="am-required">*</span></label>
+          <input class="am-input" type="text" placeholder="e.g. Copilot+ PC Partner Brochure — Q2 2026">
+        </div></div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Asset Type</label>
+            <select class="am-select">
+              <option>Brochure / Flyer</option><option>Presentation Deck</option>
+              <option>Video / Demo</option><option>Social Media Kit</option>
+              <option>Sales Playbook</option><option>Email Template</option>
+              <option>Case Study</option><option>Infographic</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Product Area</label>
+            <select class="am-select">
+              <option>Microsoft 365</option><option>Azure</option><option>Copilot+</option>
+              <option>Surface</option><option>Security</option><option>All Products</option>
+            </select>
+          </div>
+        </div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">File / Download URL <span class="am-required">*</span></label>
+          <input class="am-input" type="url" placeholder="https://sharepoint.com/... or external link">
+        </div></div>
+
+        <div class="am-group-label">Details &amp; Tags</div>
+        <div class="am-row full"><div class="am-field">
+          <label class="am-label">Description</label>
+          <textarea class="am-textarea" placeholder="Brief description of this asset and how partners should use it…"></textarea>
+        </div></div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Campaign Tag <span style="font-size:10px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input class="am-input" type="text" placeholder="e.g. Q2 Launch Campaign">
+          </div>
+          <div class="am-field">
+            <label class="am-label">Language</label>
+            <select class="am-select">
+              <option>English</option><option>Hindi</option><option>Tamil</option><option>Telugu</option><option>Kannada</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="am-group-label">Audience &amp; Visibility</div>
+        <div class="am-row">
+          <div class="am-field">
+            <label class="am-label">Target Audience</label>
+            <select class="am-select">
+              <option>All Partners</option><option>Resellers Only</option><option>Distributors Only</option>
+            </select>
+          </div>
+          <div class="am-field">
+            <label class="am-label">Visibility</label>
+            <select class="am-select">
+              <option>Public on platform</option><option>Partner login required</option><option>Invite only</option>
+            </select>
+          </div>
+        </div>
+      </div><!-- /asset form -->
+
+    </div><!-- /am-body -->
+
+    <!-- Success state (shown after submit) -->
+    <div class="am-success" id="amSuccess">
+      <div class="am-success-ring"><i class="fa-solid fa-check"></i></div>
+      <div class="am-success-title" id="amSuccessTitle">Created!</div>
+      <div class="am-success-desc" id="amSuccessDesc">Your item has been published successfully.</div>
+      <button class="am-submit" onclick="closeAdminModal()" style="background:rgba(173,198,254,.1);color:var(--electric);border:1px solid rgba(173,198,254,.25)">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="am-footer" id="amFooter">
+      <button class="am-cancel" onclick="closeAdminModal()">Cancel</button>
+      <button class="am-submit" id="amSubmitBtn" onclick="submitAdminModal()">
+        <i class="fa-solid fa-paper-plane"></i> <span id="amSubmitLabel">Publish</span>
+      </button>
+    </div>
+
   </div>
 </div>
 
@@ -769,6 +1081,7 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
       <div class="sidebar-section-label">Platform</div>
       <a class="sidebar-item" href="#" data-target="ad-trainings"><i class="fa-solid fa-graduation-cap"></i> Trainings</a>
       <a class="sidebar-item" href="#" data-target="ad-webinars"><i class="fa-solid fa-circle-play"></i> Webinars</a>
+      <a class="sidebar-item" href="#" data-target="ad-assets"><i class="fa-solid fa-folder-open"></i> Assets</a>
       <div class="sidebar-section-label">Finance</div>
       <a class="sidebar-item" href="#" data-target="ad-redemptions"><i class="fa-solid fa-gift"></i> Redemptions</a>
       <a class="sidebar-item" href="#" data-target="ad-analytics"><i class="fa-solid fa-chart-bar"></i> Analytics</a>
@@ -1832,7 +2145,7 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 
 <!-- ─── AD: Trainings ─── -->
 <div class="dash-section" id="ad-trainings">
-  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Trainings</div><div class="sec-sub">Platform-wide training analytics</div></div></div></div>
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Trainings</div><div class="sec-sub">Platform-wide training analytics</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary" onclick="openAdminModal('training')"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Add Training Video</button></div></div></div>
   <div class="tab-row">
     <button class="tab-btn active" data-tab="platform">Platform Overview</button>
     <button class="tab-btn" data-tab="catalog">Training Catalog</button>
@@ -1865,7 +2178,7 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 
 <!-- ─── AD: Webinars ─── -->
 <div class="dash-section" id="ad-webinars">
-  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Webinars</div><div class="sec-sub">Manage platform webinars — all partners</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Schedule Webinar</button></div></div></div>
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Webinars</div><div class="sec-sub">Manage platform webinars — all partners</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary" onclick="openAdminModal('webinar')"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Schedule Webinar</button></div></div></div>
   <div class="tab-row">
     <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
     <button class="tab-btn" data-tab="past">Past</button>
@@ -1938,6 +2251,72 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
   </div>
 </div>
 
+<!-- ─── AD: Assets (Marketing Assets Library) ─── -->
+<div class="dash-section" id="ad-assets">
+  <div class="sec-head"><div class="sec-head-inner"><div><div class="sec-title">Marketing Assets</div><div class="sec-sub">Partner resource library — 34 assets published</div></div><div class="sec-actions"><button class="cc-btn cc-btn-primary" onclick="openAdminModal('asset')"><i class="fa-solid fa-plus" style="margin-right:6px"></i>Add Asset</button></div></div></div>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="all">All Assets</button>
+    <button class="tab-btn" data-tab="brochures">Brochures</button>
+    <button class="tab-btn" data-tab="decks">Decks</button>
+    <button class="tab-btn" data-tab="videos">Videos</button>
+    <button class="tab-btn" data-tab="social">Social Kits</button>
+  </div>
+
+  <!-- All Assets tab -->
+  <div class="tab-panel active" data-tab="all">
+    <div class="sec-body" style="padding-top:0">
+      <div class="sum-grid">
+        <div class="sum-card"><div class="sum-val">34</div><div class="sum-lbl">Total Assets</div></div>
+        <div class="sum-card"><div class="sum-val">2,841</div><div class="sum-lbl">Downloads</div></div>
+        <div class="sum-card"><div class="sum-val">12</div><div class="sum-lbl">Added This Month</div></div>
+        <div class="sum-card"><div class="sum-val">5</div><div class="sum-lbl">Awaiting Review</div></div>
+      </div>
+      <div class="card-grid">
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Brochure</span><span class="cc-tag cc-tag-muted">Copilot+</span></div><div class="cc-title">Copilot+ PC Partner Brochure — Q2 2026</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 412 downloads &bull; English</div><div class="cc-detail"><i class="fa-solid fa-users"></i> All Partners</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px"><i class="fa-solid fa-download"></i></button></div></div></div>
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Deck</span><span class="cc-tag cc-tag-muted">Azure</span></div><div class="cc-title">Azure AI Services Sales Deck — Partner Edition</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 284 downloads &bull; English</div><div class="cc-detail"><i class="fa-solid fa-users"></i> All Partners</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px"><i class="fa-solid fa-download"></i></button></div></div></div>
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Social Kit</span><span class="cc-tag cc-tag-muted">M365</span></div><div class="cc-title">Microsoft 365 Partner Social Media Kit</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 198 downloads &bull; English + Hindi</div><div class="cc-detail"><i class="fa-solid fa-users"></i> Resellers Only</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px"><i class="fa-solid fa-download"></i></button></div></div></div>
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Video</span><span class="cc-tag cc-tag-muted">Copilot+</span></div><div class="cc-title">Copilot+ PC Demo Video — Customer Facing</div><div class="cc-detail"><i class="fa-solid fa-eye"></i> 1,240 views &bull; 3 min 42 sec</div><div class="cc-detail"><i class="fa-solid fa-users"></i> All Partners</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px"><i class="fa-solid fa-play"></i></button></div></div></div>
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#67e8f9,#0891b2)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-muted">Playbook</span><span class="cc-tag cc-tag-muted">Surface</span></div><div class="cc-title">Surface for Business — Distributor Sales Playbook</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 92 downloads &bull; English</div><div class="cc-detail"><i class="fa-solid fa-users"></i> Distributors Only</div></div><div class="cc-footer"><span class="cc-tag cc-tag-muted" style="opacity:.6">Draft</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-primary" style="font-size:11px;padding:5px 12px">Publish</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button></div></div></div>
+        <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f87171,#ef4444)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-red">Email Template</span><span class="cc-tag cc-tag-muted">Campaign</span></div><div class="cc-title">Q2 End-of-Quarter Partner Outreach Template</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 156 downloads &bull; English</div><div class="cc-detail"><i class="fa-solid fa-users"></i> All Partners</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><div style="display:flex;gap:6px"><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px">Edit</button><button class="cc-btn cc-btn-ghost" style="font-size:11px;padding:5px 12px"><i class="fa-solid fa-download"></i></button></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brochures tab -->
+  <div class="tab-panel" data-tab="brochures">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#adc6fe,#5d76a9)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Brochure</span><span class="cc-tag cc-tag-muted">Copilot+</span></div><div class="cc-title">Copilot+ PC Partner Brochure — Q2 2026</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 412 downloads</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-green">Brochure</span><span class="cc-tag cc-tag-muted">M365</span></div><div class="cc-title">Microsoft 365 Business Premium — Partner Brief</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 328 downloads</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card" style="border-style:dashed;opacity:.6;cursor:pointer" onclick="openAdminModal('asset')"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,var(--navy-4),var(--navy-3))"></div><div class="cc-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center"><i class="fa-solid fa-plus" style="font-size:1.5rem;color:var(--muted);margin-bottom:.75rem"></i><div class="cc-title" style="color:var(--muted)">Add Brochure</div></div></div>
+    </div>
+  </div>
+
+  <!-- Decks tab -->
+  <div class="tab-panel" data-tab="decks">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#22c55e,#16a34a)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Deck</span><span class="cc-tag cc-tag-muted">Azure</span></div><div class="cc-title">Azure AI Services Sales Deck — Partner Edition</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 284 downloads</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-purple">Deck</span><span class="cc-tag cc-tag-muted">Security</span></div><div class="cc-title">Microsoft Security Pitch Deck — SMB Focus</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 176 downloads</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card" style="border-style:dashed;opacity:.6;cursor:pointer" onclick="openAdminModal('asset')"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,var(--navy-4),var(--navy-3))"></div><div class="cc-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center"><i class="fa-solid fa-plus" style="font-size:1.5rem;color:var(--muted);margin-bottom:.75rem"></i><div class="cc-title" style="color:var(--muted)">Add Deck</div></div></div>
+    </div>
+  </div>
+
+  <!-- Videos tab -->
+  <div class="tab-panel" data-tab="videos">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#c084fc,#7c3aed)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-blue">Video</span><span class="cc-tag cc-tag-muted">Copilot+</span></div><div class="cc-title">Copilot+ PC Demo Video — Customer Facing</div><div class="cc-detail"><i class="fa-solid fa-eye"></i> 1,240 views &bull; 3:42</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card" style="border-style:dashed;opacity:.6;cursor:pointer" onclick="openAdminModal('asset')"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,var(--navy-4),var(--navy-3))"></div><div class="cc-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center"><i class="fa-solid fa-plus" style="font-size:1.5rem;color:var(--muted);margin-bottom:.75rem"></i><div class="cc-title" style="color:var(--muted)">Add Video</div></div></div>
+    </div>
+  </div>
+
+  <!-- Social Kits tab -->
+  <div class="tab-panel" data-tab="social">
+    <div class="card-grid">
+      <div class="content-card"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,#f59e0b,#d97706)"></div><div class="cc-body"><div class="cc-meta"><span class="cc-tag cc-tag-gold">Social Kit</span><span class="cc-tag cc-tag-muted">M365</span></div><div class="cc-title">Microsoft 365 Partner Social Media Kit</div><div class="cc-detail"><i class="fa-solid fa-download"></i> 198 downloads</div></div><div class="cc-footer"><span class="cc-tag cc-tag-green">Published</span><button class="cc-btn cc-btn-ghost">Edit</button></div></div>
+      <div class="content-card" style="border-style:dashed;opacity:.6;cursor:pointer" onclick="openAdminModal('asset')"><div class="cc-img" style="--cc-accent:linear-gradient(90deg,var(--navy-4),var(--navy-3))"></div><div class="cc-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center"><i class="fa-solid fa-plus" style="font-size:1.5rem;color:var(--muted);margin-bottom:.75mm"></i><div class="cc-title" style="color:var(--muted)">Add Social Kit</div></div></div>
+    </div>
+  </div>
+</div>
+
 </div><!-- /view-admin -->
 
 </div><!-- /dash-main -->
@@ -2001,6 +2380,70 @@ function closeInvite(){
   document.getElementById('inviteEmail').value='';
   document.getElementById('inviteMsg').value='';
 }
+/* ── ADMIN CREATE MODAL ── */
+var _amCfg = {
+  training:{
+    icon:'fa-graduation-cap',iconBg:'rgba(173,198,254,.12)',iconColor:'var(--electric)',
+    title:'Add Training Video',sub:'Publish a new training course to the platform',
+    submit:'Publish Training',success:'Training Published!',
+    successDesc:'Partners will now see this in their training catalog and can earn points on completion.'
+  },
+  webinar:{
+    icon:'fa-circle-play',iconBg:'rgba(34,197,94,.1)',iconColor:'#22c55e',
+    title:'Schedule Webinar',sub:'Create a new webinar session for all partners',
+    submit:'Schedule Session',success:'Webinar Scheduled!',
+    successDesc:'Partners will be notified and can register. Points will be awarded for attendance.'
+  },
+  asset:{
+    icon:'fa-folder-open',iconBg:'rgba(245,158,11,.1)',iconColor:'#f59e0b',
+    title:'Add Marketing Asset',sub:'Publish a new resource to the partner asset library',
+    submit:'Publish Asset',success:'Asset Published!',
+    successDesc:'The asset is now live in the partner resource library and available for download.'
+  }
+};
+
+function openAdminModal(type){
+  var modal = document.getElementById('adminModal');
+  var cfg = _amCfg[type] || _amCfg.training;
+  /* Set header */
+  var icon = document.getElementById('amIcon');
+  icon.innerHTML = '<i class="fa-solid '+cfg.icon+'"></i>';
+  icon.style.background = cfg.iconBg;
+  icon.style.color = cfg.iconColor;
+  document.getElementById('amTitle').textContent = cfg.title;
+  document.getElementById('amSubText').textContent = cfg.sub;
+  /* Set submit label */
+  document.getElementById('amSubmitLabel').textContent = cfg.submit;
+  /* Store config for success state */
+  modal.dataset.type = type;
+  /* Show correct form */
+  modal.querySelectorAll('.am-form').forEach(function(f){ f.classList.remove('active'); });
+  var form = modal.querySelector('.am-form[data-form="'+type+'"]');
+  if(form) form.classList.add('active');
+  /* Reset success state */
+  document.getElementById('amSuccess').classList.remove('show');
+  document.getElementById('amFooter').style.display = '';
+  document.getElementById('amTitle').closest('.am-header').style.display = '';
+  modal.classList.add('open');
+}
+function closeAdminModal(){
+  document.getElementById('adminModal').classList.remove('open');
+}
+function submitAdminModal(){
+  var modal = document.getElementById('adminModal');
+  var cfg = _amCfg[modal.dataset.type] || _amCfg.training;
+  /* Validate: check first required input in active form */
+  var activeForm = modal.querySelector('.am-form.active');
+  var firstReq = activeForm ? activeForm.querySelector('.am-input[type="text"], .am-input[type="url"]') : null;
+  if(firstReq && !firstReq.value.trim()){ firstReq.focus(); firstReq.style.borderColor='rgba(248,113,113,.6)'; setTimeout(function(){firstReq.style.borderColor='';},2000); return; }
+  /* Show success */
+  document.getElementById('amFooter').style.display = 'none';
+  document.getElementById('amTitle').closest('.am-header').style.display = 'none';
+  document.getElementById('amSuccessTitle').textContent = cfg.success;
+  document.getElementById('amSuccessDesc').textContent = cfg.successDesc;
+  document.getElementById('amSuccess').classList.add('show');
+}
+
 function sendInvite(){
   var email=document.getElementById('inviteEmail').value.trim();
   if(!email){document.getElementById('inviteEmail').focus();return;}
