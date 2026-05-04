@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -610,6 +611,75 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
   .dash-th:nth-child(n+4),.dash-td:nth-child(n+4){display:none}
   .season-pass{min-width:100%;width:100%}
 }
+
+/* ═══════════════════════════════════════════
+   ESPORTS PLAYER HERO — ENHANCED
+═══════════════════════════════════════════ */
+/* Scan-lines overlay */
+.ph-scanlines{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,0,.07) 3px,rgba(0,0,0,.07) 4px);
+  pointer-events:none;z-index:1;
+}
+/* Avatar block */
+.ph-avatar-block{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ph-avatar-wrap{position:relative;width:100px;height:100px}
+.ph-avatar{
+  width:100px;height:100px;border-radius:50%;
+  background:linear-gradient(135deg,#d97706,#7c2d12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;font-weight:800;color:#fff;
+  position:relative;z-index:3;
+  box-shadow:0 0 0 3px rgba(245,158,11,.5),0 0 32px rgba(245,158,11,.4),0 4px 24px rgba(0,0,0,.6);
+}
+@keyframes ph-spin{to{transform:rotate(360deg)}}
+.ph-avatar-ring{
+  position:absolute;inset:-9px;border-radius:50%;
+  border:2px dashed rgba(245,158,11,.5);
+  animation:ph-spin 9s linear infinite;
+}
+.ph-avatar-ring-2{
+  position:absolute;inset:-18px;border-radius:50%;
+  border:1px solid rgba(173,198,254,.18);
+  animation:ph-spin 20s linear infinite reverse;
+}
+.ph-tier-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 14px;border-radius:var(--r-full);
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);
+  color:#f59e0b;font-size:11px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.1em;
+  white-space:nowrap;
+}
+/* Vertical divider in hero */
+.ph-vdivider{
+  width:1px;background:rgba(173,198,254,.12);
+  align-self:stretch;flex-shrink:0;
+}
+/* Enhanced player name */
+.ph-player-name{
+  font-size:clamp(1.7rem,3.5vw,2.5rem);
+  font-weight:800;color:#fff;letter-spacing:-.04em;
+  line-height:1.05;margin-bottom:4px;
+  text-shadow:0 2px 40px rgba(245,158,11,.2);
+}
+/* Stats row in hero */
+.ph-stats-row{
+  display:flex;gap:1.75rem;flex-wrap:wrap;
+  margin-top:1rem;padding-top:1rem;
+  border-top:1px solid rgba(173,198,254,.09);
+}
+.ph-stat{display:flex;flex-direction:column;gap:2px}
+.ph-stat-val{font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1}
+.ph-stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+/* Chart canvas wrapper */
+.cjs-wrap{position:relative}
+/* Light theme tweaks for new hero elements */
+[data-theme="light"] .ph-tier-badge{background:rgba(180,83,9,.08);border-color:rgba(180,83,9,.25);color:#b45309}
+[data-theme="light"] .ph-player-name{color:var(--ink);text-shadow:none}
+[data-theme="light"] .ph-vdivider{background:rgba(10,17,40,.1)}
+[data-theme="light"] .ph-stats-row{border-top-color:rgba(10,17,40,.07)}
+[data-theme="light"] .ph-stat-val{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -720,34 +790,47 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
 <!-- ─── RS: Dashboard (default) ─── -->
 <div class="dash-section active" id="rs-dashboard">
 
-  <!-- Player Hero Banner -->
+  <!-- Player Hero Banner — Esports Personal Card -->
   <div class="player-hero">
     <div class="player-hero-grid"></div>
-    <div class="player-hero-glow"></div>
-    <div class="player-hero-inner">
+    <!-- Atmospheric glows -->
+    <div class="player-hero-glow" style="top:-80px;left:-5%;width:600px;height:400px;background:radial-gradient(ellipse,rgba(245,158,11,.18),transparent 65%)"></div>
+    <div class="player-hero-glow" style="top:auto;bottom:-60px;right:2%;width:450px;height:280px;background:radial-gradient(ellipse,rgba(173,198,254,.12),transparent 65%)"></div>
+    <!-- Scan lines overlay -->
+    <div class="ph-scanlines"></div>
 
-      <!-- Rank Hex -->
-      <div class="rank-hex-wrap">
-        <div class="rank-hex rank-hex-gold"><i class="fa-solid fa-medal"></i></div>
-        <span class="rank-tier-label rank-tier-gold">Gold</span>
+    <div class="player-hero-inner" style="position:relative;z-index:2">
+
+      <!-- Avatar + Tier badge -->
+      <div class="ph-avatar-block">
+        <div class="ph-avatar-wrap">
+          <div class="ph-avatar-ring-2"></div>
+          <div class="ph-avatar-ring"></div>
+          <div class="ph-avatar">HV</div>
+        </div>
+        <div class="ph-tier-badge"><i class="fa-solid fa-medal" style="font-size:9px"></i>&nbsp;Gold Tier</div>
       </div>
 
+      <!-- Vertical divider -->
+      <div class="ph-vdivider"></div>
+
       <!-- Player Info -->
-      <div class="player-info">
+      <div class="player-info" style="flex:2">
         <div class="player-season-tag"><i class="fa-solid fa-bolt" style="font-size:9px"></i> Season 04 — Active</div>
-        <div class="player-name">Harpreet Virk</div>
+        <div class="ph-player-name">Harpreet Virk</div>
         <div class="player-org">Techno Hub Solutions &middot; Mumbai &middot; Reseller</div>
-        <div class="xp-row">
+        <div class="xp-row" style="margin-top:1rem">
           <span class="xp-label">Season XP</span>
           <div class="xp-bar"><div class="xp-fill" style="--xp:80%"></div></div>
           <span class="xp-text">4,850 / 6,000</span>
         </div>
-        <div class="player-quick-stats">
-          <div class="pqs-item"><div class="pqs-val">#12</div><div class="pqs-lbl">Nat. Rank</div></div>
-          <div class="pqs-item"><div class="pqs-val">9</div><div class="pqs-lbl">Trainings</div></div>
-          <div class="pqs-item"><div class="pqs-val">7</div><div class="pqs-lbl">Day Streak</div></div>
-          <div class="pqs-item"><div class="pqs-val">&uarr;4</div><div class="pqs-lbl">Rank Move</div></div>
-          <div class="pqs-item"><div class="pqs-val">2</div><div class="pqs-lbl">Claims</div></div>
+        <div class="ph-stats-row">
+          <div class="ph-stat"><div class="ph-stat-val">#12</div><div class="ph-stat-lbl">Nat. Rank</div></div>
+          <div class="ph-stat"><div class="ph-stat-val">9</div><div class="ph-stat-lbl">Trainings</div></div>
+          <div class="ph-stat"><div class="ph-stat-val">7</div><div class="ph-stat-lbl">Day Streak</div></div>
+          <div class="ph-stat"><div class="ph-stat-val" style="color:#4ade80">&#8593;4</div><div class="ph-stat-lbl">Rank Move</div></div>
+          <div class="ph-stat"><div class="ph-stat-val">2</div><div class="ph-stat-lbl">Claims</div></div>
+          <div class="ph-stat"><div class="ph-stat-val" style="color:var(--gold-tier)">4,850</div><div class="ph-stat-lbl">Total Pts</div></div>
         </div>
       </div>
 
@@ -814,46 +897,8 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">Season 04</span>
         </div>
         <div class="chart-body">
-          <div class="sparkline-wrap">
-            <svg class="sparkline-svg" viewBox="0 0 380 100" preserveAspectRatio="none" style="height:110px">
-              <defs>
-                <linearGradient id="spark-grad-r" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#adc6fe" stop-opacity=".28"/>
-                  <stop offset="100%" stop-color="#adc6fe" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="spark-line-r" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#5d76a9"/>
-                  <stop offset="100%" stop-color="#adc6fe"/>
-                </linearGradient>
-              </defs>
-              <!-- Grid lines -->
-              <line x1="0" y1="10" x2="380" y2="10" stroke="rgba(173,198,254,.06)" stroke-width="1"/>
-              <line x1="0" y1="35" x2="380" y2="35" stroke="rgba(173,198,254,.06)" stroke-width="1"/>
-              <line x1="0" y1="60" x2="380" y2="60" stroke="rgba(173,198,254,.06)" stroke-width="1"/>
-              <line x1="0" y1="85" x2="380" y2="85" stroke="rgba(173,198,254,.06)" stroke-width="1"/>
-              <!-- Area fill -->
-              <path d="M0,87 L54,80 L108,75 L162,68 L216,56 L270,45 L324,32 L380,12 L380,100 L0,100 Z" fill="url(#spark-grad-r)"/>
-              <!-- Line -->
-              <polyline points="0,87 54,80 108,75 162,68 216,56 270,45 324,32 380,12" fill="none" stroke="url(#spark-line-r)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- Dots -->
-              <circle cx="0" cy="87" r="3" fill="#5d76a9"/>
-              <circle cx="54" cy="80" r="3" fill="#7080b0"/>
-              <circle cx="108" cy="75" r="3" fill="#839ac0"/>
-              <circle cx="162" cy="68" r="3" fill="#96b4d0"/>
-              <circle cx="216" cy="56" r="3" fill="#a9b8da"/>
-              <circle cx="270" cy="45" r="3" fill="#b0c2e4"/>
-              <circle cx="324" cy="32" r="3" fill="#b8ccee"/>
-              <!-- Current point highlighted -->
-              <circle cx="380" cy="12" r="5" fill="#adc6fe" opacity=".9"/>
-              <circle cx="380" cy="12" r="9" fill="none" stroke="#adc6fe" stroke-width="1.5" opacity=".4"/>
-            </svg>
-            <div class="sparkline-label-row">
-              <span class="sparkline-label">Week 1</span>
-              <span class="sparkline-label">Week 3</span>
-              <span class="sparkline-label">Week 5</span>
-              <span class="sparkline-label">Week 7</span>
-              <span class="sparkline-label" style="color:var(--electric);font-weight:700">Now</span>
-            </div>
+          <div class="cjs-wrap" style="height:130px">
+            <canvas id="rsPointsChart"></canvas>
           </div>
           <div style="display:flex;gap:2rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)">
             <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Season High</div><div style="font-size:1.1rem;font-weight:800;color:var(--white)">4,850 pts</div></div>
@@ -870,33 +915,15 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">All time</span>
         </div>
         <div class="chart-body">
-          <div class="donut-wrap">
-            <div class="donut-container">
-              <svg class="donut-svg" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(173,198,254,.06)" stroke-width="14"/>
-                <!-- Trainings 35% -->
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#adc6fe" stroke-width="14"
-                  stroke-dasharray="105.6 196.4" stroke-dashoffset="0" stroke-linecap="butt"
-                  style="--full:302;--end:-105.6;animation:ring-in .8s ease .3s both"/>
-                <!-- Webinars 25% -->
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#22c55e" stroke-width="14"
-                  stroke-dasharray="75.5 226.5" stroke-dashoffset="-105.6" stroke-linecap="butt"/>
-                <!-- Campaigns 20% -->
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#f59e0b" stroke-width="14"
-                  stroke-dasharray="60.4 241.6" stroke-dashoffset="-181.1" stroke-linecap="butt"/>
-                <!-- Deal Reg 12% -->
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#f87171" stroke-width="14"
-                  stroke-dasharray="36.2 265.8" stroke-dashoffset="-241.5" stroke-linecap="butt"/>
-                <!-- Accreds 8% -->
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#c084fc" stroke-width="14"
-                  stroke-dasharray="24.2 277.8" stroke-dashoffset="-277.7" stroke-linecap="butt"/>
-              </svg>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:.5rem 0">
+            <div style="position:relative;width:170px;height:170px">
+              <canvas id="rsActivityChart"></canvas>
               <div class="donut-center">
                 <div class="donut-center-val">9</div>
                 <div class="donut-center-lbl">Activities</div>
               </div>
             </div>
-            <div class="donut-legend">
+            <div class="donut-legend" style="width:100%">
               <div class="dl-item"><div class="dl-dot" style="background:#adc6fe"></div><span class="dl-name">Trainings</span><span class="dl-val">35%</span></div>
               <div class="dl-item"><div class="dl-dot" style="background:#22c55e"></div><span class="dl-name">Webinars</span><span class="dl-val">25%</span></div>
               <div class="dl-item"><div class="dl-dot" style="background:#f59e0b"></div><span class="dl-name">Campaigns</span><span class="dl-val">20%</span></div>
@@ -1261,17 +1288,9 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
       </div>
       <div class="guild-chart-preview">
         <div class="guild-sparkline-label">Network points — 8 weeks</div>
-        <svg viewBox="0 0 220 60" preserveAspectRatio="none" style="width:100%;height:60px;display:block">
-          <defs>
-            <linearGradient id="dist-sg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#adc6fe" stop-opacity=".25"/>
-              <stop offset="100%" stop-color="#adc6fe" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M0,48 L27,46 L55,42 L82,38 L110,34 L137,30 L165,24 L192,20 L220,13 L220,60 L0,60 Z" fill="url(#dist-sg)"/>
-          <polyline points="0,48 27,46 55,42 82,38 110,34 137,30 165,24 192,20 220,13" fill="none" stroke="#adc6fe" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="220" cy="13" r="4" fill="#adc6fe"/>
-        </svg>
+        <div class="cjs-wrap" style="height:62px;margin-bottom:4px">
+          <canvas id="distMiniChart"></canvas>
+        </div>
         <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:4px">
           <span>W1: 15K pts</span><span style="color:var(--electric);font-weight:700">Now: 38.4K</span>
         </div>
@@ -1320,12 +1339,8 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">Q2 2026</span>
         </div>
         <div class="chart-body">
-          <div class="bar-chart">
-            <div class="bc-row"><span class="bc-label">Trainings</span><div class="bc-track"><div class="bc-fill" style="--w:88%"></div></div><span class="bc-val">412</span></div>
-            <div class="bc-row"><span class="bc-label">Webinars</span><div class="bc-track"><div class="bc-fill" style="--w:54%"></div></div><span class="bc-val">224</span></div>
-            <div class="bc-row"><span class="bc-label">Campaigns</span><div class="bc-track"><div class="bc-fill" style="--w:42%"></div></div><span class="bc-val">88</span></div>
-            <div class="bc-row"><span class="bc-label">Deal Reg.</span><div class="bc-track"><div class="bc-fill" style="--w:31%"></div></div><span class="bc-val">52</span></div>
-            <div class="bc-row"><span class="bc-label">Accreditat.</span><div class="bc-track"><div class="bc-fill" style="--w:22%"></div></div><span class="bc-val">28</span></div>
+          <div class="cjs-wrap" style="height:170px">
+            <canvas id="distBarChart"></canvas>
           </div>
           <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:2rem">
             <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Total Activities</div><div style="font-size:1.1rem;font-weight:800;color:var(--white)">804</div></div>
@@ -1342,23 +1357,12 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">52 total</span>
         </div>
         <div class="chart-body" style="padding-top:1.5rem">
-          <div class="engage-ring-wrap" style="padding:0">
-            <div style="position:relative;width:160px;height:160px">
-              <svg class="ring-svg" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
-                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(173,198,254,.06)" stroke-width="16"/>
-                <!-- Active 78.8% -->
-                <circle cx="80" cy="80" r="60" fill="none" stroke="#22c55e" stroke-width="16"
-                  stroke-dasharray="297 80" stroke-linecap="butt"/>
-                <!-- Pending 10% -->
-                <circle cx="80" cy="80" r="60" fill="none" stroke="#fbbf24" stroke-width="16"
-                  stroke-dasharray="38 339" stroke-dashoffset="-297" stroke-linecap="butt"/>
-                <!-- Inactive 11.2% -->
-                <circle cx="80" cy="80" r="60" fill="none" stroke="#f87171" stroke-width="16"
-                  stroke-dasharray="42 335" stroke-dashoffset="-335" stroke-linecap="butt"/>
-              </svg>
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
-                <div style="font-size:1.75rem;font-weight:800;color:var(--white);letter-spacing:-.04em">79%</div>
-                <div style="font-size:11px;color:var(--muted)">Engaged</div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:.5rem 0">
+            <div style="position:relative;width:170px;height:170px">
+              <canvas id="distEngageChart"></canvas>
+              <div class="donut-center">
+                <div class="donut-center-val">79%</div>
+                <div class="donut-center-lbl">Engaged</div>
               </div>
             </div>
             <div class="ring-legend">
@@ -1596,40 +1600,8 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">6 months</span>
         </div>
         <div class="chart-body">
-          <div class="sparkline-wrap">
-            <svg class="sparkline-svg" viewBox="0 0 380 100" preserveAspectRatio="none" style="height:110px">
-              <defs>
-                <linearGradient id="spark-grad-a" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#c5a44b" stop-opacity=".25"/>
-                  <stop offset="100%" stop-color="#c5a44b" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="spark-line-a" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#a07830"/>
-                  <stop offset="100%" stop-color="#f59e0b"/>
-                </linearGradient>
-              </defs>
-              <line x1="0" y1="10" x2="380" y2="10" stroke="rgba(197,164,75,.06)" stroke-width="1"/>
-              <line x1="0" y1="35" x2="380" y2="35" stroke="rgba(197,164,75,.06)" stroke-width="1"/>
-              <line x1="0" y1="60" x2="380" y2="60" stroke="rgba(197,164,75,.06)" stroke-width="1"/>
-              <line x1="0" y1="85" x2="380" y2="85" stroke="rgba(197,164,75,.06)" stroke-width="1"/>
-              <path d="M0,79 L76,63 L152,52 L228,41 L304,30 L380,10 L380,100 L0,100 Z" fill="url(#spark-grad-a)"/>
-              <polyline points="0,79 76,63 152,52 228,41 304,30 380,10" fill="none" stroke="url(#spark-line-a)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="0" cy="79" r="3" fill="#a07830"/>
-              <circle cx="76" cy="63" r="3" fill="#b08840"/>
-              <circle cx="152" cy="52" r="3" fill="#c09548"/>
-              <circle cx="228" cy="41" r="3" fill="#cfa050"/>
-              <circle cx="304" cy="30" r="3" fill="#d9a858"/>
-              <circle cx="380" cy="10" r="5" fill="#f59e0b" opacity=".9"/>
-              <circle cx="380" cy="10" r="9" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".35"/>
-            </svg>
-            <div class="sparkline-label-row">
-              <span class="sparkline-label">Jan</span>
-              <span class="sparkline-label">Feb</span>
-              <span class="sparkline-label">Mar</span>
-              <span class="sparkline-label">Apr</span>
-              <span class="sparkline-label">May</span>
-              <span class="sparkline-label" style="color:#f59e0b;font-weight:700">Jun</span>
-            </div>
+          <div class="cjs-wrap" style="height:130px">
+            <canvas id="adminPointsChart"></canvas>
           </div>
           <div style="display:flex;gap:2rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)">
             <div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em">Season Total</div><div style="font-size:1.1rem;font-weight:800;color:var(--white)">142.8K pts</div></div>
@@ -1645,26 +1617,16 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-title">Activity Mix</span>
           <span class="chart-badge">Season 04</span>
         </div>
-        <div class="chart-body" style="padding-top:1.5rem">
-          <div class="donut-wrap">
-            <div class="donut-container">
-              <svg class="donut-svg" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(173,198,254,.06)" stroke-width="14"/>
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#adc6fe" stroke-width="14"
-                  stroke-dasharray="128 174" stroke-dashoffset="0" stroke-linecap="butt"/>
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#22c55e" stroke-width="14"
-                  stroke-dasharray="82 220" stroke-dashoffset="-128" stroke-linecap="butt"/>
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#f59e0b" stroke-width="14"
-                  stroke-dasharray="58 244" stroke-dashoffset="-210" stroke-linecap="butt"/>
-                <circle cx="60" cy="60" r="48" fill="none" stroke="#f87171" stroke-width="14"
-                  stroke-dasharray="34 268" stroke-dashoffset="-268" stroke-linecap="butt"/>
-              </svg>
+        <div class="chart-body" style="padding-top:.5rem">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:.5rem 0">
+            <div style="position:relative;width:170px;height:170px">
+              <canvas id="adminActivityChart"></canvas>
               <div class="donut-center">
                 <div class="donut-center-val">3.8K</div>
                 <div class="donut-center-lbl">Total acts</div>
               </div>
             </div>
-            <div class="donut-legend">
+            <div class="donut-legend" style="width:100%">
               <div class="dl-item"><div class="dl-dot" style="background:#adc6fe"></div><span class="dl-name">Trainings</span><span class="dl-val">1,847</span></div>
               <div class="dl-item"><div class="dl-dot" style="background:#22c55e"></div><span class="dl-name">Webinars</span><span class="dl-val">1,035</span></div>
               <div class="dl-item"><div class="dl-dot" style="background:#f59e0b"></div><span class="dl-name">Campaigns</span><span class="dl-val">552</span></div>
@@ -1683,13 +1645,8 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-badge">All partners</span>
         </div>
         <div class="chart-body">
-          <div class="bar-chart">
-            <div class="bc-row"><span class="bc-label">Trainings</span><div class="bc-track"><div class="bc-fill" style="--w:82%"></div></div><span class="bc-val">1,847</span></div>
-            <div class="bc-row"><span class="bc-label">Webinars</span><div class="bc-track"><div class="bc-fill" style="--w:61%"></div></div><span class="bc-val">1,035</span></div>
-            <div class="bc-row"><span class="bc-label">Campaigns</span><div class="bc-track"><div class="bc-fill" style="--w:45%"></div></div><span class="bc-val">552</span></div>
-            <div class="bc-row"><span class="bc-label">Deal Reg.</span><div class="bc-track"><div class="bc-fill" style="--w:38%"></div></div><span class="bc-val">284</span></div>
-            <div class="bc-row"><span class="bc-label">Accreditat.</span><div class="bc-track"><div class="bc-fill" style="--w:27%"></div></div><span class="bc-val">118</span></div>
-            <div class="bc-row"><span class="bc-label">POE Submit</span><div class="bc-track"><div class="bc-fill" style="--w:19%"></div></div><span class="bc-val">74</span></div>
+          <div class="cjs-wrap" style="height:210px">
+            <canvas id="adminBarChart"></canvas>
           </div>
         </div>
       </div>
@@ -1699,21 +1656,13 @@ body{font-family:var(--font);background:var(--navy);color:var(--white);font-size
           <span class="chart-title">Redemption Status</span>
           <span class="chart-badge">192 total</span>
         </div>
-        <div class="chart-body" style="padding-top:1.5rem">
-          <div class="engage-ring-wrap" style="padding:0">
-            <div style="position:relative;width:150px;height:150px">
-              <svg viewBox="0 0 150 150" style="transform:rotate(-90deg);width:150px;height:150px">
-                <circle cx="75" cy="75" r="55" fill="none" stroke="rgba(173,198,254,.06)" stroke-width="14"/>
-                <circle cx="75" cy="75" r="55" fill="none" stroke="#4ade80" stroke-width="14"
-                  stroke-dasharray="261 85" stroke-linecap="butt"/>
-                <circle cx="75" cy="75" r="55" fill="none" stroke="#fbbf24" stroke-width="14"
-                  stroke-dasharray="86 260" stroke-dashoffset="-261" stroke-linecap="butt"/>
-                <circle cx="75" cy="75" r="55" fill="none" stroke="#f87171" stroke-width="14"
-                  stroke-dasharray="0 346" stroke-dashoffset="-347" stroke-linecap="butt"/>
-              </svg>
-              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
-                <div style="font-size:1.5rem;font-weight:800;color:var(--white);letter-spacing:-.04em">74%</div>
-                <div style="font-size:11px;color:var(--muted)">Approved</div>
+        <div class="chart-body" style="padding-top:.5rem">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:.5rem 0">
+            <div style="position:relative;width:170px;height:170px">
+              <canvas id="adminRedeemChart"></canvas>
+              <div class="donut-center">
+                <div class="donut-center-val">74%</div>
+                <div class="donut-center-lbl">Approved</div>
               </div>
             </div>
             <div class="ring-legend">
@@ -2111,6 +2060,238 @@ document.addEventListener('click', function(e){
   var target = panel.querySelector('.tab-panel[data-tab="'+tab+'"]');
   if(target) target.classList.add('active');
 });
+
+/* ── CHART.JS INITIALIZATION ── */
+(function(){
+  if(typeof Chart === 'undefined') return;
+
+  /* Global theme */
+  Chart.defaults.color = 'rgba(221,226,246,.55)';
+  Chart.defaults.borderColor = 'rgba(68,71,79,.45)';
+  Chart.defaults.font.family = "'Lexend',sans-serif";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(13,19,33,.95)';
+  Chart.defaults.plugins.tooltip.borderColor = 'rgba(68,71,79,.7)';
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+  Chart.defaults.plugins.tooltip.titleColor = '#dde2f6';
+  Chart.defaults.plugins.tooltip.bodyColor = 'rgba(221,226,246,.7)';
+  Chart.defaults.plugins.tooltip.titleFont = {weight:'700',size:12};
+  Chart.defaults.plugins.tooltip.padding = {x:12,y:8};
+  Chart.defaults.animation.duration = 900;
+
+  /* ── 1. Reseller: Points Over Time (line) ── */
+  var el = document.getElementById('rsPointsChart');
+  if(el){
+    var g = el.getContext('2d').createLinearGradient(0,0,0,130);
+    g.addColorStop(0,'rgba(173,198,254,.30)');
+    g.addColorStop(1,'rgba(173,198,254,0)');
+    new Chart(el,{
+      type:'line',
+      data:{
+        labels:['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6','Wk 7','Now'],
+        datasets:[{
+          data:[780,1040,1520,2110,2840,3410,4050,4850],
+          borderColor:'#adc6fe',borderWidth:2.5,
+          backgroundColor:g,
+          pointRadius:[3,3,3,3,3,3,3,6],
+          pointBackgroundColor:['#6a7ec0','#7a8dce','#8a9dda','#99ace5','#aabbe8','#b4c4ec','#bfcef0','#adc6fe'],
+          pointHoverRadius:7,pointBorderWidth:0,tension:.4,fill:true
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{
+          x:{grid:{display:false},ticks:{color:'rgba(221,226,246,.4)',font:{size:10}}},
+          y:{grid:{color:'rgba(173,198,254,.07)'},ticks:{color:'rgba(221,226,246,.4)',font:{size:10},callback:function(v){return v>=1000?Math.round(v/1000)+'K':v;}}}
+        }
+      }
+    });
+  }
+
+  /* ── 2. Reseller: Activity Split (doughnut) ── */
+  el = document.getElementById('rsActivityChart');
+  if(el){
+    new Chart(el,{
+      type:'doughnut',
+      data:{
+        labels:['Trainings','Webinars','Campaigns','Deal Reg.','Accredits'],
+        datasets:[{
+          data:[35,25,20,12,8],
+          backgroundColor:['#adc6fe','#22c55e','#f59e0b','#f87171','#c084fc'],
+          borderColor:'rgba(21,27,41,1)',borderWidth:3,hoverOffset:8
+        }]
+      },
+      options:{
+        cutout:'72%',
+        plugins:{
+          legend:{display:false},
+          tooltip:{callbacks:{label:function(ctx){return ' '+ctx.label+': '+ctx.raw+'%';}}}
+        }
+      }
+    });
+  }
+
+  /* ── 3. Distributor hero: Mini sparkline ── */
+  el = document.getElementById('distMiniChart');
+  if(el){
+    var mg = el.getContext('2d').createLinearGradient(0,0,0,62);
+    mg.addColorStop(0,'rgba(173,198,254,.22)');
+    mg.addColorStop(1,'rgba(173,198,254,0)');
+    new Chart(el,{
+      type:'line',
+      data:{
+        labels:['W1','W2','W3','W4','W5','W6','W7','W8'],
+        datasets:[{data:[15,18,21,24,27,30,35,38.4],borderColor:'#adc6fe',borderWidth:2,backgroundColor:mg,pointRadius:0,tension:.4,fill:true}]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{x:{display:false},y:{display:false}},
+        plugins:{legend:{display:false},tooltip:{enabled:false}}
+      }
+    });
+  }
+
+  /* ── 4. Distributor: Activity Bar (horizontal) ── */
+  el = document.getElementById('distBarChart');
+  if(el){
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:['Trainings','Webinars','Campaigns','Deal Reg.','Accreditat.'],
+        datasets:[{
+          data:[412,224,88,52,28],
+          backgroundColor:['rgba(173,198,254,.65)','rgba(34,197,94,.65)','rgba(245,158,11,.65)','rgba(248,113,113,.65)','rgba(192,132,252,.65)'],
+          borderColor:['#adc6fe','#22c55e','#f59e0b','#f87171','#c084fc'],
+          borderWidth:1,borderRadius:5,borderSkipped:false
+        }]
+      },
+      options:{
+        indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        scales:{
+          x:{grid:{color:'rgba(173,198,254,.07)'},ticks:{color:'rgba(221,226,246,.4)',font:{size:10}}},
+          y:{grid:{display:false},ticks:{color:'rgba(221,226,246,.65)',font:{size:11,weight:'500'}}}
+        },
+        plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.raw+' activities';}}}}
+      }
+    });
+  }
+
+  /* ── 5. Distributor: Engagement Doughnut ── */
+  el = document.getElementById('distEngageChart');
+  if(el){
+    new Chart(el,{
+      type:'doughnut',
+      data:{
+        labels:['Active','Pending','Inactive'],
+        datasets:[{
+          data:[41,5,6],
+          backgroundColor:['#22c55e','#fbbf24','#f87171'],
+          borderColor:'rgba(21,27,41,1)',borderWidth:3,hoverOffset:8
+        }]
+      },
+      options:{
+        cutout:'70%',
+        plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.label+': '+ctx.raw+' resellers';}}}}
+      }
+    });
+  }
+
+  /* ── 6. Admin: Platform Points Trend (line) ── */
+  el = document.getElementById('adminPointsChart');
+  if(el){
+    var ag = el.getContext('2d').createLinearGradient(0,0,0,130);
+    ag.addColorStop(0,'rgba(245,158,11,.28)');
+    ag.addColorStop(1,'rgba(245,158,11,0)');
+    new Chart(el,{
+      type:'line',
+      data:{
+        labels:['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets:[{
+          data:[14200,18600,22100,26800,31200,38400],
+          borderColor:'#f59e0b',borderWidth:2.5,
+          backgroundColor:ag,
+          pointRadius:[3,3,3,3,3,6],
+          pointBackgroundColor:['#a07830','#b08840','#c09548','#cfa050','#d9a858','#f59e0b'],
+          pointHoverRadius:7,pointBorderWidth:0,tension:.4,fill:true
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        scales:{
+          x:{grid:{display:false},ticks:{color:'rgba(221,226,246,.4)',font:{size:10}}},
+          y:{grid:{color:'rgba(245,158,11,.07)'},ticks:{color:'rgba(221,226,246,.4)',font:{size:10},callback:function(v){return Math.round(v/1000)+'K';}}}
+        }
+      }
+    });
+  }
+
+  /* ── 7. Admin: Activity Mix Doughnut ── */
+  el = document.getElementById('adminActivityChart');
+  if(el){
+    new Chart(el,{
+      type:'doughnut',
+      data:{
+        labels:['Trainings','Webinars','Campaigns','Deal Reg.'],
+        datasets:[{
+          data:[1847,1035,552,284],
+          backgroundColor:['#adc6fe','#22c55e','#f59e0b','#f87171'],
+          borderColor:'rgba(21,27,41,1)',borderWidth:3,hoverOffset:8
+        }]
+      },
+      options:{
+        cutout:'72%',
+        plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.label+': '+ctx.raw.toLocaleString();}}}}
+      }
+    });
+  }
+
+  /* ── 8. Admin: Full Activity Bar (horizontal) ── */
+  el = document.getElementById('adminBarChart');
+  if(el){
+    new Chart(el,{
+      type:'bar',
+      data:{
+        labels:['Trainings','Webinars','Campaigns','Deal Reg.','Accreditat.','POE Submit'],
+        datasets:[{
+          data:[1847,1035,552,284,118,74],
+          backgroundColor:['rgba(173,198,254,.65)','rgba(34,197,94,.65)','rgba(245,158,11,.65)','rgba(248,113,113,.65)','rgba(192,132,252,.65)','rgba(103,232,249,.65)'],
+          borderColor:['#adc6fe','#22c55e','#f59e0b','#f87171','#c084fc','#67e8f9'],
+          borderWidth:1,borderRadius:5,borderSkipped:false
+        }]
+      },
+      options:{
+        indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        scales:{
+          x:{grid:{color:'rgba(173,198,254,.07)'},ticks:{color:'rgba(221,226,246,.4)',font:{size:10},callback:function(v){return v>=1000?Math.round(v/1000)+'K':v;}}},
+          y:{grid:{display:false},ticks:{color:'rgba(221,226,246,.65)',font:{size:11,weight:'500'}}}
+        },
+        plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.raw.toLocaleString()+' activities';}}}}
+      }
+    });
+  }
+
+  /* ── 9. Admin: Redemption Status Doughnut ── */
+  el = document.getElementById('adminRedeemChart');
+  if(el){
+    new Chart(el,{
+      type:'doughnut',
+      data:{
+        labels:['Approved','Pending','Rejected'],
+        datasets:[{
+          data:[142,38,12],
+          backgroundColor:['#4ade80','#fbbf24','#f87171'],
+          borderColor:'rgba(21,27,41,1)',borderWidth:3,hoverOffset:8
+        }]
+      },
+      options:{
+        cutout:'70%',
+        plugins:{tooltip:{callbacks:{label:function(ctx){return ' '+ctx.label+': '+ctx.raw+' redemptions';}}}}
+      }
+    });
+  }
+})();
 </script>
 </body>
 </html>
