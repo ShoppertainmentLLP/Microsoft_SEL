@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEL Platform — Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #0078D7;
+      --blue-dk:#005fa3;
+      --azure:  #01A6F0;
+      --gold:   #FFBA01;
+      --green:  #7FBC00;
+      --orange: #F34F1C;
+      --ink:    #0d1117;
+      --font:   'Inter', -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      font-family: var(--font);
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* ── SLIDE CONTAINER ── */
+    .deck {
+      width: 100vw; height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+      transition: opacity .55s ease, transform .55s ease;
+      transform: translateX(60px);
+    }
+    .slide.active {
+      opacity: 1; pointer-events: all;
+      transform: translateX(0);
+    }
+    .slide.exit {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    /* ── NAV ── */
+    .nav-bar {
+      position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 18px; z-index: 100;
+    }
+    .nav-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.3); cursor: pointer;
+      transition: all .2s;
+    }
+    .nav-dot.active { background: #fff; transform: scale(1.35); }
+
+    .nav-arrow {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: 15px; cursor: pointer; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s;
+      backdrop-filter: blur(8px);
+    }
+    .nav-arrow:hover { background: rgba(255,255,255,.22); }
+    .nav-prev { left: 24px; }
+    .nav-next { right: 24px; }
+    .nav-arrow.hidden { opacity: 0; pointer-events: none; }
+
+    .slide-counter {
+      position: fixed; top: 28px; right: 36px;
+      font-size: 11px; font-weight: 600; color: rgba(255,255,255,.4);
+      letter-spacing: .1em; z-index: 100;
+    }
+
+    /* ── SHARED TYPOGRAPHY ── */
+    .label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .slide-title {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 900; line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+    .slide-sub {
+      font-size: clamp(13px, 1.5vw, 16px);
+      line-height: 1.65; font-weight: 400;
+      max-width: 520px;
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 1 — WHAT IS SEL
+    ══════════════════════════════════════════ */
+    #s1 {
+      background: linear-gradient(135deg, #003f7a 0%, #0050a0 40%, #0078D7 100%);
+      padding: 0 7vw;
+      justify-content: center;
+    }
+
+    /* decorative circles */
+    #s1::before {
+      content: '';
+      position: absolute; top: -160px; right: -100px;
+      width: 560px; height: 560px; border-radius: 50%;
+      background: rgba(1,166,240,.18);
+      pointer-events: none;
+    }
+    #s1::after {
+      content: '';
+      position: absolute; bottom: -120px; left: -80px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: rgba(255,186,1,.1);
+      pointer-events: none;
+    }
+
+    #s1 .label { color: rgba(255,255,255,.55); }
+    #s1 .slide-title { color: #fff; margin-bottom: 18px; }
+    #s1 .slide-sub { color: rgba(255,255,255,.72); margin-bottom: 48px; }
+
+    .s1-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 860px;
+    }
+    .s1-stat {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 16px;
+      padding: 20px 18px 18px;
+      backdrop-filter: blur(10px);
+    }
+    .s1-stat-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; margin-bottom: 14px;
+    }
+    .s1-stat-val {
+      font-size: 1.45rem; font-weight: 900; color: #fff;
+      line-height: 1; margin-bottom: 4px;
+    }
+    .s1-stat-lbl {
+      font-size: 11px; color: rgba(255,255,255,.55);
+      font-weight: 500; line-height: 1.4;
+    }
+
+    .s1-ms-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 30px; padding: 7px 18px;
+      color: rgba(255,255,255,.8); font-size: 12px; font-weight: 600;
+      margin-bottom: 28px; backdrop-filter: blur(8px);
+    }
+    .s1-ms-badge i { color: var(--azure); }
+
+    /* ══════════════════════════════════════════
+       SLIDE 2 — WHAT'S WORKING
+    ══════════════════════════════════════════ */
+    #s2 {
+      background: #f8fafc;
+      padding: 0 7vw;
+      justify-content: center;
+    }
+
+    #s2::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--azure), var(--green));
+    }
+
+    #s2 .label { color: var(--green); }
+    #s2 .slide-title { color: #0d1117; margin-bottom: 10px; }
+    #s2 .slide-sub { color: #5a6474; margin-bottom: 44px; }
+
+    .s2-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 860px;
+    }
+    .s2-card {
+      background: #fff;
+      border: 1px solid #e5eaf2;
+      border-radius: 18px;
+      padding: 24px 22px;
+      display: flex; align-items: flex-start; gap: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .s2-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.1); }
+    .s2-card-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .s2-card-title { font-size: 14px; font-weight: 700; color: #0d1117; margin-bottom: 5px; }
+    .s2-card-desc { font-size: 12.5px; color: #64748b; line-height: 1.55; }
+    .s2-check {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(127,188,0,.1); color: #4a8000;
+      border-radius: 20px; padding: 2px 10px;
+      font-size: 10px; font-weight: 700;
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 3 — WHAT CAN BE IMPROVED
+    ══════════════════════════════════════════ */
+    #s3 {
+      background: #0d1117;
+      padding: 0 7vw;
+      justify-content: center;
+    }
+
+    #s3 .label { color: rgba(255,186,1,.8); }
+    #s3 .slide-title { color: #fff; margin-bottom: 10px; }
+    #s3 .slide-sub { color: rgba(255,255,255,.5); margin-bottom: 40px; }
+
+    .s3-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 32px;
+      max-width: 900px;
+      align-items: start;
+    }
+
+    .s3-scores { display: flex; flex-direction: column; gap: 12px; }
+    .s3-score-row {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .s3-score-label { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 500; width: 120px; flex-shrink: 0; }
+    .s3-score-bar-wrap {
+      flex: 1; height: 6px; border-radius: 3px;
+      background: rgba(255,255,255,.08); overflow: hidden;
+    }
+    .s3-score-bar { height: 100%; border-radius: 3px; transition: width 1s ease; }
+    .s3-score-val { font-size: 13px; font-weight: 800; width: 36px; text-align: right; flex-shrink: 0; }
+
+    .s3-gaps { display: flex; flex-direction: column; gap: 14px; }
+    .s3-gap {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; padding: 16px 18px;
+    }
+    .s3-gap-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .s3-gap-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .s3-gap-desc { font-size: 11.5px; color: rgba(255,255,255,.45); line-height: 1.5; }
+    .s3-pill {
+      display: inline-block;
+      border-radius: 20px; padding: 2px 9px;
+      font-size: 9.5px; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .pill-crit { background: rgba(243,79,28,.15); color: #f87350; }
+    .pill-mod  { background: rgba(255,186,1,.12); color: #d69e00; }
+
+    /* ══════════════════════════════════════════
+       SLIDE 4 — WHAT WE'RE PROPOSING
+    ══════════════════════════════════════════ */
+    #s4 {
+      background: linear-gradient(160deg, #003060 0%, #004a8f 40%, #0063b1 100%);
+      padding: 0 7vw;
+      justify-content: center;
+    }
+    #s4::before {
+      content: '';
+      position: absolute; top: -200px; right: -150px;
+      width: 620px; height: 620px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(1,166,240,.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #s4::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -60px;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,186,1,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #s4 .label { color: rgba(255,186,1,.85); }
+    #s4 .slide-title { color: #fff; margin-bottom: 10px; }
+    #s4 .slide-sub { color: rgba(255,255,255,.65); margin-bottom: 38px; }
+
+    .s4-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 920px;
+    }
+    .s4-feat {
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 16px; padding: 20px 16px 18px;
+      backdrop-filter: blur(12px);
+      transition: transform .2s, background .2s;
+    }
+    .s4-feat:hover { transform: translateY(-3px); background: rgba(255,255,255,.14); }
+    .s4-feat-icon {
+      width: 40px; height: 40px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; margin-bottom: 14px;
+    }
+    .s4-feat-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .s4-feat-desc { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.55; }
+    .s4-feat.featured {
+      background: rgba(0,120,215,.35);
+      border-color: rgba(0,186,255,.35);
+    }
+    .s4-ai-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: linear-gradient(90deg, rgba(120,60,220,.28), rgba(0,186,255,.2));
+      border: 1px solid rgba(140,80,255,.35);
+      border-radius: 20px; padding: 3px 9px;
+      font-size: 9.5px; font-weight: 700; color: #c4a8ff;
+      letter-spacing: .04em; margin-top: 10px;
+      white-space: nowrap;
+    }
+    .s4-ai-badge i { font-size: 9px; color: #a78bfa; }
+
+    /* ══════════════════════════════════════════
+       LOGO WORDMARK
+    ══════════════════════════════════════════ */
+    .wordmark {
+      position: fixed; top: 26px; left: 36px;
+      display: flex; align-items: center; gap: 10px; z-index: 100;
+    }
+    .wordmark-ms {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      width: 18px;
+    }
+    .wordmark-ms span {
+      width: 8px; height: 8px; border-radius: 1px;
+    }
+    .ms-r { background: #f25022; }
+    .ms-g { background: #7fba00; }
+    .ms-b { background: #00a4ef; }
+    .ms-y { background: #ffb900; }
+    .wordmark-text {
+      font-size: 11.5px; font-weight: 700; letter-spacing: .04em;
+      color: rgba(255,255,255,.75);
+    }
+    .wordmark-text span { color: rgba(255,255,255,.4); font-weight: 400; }
+
+    /* dark slide wordmark variant */
+    #s2 .wordmark-text { color: rgba(0,0,0,.45); }
+    #s2 .wordmark-text span { color: rgba(0,0,0,.25); }
+    #s2 .nav-arrow { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.1); color: #0d1117; }
+    #s2 .nav-arrow:hover { background: rgba(0,0,0,.13); }
+    #s2 .slide-counter { color: rgba(0,0,0,.3); }
+    #s2 .nav-dot { background: rgba(0,0,0,.15); }
+    #s2 .nav-dot.active { background: var(--blue); }
+  </style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- WORDMARK (shared, overlays all slides) -->
+  <div class="wordmark">
+    <div class="wordmark-ms">
+      <span class="ms-r"></span><span class="ms-g"></span>
+      <span class="ms-b"></span><span class="ms-y"></span>
+    </div>
+    <div class="wordmark-text">Sales Excellence League <span>· Shoppertainment LLP</span></div>
+  </div>
+
+  <!-- SLIDE COUNTER -->
+  <div class="slide-counter" id="counter">1 / 4</div>
+
+  <!-- PREV / NEXT -->
+  <button class="nav-arrow nav-prev hidden" id="btn-prev" onclick="goPrev()">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button class="nav-arrow nav-next" id="btn-next" onclick="goNext()">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <!-- DOT NAV -->
+  <div class="nav-bar" id="nav-bar">
+    <div class="nav-dot active" onclick="goTo(0)"></div>
+    <div class="nav-dot" onclick="goTo(1)"></div>
+    <div class="nav-dot" onclick="goTo(2)"></div>
+    <div class="nav-dot" onclick="goTo(3)"></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 1 — WHAT IS SEL                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide active" id="s1">
+    <div class="s1-ms-badge">
+      <i class="fa-solid fa-shield-halved"></i>
+      Microsoft Partner Enablement Programme
+    </div>
+    <div class="label">What is SEL</div>
+    <div class="slide-title">Sales Excellence<br>League</div>
+    <div class="slide-sub">
+      A gamified incentive platform that rewards Microsoft resellers across India
+      for selling, training, and running marketing campaigns — driving measurable
+      partner engagement and revenue growth.
+    </div>
+
+    <div class="s1-grid">
+      <div class="s1-stat">
+        <div class="s1-stat-icon" style="background:rgba(1,166,240,.2);color:#01A6F0">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="s1-stat-val">3,000+</div>
+        <div class="s1-stat-lbl">Partners across India</div>
+      </div>
+      <div class="s1-stat">
+        <div class="s1-stat-icon" style="background:rgba(255,186,1,.2);color:#FFBA01">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="s1-stat-val">4 Ways</div>
+        <div class="s1-stat-lbl">to Earn — Train · Sell · Market · Stories</div>
+      </div>
+      <div class="s1-stat">
+        <div class="s1-stat-icon" style="background:rgba(127,188,0,.2);color:#7FBC00">
+          <i class="fa-solid fa-medal"></i>
+        </div>
+        <div class="s1-stat-val">Tiered</div>
+        <div class="s1-stat-lbl">Silver · Gold · Platinum rewards</div>
+      </div>
+      <div class="s1-stat">
+        <div class="s1-stat-icon" style="background:rgba(243,79,28,.15);color:#F34F1C">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div class="s1-stat-val">2 Distis</div>
+        <div class="s1-stat-lbl">Redington &amp; Ingram Micro</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 2 — WHAT'S WORKING                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide" id="s2">
+    <div class="label">What's Working</div>
+    <div class="slide-title" style="color:#0d1117">Platform Strengths</div>
+    <div class="slide-sub">
+      The current SEL platform has a strong programme concept and an existing
+      partner network — the ingredients are there, the execution needs an upgrade.
+    </div>
+
+    <div class="s2-grid">
+      <div class="s2-card">
+        <div class="s2-card-icon" style="background:rgba(0,120,215,.1);color:#0078D7">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <div>
+          <div class="s2-card-title">Strong Programme Concept</div>
+          <div class="s2-card-desc">Free Microsoft partner enablement with meaningful, multi-activity rewards. The incentive structure — points, badges, tiers — is a proven engagement model.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> Proven model</div>
+        </div>
+      </div>
+
+      <div class="s2-card">
+        <div class="s2-card-icon" style="background:rgba(127,188,0,.1);color:#4a8000">
+          <i class="fa-brands fa-microsoft"></i>
+        </div>
+        <div>
+          <div class="s2-card-title">Microsoft Learn Integration</div>
+          <div class="s2-card-desc">Device Partner University (DPU) content from Microsoft Learn is already integrated — a genuine differentiator that gives resellers access to official Microsoft training.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> Key differentiator</div>
+        </div>
+      </div>
+
+      <div class="s2-card">
+        <div class="s2-card-icon" style="background:rgba(255,186,1,.12);color:#c48c00">
+          <i class="fa-solid fa-network-wired"></i>
+        </div>
+        <div>
+          <div class="s2-card-title">Established Distribution Network</div>
+          <div class="s2-card-desc">Redington and Ingram Micro partnerships provide immediate reach across thousands of resellers in India, removing the cold-start problem for adoption.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> National reach</div>
+        </div>
+      </div>
+
+      <div class="s2-card">
+        <div class="s2-card-icon" style="background:rgba(243,79,28,.1);color:#c93d12">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <div>
+          <div class="s2-card-title">Reward Ecosystem Exists</div>
+          <div class="s2-card-desc">A physical and digital reward catalogue is already in place. Partners understand the points-for-rewards mechanic and have expectations built around it.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> Partner buy-in</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 3 — WHAT CAN BE IMPROVED            -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide" id="s3">
+    <div class="label">Platform Audit · April 2026</div>
+    <div class="slide-title">What Needs to Change</div>
+    <div class="slide-sub">
+      An independent audit scored the current platform across four dimensions.
+      Every dimension is below 5/10 — requiring a rebuild, not a patch.
+    </div>
+
+    <div class="s3-layout">
+      <!-- Scores -->
+      <div class="s3-scores">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Audit Scores</div>
+
+        <div class="s3-score-row">
+          <div class="s3-score-label">UI / UX</div>
+          <div class="s3-score-bar-wrap">
+            <div class="s3-score-bar" style="width:30%;background:#F34F1C"></div>
+          </div>
+          <div class="s3-score-val" style="color:#F34F1C">3/10</div>
+        </div>
+        <div class="s3-score-row">
+          <div class="s3-score-label">Discovery</div>
+          <div class="s3-score-bar-wrap">
+            <div class="s3-score-bar" style="width:20%;background:#F34F1C"></div>
+          </div>
+          <div class="s3-score-val" style="color:#F34F1C">2/10</div>
+        </div>
+        <div class="s3-score-row">
+          <div class="s3-score-label">Engagement</div>
+          <div class="s3-score-bar-wrap">
+            <div class="s3-score-bar" style="width:40%;background:#FFBA01"></div>
+          </div>
+          <div class="s3-score-val" style="color:#FFBA01">4/10</div>
+        </div>
+        <div class="s3-score-row">
+          <div class="s3-score-label">Security</div>
+          <div class="s3-score-bar-wrap">
+            <div class="s3-score-bar" style="width:30%;background:#F34F1C"></div>
+          </div>
+          <div class="s3-score-val" style="color:#F34F1C">3/10</div>
+        </div>
+        <div class="s3-score-row">
+          <div class="s3-score-label">AI Features</div>
+          <div class="s3-score-bar-wrap">
+            <div class="s3-score-bar" style="width:0%;background:#F34F1C"></div>
+          </div>
+          <div class="s3-score-val" style="color:#F34F1C">0/10</div>
+        </div>
+      </div>
+
+      <!-- Gaps -->
+      <div class="s3-gaps">
+        <div class="s3-gap">
+          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <div>
+            <div class="s3-pill pill-crit">Critical</div>
+            <div class="s3-gap-title">Entire training catalogue is gated</div>
+            <div class="s3-gap-desc">Anonymous visitors can't browse courses. Every page redirects to login — killing conversion before it starts.</div>
+          </div>
+        </div>
+
+        <div class="s3-gap">
+          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+            <i class="fa-solid fa-chart-bar"></i>
+          </div>
+          <div>
+            <div class="s3-pill pill-crit">Critical</div>
+            <div class="s3-gap-title">No live leaderboard or personal rank</div>
+            <div class="s3-gap-desc">A static strip of 6 photos is the only recognition mechanic. No rank, no points gap, no motivation to keep climbing.</div>
+          </div>
+        </div>
+
+        <div class="s3-gap">
+          <div class="s3-gap-icon" style="background:rgba(255,186,1,.12);color:#d4a000">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </div>
+          <div>
+            <div class="s3-pill pill-mod">Moderate</div>
+            <div class="s3-gap-title">Broken links &amp; poor mobile UX</div>
+            <div class="s3-gap-desc">Privacy Policy, Help, Sign Up — all point to '#'. Fixed-width layouts break on mobile for India's mobile-first resellers.</div>
+          </div>
+        </div>
+
+        <div class="s3-gap">
+          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+            <i class="fa-solid fa-shield-xmark"></i>
+          </div>
+          <div>
+            <div class="s3-pill pill-crit">Critical</div>
+            <div class="s3-gap-title">Security &amp; compliance gaps</div>
+            <div class="s3-gap-desc">No CAPTCHA, missing HTTP security headers, broken Privacy Policy — a DPDP Act 2023 compliance risk on a platform collecting personal data.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 4 — WHAT WE'RE PROPOSING            -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide" id="s4">
+    <div class="label">Our Solution</div>
+    <div class="slide-title">The New SEL Platform</div>
+    <div class="slide-sub">
+      A fully redesigned, Microsoft-native platform — purpose-built for India's
+      partner network with role-based dashboards, live gamification, and a
+      Copilot-powered AI coach for every reseller.
+    </div>
+
+    <div class="s4-grid">
+
+      <div class="s4-feat featured">
+        <div class="s4-feat-icon" style="background:rgba(1,166,240,.25);color:#01A6F0">
+          <i class="fa-solid fa-gauge-high"></i>
+        </div>
+        <div class="s4-feat-title">Role-Based Dashboards</div>
+        <div class="s4-feat-desc">Separate, purpose-built views for Admin, Distributor &amp; Reseller — each with the tools and data they actually need.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Next Best Action Engine</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(255,186,1,.2);color:#FFBA01">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="s4-feat-title">Live Gamified Leaderboard</div>
+        <div class="s4-feat-desc">Real-time rankings by National · State · City with personal rank card, XP gap, and rank delta arrows.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Predictive Re-engagement Nudges</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(127,188,0,.2);color:#7FBC00">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+        <div class="s4-feat-title">My Coach — AI Assistant</div>
+        <div class="s4-feat-desc">Copilot-powered personal AI coach. Each reseller gets performance insights, deal advice, and sprint recommendations.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Powered by Microsoft Copilot</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(243,79,28,.15);color:#F34F1C">
+          <i class="fa-solid fa-handshake"></i>
+        </div>
+        <div class="s4-feat-title">Deal Submission Module</div>
+        <div class="s4-feat-desc">Structured deal logging with POE upload, admin approval workflow, and instant XP allocation on approval.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI POE Validation</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(0,120,215,.2);color:#01A6F0">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="s4-feat-title">Training &amp; Certifications</div>
+        <div class="s4-feat-desc">MS Learn–integrated course library with progress tracking, completion scoring, and XP tied to every module finished.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Adaptive Quiz Difficulty</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(255,186,1,.15);color:#FFBA01">
+          <i class="fa-solid fa-medal"></i>
+        </div>
+        <div class="s4-feat-title">Achievements &amp; Badges</div>
+        <div class="s4-feat-desc">Sprint missions, badge walls, and XP milestones that keep resellers engaged across the entire quarter.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Milestone Suggestions</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(127,188,0,.15);color:#7FBC00">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <div class="s4-feat-title">Reward Store</div>
+        <div class="s4-feat-desc">Full digital + physical reward catalogue. Partners redeem points for Microsoft products, vouchers, and merchandise.</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(1,166,240,.2);color:#0078D7">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+        <div class="s4-feat-title">Admin Command Center</div>
+        <div class="s4-feat-desc">Sprint management, partner oversight, approvals queue, and campaign distribution — all from a single admin panel.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Fraud &amp; Anomaly Detection</div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /deck -->
+
+
+<script>
+  var current = 0;
+  var total = 4;
+  var animating = false;
+
+  function goTo(n) {
+    if (animating || n === current) return;
+    animating = true;
+    var slides = document.querySelectorAll('.slide');
+    var dots   = document.querySelectorAll('.nav-dot');
+
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+
+    var prev = current;
+    current = n;
+
+    setTimeout(function() { slides[prev].classList.remove('exit'); }, 550);
+
+    slides[current].classList.add('active');
+
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('btn-prev').classList.toggle('hidden', current === 0);
+    document.getElementById('btn-next').classList.toggle('hidden', current === total - 1);
+
+    setTimeout(function() { animating = false; }, 560);
+  }
+
+  function goNext() { if (current < total - 1) goTo(current + 1); }
+  function goPrev() { if (current > 0)         goTo(current - 1); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown'  || e.key === ' ') { e.preventDefault(); goNext(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                      { e.preventDefault(); goPrev(); }
+  });
+
+  // Touch / swipe
+  var tx = 0;
+  document.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) { dx < 0 ? goNext() : goPrev(); }
+  });
+</script>
+</body>
+</html>

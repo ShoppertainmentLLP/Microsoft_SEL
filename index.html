@@ -1,41 +1,48 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<script>(function(){var t=localStorage.getItem('sel-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sales Excellence League — Partner Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
 /* ── Reset & Tokens ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  /* ── Calm Performance — Partner League Design System ── */
-  --navy:      #0d1321;
-  --navy-2:    #151b29;
-  --navy-3:    #191f2e;
-  --navy-4:    #242a39;
-  --ink:       #080e1c;
-  --sky:       #0a1540;
-  --electric:  #adc6fe;
-  --electric-2:#b8c7e7;
-  --electric-3:#d8e2ff;
-  --gold:      #5d76a9;
-  --gold-2:    #aab9d8;
-  --gold-3:    #d6e3ff;
-  --rose:      #ffb4ab;
-  --teal:      #bac7e3;
-  --teal-2:    #d7e3ff;
-  --violet:    #3b4964;
-  --white:     #dde2f6;
-  --muted:     rgba(221,226,246,.55);
-  --muted-2:   rgba(221,226,246,.30);
-  --muted-3:   rgba(221,226,246,.08);
-  --border:    rgba(68,71,79,.7);
-  --border-2:  rgba(142,144,154,.25);
+  /* ── Light Theme — Microsoft Blue Design System ── */
+  --blue:      #0078D7;
+  --blue-dk:   #005fa3;
+  --blue-lt:   #e8f3fc;
+  --bg:        #F0F2F7;
+  --surface:   #ffffff;
+  --border:    #e2e6f0;
+  --border-2:  #cdd3e0;
+  --text-1:    #000000;
+  --text-2:    #505050;
+  --text-3:    #737373;
+
+  /* Legacy aliases used by inline styles */
+  --electric:  #0078D7;
+  --electric-2:#3399e0;
+  --electric-3:#0078D7;
+  --gold:      #f59e0b;
+  --gold-2:    #fbbf24;
+  --gold-3:    #fde68a;
+  --teal:      #0078D7;
+  --teal-2:    #0078D7;
+  --violet:    #7c3aed;
+  --white:     #000000;
+  --muted:     #737373;
+  --muted-2:   #9ca3af;
+  --muted-3:   rgba(0,0,0,.06);
+  --navy:      #F0F2F7;
+  --navy-2:    #ffffff;
+  --navy-3:    #f8f9fc;
+  --navy-4:    #f0f2f7;
+  --ink:       #000000;
 
   --r:    4px;
   --r-md: 8px;
@@ -43,23 +50,21 @@
   --r-xl: 24px;
   --r-full: 9999px;
 
-  --font-display: 'Lexend', sans-serif;
-  --font-body:    'Lexend', sans-serif;
-  --font-mono:    'Lexend', monospace;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'Plus Jakarta Sans', monospace;
 
-  --glow-electric: 0 0 48px rgba(93,118,169,.25);
-  --glow-gold:     0 0 32px rgba(93,118,169,.18);
-  --shadow-card:   0 1px 3px rgba(8,14,28,.5), 0 4px 16px rgba(8,14,28,.3);
-  --shadow-elevated: 0 4px 24px rgba(8,14,28,.7), 0 1px 4px rgba(8,14,28,.4);
+  --shadow-card:     0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+  --shadow-elevated: 0 4px 24px rgba(0,0,0,.1),  0 2px 8px  rgba(0,0,0,.06);
 
-  --nav-h: 64px;
+  --nav-h: 60px;
 }
 
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
-  background: var(--navy);
-  color: var(--white);
+  background: var(--bg);
+  color: var(--text-1);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -67,16 +72,14 @@ body {
 }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--navy-2); }
-::-webkit-scrollbar-thumb { background: var(--navy-4); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
 
 /* ── NAV ── */
 nav {
   position: sticky; top: 0; z-index: 100;
   height: var(--nav-h);
-  background: rgba(14,19,31,.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
@@ -85,194 +88,143 @@ nav {
 nav::after { display: none; }
 .nav-logo {
   display: flex; align-items: center; gap: 5px;
-  font-family: var(--font-display); font-size: 16px; letter-spacing: -.01em;
-  color: var(--white); text-decoration: none; white-space: nowrap;
+  font-family: var(--font-display); font-size: 15px; letter-spacing: -.01em;
+  color: var(--text-1); text-decoration: none; white-space: nowrap;
   font-weight: 700;
 }
-.nav-logo-mark {
-  width: 32px; height: 32px; border-radius: var(--r-md);
-  background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(93,118,169,.4);
-  transition: box-shadow .3s, transform .3s;
-}
-.nav-logo:hover .nav-logo-mark { box-shadow: 0 0 30px rgba(0,240,255,.7); transform: rotate(-5deg) scale(1.05); }
-.nav-logo-mark svg { width: 18px; height: 18px; fill: #fff; }
-.nav-logo .logo-accent { color: var(--electric); }
+.nav-logo-mark { display: none; }
+.nav-logo .logo-accent { color: var(--blue); }
 .nav-links {
   display: flex; gap: 2px; list-style: none; flex: 1;
 }
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--muted);
-  text-decoration: none; padding: 7px 16px; border-radius: var(--r-full);
+  font-size: 13px; font-weight: 500; color: var(--text-3);
+  text-decoration: none; padding: 7px 14px; border-radius: var(--r-full);
   transition: color .2s, background .2s;
-  letter-spacing: 0;
   position: relative;
 }
 .nav-links a::after {
   content: '';
-  position: absolute; bottom: 4px; left: 50%; right: 50%;
-  height: 2px; background: var(--electric);
+  position: absolute; bottom: 2px; left: 14px; right: 14px;
+  height: 2px; background: var(--blue);
   border-radius: 1px;
-  transition: left .2s, right .2s;
+  transform: scaleX(0); transition: transform .2s;
 }
-.nav-links a:hover { color: var(--white); background: var(--muted-3); }
-.nav-links a:hover::after, .nav-links a.active::after { left: 14px; right: 14px; }
-.nav-links a.active { color: var(--white); }
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-links a:hover { color: var(--text-1); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--blue); font-weight: 600; }
+.nav-right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.theme-toggle { display: none; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  padding: 9px 22px; border-radius: var(--r-full); border: none; cursor: pointer;
+  padding: 8px 20px; border-radius: var(--r-full); border: none; cursor: pointer;
   text-decoration: none; transition: all .2s; white-space: nowrap;
-  letter-spacing: .02em;
 }
 .btn-ghost {
-  background: transparent; color: var(--muted-2);
-  border: 1px solid var(--border-2);
+  background: transparent; color: var(--text-2);
+  border: 1.5px solid var(--border-2);
 }
-.btn-ghost:hover { border-color: var(--electric-2); color: var(--white); background: rgba(0,240,255,.1); }
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
 .btn-primary {
-  background: var(--gold); color: var(--white);
-  box-shadow: 0 2px 12px rgba(93,118,169,.35);
+  background: var(--blue); color: #fff;
+  box-shadow: 0 2px 8px rgba(0,120,215,.25);
 }
-.btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(93,118,169,.45); }
+.btn-primary:hover { background: var(--blue-dk); transform: translateY(-1px); }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all .25s; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text-1); border-radius: 2px; transition: all .25s; }
 .mobile-menu {
   display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
-  background: var(--navy-2); border-bottom: 1px solid var(--border);
+  background: var(--surface); border-bottom: 1px solid var(--border);
   padding: 1rem; z-index: 99; flex-direction: column; gap: 4px;
   box-shadow: var(--shadow-elevated);
 }
 .mobile-menu.open { display: flex; }
-.mobile-menu a { font-size: 15px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 10px 14px; border-radius: 10px; transition: background .15s, color .15s; }
-.mobile-menu a:hover { background: var(--muted-3); color: var(--white); }
+.mobile-menu a { font-size: 15px; font-weight: 600; color: var(--text-2); text-decoration: none; padding: 10px 14px; border-radius: 10px; transition: background .15s, color .15s; }
+.mobile-menu a:hover { background: var(--blue-lt); color: var(--blue); }
 
 /* ── HERO ── */
 .hero {
+  background: var(--surface);
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 5rem clamp(1.25rem, 5vw, 5rem);
   position: relative; overflow: hidden;
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 2rem) clamp(1.25rem,4vw,3rem) 5rem;
-  background:
-    linear-gradient(to bottom, rgba(8,14,28,.72) 0%, rgba(8,14,28,.55) 45%, rgba(8,14,28,.80) 100%),
-    url('hero-bg.jpg') center/cover no-repeat;
 }
-.hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(173,198,254,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(173,198,254,.035) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+#hero-particles {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
 }
-.hero-noise { display: none; }
-.hero-orb { position: absolute; border-radius: 50%; filter: blur(120px); }
-.orb-1 {
-  width: 800px; height: 500px;
-  background: radial-gradient(ellipse at center, rgba(93,118,169,.35) 0%, transparent 65%);
-  top: 50%; left: 50%; transform: translate(-50%, -55%);
-  animation: none;
+#hero-particles canvas {
+  position: absolute !important;
+  inset: 0; width: 100% !important; height: 100% !important;
 }
-.orb-2 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(59,73,100,.25) 0%, transparent 70%);
-  bottom: 0; left: 20%; animation: none;
-}
-.orb-3 { display: none; }
-
-.hero-corner { display: none; }
+.hero-bg, .hero-grid, .hero-noise, .hero-orb, .orb-1, .orb-2, .orb-3, .hero-corner, .hero-scroll-hint, .hero-card { display: none !important; }
 
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 760px; margin: 0 auto; width: 100%;
+  max-width: 720px; margin: 0 auto; width: 100%;
   display: flex; flex-direction: column; align-items: center;
 }
+
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-body); font-size: 12px; font-weight: 500;
-  color: var(--electric-2); letter-spacing: .1em; text-transform: uppercase;
-  padding: 0; border: none; background: none;
-  margin-bottom: 1.75rem; font-style: normal;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-lt);
+  padding: 5px 14px; border-radius: var(--r-full); border: none;
+  margin-bottom: 1.5rem; font-style: normal; align-self: center;
 }
 .hero-eyebrow::before {
-  content:''; width:7px; height:7px; border-radius:50%;
+  content:''; width:6px; height:6px; border-radius:50%;
   background: #22c55e; display:inline-block;
   animation: pulse-dot 2.5s ease-in-out infinite;
-  box-shadow: 0 0 12px rgba(34,197,94,.6);
 }
 @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.55)} }
 
 .hero h1 {
-  font-family: var(--font-display); font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-  font-weight: 600; line-height: 1.1; color: var(--white); margin-bottom: 1.5rem;
-  letter-spacing: -0.02em; font-style: normal; text-transform: uppercase;
+  font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800; line-height: 1.1; color: var(--text-1); margin-bottom: 1.25rem;
+  letter-spacing: -0.03em; font-style: normal; text-transform: none;
   animation: fadeUp .7s ease both;
 }
-.hero h1 em { font-style: normal; color: var(--electric); display: block; }
-.hero h1 strong { color: var(--electric); font-weight: 600; }
+.hero h1 em { font-style: normal; color: var(--blue); display: inline; }
+.hero h1 strong { color: var(--blue); font-weight: 800; }
 .hero-sub {
-  font-size: clamp(.95rem, 1.8vw, 1.05rem); color: var(--muted);
-  font-weight: 400; max-width: 520px; margin: 0 auto 2.75rem; line-height: 1.7;
-  animation: fadeUp .7s .15s ease both;
+  font-size: 1rem; color: var(--text-2);
+  font-weight: 400; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7;
+  animation: fadeUp .7s .1s ease both;
 }
 .hero-ctas {
   display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  animation: fadeUp .7s .25s ease both;
+  animation: fadeUp .7s .2s ease both;
 }
 .btn-hero-primary {
-  background: var(--gold); color: var(--white);
-  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  background: var(--blue); color: #fff;
+  font-family: var(--font-body); font-size: 14px; font-weight: 700;
   padding: 13px 32px; border-radius: var(--r-full); border: none; cursor: pointer;
   text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  box-shadow: 0 2px 16px rgba(93,118,169,.4);
-  transition: all .25s; letter-spacing: .01em;
+  box-shadow: 0 4px 16px rgba(0,120,215,.3); transition: all .25s;
 }
-.btn-hero-primary:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(93,118,169,.5); }
+.btn-hero-primary:hover { background: var(--blue-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,120,215,.35); }
 .btn-hero-outline {
-  background: transparent; color: var(--white);
-  font-family: var(--font-body); font-size: 14px; font-weight: 500;
-  padding: 13px 32px; border-radius: var(--r-full); border: 1px solid rgba(221,226,246,.2);
+  background: transparent; color: var(--text-1);
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  padding: 12px 32px; border-radius: var(--r-full); border: 1.5px solid var(--border-2);
   cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
   transition: all .25s;
 }
-.btn-hero-outline:hover { background: rgba(221,226,246,.07); border-color: rgba(221,226,246,.35); transform: translateY(-1px); }
+.btn-hero-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
 .hero-stats {
-  display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2.5rem;
+  display: flex; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2rem;
   border-top: 1px solid var(--border);
-  animation: fadeUp .7s .35s ease both; justify-content: center;
+  animation: fadeUp .7s .3s ease both; justify-content: center;
 }
 .hero-stat-val {
-  font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; color: var(--white);
-  letter-spacing: -0.02em; line-height: 1;
+  font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--text-1);
+  letter-spacing: -0.03em; line-height: 1;
 }
-.hero-stat-lbl { font-size: 11px; color: var(--muted-2); margin-top: 5px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
-
-/* Scroll hint */
-.hero-scroll-hint {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  color: var(--muted-2); animation: fadeUp .7s .5s ease both;
-}
-.hero-scroll-hint i { font-size: 18px; animation: bounce 2s ease-in-out infinite; display: block; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
-
-.hero-card {
-  background: var(--navy-2);
-  border: 1px solid var(--border-2);
-  border-radius: var(--r-xl); padding: 1.75rem;
-  box-shadow: var(--shadow-elevated);
-  animation: fadeUp .7s .2s ease both;
-  position: relative; overflow: hidden;
-}
-.hero-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--electric), var(--violet), var(--gold));
-}
+.hero-stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 4px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
 .hero-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
 .hero-card-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 .quarterbadge { font-family: var(--font-mono); font-size: 10px; color: var(--gold); background: rgba(112,0,255,.12); border: 1px solid rgba(112,0,255,.2); padding: 4px 10px; border-radius: 4px; letter-spacing: .06em; }
@@ -1059,13 +1011,295 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 [data-theme="light"] .security-badge { color: rgba(10,17,40,.3); }
 
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
-.fade-in { animation: fadeUp .6s ease both; }
-.delay-1 { animation-delay: .1s; }
-.delay-2 { animation-delay: .2s; }
-.delay-3 { animation-delay: .3s; }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in-view { opacity: 1; transform: none; }
 
+/* ═══════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES — replaces all dark styles
+   ═══════════════════════════════════════════════════ */
+
+/* Sections */
+.section { padding: 7rem 0; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.25rem,4vw,3rem); }
+.section-eyebrow { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:.75rem; }
+.section-title { font-size: clamp(1.75rem,3.5vw,2.5rem); font-weight:800; color:var(--text-1); line-height:1.15; margin-bottom:1rem; letter-spacing:-.03em; }
+.section-sub { font-size:.975rem; color:var(--text-2); max-width:560px; line-height:1.7; margin-bottom:2.5rem; }
+/* Alternating backgrounds for clear section breaks */
+#activities  { background: var(--surface); }
+#learning    { background: var(--bg); }
+#leaderboard { background: var(--surface); }
+#webinars    { background: var(--bg); }
+#ai-assistant{ background: var(--surface); }
+#rewards     { background: var(--bg); }
+
+/* Stats ticker */
+.stats-bar { background: var(--blue); overflow:hidden; padding:10px 0; }
+.ticker-val { font-size:13px; font-weight:700; color:#fff; }
+.ticker-lbl { font-size:12px; color:rgba(255,255,255,.8); }
+.ticker-sep { color:rgba(255,255,255,.4); }
+
+/* Activity cards */
+.activity-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); padding:1.5rem; transition:transform .2s,box-shadow .2s,border-color .2s; }
+.activity-card:hover { background:var(--surface); border-color:var(--blue); transform:translateY(-3px); box-shadow:var(--shadow-elevated); }
+.activity-card h3 { font-size:15px; font-weight:700; color:var(--text-1); margin-bottom:4px; letter-spacing:normal; }
+.activity-card p { font-size:13px; color:var(--text-2); max-height:none; }
+.act-icon-dpu   { background:#e5f6fe; color:#01A6F0; }
+.act-icon-master{ background:#fff8e1; color:#FFBA01; }
+.act-icon-mkt   { background:#f1f9e6; color:#7FBC00; }
+.act-icon-deal  { background:#fdf0ec; color:#F34F1C; }
+.act-pts-badge,.pts-dpu,.pts-master,.pts-mkt,.pts-deal { border-radius:var(--r-full); padding:3px 10px; font-size:11px; font-weight:700; }
+.pts-dpu    { background:#e5f6fe; color:#01A6F0; }
+.pts-master { background:#fff8e1; color:#c49000; }
+.pts-mkt    { background:#f1f9e6; color:#5a8a00; }
+.pts-deal   { background:#fdf0ec; color:#F34F1C; }
+.act-prog-track { background:var(--border); height:5px; border-radius:3px; }
+.act-prog-fill  { background:#01A6F0; }
+.act-card-master .act-prog-fill { background:#FFBA01; }
+.act-card-mkt   .act-prog-fill { background:#7FBC00; }
+.act-card-deal  .act-prog-fill { background:#F34F1C; }
+.act-prog-lbl { color:var(--text-3); text-transform:none; letter-spacing:0; }
+.act-prog-pct { color:var(--blue); }
+
+/* Journey / roadmap */
+.jtab { background:transparent; border:1.5px solid var(--border); color:var(--text-2); border-radius:var(--r-full); padding:8px 20px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; }
+.jtab:hover { border-color:var(--blue); color:var(--blue); }
+.jtab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.roadmap { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); padding:2rem; margin-bottom:2rem; }
+.roadmap-header { font-size:11px; font-weight:700; color:var(--text-3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:1.75rem; }
+.rnode-circle { background:var(--surface); border:2px solid var(--border); color:var(--text-3); }
+.rnode-done   { background:var(--blue) !important; border-color:var(--blue) !important; color:#fff !important; }
+.rnode-active { background:var(--surface) !important; border-color:var(--blue) !important; color:var(--blue) !important; box-shadow:0 0 0 4px var(--blue-lt); }
+.rnode-locked { background:var(--bg) !important; border-color:var(--border) !important; color:var(--text-3) !important; box-shadow:none; }
+.rnode-label { color:var(--text-2); }
+.rnode-pts   { color:var(--text-3); }
+.roadmap-track::before { background:var(--border); }
+.filter-chip { background:transparent; border:1.5px solid var(--border); color:var(--text-2); border-radius:var(--r-full); padding:6px 14px; font-size:12px; font-weight:600; cursor:pointer; transition:all .2s; }
+.filter-chip:hover { border-color:var(--blue); color:var(--blue); }
+.filter-chip.sel { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+/* Course cards */
+.course-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; transition:transform .2s,box-shadow .2s,border-color .2s; }
+.course-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,.1); }
+.cc-win  { border-top:3px solid #01A6F0; }
+.cc-cop  { border-top:3px solid #FFBA01; }
+.cc-m365 { border-top:3px solid #7FBC00; }
+.cc-ep   { border-top:3px solid #F34F1C; }
+/* Icon wraps — Microsoft product colors */
+.ci-win  { background:#e5f6fe; color:#01A6F0; }
+.ci-cop  { background:#fff8e1; color:#c49000; }
+.ci-m365 { background:#f1f9e6; color:#5a8a00; }
+.ci-ep   { background:#fdf0ec; color:#F34F1C; }
+/* Badges — Microsoft palette */
+.badge-hot  { background:#fdf0ec; color:#F34F1C; font-weight:700; }
+.badge-new  { background:#e5f6fe; color:#01A6F0; font-weight:700; }
+.badge-done { background:#f1f9e6; color:#5a8a00; font-weight:700; }
+.course-title { color:var(--text-1); font-size:14px; font-weight:700; }
+.course-meta span { background:var(--bg); color:var(--text-3); border-radius:var(--r-full); }
+.course-prog-label span:last-child { color:var(--blue); font-weight:700; }
+.course-prog { background:var(--border); height:4px; border-radius:3px; }
+.cc-win  .course-prog-fill { background:#01A6F0; }
+.cc-cop  .course-prog-fill { background:#FFBA01; }
+.cc-m365 .course-prog-fill { background:#7FBC00; }
+.cc-ep   .course-prog-fill { background:#F34F1C; }
+.course-pts { font-size:12px; font-weight:700; color:var(--text-2); }
+.cc-win  .course-pts { color:#01A6F0; }
+.cc-cop  .course-pts { color:#c49000; }
+.cc-m365 .course-pts { color:#5a8a00; }
+.cc-ep   .course-pts { color:#F34F1C; }
+.course-enrol { border-radius:var(--r-full); padding:6px 16px; font-size:12px; font-weight:700; text-decoration:none; transition:all .2s; border:1.5px solid var(--border); color:var(--text-2); background:var(--bg); }
+.course-enrol:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+/* Roadmap polish */
+.rnode-done   { background:#01A6F0 !important; border-color:#01A6F0 !important; color:#fff !important; }
+.rnode-active { border-color:#01A6F0 !important; color:#01A6F0 !important; box-shadow:0 0 0 4px #e5f6fe !important; }
+.rnode-pts { font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.rnode-label { font-size:12px; font-weight:600; color:var(--text-1); }
+
+/* Leaderboard */
+.lb-tab { background:transparent; border:1.5px solid var(--border); color:var(--text-2); border-radius:var(--r-full); padding:8px 20px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; }
+.lb-tab:hover { border-color:var(--blue); color:var(--blue); }
+.lb-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.lb-layout { display:grid; grid-template-columns:1fr 300px; gap:24px; align-items:start; }
+.lb-podium { display:flex; align-items:flex-end; justify-content:center; gap:12px; margin-bottom:1.5rem; }
+.podium-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); padding:1.5rem 1rem; text-align:center; flex:1; max-width:160px; transition:transform .2s,box-shadow .2s; }
+.podium-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-elevated); }
+.rank-1 { border-color:var(--blue); box-shadow:0 0 0 2px var(--blue-lt),var(--shadow-card); }
+.podium-rank-badge { position:absolute; bottom:-2px; right:-2px; width:20px; height:20px; border-radius:50%; background:var(--blue); color:#fff; font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; border:2px solid var(--surface); }
+.rank-1 .podium-rank-badge { background:#d97706; }
+.rank-2 .podium-rank-badge { background:#94a3b8; }
+.rank-3 .podium-rank-badge { background:#b45309; }
+.podium-name  { font-size:13px; font-weight:700; color:var(--text-1); margin-bottom:2px; }
+.podium-city  { font-size:11px; color:var(--text-3); margin-bottom:8px; }
+.podium-pts   { font-size:18px; font-weight:800; color:var(--text-1); line-height:1; }
+.rank-1 .podium-pts { color:var(--blue); font-size:22px; }
+.podium-pts-label { font-size:10px; color:var(--text-3); margin-bottom:6px; }
+.delta-up   { background:#f0fdf4; color:#16a34a; padding:3px 8px; border-radius:var(--r-full); font-size:10px; font-weight:600; }
+.delta-dn   { background:#fef2f2; color:#ef4444; padding:3px 8px; border-radius:var(--r-full); font-size:10px; font-weight:600; }
+.delta-flat { background:var(--bg); color:var(--text-3); padding:3px 8px; border-radius:var(--r-full); font-size:10px; font-weight:600; }
+.lb-table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+.lb-header-row { background:var(--bg); border-bottom:1px solid var(--border); color:var(--text-3); }
+.lb-row { border-bottom:1px solid var(--border); transition:background .15s; }
+.lb-row:hover { background:var(--bg); }
+.lb-row.you-row { background:var(--blue-lt); }
+.lb-row.you-row:hover { background:var(--blue-lt); }
+.rank-badge-lb { background:var(--bg); color:var(--text-3); }
+.you-row .rank-badge-lb { background:var(--blue); color:#fff; }
+.lb-name  { color:var(--text-1); }
+.lb-city  { color:var(--text-3); }
+.lb-acts  { color:var(--text-2); }
+.lb-pts-val { color:var(--blue); }
+.your-perf-card,.sprint-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); padding:1.5rem; }
+.your-perf-label,.sprint-card-header h4 { color:var(--text-1); }
+.your-perf-rank .rank-num { color:var(--text-1); font-weight:800; }
+.rank-change { color:#16a34a; background:#f0fdf4; padding:4px 10px; border-radius:var(--r-full); font-size:12px; font-weight:700; }
+.your-perf-sub,.sprint-card p { color:var(--text-3); }
+.your-perf-track,.sprint-track { background:var(--border); }
+.your-perf-fill { background:var(--blue); }
+.your-perf-divider { background:var(--border); }
+.compare-row span:first-child { color:var(--text-3); }
+.compare-val { color:var(--text-1); }
+.compare-val.negative { color:#ef4444; }
+.sprint-card-icon { background:var(--blue-lt); color:var(--blue); }
+.sprint-timer { color:var(--blue); font-size:1.75rem; font-weight:800; letter-spacing:.04em; margin-bottom:1rem; }
+.sprint-cta { background:var(--blue-lt); border:1.5px solid var(--blue); color:var(--blue); border-radius:var(--r-full); width:100%; padding:9px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; }
+.sprint-cta:hover { background:var(--blue); color:#fff; }
+.lb-sidebar { display:flex; flex-direction:column; gap:16px; }
+
+/* Webinars */
+.wb-tab { background:transparent; border:1.5px solid var(--border); color:var(--text-2); }
+.wb-tab:hover { border-color:var(--blue); color:var(--blue); }
+.wb-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.wb-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; transition:transform .2s,box-shadow .2s,border-color .2s; }
+.wb-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-elevated); border-color:var(--blue); }
+.wb-pts-badge { background:rgba(255,255,255,.95); color:var(--blue); border:1px solid var(--border); }
+.wb-play-btn { background:rgba(255,255,255,.9); color:var(--blue); border:2px solid rgba(255,255,255,.7); }
+.wb-card:hover .wb-play-btn { background:var(--blue); color:#fff; }
+.wb-event-title { color:var(--text-1); }
+.wb-meta-row { color:var(--text-3); }
+.wb-meta-row i { color:var(--blue); }
+.wb-earned { color:#16a34a; }
+.wb-action { background:var(--bg); border:1.5px solid var(--border); color:var(--text-2); }
+.wb-action:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-lt); }
+.wb-action.wb-register { background:var(--blue); border-color:var(--blue); color:#fff; }
+.wb-action.wb-register:hover { background:var(--blue-dk); }
+
+/* AI Assistant */
+.ai-feat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg); padding:1.25rem; display:flex; align-items:flex-start; gap:1rem; transition:border-color .2s,box-shadow .2s; cursor:pointer; }
+.ai-feat-card:hover { border-color:var(--blue); box-shadow:var(--shadow-card); }
+.ai-feat-icon { background:var(--blue-lt); color:var(--blue); border:1px solid rgba(0,120,215,.15); border-radius:var(--r-md); width:40px; height:40px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.ai-feat-body h4 { color:var(--text-1); font-size:14px; font-weight:700; margin-bottom:4px; }
+.ai-feat-body p  { color:var(--text-2); font-size:12px; line-height:1.6; }
+.ai-chat-demo { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+.chat-topbar { background:var(--bg); border-bottom:1px solid var(--border); }
+.chat-avatar { background:var(--blue-lt); color:var(--blue); border-color:rgba(0,120,215,.15); }
+.chat-title { color:var(--text-1); }
+.chat-sub   { color:var(--text-3); }
+.online-dot { background:#22c55e; }
+.bubble-ai   { background:var(--bg); border:1px solid var(--border); color:var(--text-2); }
+.bubble-user { background:var(--blue); color:#fff; }
+.ai-msg-avatar   { background:var(--blue-lt); color:var(--blue); border-color:rgba(0,120,215,.15); }
+.user-msg-avatar { background:var(--bg); color:var(--text-2); border-color:var(--border); }
+.s-prompt { color:var(--text-2); background:transparent; border:1px solid var(--border); border-radius:var(--r-full); }
+.s-prompt:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-lt); }
+.chat-input-area { background:var(--bg); border-top:1px solid var(--border); }
+.chat-input { background:var(--surface); border:1px solid var(--border); color:var(--text-1); border-radius:var(--r-full); }
+.chat-input:focus { border-color:var(--blue); outline:none; }
+.chat-input::placeholder { color:var(--text-3); }
+.chat-send { background:var(--blue); color:#fff; border:none; border-radius:50%; width:36px; height:36px; cursor:pointer; transition:background .2s; }
+.chat-send:hover { background:var(--blue-dk); }
+
+/* Reward shop */
+.rshop-balance-bar { background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:var(--r-xl); padding:1.25rem 1.5rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; }
+.rshop-balance-label { color:var(--text-3); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; }
+.rshop-balance-val   { color:var(--text-1); font-size:1.5rem; font-weight:800; }
+.rshop-balance-sub   { color:var(--text-3); font-size:12px; }
+.rshop-tab { background:transparent; border:1.5px solid var(--border); color:var(--text-2); border-radius:var(--r-full); padding:8px 20px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; }
+.rshop-tab:hover { border-color:var(--blue); color:var(--blue); }
+.rshop-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.reward-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; transition:transform .2s,box-shadow .2s,border-color .2s; }
+.reward-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-elevated); border-color:var(--blue); }
+.rc-type-pill { background:rgba(255,255,255,.95); color:var(--text-2); border:1px solid var(--border); }
+.rc-name { color:var(--text-1); }
+.rc-desc { color:var(--text-2); }
+.rc-divider { background:var(--border); }
+.rc-pts { color:var(--blue); }
+.rc-pts-lbl { color:var(--text-3); }
+.rc-btn-primary { background:var(--blue); color:#fff; }
+.rc-btn-primary:hover { background:var(--blue-dk); }
+.rc-btn-locked { background:var(--bg); color:var(--text-3); border:1px solid var(--border); cursor:not-allowed; }
+
+/* Dashboard */
+.dash-role-btn { border:1.5px solid var(--border); color:var(--text-2); background:transparent; border-radius:var(--r-full); }
+.dash-role-btn:hover { border-color:var(--blue); color:var(--blue); }
+.dash-role-btn.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.dash-kpi { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg); }
+.dash-kpi::before { background:var(--blue); }
+.dash-kpi-icon { background:var(--blue-lt); color:var(--blue); border-color:rgba(0,120,215,.15); }
+.dash-kpi-val   { color:var(--text-1); }
+.dash-kpi-label { color:var(--text-3); }
+.dash-card { background:var(--surface); border:1px solid var(--border); }
+.dash-card-head { border-bottom:1px solid var(--border); }
+.dash-card-title { color:var(--text-1); }
+.dash-th { background:var(--bg); color:var(--text-3); border-bottom:1px solid var(--border); }
+.dash-td { color:var(--text-1); border-bottom:1px solid var(--border); }
+.dash-tr:hover .dash-td { background:var(--bg); }
+.dash-td.muted { color:var(--text-3); }
+.dash-partner-loc { color:var(--text-3); }
+.dash-pts-chip { color:var(--blue); }
+.dash-bar-track { background:var(--border); }
+.dash-bar-fill  { background:var(--blue); opacity:.8; }
+.dash-bar-label { color:var(--text-3); }
+.dash-bar-val   { color:var(--text-1); }
+.dash-log-icon  { background:var(--blue-lt); color:var(--blue); border-color:rgba(0,120,215,.15); }
+.dash-log-text  { color:var(--text-1); }
+.dash-log-time  { color:var(--text-3); }
+.dash-log-pts   { color:var(--blue); }
+.dash-prog-name { color:var(--text-1); }
+.dash-prog-val  { color:var(--blue); }
+.dash-prog-track { background:var(--border); }
+.dash-prog-fill  { background:var(--blue); }
+.dash-filter-pill { border:1px solid var(--border); color:var(--text-3); background:transparent; }
+.dash-filter-pill:hover { border-color:var(--blue); color:var(--blue); }
+
+/* Footer */
+footer { background:#111827; color:#9ca3af; border-top:1px solid rgba(255,255,255,.06); }
+.footer-logo-icon { background:var(--blue); color:#fff; }
+.footer-logo-text { color:#fff; }
+.footer-logo-text span { color:#60a5fa; }
+.footer-brand p,.footer-period { color:#9ca3af; font-size:13px; line-height:1.7; }
+.footer-period strong { color:#d1d5db; }
+.footer-col h4 { color:#6b7280; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; }
+.footer-col a { color:#9ca3af; text-decoration:none; display:block; margin-bottom:.6rem; font-size:13px; transition:color .15s; }
+.footer-col a:hover { color:#fff; }
+.footer-bottom { color:#6b7280; border-top:1px solid rgba(255,255,255,.06); padding-top:1.5rem; }
+.partner-pill { background:rgba(255,255,255,.07); color:#9ca3af; border:1px solid rgba(255,255,255,.1); }
+.security-badge { color:#6b7280; }
+
+/* Responsive */
+@media (max-width:1024px) {
+  .hero-content { grid-template-columns:1fr; }
+  .hero-card { display:none !important; }
+  .lb-layout { grid-template-columns:1fr; }
+  .lb-sidebar { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .ai-layout { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .hero { padding:3rem 1.5rem; }
+  .activity-grid { grid-template-columns:1fr 1fr; }
+  .courses-grid { grid-template-columns:1fr 1fr; }
+  .lb-sidebar { grid-template-columns:1fr; }
+  .roadmap-track { flex-direction:column; align-items:flex-start; gap:1rem; }
+  .roadmap-track::before { display:none; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+}
+@media (max-width:480px) {
+  .hero h1 { font-size:2rem; }
+  .hero-ctas { flex-direction:column; }
+  .hero-stats { flex-wrap:wrap; gap:1.5rem; }
+  .activity-grid,.courses-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+}
 
 /* ── LOGIN MODAL ── */
 .login-overlay {
@@ -1307,6 +1541,1178 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 [data-theme="light"] .dash-log-text { color: var(--ink); }
 [data-theme="light"] .dash-prog-name { color: var(--ink); }
 [data-theme="light"] .dash-prog-track { background: rgba(10,17,40,.07); }
+
+/* ── LEADERBOARD REDESIGN ──────────────────────────────── */
+.lb-new-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 2.5rem;
+}
+@media(max-width:1024px){ .lb-new-layout { grid-template-columns: 1fr; } }
+
+/* XP Banner */
+.xp-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #005499 0%, #0078D7 55%, #006cbf 100%);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.18);
+}
+.xp-active-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(127,188,0,.18);
+  color: #7FBC00;
+  border: 1px solid rgba(127,188,0,.35);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.xp-banner-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+.xp-banner-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.xp-banner-right {
+  text-align: center;
+  flex-shrink: 0;
+}
+.xp-ends-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,.5);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 8px;
+}
+.xp-timer-blocks {
+  display: flex;
+  gap: 8px;
+}
+.xp-time-block {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+.xp-time-val {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #FFBA01;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  font-family: var(--font-display);
+}
+@media(max-width:600px){
+  .xp-banner { flex-direction: column; text-align: center; }
+  .xp-timer-blocks { justify-content: center; }
+}
+
+/* Elite Podium */
+.elite-podium-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.elite-podium-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 1.25rem;
+}
+.elite-podium {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+.elite-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem .85rem 1rem;
+  text-align: center;
+  position: relative;
+  transition: transform .2s, box-shadow .2s;
+}
+.elite-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.09); }
+.elite-card.rank-1 {
+  background: linear-gradient(160deg, #004f97 0%, #0078D7 100%);
+  border: 2px solid #FFBA01;
+  box-shadow: 0 8px 32px rgba(0,120,215,.25), 0 4px 16px rgba(255,186,1,.15);
+  padding-bottom: 1.25rem;
+}
+.elite-card.rank-2 { border-top: 3px solid #01A6F0; }
+.elite-card.rank-3 { border-top: 3px solid #F34F1C; }
+
+.elite-top-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg,#d4a200,#FFBA01,#d4a200);
+  color: #003a6e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(255,186,1,.4);
+}
+.elite-place-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 8px;
+}
+.elite-avatar-wrap { display: flex; justify-content: center; margin: 6px 0 10px; }
+.elite-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.elite-avatar-gold {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+  border: 3px solid #FFBA01;
+  box-shadow: 0 0 0 4px rgba(255,186,1,.18);
+}
+.elite-name { font-size: 13px; font-weight: 700; color: var(--text-1); line-height: 1.2; }
+.elite-card.rank-1 .elite-name { color: #fff; }
+.elite-city { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.elite-card.rank-1 .elite-city { color: rgba(255,255,255,.6); }
+.elite-pts { font-size: 1.3rem; font-weight: 900; color: var(--text-1); margin-top: 8px; }
+.elite-pts-gold { color: #FFBA01 !important; }
+.elite-pts-lbl { font-size: 10px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+.elite-card.rank-1 .elite-pts-lbl { color: rgba(255,255,255,.5); }
+
+.podium-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-top: 8px;
+}
+.delta-up { background: rgba(127,188,0,.15); color: #5a8a00; }
+.delta-dn { background: rgba(243,79,28,.12); color: #c43a12; }
+.delta-flat { background: rgba(0,0,0,.06); color: var(--text-3); }
+.elite-card.rank-1 .delta-up { background: rgba(127,188,0,.25); color: #7FBC00; }
+
+/* Rankings Table */
+.lb-table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.lb-table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.lb-table-title { font-size: 14px; font-weight: 700; color: var(--text-1); }
+.lb-scope-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.lb-tab {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.lb-tab.active { background: var(--blue); color: #fff; box-shadow: 0 2px 6px rgba(0,120,215,.3); }
+.lb-tab:not(.active):hover { color: var(--text-1); background: var(--border); }
+
+.lb-header-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 100px 80px 90px;
+  gap: 0;
+  padding: .6rem 1.25rem;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.lb-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 100px 80px 90px;
+  gap: 0;
+  align-items: center;
+  padding: .75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+  cursor: pointer;
+}
+.lb-row:last-of-type { border-bottom: none; }
+.lb-row:hover { background: var(--blue-lt); }
+.lb-row.you-row { background: rgba(0,120,215,.04); }
+.lb-row.you-row:hover { background: var(--blue-lt); }
+
+.rank-badge-lb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+.you-badge { background: var(--blue); color: #fff; border-color: var(--blue); box-shadow: 0 2px 8px rgba(0,120,215,.3); }
+
+.lb-partner { display: flex; align-items: center; gap: 10px; }
+.lb-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.lb-name { font-size: 13px; font-weight: 600; color: var(--text-1); }
+.lb-city { font-size: 11px; color: var(--text-3); }
+.lb-acts { font-size: 13px; color: var(--text-2); }
+.lb-pts-val { font-size: 13px; font-weight: 700; color: var(--text-1); text-align: right; }
+
+.you-tag {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 4px;
+  letter-spacing: .05em;
+}
+.lb-view-all {
+  text-align: center;
+  padding: .85rem;
+  border-top: 1px solid var(--border);
+}
+.lb-view-all a { font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: none; }
+.lb-view-all a:hover { text-decoration: underline; }
+
+/* Sidebar */
+.lb-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.your-perf-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+.your-perf-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 1rem;
+}
+.rank-num { font-size: 2rem; font-weight: 900; color: var(--blue); line-height: 1; }
+.rank-change {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5a8a00;
+  background: rgba(127,188,0,.12);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+.perf-stats-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .85rem; }
+.your-perf-prog-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-3); margin-bottom: 6px; }
+.your-perf-track { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+.your-perf-fill { height: 100%; background: linear-gradient(90deg, var(--blue), #01A6F0); border-radius: 99px; }
+.your-perf-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+.perf-ranks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.perf-rank-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .85rem;
+  text-align: center;
+}
+
+/* Activity Feed */
+.activity-feed-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+.feed-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 1rem;
+}
+.feed-list { display: flex; flex-direction: column; gap: 14px; }
+.feed-item { display: flex; align-items: flex-start; gap: 10px; }
+.feed-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.feed-body { flex: 1; }
+.feed-text { font-size: 13px; color: var(--text-1); line-height: 1.45; }
+.feed-text strong { color: var(--text-1); }
+.feed-time { font-size: 10px; font-weight: 700; color: var(--text-3); letter-spacing: .07em; margin-top: 2px; }
+/* ── END LEADERBOARD REDESIGN ─────────────────────────── */
+
+/* ── MASTER CLASS SECTION ─────────────────────────────── */
+
+/* Tab bar row */
+.mc-tabs-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.mc-tabs { display: flex; gap: 6px; }
+/* Override old wb-tab styles */
+.wb-tab {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 8px !important;
+  border: 1.5px solid var(--border) !important;
+  background: var(--surface) !important;
+  color: var(--text-2) !important;
+  cursor: pointer;
+  transition: all .2s;
+}
+.wb-tab:hover { border-color: var(--blue) !important; color: var(--blue) !important; }
+.wb-tab.active { background: var(--blue) !important; border-color: var(--blue) !important; color: #fff !important; box-shadow: 0 3px 12px rgba(0,120,215,.25) !important; }
+
+.mc-session-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+/* Featured session banner */
+.mc-featured {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: linear-gradient(135deg, #005499 0%, #0078D7 55%, #006cbf 100%);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,.14);
+}
+.mc-featured-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.mc-upnext-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,186,1,.18);
+  color: #FFBA01;
+  border: 1px solid rgba(255,186,1,.35);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.mc-featured-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+.mc-featured-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 6px;
+}
+.mc-featured-meta i { color: #01A6F0; margin-right: 5px; }
+.mc-featured-speaker { font-size: 12px; color: rgba(255,255,255,.5); }
+.mc-featured-speaker i { color: rgba(255,255,255,.4); margin-right: 5px; }
+
+.mc-featured-right {
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.mc-featured-pts {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #FFBA01;
+}
+.mc-featured-pts i { margin-right: 5px; }
+.mc-btn-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(0,120,215,.4);
+}
+.mc-btn-featured:hover { background: var(--blue-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,120,215,.45); }
+.mc-seats-left { font-size: 11px; color: rgba(255,255,255,.45); }
+
+@media(max-width:720px){
+  .mc-featured { flex-direction: column; text-align: center; }
+  .mc-featured-eyebrow { justify-content: center; }
+  .mc-featured-meta { justify-content: center; }
+}
+
+/* Session cards grid */
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.mc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+}
+.mc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.1); }
+.mc-card-accent {
+  width: 5px;
+  flex-shrink: 0;
+  background: var(--blue);
+}
+.mc-card-inner {
+  flex: 1;
+  padding: 1.25rem 1.25rem 1.25rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mc-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.mc-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.mc-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 16px;
+  flex: 1;
+}
+.mc-card-meta div { display: flex; align-items: center; gap: 7px; }
+.mc-card-meta i { width: 13px; text-align: center; color: var(--blue); opacity: .8; font-size: 11px; }
+
+/* Product chips */
+.mc-chip {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+}
+.mc-chip-copilot  { background: rgba(255,186,1,.12); color: #c49000; border: 1px solid rgba(255,186,1,.3); }
+.mc-chip-azure    { background: rgba(1,166,240,.1);  color: #0086c4; border: 1px solid rgba(1,166,240,.25); }
+.mc-chip-m365     { background: rgba(127,188,0,.1);  color: #4a7000; border: 1px solid rgba(127,188,0,.25); }
+.mc-chip-surface  { background: rgba(0,120,215,.1);  color: #005fa3; border: 1px solid rgba(0,120,215,.2); }
+.mc-chip-partner  { background: rgba(243,79,28,.1);  color: #c43a12; border: 1px solid rgba(243,79,28,.2); }
+.mc-chip-windows  { background: rgba(1,166,240,.1);  color: #0086c4; border: 1px solid rgba(1,166,240,.25); }
+
+/* Points badge */
+.mc-pts-small {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-lt);
+  border: 1px solid rgba(0,120,215,.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.mc-pts-small i { margin-right: 3px; font-size: 9px; }
+
+/* Earned badge (recorded tab) */
+.mc-earned-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #3d8500;
+  background: rgba(127,188,0,.1);
+  border: 1px solid rgba(127,188,0,.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* CTA buttons */
+.mc-btn-register,
+.mc-btn-watch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all .2s;
+  width: 100%;
+}
+.mc-btn-register {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,120,215,.25);
+}
+.mc-btn-register:hover { background: var(--blue-dk); box-shadow: 0 4px 14px rgba(0,120,215,.35); }
+.mc-btn-watch {
+  background: transparent;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+}
+.mc-btn-watch:hover { background: var(--blue-lt); }
+/* ── END MASTER CLASS ────────────────────────────────── */
+
+/* ── AI ASSISTANT REDESIGN ───────────────────────────── */
+
+/* Header row */
+.ai-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.ai-copilot-branding {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 22px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,.05);
+}
+.ai-copilot-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0d1b4b, #1a2e6e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+.ai-copilot-line1 { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; }
+.ai-copilot-line2 { font-size: 15px; font-weight: 800; color: var(--blue); letter-spacing: -.01em; }
+
+/* Override ai-layout gap for new grid */
+.ai-layout { grid-template-columns: 1fr 420px !important; }
+
+/* 2×2 feature grid */
+.ai-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-content: start;
+}
+
+.ai-feat-v2 {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.ai-feat-v2:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.09); }
+
+.ai-feat-v2-num {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 2.4rem;
+  font-weight: 900;
+  opacity: .06;
+  letter-spacing: -.04em;
+  line-height: 1;
+  user-select: none;
+}
+.ai-feat-v2-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+.ai-feat-v2 h4 { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; line-height: 1.3; }
+.ai-feat-v2 p  { font-size: 12px; color: var(--text-2); line-height: 1.6; margin: 0; }
+
+/* Per-color themes */
+.ai-feat-azure  { border-top: 3px solid #01A6F0; }
+.ai-feat-azure .ai-feat-v2-icon { background: rgba(1,166,240,.1); color: #0090d0; }
+.ai-feat-azure .ai-feat-v2-num  { color: #01A6F0; }
+
+.ai-feat-gold   { border-top: 3px solid #FFBA01; }
+.ai-feat-gold .ai-feat-v2-icon  { background: rgba(255,186,1,.1); color: #b38800; }
+.ai-feat-gold .ai-feat-v2-num   { color: #FFBA01; }
+
+.ai-feat-green  { border-top: 3px solid #7FBC00; }
+.ai-feat-green .ai-feat-v2-icon { background: rgba(127,188,0,.1); color: #5a8a00; }
+.ai-feat-green .ai-feat-v2-num  { color: #7FBC00; }
+
+.ai-feat-orange { border-top: 3px solid #F34F1C; }
+.ai-feat-orange .ai-feat-v2-icon { background: rgba(243,79,28,.1); color: #c43a12; }
+.ai-feat-orange .ai-feat-v2-num  { color: #F34F1C; }
+
+/* Chat topbar v2 — dark navy */
+.chat-topbar-v2 {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.25rem !important;
+  background: linear-gradient(135deg, #0086c4 0%, #01A6F0 100%) !important;
+  border-bottom: none !important;
+  border-radius: 0 !important;
+}
+.chat-avatar-v2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  border: 2px solid rgba(255,255,255,.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.chat-title-v2 { font-size: 14px; font-weight: 700; color: #fff !important; }
+.chat-sub-v2 {
+  font-size: 11px;
+  color: rgba(255,255,255,.55) !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.online-dot-v2 {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.chat-ms-badge {
+  font-size: 20px;
+  color: rgba(255,255,255,.35);
+  margin-left: auto;
+}
+
+/* Chat window itself */
+.ai-chat-demo {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.09) !important;
+}
+
+/* Bubble overrides */
+.bubble-ai {
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-1) !important;
+  border-radius: 4px 16px 16px 16px !important;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.bubble-ai strong { color: var(--blue); }
+.bubble-user {
+  background: var(--blue) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 16px 4px 16px 16px !important;
+}
+
+/* AI avatar */
+.ai-msg-avatar {
+  background: linear-gradient(135deg,#0d1b4b,#1a2e6e) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* Suggested prompts */
+.s-prompt {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--text-2) !important;
+  background: var(--surface) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  cursor: pointer;
+  transition: all .15s;
+}
+.s-prompt:hover { border-color: var(--blue) !important; color: var(--blue) !important; background: var(--blue-lt) !important; }
+
+/* Input area */
+.chat-input-area {
+  background: var(--bg) !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 1rem 1.25rem !important;
+}
+.chat-input {
+  background: var(--surface) !important;
+  border: 1.5px solid var(--border) !important;
+  color: var(--text-1) !important;
+  border-radius: 8px !important;
+  font-size: 13px;
+  height: 40px;
+}
+.chat-input:focus { border-color: var(--blue) !important; outline: none; }
+.chat-input::placeholder { color: var(--text-3) !important; }
+.chat-send {
+  background: #01A6F0 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 14px;
+}
+.chat-send:hover { background: #0086c4 !important; }
+
+@media(max-width:900px){
+  .ai-layout { grid-template-columns: 1fr !important; }
+  .ai-features-grid { grid-template-columns: 1fr 1fr; }
+  .ai-header-row { flex-direction: column; }
+}
+@media(max-width:520px){
+  .ai-features-grid { grid-template-columns: 1fr; }
+}
+/* ── END AI ASSISTANT ────────────────────────────────── */
+
+/* ── REWARD SHOP REDESIGN ────────────────────────────── */
+
+/* Balance + filter header */
+.rs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.rs-bal-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 6px;
+}
+.rs-bal-val {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--text-1);
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin-bottom: 8px;
+}
+.rs-bal-unit { font-size: 2rem; font-weight: 700; color: var(--blue); margin-left: 4px; }
+.rs-bal-sub { font-size: 13px; color: var(--text-2); }
+.rs-bal-sub strong { color: var(--text-1); }
+.rs-tier-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,186,1,.1);
+  color: #996600;
+  border: 1px solid rgba(255,186,1,.28);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Filter tabs */
+.rs-tabs-wrap {
+  display: inline-flex;
+  gap: 3px;
+  background: #ebebed;
+  border-radius: 10px;
+  padding: 4px;
+}
+/* Override old rshop-tab rules */
+.rs-tabs-wrap .rshop-tab {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 7px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--text-2) !important;
+  padding: 8px 20px !important;
+  cursor: pointer;
+  transition: all .15s;
+  box-shadow: none !important;
+}
+.rs-tabs-wrap .rshop-tab.active {
+  background: var(--surface) !important;
+  color: var(--text-1) !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,.12) !important;
+}
+.rs-tabs-wrap .rshop-tab:not(.active):hover {
+  color: var(--text-1) !important;
+}
+
+/* Product grid */
+.rs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Base card */
+.rs-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .22s, box-shadow .22s !important;
+  cursor: pointer;
+}
+.rs-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,.1) !important;
+  border-color: var(--border-2) !important;
+}
+
+/* Card image */
+.rs-card-img {
+  position: relative;
+  background: var(--bg);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.rs-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s;
+  display: block;
+}
+.rs-card:hover .rs-card-img img { transform: scale(1.05); }
+
+/* Card body */
+.rs-card-body {
+  padding: 1.1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.rs-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+.rs-card-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 14px;
+}
+.rs-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+.rs-card-pts {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -.02em;
+}
+.rs-card-pts span { font-size: 11px; font-weight: 600; color: var(--text-3); margin-left: 2px; }
+
+/* Featured card */
+.rs-card-featured {
+  grid-column: span 2;
+  flex-direction: row !important;
+  background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%) !important;
+  border: 1px solid #d8e6fb !important;
+  min-height: 290px;
+  align-items: stretch;
+}
+.rs-feat-content {
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+.rs-feat-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.rs-feat-name {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-1);
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.rs-feat-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 360px;
+}
+.rs-feat-footer {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.rs-feat-pts {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text-1);
+  letter-spacing: -.02em;
+}
+.rs-feat-pts span { font-size: 14px; font-weight: 600; color: var(--text-3); margin-left: 3px; }
+.rs-feat-stock { font-size: 11px; color: var(--text-3); }
+
+.rs-feat-img {
+  width: 44%;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.rs-feat-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+  display: block;
+}
+.rs-card-featured:hover .rs-feat-img img { transform: scale(1.04); }
+
+/* Badges */
+.rs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+/* tags row in card body */
+.rs-card-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.rs-badge-digital  { background: rgba(0,120,215,.1);  color: #005fa3; border: 1px solid rgba(0,120,215,.2); }
+.rs-badge-physical { background: rgba(127,188,0,.1);  color: #3d6800; border: 1px solid rgba(127,188,0,.25); }
+.rs-badge-limited  { background: rgba(255,186,1,.14); color: #996600; border: 1px solid rgba(255,186,1,.35); }
+.rs-badge-stock-in  { background: rgba(34,197,94,.1);  color: #166534; border: 1px solid rgba(34,197,94,.25); }
+.rs-badge-stock-low { background: rgba(245,158,11,.1); color: #92400e; border: 1px solid rgba(245,158,11,.28); }
+
+/* Buttons */
+.rs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.rs-btn-solid {
+  background: var(--blue);
+  color: #fff;
+  font-size: 14px;
+  padding: 12px 26px;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,120,215,.3);
+}
+.rs-btn-solid:hover {
+  background: var(--blue-dk);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(0,120,215,.4);
+}
+.rs-btn-outline {
+  background: transparent;
+  color: var(--text-1);
+  border: 1.5px solid var(--border-2);
+}
+.rs-btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
+.rs-btn-locked {
+  background: var(--bg);
+  color: var(--text-3);
+  border: 1.5px solid var(--border);
+  cursor: not-allowed;
+}
+
+@media(max-width:960px){
+  .rs-grid { grid-template-columns: repeat(2,1fr); }
+  .rs-card-featured { grid-column: span 2; }
+}
+@media(max-width:620px){
+  .rs-grid { grid-template-columns: 1fr; }
+  .rs-card-featured { grid-column: span 1; flex-direction: column !important; }
+  .rs-feat-img { width: 100%; height: 220px; }
+  .rs-feat-content { padding: 1.5rem; }
+  .rs-header { align-items: flex-start; flex-direction: column; }
+  .rs-bal-val { font-size: 2.4rem; }
+}
+/* ── END REWARD SHOP ────────────────────────────────── */
+
+/* ── CONSISTENT LEFT ACCENT (course cards + AI feat) ─── */
+.cc-win  { border-top: none; border-left: 4px solid #01A6F0; }
+.cc-cop  { border-top: none; border-left: 4px solid #FFBA01; }
+.cc-m365 { border-top: none; border-left: 4px solid #7FBC00; }
+.cc-ep   { border-top: none; border-left: 4px solid #F34F1C; }
+
+.ai-feat-azure  { border-top: none; border-left: 4px solid #01A6F0; }
+.ai-feat-gold   { border-top: none; border-left: 4px solid #FFBA01; }
+.ai-feat-green  { border-top: none; border-left: 4px solid #7FBC00; }
+.ai-feat-orange { border-top: none; border-left: 4px solid #F34F1C; }
 </style>
 </head>
 <body>
@@ -1316,20 +2722,16 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <a href="#" class="nav-logo" aria-label="Sales Excellence League home">
     <span>Sales</span><span class="logo-accent">Excellence</span><span>League</span>
   </a>
-  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme">
-    <i class="fa-solid fa-sun"></i>
-  </button>
   <ul class="nav-links" role="list">
     <li><a href="#activities" class="active">Activities</a></li>
     <li><a href="#learning">Learning</a></li>
     <li><a href="#leaderboard">Leaderboard</a></li>
-    <li><a href="#webinars">Webinars</a></li>
+    <li><a href="#webinars">Master Class</a></li>
     <li><a href="#ai-assistant">AI Assistant</a></li>
     <li><a href="#rewards">Reward Shop</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" class="btn btn-ghost" onclick="event.preventDefault();showLoginModal()">Sign in</a>
-    <a href="#" class="btn btn-primary" onclick="event.preventDefault();showLoginModal()">Join free</a>
+    <a href="#" class="btn btn-primary" onclick="event.preventDefault();showLoginModal()">Partner Login</a>
     <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -1339,29 +2741,24 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <a href="#activities" onclick="closeMenu()">Activities</a>
   <a href="#learning" onclick="closeMenu()">Learning Journey</a>
   <a href="#leaderboard" onclick="closeMenu()">Leaderboard</a>
-  <a href="#webinars" onclick="closeMenu()">Webinars</a>
+  <a href="#webinars" onclick="closeMenu()">Master Class</a>
   <a href="#ai-assistant" onclick="closeMenu()">AI Assistant</a>
   <a href="#rewards" onclick="closeMenu()">Reward Shop</a>
-  <a href="#" onclick="closeMenu();showLoginModal();" style="color:var(--electric-3);font-weight:700">Sign in / Join free &rarr;</a>
+  <a href="#" onclick="closeMenu();showLoginModal();" style="color:var(--blue);font-weight:700">Sign in / Join free &rarr;</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-grid"></div>
-    <div class="hero-orb orb-1"></div>
-    <div class="hero-orb orb-2"></div>
-    <div class="hero-orb orb-3"></div>
-  </div>
+  <div id="hero-particles" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow" aria-label="Season 04 Active">Season 04 Active</div>
-    <h1 id="hero-heading">Build skills.<br><em>Earn points.</em><br>Win rewards.</h1>
-    <p class="hero-sub">Microsoft partner enablement for Redington &amp; Ingram resellers. Accreditations, masterclasses, and marketing tools &mdash; all in one place, at no cost.</p>
+    <div class="hero-eyebrow" aria-label="New Season Now Live">New Season Now Live</div>
+    <h1 id="hero-heading">Sell <em>More.</em><br>Rank <em>Higher.</em><br>Win Together.</h1>
+    <p class="hero-sub">Join the elite circle of high-performing Microsoft sales partners. Unlock exclusive training, compete for global rankings, and turn your closed deals into legend-tier rewards.</p>
     <div class="hero-ctas">
       <a href="#" class="btn-hero-primary" onclick="event.preventDefault();showLoginModal()">
-        Enter the Arena &nbsp;&rarr;
+        Join the Program
       </a>
-      <a href="#leaderboard" class="btn-hero-outline">View standings</a>
+      <a href="#leaderboard" class="btn-hero-outline">View Leaderboard</a>
     </div>
     <div class="hero-stats" role="list" aria-label="Platform statistics">
       <div role="listitem">
@@ -1377,56 +2774,8 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
         <div class="hero-stat-lbl">Marketing campaigns</div>
       </div>
     </div>
-
-  </div>
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <i class="fa-solid fa-chevron-down"></i>
-  </div>
-
-  <!-- hidden until used in a later section -->
-  <div class="hero-card" aria-hidden="true" style="display:none">
-      <div class="hero-card-header">
-        <span class="hero-card-title">My Dashboard</span>
-        <span class="quarterbadge">Q1 2026</span>
-      </div>
-      <div class="rank-display">
-        <div class="rank-num">#23</div>
-        <div class="rank-label">National ranking &middot; &uarr;4 this week</div>
-      </div>
-      <div class="points-row">
-        <span class="points-label">Total points</span>
-        <span class="points-val">6,450 pts</span>
-      </div>
-      <div class="points-row">
-        <span class="points-label">Next milestone</span>
-        <span class="points-val" style="color:var(--teal-2)">10,000 pts</span>
-      </div>
-      <div class="prog-track" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
-        <div class="prog-fill" id="heroProg" style="width:0%"></div>
-      </div>
-      <div class="mini-activity" role="list">
-        <div class="mini-act-row" role="listitem">
-          <div class="act-dot done"></div>
-          <span class="act-name">Windows 11 Pro Accreditation</span>
-          <span class="act-pts">+100 pts</span>
-        </div>
-        <div class="mini-act-row" role="listitem">
-          <div class="act-dot done"></div>
-          <span class="act-name">May Masterclass + Quiz</span>
-          <span class="act-pts">+250 pts</span>
-        </div>
-        <div class="mini-act-row" role="listitem">
-          <div class="act-dot pending"></div>
-          <span class="act-name">Marketing Campaign #2</span>
-          <span class="act-pts">+500 pts</span>
-        </div>
-        <div class="mini-act-row" role="listitem">
-          <div class="act-dot locked"></div>
-          <span class="act-name">Deal Closure submission</span>
-          <span class="act-pts">+1000 pts</span>
-        </div>
-      </div>
-    </div>
+    <!-- preserve heroProg id for JS -->
+    <div style="display:none"><div id="heroProg"></div></div>
   </div>
 </section>
 
@@ -1589,7 +2938,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 
     <div class="courses-grid" role="list">
       <article class="course-card cc-win" role="listitem">
-        <div class="course-hero" style="background:linear-gradient(135deg,rgba(0,80,180,.55),rgba(0,40,120,.45)),url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
+        <div class="course-hero" style="background:linear-gradient(135deg,rgba(1,166,240,.75),rgba(0,100,180,.6)),url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
         <div class="course-card-inner">
           <div class="course-card-top">
             <div class="course-icon-wrap ci-win" aria-hidden="true"><i class="fa-brands fa-windows"></i></div>
@@ -1613,7 +2962,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
       </article>
 
       <article class="course-card cc-cop" role="listitem">
-        <div class="course-hero" style="background:linear-gradient(135deg,rgba(60,10,100,.6),rgba(100,20,160,.5)),url(https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
+        <div class="course-hero" style="background:linear-gradient(135deg,rgba(255,186,1,.8),rgba(200,140,0,.65)),url(https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
         <div class="course-card-inner">
           <div class="course-card-top">
             <div class="course-icon-wrap ci-cop" aria-hidden="true"><i class="fa-solid fa-microchip"></i></div>
@@ -1637,7 +2986,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
       </article>
 
       <article class="course-card cc-m365" role="listitem">
-        <div class="course-hero" style="background:linear-gradient(135deg,rgba(0,60,50,.6),rgba(0,110,90,.5)),url(https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
+        <div class="course-hero" style="background:linear-gradient(135deg,rgba(127,188,0,.8),rgba(80,130,0,.65)),url(https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
         <div class="course-card-inner">
           <div class="course-card-top">
             <div class="course-icon-wrap ci-m365" aria-hidden="true"><i class="fa-solid fa-grid-2"></i></div>
@@ -1661,7 +3010,7 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
       </article>
 
       <article class="course-card cc-ep" role="listitem">
-        <div class="course-hero" style="background:linear-gradient(135deg,rgba(8,18,45,.62),rgba(16,38,90,.52)),url(https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
+        <div class="course-hero" style="background:linear-gradient(135deg,rgba(243,79,28,.8),rgba(180,50,10,.65)),url(https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&h=130&fit=crop&auto=format);background-size:cover;background-position:center"></div>
         <div class="course-card-inner">
           <div class="course-card-top">
             <div class="course-icon-wrap ci-ep" aria-hidden="true"><i class="fa-solid fa-laptop"></i></div>
@@ -1690,364 +3039,457 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
 <section class="section" id="leaderboard" aria-labelledby="lb-heading">
   <div class="section-inner">
     <div class="section-eyebrow">Live rankings</div>
-    <h2 class="section-title" id="lb-heading">Global<br>Leaderboard</h2>
+    <h2 class="section-title" id="lb-heading">Global Leaderboard</h2>
     <p class="section-sub">Updated in real-time. See where you stand nationally, by state, or by city &mdash; and what it takes to climb.</p>
 
-    <div class="lb-scope-tabs" role="tablist">
-      <button class="lb-tab active" role="tab" aria-selected="true" onclick="switchLbTab(this)">National</button>
-      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">State</button>
-      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">City</button>
-      <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">This Week</button>
-    </div>
+    <div class="lb-new-layout">
 
-    <div class="lb-layout">
-      <!-- Left: podium + table -->
-      <div>
-        <!-- Top 3 Podium -->
-        <div class="lb-podium">
-          <!-- Rank 2 -->
-          <div class="podium-card rank-2">
-            <div class="podium-avatar-wrap">
-              <div class="podium-avatar" style="background:linear-gradient(135deg,#3b5070,#5d7ba0)">AC</div>
-              <div class="podium-rank-badge">2</div>
-            </div>
-            <div class="podium-name">Ajay Chauhan</div>
-            <div class="podium-city">Mumbai</div>
-            <div class="podium-pts">8,100</div>
-            <div class="podium-pts-label">points</div>
-            <div><span class="podium-delta delta-flat"><i class="fa-solid fa-minus" style="font-size:8px"></i> No change</span></div>
+      <!-- ── LEFT COLUMN ── -->
+      <div class="lb-left">
+
+        <!-- Double XP Banner -->
+        <div class="xp-banner">
+          <div class="xp-banner-left">
+            <div class="xp-active-pill"><i class="fa-solid fa-bolt"></i> Active Event</div>
+            <div class="xp-banner-title">Double XP Weekend</div>
+            <div class="xp-banner-sub">All sales activities and training completions earn 2&times; points until Monday.</div>
           </div>
-          <!-- Rank 1 (Champion) -->
-          <div class="podium-card rank-1">
-            <div class="podium-avatar-wrap">
-              <div class="podium-avatar" style="background:linear-gradient(135deg,#1e3a5f,#2d5a8e)">HV</div>
-              <div class="podium-rank-badge">1</div>
+          <div class="xp-banner-right">
+            <div class="xp-ends-label">Ends In</div>
+            <div class="xp-timer-blocks">
+              <div class="xp-time-block"><span class="xp-time-val" id="sprintTimer">--:--:--:--</span></div>
             </div>
-            <div class="podium-name">Harminder Virk</div>
-            <div class="podium-city">Delhi</div>
-            <div class="podium-pts">9,840</div>
-            <div class="podium-pts-label">points</div>
-            <div><span class="podium-delta delta-up"><i class="fa-solid fa-arrow-up" style="font-size:8px"></i> +2 positions</span></div>
-          </div>
-          <!-- Rank 3 -->
-          <div class="podium-card rank-3">
-            <div class="podium-avatar-wrap">
-              <div class="podium-avatar" style="background:linear-gradient(135deg,#4a2040,#7a3060)">AK</div>
-              <div class="podium-rank-badge">3</div>
-            </div>
-            <div class="podium-name">Anantha Kumar</div>
-            <div class="podium-city">Bangalore</div>
-            <div class="podium-pts">6,950</div>
-            <div class="podium-pts-label">points</div>
-            <div><span class="podium-delta delta-dn"><i class="fa-solid fa-arrow-down" style="font-size:8px"></i> &minus;1 position</span></div>
           </div>
         </div>
 
-        <!-- Ranks 4+ Table -->
-        <div class="lb-table-wrap" role="table">
+        <!-- Elite Podium -->
+        <div class="elite-podium-wrap">
+          <div class="elite-podium-title"><i class="fa-solid fa-trophy" style="color:#FFBA01;margin-right:6px"></i>The Elite Podium</div>
+          <div class="elite-podium">
+
+            <!-- Rank 2 -->
+            <div class="elite-card rank-2">
+              <div class="elite-place-label">2nd Place</div>
+              <div class="elite-avatar-wrap">
+                <div class="elite-avatar" style="background:linear-gradient(135deg,#0078D7,#01A6F0)">SO</div>
+              </div>
+              <div class="elite-name">Sarah O'Brien</div>
+              <div class="elite-city">Melbourne, AU</div>
+              <div class="elite-pts">8,100</div>
+              <div class="elite-pts-lbl">points</div>
+              <span class="podium-delta delta-flat"><i class="fa-solid fa-minus" style="font-size:8px"></i> No change</span>
+            </div>
+
+            <!-- Rank 1 -->
+            <div class="elite-card rank-1">
+              <div class="elite-top-badge">Top Performer</div>
+              <div class="elite-avatar-wrap">
+                <div class="elite-avatar elite-avatar-gold" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">MW</div>
+              </div>
+              <div class="elite-name">Matt Wilson</div>
+              <div class="elite-city">Sydney, AU</div>
+              <div class="elite-pts elite-pts-gold">9,840</div>
+              <div class="elite-pts-lbl">points</div>
+              <span class="podium-delta delta-up"><i class="fa-solid fa-arrow-up" style="font-size:8px"></i> +2 positions</span>
+            </div>
+
+            <!-- Rank 3 -->
+            <div class="elite-card rank-3">
+              <div class="elite-place-label">3rd Place</div>
+              <div class="elite-avatar-wrap">
+                <div class="elite-avatar" style="background:linear-gradient(135deg,#F34F1C,#c43a12)">TF</div>
+              </div>
+              <div class="elite-name">Tom Fletcher</div>
+              <div class="elite-city">Brisbane, AU</div>
+              <div class="elite-pts">6,950</div>
+              <div class="elite-pts-lbl">points</div>
+              <span class="podium-delta delta-dn"><i class="fa-solid fa-arrow-down" style="font-size:8px"></i> &minus;1 position</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Global Rankings Table -->
+        <div class="lb-table-wrap">
+          <div class="lb-table-head">
+            <div class="lb-table-title">Global Rankings</div>
+            <div class="lb-scope-tabs" role="tablist">
+              <button class="lb-tab" role="tab" aria-selected="false" onclick="switchLbTab(this)">This Month</button>
+              <button class="lb-tab active" role="tab" aria-selected="true" onclick="switchLbTab(this)">All Time</button>
+            </div>
+          </div>
           <div class="lb-header-row" role="row">
-            <span>Rank</span><span>Partner</span><span style="text-align:right">City</span><span style="text-align:right">Activities</span><span style="text-align:right">Points</span>
+            <span>Rank</span><span>Partner</span><span>City</span><span>Activities</span><span style="text-align:right">Points</span>
           </div>
           <div class="lb-row" role="row" tabindex="0">
             <div class="rank-badge-lb">4</div>
             <div class="lb-partner">
-              <div class="lb-avatar" style="background:linear-gradient(135deg,#1e3a4a,#2d5a6e)">CD</div>
-              <div><div class="lb-name">Chaitrali Dhamankar</div><div class="lb-city">Pune</div></div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#7FBC00,#5a8a00)">CD</div>
+              <div><div class="lb-name">Claire Davidson</div><div class="lb-city">Perth</div></div>
             </div>
-            <div class="lb-acts" style="text-align:right">Pune</div>
+            <div class="lb-acts">Perth</div>
             <div class="lb-acts">18</div>
             <div class="lb-pts-val">5,400</div>
           </div>
           <div class="lb-row" role="row" tabindex="0">
             <div class="rank-badge-lb">5</div>
             <div class="lb-partner">
-              <div class="lb-avatar" style="background:linear-gradient(135deg,#1a3a2a,#2a5a40)">AS</div>
-              <div><div class="lb-name">Abhay Shukla</div><div class="lb-city">Hyderabad</div></div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#FFBA01,#c49000)">AS</div>
+              <div><div class="lb-name">Adam Sullivan</div><div class="lb-city">Adelaide</div></div>
             </div>
-            <div class="lb-acts" style="text-align:right">Hyderabad</div>
+            <div class="lb-acts">Adelaide</div>
             <div class="lb-acts">14</div>
             <div class="lb-pts-val">4,150</div>
           </div>
           <div class="lb-row" role="row" tabindex="0">
             <div class="rank-badge-lb">6</div>
             <div class="lb-partner">
-              <div class="lb-avatar" style="background:linear-gradient(135deg,#2a2a4a,#3a3a6e)">AK</div>
-              <div><div class="lb-name">Ashish Kumar</div><div class="lb-city">Chennai</div></div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#01A6F0,#0078D7)">AK</div>
+              <div><div class="lb-name">Amy Knight</div><div class="lb-city">Gold Coast</div></div>
             </div>
-            <div class="lb-acts" style="text-align:right">Chennai</div>
+            <div class="lb-acts">Gold Coast</div>
             <div class="lb-acts">12</div>
             <div class="lb-pts-val">3,800</div>
           </div>
-          <div class="lb-row" role="row" tabindex="0">
-            <div class="rank-badge-lb">7</div>
-            <div class="lb-partner">
-              <div class="lb-avatar" style="background:linear-gradient(135deg,#3a2a1a,#5a4a2a)">RK</div>
-              <div><div class="lb-name">Rohit Kapoor</div><div class="lb-city">Ahmedabad</div></div>
-            </div>
-            <div class="lb-acts" style="text-align:right">Ahmedabad</div>
-            <div class="lb-acts">11</div>
-            <div class="lb-pts-val">3,620</div>
-          </div>
           <div class="lb-row you-row" role="row" tabindex="0">
-            <div class="rank-badge-lb" style="background:rgba(173,198,254,.18);color:var(--electric)">23</div>
+            <div class="rank-badge-lb you-badge">23</div>
             <div class="lb-partner">
-              <div class="lb-avatar" style="background:linear-gradient(135deg,#1e2a4a,#2d3e6e)">PS</div>
-              <div><div class="lb-name">Priya Sharma <span style="font-size:10px;opacity:.4;font-weight:400">(You)</span></div><div class="lb-city">Noida</div></div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#0078D7,#005fa3)">AR</div>
+              <div>
+                <div class="lb-name">Alex Rivera <span class="you-tag">YOU</span></div>
+                <div class="lb-city">Sydney</div>
+              </div>
             </div>
-            <div class="lb-acts" style="text-align:right;color:rgba(221,226,246,.55)">Noida</div>
-            <div class="lb-acts" style="color:var(--electric)">22</div>
+            <div class="lb-acts">Sydney</div>
+            <div class="lb-acts" style="color:var(--blue);font-weight:700">22</div>
             <div class="lb-pts-val">6,450</div>
           </div>
+          <div class="lb-view-all">
+            <a href="#">View All 1,248 Partners <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></a>
+          </div>
         </div>
-      </div>
 
-      <!-- Right: Your Performance sidebar -->
+      </div><!-- /lb-left -->
+
+      <!-- ── RIGHT SIDEBAR ── -->
       <div class="lb-sidebar">
+
+        <!-- Your Performance -->
         <div class="your-perf-card">
           <div class="your-perf-label">Your Performance</div>
-          <div class="your-perf-rank">
-            <span class="rank-num">#23</span>
-            <span class="rank-change"><i class="fa-solid fa-arrow-up"></i> +12</span>
+          <div class="perf-stats-row">
+            <div>
+              <div style="font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Global Rank</div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="rank-num">#23</span>
+                <span class="rank-change"><i class="fa-solid fa-arrow-up"></i> +12</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Points</div>
+              <div style="font-size:1.5rem;font-weight:800;color:var(--text-1)">6,450</div>
+            </div>
           </div>
-          <div class="your-perf-sub">National ranking &middot; moved up 12 positions this month</div>
-
           <div class="your-perf-prog-label">
-            <span>Progress to #22</span>
-            <span>85%</span>
+            <span>Next: Rank #22</span>
+            <span>3,550 pts to go</span>
           </div>
-          <div class="your-perf-track">
-            <div class="your-perf-fill" style="width:85%"></div>
-          </div>
-
+          <div class="your-perf-track"><div class="your-perf-fill" style="width:65%"></div></div>
+          <div style="font-size:11px;color:var(--text-3);margin-bottom:1.25rem">Current Level: <strong style="color:var(--text-2)">Gold Tier II</strong></div>
           <div class="your-perf-divider"></div>
-          <div class="your-perf-compare-label">Regional Comparison</div>
-          <div class="your-perf-compare">
-            <div class="compare-row">
-              <span>Your points</span>
-              <span class="compare-val">6,450</span>
+          <div class="perf-ranks-grid">
+            <div class="perf-rank-box">
+              <div style="font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">State Rank</div>
+              <div style="font-size:1.5rem;font-weight:800;color:var(--blue)">#4</div>
+              <div style="font-size:11px;color:var(--text-3)">Delhi NCR</div>
             </div>
-            <div class="compare-row">
-              <span>Points to #22</span>
-              <span class="compare-val negative">&minus;320 pts</span>
-            </div>
-            <div class="compare-row">
-              <span>State rank</span>
-              <span class="compare-val">#4 in Delhi NCR</span>
-            </div>
-            <div class="compare-row">
-              <span>City rank</span>
-              <span class="compare-val">#2 in Noida</span>
+            <div class="perf-rank-box">
+              <div style="font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">City Rank</div>
+              <div style="font-size:1.5rem;font-weight:800;color:var(--blue)">#2</div>
+              <div style="font-size:11px;color:var(--text-3)">Noida</div>
             </div>
           </div>
         </div>
 
-        <div class="sprint-card">
-          <div class="sprint-card-header">
-            <div class="sprint-card-icon"><i class="fa-solid fa-bolt"></i></div>
-            <h4>Double XP Weekend</h4>
+        <!-- Elite Activity Feed -->
+        <div class="activity-feed-card">
+          <div class="feed-title">Elite Activity Feed</div>
+          <div class="feed-list">
+            <div class="feed-item">
+              <div class="feed-dot" style="background:#7FBC00"></div>
+              <div class="feed-body">
+                <div class="feed-text"><strong>Matt Wilson</strong> closed a $20k deal.</div>
+                <div class="feed-time">2 MINS AGO</div>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-dot" style="background:#0078D7"></div>
+              <div class="feed-body">
+                <div class="feed-text"><strong>You</strong> completed 'Win 11 Pro Accreditation'.</div>
+                <div class="feed-time">45 MINS AGO</div>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-dot" style="background:#FFBA01"></div>
+              <div class="feed-body">
+                <div class="feed-text"><strong>Sarah O'Brien</strong> reached Gold Tier.</div>
+                <div class="feed-time">1 HOUR AGO</div>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-dot" style="background:#F34F1C"></div>
+              <div class="feed-body">
+                <div class="feed-text"><strong>Tom Fletcher</strong> submitted a Marketing Campaign.</div>
+                <div class="feed-time">3 HOURS AGO</div>
+              </div>
+            </div>
           </div>
-          <p>Earn 2&times; points on all activities this weekend. Sprint resets every Monday.</p>
-          <div class="sprint-timer" aria-live="polite" id="sprintTimer">03:14:22:08</div>
-          <button class="sprint-cta">View Active Activities</button>
         </div>
-      </div>
+
+      </div><!-- /lb-sidebar -->
     </div>
   </div>
 </section>
 
-<!-- WEBINARS -->
+<!-- MASTER CLASS -->
 <section class="section" id="webinars" aria-labelledby="wb-heading">
   <div class="section-inner">
-    <div class="section-eyebrow">Knowledge exchange</div>
-    <h2 class="section-title" id="wb-heading">Live &amp; On-demand<br>Webinars</h2>
-    <p class="section-sub">Join upcoming sessions to earn points. Missed one? Rewatch recordings anytime and still get rewarded.</p>
+    <div class="section-eyebrow">Live &amp; On-Demand</div>
+    <h2 class="section-title" id="wb-heading">Expert Master Classes</h2>
+    <p class="section-sub">Learn directly from Microsoft specialists. Reserve a seat in upcoming live sessions or watch recordings at your own pace &mdash; and earn points either way.</p>
 
-    <div class="wb-tabs" role="tablist">
-      <button class="wb-tab active" data-tab="upcoming" role="tab" aria-selected="true" onclick="wbTab('upcoming')"><i class="fa-solid fa-calendar-check"></i> Upcoming Events</button>
-      <button class="wb-tab" data-tab="past" role="tab" aria-selected="false" onclick="wbTab('past')"><i class="fa-solid fa-circle-play"></i> Past Events</button>
+    <div class="mc-tabs-wrap">
+      <div class="mc-tabs" role="tablist">
+        <button class="wb-tab active" data-tab="upcoming" role="tab" aria-selected="true" onclick="wbTab('upcoming')">
+          <i class="fa-solid fa-calendar-check"></i> Upcoming Sessions
+        </button>
+        <button class="wb-tab" data-tab="past" role="tab" aria-selected="false" onclick="wbTab('past')">
+          <i class="fa-solid fa-circle-play"></i> Recorded Sessions
+        </button>
+      </div>
+      <div class="mc-session-count"><i class="fa-solid fa-bolt" style="color:#FFBA01;margin-right:5px"></i>4 sessions available this quarter</div>
     </div>
 
-    <!-- UPCOMING EVENTS -->
+    <!-- UPCOMING SESSIONS -->
     <div class="wb-panel active" id="wb-upcoming" role="tabpanel">
-      <div class="wb-grid">
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(10,22,70,.72),rgba(25,50,140,.6)),url(https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-live-dot"><i class="fa-solid fa-circle"></i> Upcoming</div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>150 pts</div>
+
+      <!-- Featured session banner -->
+      <div class="mc-featured">
+        <div class="mc-featured-left">
+          <div class="mc-featured-eyebrow"><span class="mc-upnext-pill"><i class="fa-solid fa-bolt"></i> Up Next</span><span class="mc-chip mc-chip-copilot">Copilot+</span></div>
+          <div class="mc-featured-title">Microsoft Copilot for Sales Teams</div>
+          <div class="mc-featured-meta">
+            <span><i class="fa-solid fa-calendar"></i> 15 May 2026 &middot; 3:00 PM AEST</span>
+            <span><i class="fa-solid fa-clock"></i> 60 min</span>
           </div>
-          <div class="wb-body">
-            <div class="wb-event-title">Microsoft Copilot for Sales Teams</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 15 May 2026, 3:00 PM AEST</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 60 minutes</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Sarah Thompson, Microsoft Australia</div>
+          <div class="mc-featured-speaker"><i class="fa-solid fa-user-tie"></i> Sarah Thompson &mdash; Microsoft Australia</div>
+        </div>
+        <div class="mc-featured-right">
+          <div class="mc-featured-pts"><i class="fa-solid fa-star"></i> 150 pts</div>
+          <a href="#" class="mc-btn-featured">Reserve Seat <i class="fa-solid fa-arrow-right" style="font-size:11px"></i></a>
+          <div class="mc-seats-left"><i class="fa-solid fa-circle-info" style="font-size:9px"></i> 38 seats remaining</div>
+        </div>
+      </div>
+
+      <!-- Grid of remaining sessions -->
+      <div class="mc-grid">
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#01A6F0"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-azure">Azure</span>
+              <span class="mc-pts-small"><i class="fa-solid fa-star"></i> 200 pts</span>
             </div>
-            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+            <div class="mc-card-title">Azure Infrastructure Deep Dive</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 22 May 2026 &middot; 11:00 AM AEST</div>
+              <div><i class="fa-solid fa-clock"></i> 90 minutes</div>
+              <div><i class="fa-solid fa-user-tie"></i> James Park, Azure Partner Team</div>
+            </div>
+            <a href="#" class="mc-btn-register">Register Now <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(5,25,45,.72),rgba(10,55,90,.6)),url(https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-live-dot"><i class="fa-solid fa-circle"></i> Upcoming</div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>200 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-event-title">Azure Infrastructure Deep Dive</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 22 May 2026, 11:00 AM AEST</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 90 minutes</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> James Park, Azure Partner Team</div>
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#7FBC00"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-m365">M365</span>
+              <span class="mc-pts-small"><i class="fa-solid fa-star"></i> 150 pts</span>
             </div>
-            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+            <div class="mc-card-title">Microsoft 365 Security Master Class</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 5 Jun 2026 &middot; 2:00 PM AEST</div>
+              <div><i class="fa-solid fa-clock"></i> 60 minutes</div>
+              <div><i class="fa-solid fa-user-tie"></i> Emma Clarke, Security Practice Lead</div>
+            </div>
+            <a href="#" class="mc-btn-register">Register Now <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(18,10,45,.72),rgba(40,18,90,.6)),url(https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-live-dot"><i class="fa-solid fa-circle"></i> Upcoming</div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>150 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-event-title">Microsoft 365 Security Masterclass</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 5 Jun 2026, 2:00 PM AEST</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 60 minutes</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Emma Clarke, Security Practice Lead</div>
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#F34F1C"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-partner">Partner Programs</span>
+              <span class="mc-pts-small"><i class="fa-solid fa-star"></i> 100 pts</span>
             </div>
-            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
+            <div class="mc-card-title">Partner Incentives Q2 Playbook</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 12 Jun 2026 &middot; 10:00 AM AEST</div>
+              <div><i class="fa-solid fa-clock"></i> 45 minutes</div>
+              <div><i class="fa-solid fa-user-tie"></i> Ryan Mitchell, Partner Programs</div>
+            </div>
+            <a href="#" class="mc-btn-register">Register Now <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(8,18,30,.72),rgba(15,38,55,.6)),url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-live-dot"><i class="fa-solid fa-circle"></i> Upcoming</div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>100 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-event-title">Partner Incentives Q2 Playbook</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 12 Jun 2026, 10:00 AM AEST</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-clock"></i> 45 minutes</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-user-tie"></i> Ryan Mitchell, Partner Programs</div>
-            </div>
-            <a href="#" class="wb-action wb-register"><i class="fa-solid fa-arrow-right-to-bracket"></i> Register Now</a>
-          </div>
-        </article>
+
       </div>
     </div>
 
-    <!-- PAST EVENTS -->
+    <!-- RECORDED SESSIONS -->
     <div class="wb-panel" id="wb-past" role="tabpanel">
-      <div class="wb-grid">
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(10,18,38,.72),rgba(22,38,75,.6)),url(https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 284 attendees</div>
-            <div class="wb-event-title">Copilot+ PC Launch Playbook</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 10 Apr 2026</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 284 attendees</div>
+      <div class="mc-grid">
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#FFBA01"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-copilot">Copilot+</span>
+              <span class="mc-earned-badge"><i class="fa-solid fa-circle-check"></i> Points Awarded</span>
             </div>
-            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+            <div class="mc-card-title">Copilot+ PC Launch Playbook</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 10 Apr 2026</div>
+              <div><i class="fa-solid fa-users"></i> 284 attendees &middot; 150 pts earned</div>
+            </div>
+            <a href="#" class="mc-btn-watch"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(8,18,30,.72),rgba(16,35,55,.6)),url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 312 attendees</div>
-            <div class="wb-event-title">Surface Pro 11 Sales Tactics</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 28 Mar 2026</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 312 attendees</div>
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#0078D7"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-surface">Surface</span>
+              <span class="mc-earned-badge"><i class="fa-solid fa-circle-check"></i> Points Awarded</span>
             </div>
-            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+            <div class="mc-card-title">Surface Pro 11 Sales Tactics</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 28 Mar 2026</div>
+              <div><i class="fa-solid fa-users"></i> 312 attendees &middot; 150 pts earned</div>
+            </div>
+            <a href="#" class="mc-btn-watch"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(12,16,35,.72),rgba(24,30,65,.6)),url(https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>200 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 198 attendees</div>
-            <div class="wb-event-title">Microsoft 365 Commercial Deals</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 14 Mar 2026</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 198 attendees</div>
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#7FBC00"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-m365">M365</span>
+              <span class="mc-earned-badge"><i class="fa-solid fa-circle-check"></i> Points Awarded</span>
             </div>
-            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+            <div class="mc-card-title">Microsoft 365 Commercial Deals</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 14 Mar 2026</div>
+              <div><i class="fa-solid fa-users"></i> 198 attendees &middot; 200 pts earned</div>
+            </div>
+            <a href="#" class="mc-btn-watch"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
           </div>
         </article>
-        <article class="wb-card">
-          <div class="wb-thumb" style="background:linear-gradient(135deg,rgba(14,8,35,.72),rgba(28,16,65,.6)),url(https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=175&fit=crop&auto=format);background-size:cover;background-position:center">
-            <div class="wb-play-btn"><i class="fa-solid fa-play"></i></div>
-            <div class="wb-pts-badge"><i class="fa-solid fa-check" style="font-size:9px;margin-right:3px"></i>150 pts</div>
-          </div>
-          <div class="wb-body">
-            <div class="wb-earned"><i class="fa-solid fa-circle-check"></i> Points awarded to 241 attendees</div>
-            <div class="wb-event-title">Security &amp; Compliance Workshop</div>
-            <div class="wb-meta">
-              <div class="wb-meta-row"><i class="fa-solid fa-calendar"></i> 28 Feb 2026</div>
-              <div class="wb-meta-row"><i class="fa-solid fa-users"></i> 241 attendees</div>
+
+        <article class="mc-card" tabindex="0">
+          <div class="mc-card-accent" style="background:#F34F1C"></div>
+          <div class="mc-card-inner">
+            <div class="mc-card-top">
+              <span class="mc-chip mc-chip-azure">Azure</span>
+              <span class="mc-earned-badge"><i class="fa-solid fa-circle-check"></i> Points Awarded</span>
             </div>
-            <a href="#" class="wb-action"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
+            <div class="mc-card-title">Security &amp; Compliance Workshop</div>
+            <div class="mc-card-meta">
+              <div><i class="fa-solid fa-calendar"></i> 28 Feb 2026</div>
+              <div><i class="fa-solid fa-users"></i> 241 attendees &middot; 150 pts earned</div>
+            </div>
+            <a href="#" class="mc-btn-watch"><i class="fa-solid fa-circle-play"></i> Watch Recording</a>
           </div>
         </article>
+
       </div>
     </div>
+
   </div>
 </section>
 
 <!-- AI ASSISTANT -->
 <section class="section" id="ai-assistant" aria-labelledby="ai-heading">
   <div class="section-inner">
-    <div class="section-eyebrow">AI-powered features</div>
-    <h2 class="section-title" id="ai-heading">Your intelligent<br>partner coach</h2>
-    <p class="section-sub">From personalised learning recommendations to instant quiz prep &mdash; AI works alongside you to maximise your quarter.</p>
-    <div class="ai-layout">
-      <div class="ai-features" role="list">
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-brain"></i></div>
-          <div class="ai-feat-body">
-            <h4>Personalised Learning Path</h4>
-            <p>AI analyses your accreditation history and recommends the highest-impact activities based on current leaderboard gaps.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div class="ai-feat-body">
-            <h4>Quiz Preparation Mode</h4>
-            <p>Practice with AI-generated questions aligned to each masterclass. Improve your score and claim more rewards.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <div class="ai-feat-body">
-            <h4>Rank Intelligence</h4>
-            <p>Real-time analysis of what separates your rank from the competition &mdash; and the exact actions to bridge that gap fastest.</p>
-          </div>
-        </div>
-        <div class="ai-feat-card" role="listitem" tabindex="0">
-          <div class="ai-feat-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <div class="ai-feat-body">
-            <h4>Asset Discovery</h4>
-            <p>Instantly find the right co-branded marketing materials for your campaigns. Filtered by product, audience, and format.</p>
-          </div>
+
+    <!-- Section header row -->
+    <div class="ai-header-row">
+      <div>
+        <div class="section-eyebrow">AI-Powered Features</div>
+        <h2 class="section-title" id="ai-heading">Meet SEL Coach</h2>
+        <p class="section-sub" style="max-width:480px">Your intelligent partner coach, powered by Microsoft Copilot. Personalised recommendations, rank intelligence, and instant quiz prep — in one place.</p>
+      </div>
+      <div class="ai-copilot-branding">
+        <div class="ai-copilot-icon"><i class="fa-solid fa-robot"></i></div>
+        <div>
+          <div class="ai-copilot-line1">Powered by</div>
+          <div class="ai-copilot-line2">Microsoft Copilot</div>
         </div>
       </div>
+    </div>
 
-      <div class="ai-chat-demo">
-        <div class="chat-topbar">
-          <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
-          <div>
-            <div class="chat-title">SEL Coach</div>
-            <div class="chat-sub">Powered by Copilot</div>
-          </div>
-          <div class="online-dot" aria-label="Online"></div>
+    <div class="ai-layout">
+
+      <!-- 2×2 Feature grid -->
+      <div class="ai-features-grid">
+
+        <div class="ai-feat-v2 ai-feat-azure" tabindex="0">
+          <div class="ai-feat-v2-num">01</div>
+          <div class="ai-feat-v2-icon"><i class="fa-solid fa-brain"></i></div>
+          <h4>Personalised Learning Path</h4>
+          <p>AI analyses your accreditation history and recommends highest-impact activities based on current leaderboard gaps.</p>
         </div>
+
+        <div class="ai-feat-v2 ai-feat-gold" tabindex="0">
+          <div class="ai-feat-v2-num">02</div>
+          <div class="ai-feat-v2-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Quiz Preparation Mode</h4>
+          <p>Practice with AI-generated questions aligned to each master class. Improve your score and claim more rewards.</p>
+        </div>
+
+        <div class="ai-feat-v2 ai-feat-green" tabindex="0">
+          <div class="ai-feat-v2-num">03</div>
+          <div class="ai-feat-v2-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h4>Rank Intelligence</h4>
+          <p>Real-time analysis of what separates your rank from the competition — and the exact actions to bridge that gap fastest.</p>
+        </div>
+
+        <div class="ai-feat-v2 ai-feat-orange" tabindex="0">
+          <div class="ai-feat-v2-num">04</div>
+          <div class="ai-feat-v2-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h4>Asset Discovery</h4>
+          <p>Instantly find the right co-branded marketing materials. Filtered by product, audience, and format.</p>
+        </div>
+
+      </div>
+
+      <!-- Chat demo -->
+      <div class="ai-chat-demo">
+
+        <!-- Dark navy topbar -->
+        <div class="chat-topbar chat-topbar-v2">
+          <div class="chat-avatar-v2"><i class="fa-solid fa-robot"></i></div>
+          <div style="flex:1">
+            <div class="chat-title-v2">SEL Coach</div>
+            <div class="chat-sub-v2"><span class="online-dot-v2"></span> Powered by Microsoft Copilot</div>
+          </div>
+          <div class="chat-ms-badge"><i class="fa-brands fa-microsoft"></i></div>
+        </div>
+
         <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
           <div class="chat-msg">
             <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
@@ -2059,20 +3501,23 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
           </div>
           <div class="chat-msg">
             <div class="msg-avatar ai-msg-avatar"><i class="fa-solid fa-robot"></i></div>
-            <div class="chat-bubble bubble-ai">Here's your optimised plan:<br><br><strong>1. Copilot+ PC Accreditation</strong> &mdash; 100 pts, ~3 hrs.<br><strong>2. Next Masterclass (May 2)</strong> &mdash; 150&ndash;250 pts with quiz pass.<br><strong>3. Marketing Campaign</strong> &mdash; 500 pts, assets ready.<br><br>That's <strong>850&ndash;950 pts</strong> this week alone.</div>
+            <div class="chat-bubble bubble-ai">Here's your optimised plan:<br><br><strong>1. Copilot+ PC Accreditation</strong> &mdash; 100 pts, ~3 hrs.<br><strong>2. Next Master Class (May 2)</strong> &mdash; 150&ndash;250 pts with quiz pass.<br><strong>3. Marketing Campaign</strong> &mdash; 500 pts, assets ready.<br><br>That's <strong>850&ndash;950 pts</strong> this week alone.</div>
           </div>
         </div>
+
         <div class="suggested-prompts">
           <button class="s-prompt" onclick="sendPrompt(this)">How do I prep for the quiz?</button>
           <button class="s-prompt" onclick="sendPrompt(this)">Show me marketing assets</button>
           <button class="s-prompt" onclick="sendPrompt(this)">Why did my rank drop?</button>
         </div>
+
         <div class="chat-input-area">
           <input type="text" class="chat-input" id="chatInput" placeholder="Ask about progress, activities, rewards&hellip;" onkeydown="if(event.key==='Enter')sendChat()">
           <button class="chat-send" onclick="sendChat()">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
         </div>
+
       </div>
     </div>
   </div>
@@ -2083,179 +3528,195 @@ footer { background: var(--navy); border-top: 1px solid var(--border); padding: 
   <div class="section-inner">
     <div class="section-eyebrow">Reward Shop</div>
     <h2 class="section-title" id="rewards-heading">Redeem your<br>hard-earned points</h2>
-    <p class="section-sub">Spend your points on exclusive digital rewards and physical merchandise — delivered to your door.</p>
+    <p class="section-sub">Spend your points on exclusive digital rewards and physical merchandise &mdash; delivered to your door.</p>
 
-    <!-- Balance bar -->
-    <div class="rshop-balance-bar">
-      <div>
-        <div class="rshop-balance-label">Your points balance</div>
-        <div class="rshop-balance-val">4,850 pts</div>
+    <!-- Balance + filter header -->
+    <div class="rs-header">
+      <div class="rs-balance-block">
+        <div class="rs-bal-label">Available Balance</div>
+        <div class="rs-bal-val">4,850 <span class="rs-bal-unit">pts</span></div>
+        <div class="rs-bal-sub">You're <strong>1,150 pts</strong> away from your next milestone reward. <span class="rs-tier-chip"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>Gold Tier &bull; Season 04</span></div>
       </div>
-      <div style="text-align:right">
-        <div class="rshop-balance-sub">Gold Tier &bull; Season 04</div>
-        <div class="rshop-balance-sub" style="color:#f59e0b;margin-top:2px"><i class="fa-solid fa-arrow-trend-up" style="font-size:10px"></i> +320 pts this week</div>
+      <div class="rs-filter-block">
+        <div class="rs-tabs-wrap" role="tablist">
+          <button class="rshop-tab active" onclick="filterRewards('all',this)">All Items</button>
+          <button class="rshop-tab" onclick="filterRewards('digital',this)">Digital</button>
+          <button class="rshop-tab" onclick="filterRewards('physical',this)">Physical</button>
+        </div>
       </div>
     </div>
 
-    <!-- Filter tabs -->
-    <div class="rshop-tabs" role="tablist">
-      <button class="rshop-tab active" onclick="filterRewards('all',this)">All Rewards</button>
-      <button class="rshop-tab" onclick="filterRewards('digital',this)">Digital</button>
-      <button class="rshop-tab" onclick="filterRewards('physical',this)">Physical</button>
-    </div>
+    <!-- Product grid -->
+    <div class="rs-grid" id="rewardGrid">
 
-    <!-- Reward grid -->
-    <div class="rshop-grid" id="rewardGrid">
-
-      <!-- Digital: Microsoft Store Credit $50 -->
-      <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(10,25,80,.65),rgba(30,60,160,.5)),url(https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Digital</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+      <!-- FEATURED: Wireless Headset -->
+      <div class="reward-card rs-card rs-card-featured" data-type="physical">
+        <div class="rs-feat-content">
+          <div class="rs-feat-badges">
+            <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited Edition</span>
+            <span class="rs-badge rs-badge-physical">Physical</span>
+          </div>
+          <div class="rs-feat-name">Microsoft Modern<br>Wireless Headset</div>
+          <div class="rs-feat-desc">Teams-certified wireless headset with noise-isolating microphone and all-day comfort — built for focused work sessions.</div>
+          <div class="rs-feat-footer">
+            <div class="rs-feat-pts">8,000 <span>pts</span></div>
+            <button class="rs-btn rs-btn-solid"><i class="fa-solid fa-bolt"></i> Redeem Now</button>
+          </div>
+          <div class="rs-feat-stock"><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:10px"></i> Only 4 units remaining</div>
         </div>
-        <div class="rc-body">
-          <div class="rc-name">Microsoft Store Credit — $50</div>
-          <div class="rc-desc">Redeemable on Microsoft Store for apps, games, devices, and subscriptions.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">2,000 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+        <div class="rs-feat-img">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=520&h=400&fit=crop&auto=format&q=85" alt="Microsoft Modern Wireless Headset" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Microsoft Store Credit $50 -->
+      <div class="reward-card rs-card" data-type="digital">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Store Credit $50" loading="lazy">
+        </div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-digital">Digital</span>
+            <span class="rs-badge rs-badge-stock-in">In Stock</span>
+          </div>
+          <div class="rs-card-name">Microsoft Store Credit — $50</div>
+          <div class="rs-card-desc">Digital voucher redeemable for apps, games, devices, and subscriptions.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">2,000 <span>pts</span></div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Digital: Microsoft Store Credit $100 -->
-      <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(30,10,70,.65),rgba(80,20,160,.5)),url(https://images.unsplash.com/photo-1607082349566-187342175e2f?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Digital</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+      <!-- MS Store Credit $100 -->
+      <div class="reward-card rs-card" data-type="digital">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Store Credit $100" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">Microsoft Store Credit — $100</div>
-          <div class="rc-desc">Double the value — perfect for a Surface accessory or a Microsoft 365 upgrade.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">3,500 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-digital">Digital</span>
+            <span class="rs-badge rs-badge-stock-in">In Stock</span>
+          </div>
+          <div class="rs-card-name">Microsoft Store Credit — $100</div>
+          <div class="rs-card-desc">Perfect for a Surface accessory or a Microsoft 365 upgrade.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">3,500 <span>pts</span></div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Digital: SEL Gold Badge -->
-      <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(60,30,0,.65),rgba(130,70,0,.5)),url(https://images.unsplash.com/photo-1567880905822-56f8e06fe630?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Digital</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+      <!-- SEL Gold Badge -->
+      <div class="reward-card rs-card" data-type="digital">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1567880905822-56f8e06fe630?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Gold Badge" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">SEL Gold Champion Badge</div>
-          <div class="rc-desc">Exclusive premium digital credential — shareable on LinkedIn and your partner profile.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">1,500 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-digital">Digital</span>
+            <span class="rs-badge rs-badge-stock-in">In Stock</span>
+          </div>
+          <div class="rs-card-name">SEL Gold Champion Badge</div>
+          <div class="rs-card-desc">Premium digital credential — shareable on LinkedIn and your partner profile.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">1,500 <span>pts</span></div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Digital: Microsoft 365 Personal -->
-      <div class="reward-card" data-type="digital">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(5,40,25,.65),rgba(10,90,50,.5)),url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Digital</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">In Stock</div>
+      <!-- Microsoft 365 Personal -->
+      <div class="reward-card rs-card" data-type="digital">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft 365 Personal" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">Microsoft 365 Personal — 1 Year</div>
-          <div class="rc-desc">Full suite of Word, Excel, PowerPoint, OneDrive 1TB and more for 12 months.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">5,000 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Need 150 more</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-digital">Digital</span>
+            <span class="rs-badge rs-badge-stock-in">In Stock</span>
+          </div>
+          <div class="rs-card-name">Microsoft 365 Personal — 1 Year</div>
+          <div class="rs-card-desc">Full Word, Excel, PowerPoint + OneDrive 1TB for 12 months.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">5,000 <span>pts</span></div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
           </div>
         </div>
       </div>
 
-      <!-- Physical: SEL T-Shirt -->
-      <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(10,22,50,.5),rgba(20,45,90,.4)),url(https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Physical</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">48 left</div>
+      <!-- SEL T-Shirt -->
+      <div class="reward-card rs-card" data-type="physical">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Champion T-Shirt" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">SEL Champion T-Shirt</div>
-          <div class="rc-desc">Premium 100% cotton tee with embroidered Sales Excellence League branding. Sizes S–XXL.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">2,500 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-physical">Physical</span>
+            <span class="rs-badge rs-badge-stock-in">48 left</span>
+          </div>
+          <div class="rs-card-name">SEL Champion T-Shirt</div>
+          <div class="rs-card-desc">Premium cotton tee with embroidered SEL branding. Sizes S–XXL.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">2,500 <span>pts</span></div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Physical: Microsoft Branded Cap -->
-      <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(25,10,50,.55),rgba(55,20,100,.45)),url(https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Physical</div>
-          <div class="rc-stock-pill" style="background:rgba(34,197,94,.25);color:#4ade80;border:1px solid rgba(34,197,94,.3)">22 left</div>
+      <!-- Microsoft Partner Cap -->
+      <div class="reward-card rs-card" data-type="physical">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Partner Cap" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">Microsoft Partner Cap</div>
-          <div class="rc-desc">Structured dad cap with Microsoft partner logo. One size fits all with adjustable strap.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">1,800 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-primary"><i class="fa-solid fa-bolt"></i> Redeem</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-physical">Physical</span>
+            <span class="rs-badge rs-badge-stock-low">22 left</span>
+          </div>
+          <div class="rs-card-name">Microsoft Partner Cap</div>
+          <div class="rs-card-desc">Structured cap with Microsoft partner logo. One size — adjustable strap.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">1,800 <span>pts</span></div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Physical: Surface Arc Mouse -->
-      <div class="reward-card" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(8,18,45,.55),rgba(15,38,80,.45)),url(https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Physical</div>
-          <div class="rc-stock-pill" style="background:rgba(251,191,36,.2);color:#fbbf24;border:1px solid rgba(251,191,36,.3)">12 left</div>
+      <!-- Surface Arc Mouse -->
+      <div class="reward-card rs-card" data-type="physical">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Arc Mouse" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">Surface Arc Mouse</div>
-          <div class="rc-desc">Microsoft's iconic arc-form Bluetooth mouse. Snaps flat to travel, curves to use.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">4,000 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Need more pts</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-physical">Physical</span>
+            <span class="rs-badge rs-badge-stock-low">12 left</span>
+          </div>
+          <div class="rs-card-name">Surface Arc Mouse</div>
+          <div class="rs-card-desc">Microsoft's iconic arc-form Bluetooth mouse. Snaps flat to travel, curves to use.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">4,000 <span>pts</span></div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
           </div>
         </div>
       </div>
 
-      <!-- Physical: SEL Trophy Kit -->
-      <div class="reward-card locked" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(50,25,0,.6),rgba(110,55,0,.5)),url(https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Physical</div>
-          <div class="rc-stock-pill" style="background:rgba(245,158,11,.2);color:#f59e0b;border:1px solid rgba(245,158,11,.3)">Limited</div>
+      <!-- SEL Trophy Kit -->
+      <div class="reward-card rs-card" data-type="physical">
+        <div class="rs-card-img">
+          <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Award Trophy" loading="lazy">
         </div>
-        <div class="rc-body">
-          <div class="rc-name">SEL Award Trophy Kit</div>
-          <div class="rc-desc">Engraved crystal trophy + certificate of excellence. Delivered in premium gift packaging.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">6,000 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+        <div class="rs-card-body">
+          <div class="rs-card-tags">
+            <span class="rs-badge rs-badge-physical">Physical</span>
+            <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Physical: Microsoft Wireless Headset -->
-      <div class="reward-card locked" data-type="physical">
-        <div class="rc-thumb" style="background:linear-gradient(135deg,rgba(5,20,15,.55),rgba(10,45,35,.45)),url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=160&fit=crop&auto=format);background-size:cover;background-position:center">
-          <div class="rc-type-pill">Physical</div>
-          <div class="rc-stock-pill" style="background:rgba(248,113,113,.2);color:#f87171;border:1px solid rgba(248,113,113,.3)">Low Stock</div>
-        </div>
-        <div class="rc-body">
-          <div class="rc-name">Microsoft Modern Wireless Headset</div>
-          <div class="rc-desc">Teams-certified wireless headset with noise-isolating mic and all-day comfort.</div>
-          <div class="rc-divider"></div>
-          <div class="rc-pts-row">
-            <div><div class="rc-pts">8,000 pts</div><div class="rc-pts-lbl">Required</div></div>
-            <button class="rc-btn rc-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          <div class="rs-card-name">SEL Award Trophy Kit</div>
+          <div class="rs-card-desc">Engraved crystal trophy + certificate in premium gift packaging.</div>
+          <div class="rs-card-footer">
+            <div class="rs-card-pts">6,000 <span>pts</span></div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
           </div>
         </div>
       </div>
@@ -2293,7 +3754,7 @@ function filterRewards(type,btn){
         <a href="#activities">Activities &amp; points</a>
         <a href="#learning">Learning journey</a>
         <a href="#leaderboard">Leaderboard</a>
-        <a href="#webinars">Webinars</a>
+        <a href="#webinars">Master Class</a>
         <a href="#ai-assistant">AI assistant</a>
         <a href="#rewards">Reward shop</a>
       </div>
@@ -2314,11 +3775,9 @@ function filterRewards(type,btn){
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Timeus Interactive Services Pty Ltd. All rights reserved. Valid in Australia only.</span>
+      <span>&copy; 2026 Shoppertainment LLP. All rights reserved.</span>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <div class="footer-partners">
-          <span class="partner-pill">Dicker Data</span>
-          <span class="partner-pill">Ingram Micro AU</span>
           <span class="partner-pill">Microsoft</span>
         </div>
         <div class="security-badge">
@@ -2347,7 +3806,7 @@ function filterRewards(type,btn){
         <div class="login-role-icon lri-admin"><i class="fa-solid fa-crown"></i></div>
         <div>
           <div class="login-role-label">Admin</div>
-          <div class="login-role-desc">Timeus Interactive · Full platform visibility</div>
+          <div class="login-role-desc">Shoppertainment LLP · Full platform visibility</div>
         </div>
         <i class="fa-solid fa-chevron-right" style="margin-left:auto;font-size:11px;color:var(--muted)"></i>
       </button>
@@ -2355,7 +3814,7 @@ function filterRewards(type,btn){
         <div class="login-role-icon lri-dist"><i class="fa-solid fa-building"></i></div>
         <div>
           <div class="login-role-label">Distributor</div>
-          <div class="login-role-desc">Redington / Ingram Micro · Your reseller network</div>
+          <div class="login-role-desc">Shoppertainment LLP · Your reseller network</div>
         </div>
         <i class="fa-solid fa-chevron-right" style="margin-left:auto;font-size:11px;color:var(--muted)"></i>
       </button>
@@ -2570,6 +4029,42 @@ var observer = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting) { e.target.classList.add('in-view'); } });
 }, { threshold: 0.1 });
 reveals.forEach(function(el){ observer.observe(el); });
+</script>
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("hero-particles", {
+  fullScreen: { enable: false },
+  background: { color: { value: "transparent" } },
+  fpsLimit: 60,
+  particles: {
+    number: { value: 60, density: { enable: true, area: 900 } },
+    color: { value: "#0078D7" },
+    opacity: { value: 0.18, random: { enable: true, minimumValue: 0.08 } },
+    size: { value: { min: 2, max: 5 } },
+    links: {
+      enable: true, distance: 140, color: "#0078D7",
+      opacity: 0.12, width: 1
+    },
+    move: {
+      enable: true, speed: 0.8, direction: "none",
+      random: true, straight: false, outModes: "out"
+    },
+    shape: { type: "circle" }
+  },
+  interactivity: {
+    events: {
+      onHover: { enable: true, mode: "grab" },
+      onClick: { enable: true, mode: "push" }
+    },
+    modes: {
+      grab: { distance: 160, links: { opacity: 0.35 } },
+      push: { quantity: 3 }
+    }
+  },
+  detectRetina: true
+});
 </script>
 </body>
 </html>
