@@ -273,6 +273,306 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 .reseller-section{display:none}
 .reseller-section.active{display:contents}
 
+/* ── NEW HOME (RES-ZONE) — Minimal card-based concierge layout ── */
+.home-hero{
+  background:linear-gradient(135deg,#f0f7ff 0%,#e8f3fc 100%);
+  border:1px solid #c8dff5;
+  border-radius:18px;
+  padding:2.25rem 2rem 2rem;
+  margin-bottom:1.25rem;
+}
+.home-greet{
+  font-size:1.7rem;font-weight:900;color:var(--text-1);
+  letter-spacing:-.02em;line-height:1.15;margin-bottom:6px;
+}
+.home-greet-sub{
+  font-size:14px;color:var(--text-3);font-weight:500;
+  margin-bottom:1.75rem;
+}
+
+.home-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  margin-bottom:1.5rem;
+}
+.home-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.5rem 1.25rem 1.25rem;
+  cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  display:flex;flex-direction:column;
+  min-height:200px;
+  text-align:left;
+}
+.home-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(0,0,0,.1);
+  border-color:rgba(0,120,215,.3);
+}
+.home-card-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:14px;flex-shrink:0;
+}
+.home-card-title{
+  font-size:17px;font-weight:800;color:var(--text-1);
+  letter-spacing:-.01em;margin-bottom:6px;
+}
+.home-card-desc{
+  font-size:12.5px;color:var(--text-3);
+  line-height:1.5;flex:1;margin-bottom:14px;
+}
+.home-card-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.home-card:hover .home-card-cta{color:#005fa3}
+.home-card:hover .home-card-cta i{transform:translateX(3px)}
+.home-card-cta i{transition:transform .2s;font-size:11px}
+
+/* "Or just tell me" divider + AI escape hatch */
+.home-divider{
+  display:flex;align-items:center;gap:14px;
+  color:var(--text-3);font-size:12px;font-weight:600;
+  margin:.75rem 0 1rem;text-transform:uppercase;letter-spacing:.08em;
+}
+.home-divider::before,.home-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.home-ai-shortcut{
+  display:flex;align-items:center;gap:12px;
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:14px;padding:14px 18px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.home-ai-shortcut:hover{
+  border-color:var(--blue);
+  box-shadow:0 6px 20px rgba(0,120,215,.1);
+}
+.home-ai-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#0078D7,#01A6F0);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.home-ai-text{flex:1;min-width:0}
+.home-ai-text-lbl{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.home-ai-text-sub{font-size:13px;color:var(--text-2);font-weight:500;margin-top:1px}
+.home-ai-btn{
+  background:var(--blue);color:#fff;border:none;
+  padding:10px 18px;border-radius:10px;
+  font-size:13px;font-weight:700;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font);transition:background .15s;
+}
+.home-ai-btn:hover{background:#005fa3}
+
+/* Status strip */
+.home-status{
+  display:flex;align-items:center;gap:0;
+  background:#fff;border:1px solid var(--border);
+  border-radius:14px;padding:0;overflow:hidden;
+}
+.home-status-item{
+  flex:1;padding:14px 1.25rem;
+  display:flex;align-items:center;gap:12px;
+  border-right:1px solid var(--border);
+}
+.home-status-item:last-child{border-right:none}
+.home-status-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.home-status-val{font-size:1.05rem;font-weight:800;color:var(--text-1);line-height:1}
+.home-status-lbl{font-size:11px;color:var(--text-3);font-weight:500;margin-top:3px}
+
+/* ── WIZARD MODAL ── */
+.wiz-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem .9rem;border-bottom:1px solid var(--border);
+}
+.wiz-head-left{display:flex;align-items:center;gap:12px}
+.wiz-head-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.wiz-head-title{font-size:15px;font-weight:800;color:var(--text-1)}
+.wiz-head-sub{font-size:11px;color:var(--text-3);margin-top:1px}
+
+.wiz-progress{
+  display:flex;align-items:center;gap:6px;
+  padding:14px 1.5rem 4px;
+}
+.wiz-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--border);transition:background .2s,transform .2s;
+}
+.wiz-dot.done{background:#7FBC00}
+.wiz-dot.active{background:var(--blue);transform:scale(1.3)}
+.wiz-step-label{
+  font-size:11px;font-weight:700;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:.08em;margin-left:auto;
+}
+
+.wiz-body{padding:8px 1.5rem 1.5rem;overflow-y:auto;max-height:60vh}
+.wiz-question{
+  font-size:1.2rem;font-weight:800;color:var(--text-1);
+  letter-spacing:-.01em;margin:1rem 0 1.25rem;line-height:1.25;
+}
+.wiz-hint{
+  font-size:13px;color:var(--text-3);font-weight:500;
+  margin:-.5rem 0 1rem;
+}
+
+.wiz-choices{display:flex;flex-direction:column;gap:10px}
+.wiz-choice{
+  display:flex;align-items:center;gap:14px;
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+  cursor:pointer;text-align:left;width:100%;
+  transition:all .15s;font-family:var(--font);
+}
+.wiz-choice:hover{border-color:var(--blue);background:rgba(0,120,215,.03)}
+.wiz-choice.selected{
+  border-color:var(--blue);background:rgba(0,120,215,.06);
+  box-shadow:0 0 0 3px rgba(0,120,215,.08);
+}
+.wiz-choice-emoji{font-size:24px;line-height:1;flex-shrink:0}
+.wiz-choice-text{flex:1;min-width:0}
+.wiz-choice-title{font-size:14px;font-weight:700;color:var(--text-1)}
+.wiz-choice-sub{font-size:12px;color:var(--text-3);margin-top:2px}
+.wiz-choice-check{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--blue);color:#fff;
+  display:none;align-items:center;justify-content:center;
+  font-size:11px;flex-shrink:0;
+}
+.wiz-choice.selected .wiz-choice-check{display:flex}
+
+/* Recommendation cards (final step) */
+.wiz-summary-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(127,188,0,.08);border:1px solid rgba(127,188,0,.2);
+  border-radius:20px;padding:5px 14px;
+  font-size:11.5px;font-weight:600;color:#4a8000;
+  margin-bottom:1rem;
+}
+.wiz-rec{
+  display:flex;gap:14px;
+  background:#fff;border:1px solid var(--border);
+  border-radius:14px;padding:1rem 1.1rem;
+  margin-bottom:10px;
+}
+.wiz-rec-icon{
+  width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.wiz-rec-body{flex:1;min-width:0}
+.wiz-rec-title{font-size:14px;font-weight:800;color:var(--text-1);margin-bottom:3px}
+.wiz-rec-meta{
+  display:flex;flex-wrap:wrap;gap:10px;
+  font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:8px;
+}
+.wiz-rec-meta i{margin-right:4px}
+.wiz-rec-desc{font-size:12.5px;color:var(--text-2);line-height:1.5;margin-bottom:12px}
+.wiz-rec-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue);color:#fff;
+  padding:8px 14px;border-radius:9px;
+  font-size:12px;font-weight:700;
+  text-decoration:none;font-family:var(--font);
+  border:none;cursor:pointer;transition:background .15s;
+}
+.wiz-rec-cta:hover{background:#005fa3}
+.wiz-rec-cta i{font-size:10px}
+
+.wiz-followup{
+  display:flex;gap:10px;flex-wrap:wrap;
+  padding-top:1rem;margin-top:1rem;
+  border-top:1px solid var(--border);
+}
+.wiz-followup-text{font-size:12.5px;color:var(--text-3);margin-right:auto;align-self:center}
+.wiz-followup-btn{
+  background:transparent;border:1.5px solid var(--border);
+  color:var(--text-2);padding:7px 14px;border-radius:9px;
+  font-size:12px;font-weight:700;cursor:pointer;
+  font-family:var(--font);transition:all .15s;
+}
+.wiz-followup-btn:hover{border-color:var(--blue);color:var(--blue)}
+.wiz-followup-btn.primary{
+  background:var(--blue);color:#fff;border-color:var(--blue);
+}
+.wiz-followup-btn.primary:hover{background:#005fa3;border-color:#005fa3}
+
+.wiz-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;border-top:1px solid var(--border);
+}
+.wiz-foot-left{font-size:11px;color:var(--text-3)}
+.wiz-foot-right{display:flex;gap:8px}
+
+/* Persistent "Ask My Coach" callout — visible on all question steps */
+.wiz-coach-callout{
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(135deg,rgba(120,60,220,.06),rgba(0,120,215,.05));
+  border:1px solid rgba(120,60,220,.18);
+  border-radius:12px;padding:14px 16px;
+  margin-top:1.25rem;
+}
+.wiz-coach-callout-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#7a3fbf,#0078D7);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.wiz-coach-callout-text{flex:1;min-width:0}
+.wiz-coach-callout-title{
+  font-size:11px;font-weight:700;color:#5b2eb8;
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;
+}
+.wiz-coach-callout-sub{font-size:13px;color:var(--text-2);line-height:1.5}
+.wiz-coach-callout .wiz-followup-btn.primary{
+  background:linear-gradient(135deg,#7a3fbf,#0078D7);
+  border-color:transparent;flex-shrink:0;
+}
+.wiz-coach-callout .wiz-followup-btn.primary:hover{
+  background:linear-gradient(135deg,#6a2faf,#005fa3);
+}
+
+/* Knowledge Base specific */
+.kb-cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kb-cat{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:12px;padding:14px 16px;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+  transition:all .15s;font-family:var(--font);text-align:left;width:100%;
+}
+.kb-cat:hover{border-color:var(--blue);background:rgba(0,120,215,.03)}
+.kb-cat-emoji{font-size:22px;flex-shrink:0}
+.kb-cat-text{flex:1}
+.kb-cat-title{font-size:13.5px;font-weight:700;color:var(--text-1)}
+.kb-cat-count{font-size:11px;color:var(--text-3);margin-top:1px}
+
+.kb-faq{
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:0;margin-bottom:10px;overflow:hidden;
+}
+.kb-faq-q{
+  padding:14px 18px;font-size:14px;font-weight:700;color:var(--text-1);
+  cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  transition:background .15s;
+}
+.kb-faq-q:hover{background:rgba(0,120,215,.03)}
+.kb-faq-q i{color:var(--text-3);font-size:12px;transition:transform .2s}
+.kb-faq.open .kb-faq-q i{transform:rotate(180deg);color:var(--blue)}
+.kb-faq-a{
+  padding:0 18px;font-size:13px;color:var(--text-2);
+  line-height:1.65;max-height:0;overflow:hidden;transition:max-height .25s,padding .25s;
+}
+.kb-faq.open .kb-faq-a{padding:0 18px 16px;max-height:500px}
+.kb-faq-a strong{color:var(--text-1)}
+
 /* Sprint missions */
 .mission-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
 .mission-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;background:var(--bg);border:1px solid var(--border)}
@@ -347,6 +647,91 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 .rs-btn-outline{background:var(--blue);color:#fff;border:1.5px solid var(--blue)}
 .rs-btn-outline:hover{background:#005fa3;border-color:#005fa3}
 .rs-btn-locked{background:var(--bg);color:var(--text-3);border:1.5px solid var(--border);cursor:not-allowed}
+
+/* ── Partner Growth Catalogue — tier badges & filter tabs ── */
+.rs-tier-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:1rem 1.25rem;border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.rs-tier-tab{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:9px;border:1.5px solid var(--border);
+  background:transparent;color:var(--text-2);
+  font-size:12px;font-weight:700;cursor:pointer;
+  font-family:var(--font);transition:all .15s;white-space:nowrap;
+}
+.rs-tier-tab:hover{border-color:var(--blue);color:var(--blue)}
+.rs-tier-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rs-tier-tab i{font-size:11px}
+.rs-tier-tab .rs-tab-count{
+  background:rgba(0,0,0,.08);padding:1px 7px;border-radius:10px;
+  font-size:10px;margin-left:2px;
+}
+.rs-tier-tab.active .rs-tab-count{background:rgba(255,255,255,.22)}
+
+.rs-tier-banner{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;margin:1rem 0;
+  background:linear-gradient(135deg,rgba(0,120,215,.05),rgba(1,166,240,.03));
+  border:1px solid rgba(0,120,215,.15);border-radius:12px;
+}
+.rs-tier-banner.gold{
+  background:linear-gradient(135deg,rgba(255,186,1,.08),rgba(255,186,1,.03));
+  border-color:rgba(255,186,1,.3);
+}
+.rs-tier-banner-icon{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:rgba(0,120,215,.15);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.rs-tier-banner.gold .rs-tier-banner-icon{background:rgba(255,186,1,.2);color:#a07000}
+.rs-tier-banner-title{font-size:13px;font-weight:800;color:var(--text-1)}
+.rs-tier-banner-sub{font-size:11.5px;color:var(--text-3);margin-top:1px;line-height:1.5}
+
+/* Reward tier pill — shown on each card */
+.rs-tier-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  padding:3px 10px;border-radius:20px;
+}
+.rs-tier-cash      {background:rgba(127,188,0,.12);color:#3d6800;border:1px solid rgba(127,188,0,.28)}
+.rs-tier-grow      {background:rgba(0,120,215,.1);color:#005fa3;border:1px solid rgba(0,120,215,.22)}
+.rs-tier-access    {background:rgba(120,60,220,.1);color:#5b2eb8;border:1px solid rgba(120,60,220,.22)}
+.rs-tier-personal  {background:rgba(1,166,240,.1);color:#005a8e;border:1px solid rgba(1,166,240,.22)}
+.rs-tier-top       {background:linear-gradient(90deg,#FFBA01,#d4a000);color:#5c3a00;border:1px solid rgba(212,160,0,.4)}
+
+/* "Cash value" label — shows real-world worth */
+.rs-cash-value{
+  font-size:10.5px;color:#4a8000;font-weight:600;
+  margin-top:3px;display:flex;align-items:center;gap:4px;
+}
+.rs-cash-value i{font-size:9px}
+
+/* Locked tier overlay — for items above current XP */
+.rs-card.tier-locked{position:relative;opacity:.78}
+.rs-card.tier-locked::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.04) 100%);
+  pointer-events:none;border-radius:18px;
+}
+.rs-card.tier-locked .rs-card-img{filter:saturate(.65)}
+.rs-card.tier-top-tier{
+  border:1.5px solid rgba(255,186,1,.45);
+  box-shadow:0 4px 18px rgba(255,186,1,.12);
+}
+.rs-card.tier-top-tier:hover{box-shadow:0 14px 38px rgba(255,186,1,.25)}
+
+/* Top-Tier ribbon corner */
+.rs-top-ribbon{
+  position:absolute;top:12px;right:12px;z-index:2;
+  background:linear-gradient(135deg,#FFBA01,#d4a000);color:#3d2800;
+  padding:4px 11px;border-radius:20px;
+  font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  box-shadow:0 4px 10px rgba(212,160,0,.35);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.rs-top-ribbon i{font-size:9px}
 
 /* ── My Coach AI chat ── */
 .coach-shell{display:flex;flex-direction:column;height:calc(100vh - 110px);min-height:560px;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
@@ -674,145 +1059,74 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   <!-- ─────── MY ZONE ─────── -->
   <div class="reseller-section active" id="res-zone">
 
-    <div class="prog-card" style="background:linear-gradient(135deg,#f0f7ff,#e8f3fc);border-color:#c8dff5">
-      <div class="prog-main">
-        <div class="prog-eyebrow">Alex Rivera · Diamond Tier</div>
-        <div class="prog-level">Sales Excellence League — My Zone</div>
-        <div class="prog-bar-row">
-          <span class="prog-xp-cur">XP: 18,500 / 20,000</span>
-          <span class="prog-xp-max">Sprint ends in 14 days</span>
+    <!-- Hero: greeting + concierge cards -->
+    <div class="home-hero">
+      <div class="home-greet">Hi Alex, what do you need today?</div>
+      <div class="home-greet-sub">Let's get you to the right place in just a few clicks.</div>
+
+      <div class="home-cards">
+        <button class="home-card" onclick="openWizard('accreditation')">
+          <div class="home-card-icon" style="background:rgba(0,120,215,.1);color:#0078D7">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="home-card-title">Accreditation</div>
+          <div class="home-card-desc">Find your next certification on Device Partner University and earn XP for completing it.</div>
+          <div class="home-card-cta">Find a course <i class="fa-solid fa-arrow-right"></i></div>
+        </button>
+
+        <button class="home-card" onclick="openWizard('marketing')">
+          <div class="home-card-icon" style="background:rgba(255,186,1,.15);color:#c48c00">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <div class="home-card-title">Marketing Assets</div>
+          <div class="home-card-desc">Pitch decks, customer one-pagers, email templates &mdash; ready for your next customer conversation.</div>
+          <div class="home-card-cta">Find an asset <i class="fa-solid fa-arrow-right"></i></div>
+        </button>
+
+        <button class="home-card" onclick="openWizard('knowledge')">
+          <div class="home-card-icon" style="background:rgba(127,188,0,.12);color:#4a8000">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <div class="home-card-title">Knowledge Base</div>
+          <div class="home-card-desc">FAQs, objection handling, pricing answers, and product comparisons &mdash; all in one place.</div>
+          <div class="home-card-cta">Get an answer <i class="fa-solid fa-arrow-right"></i></div>
+        </button>
+      </div>
+
+      <div class="home-divider">or just tell me</div>
+
+      <div class="home-ai-shortcut">
+        <div class="home-ai-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="home-ai-text">
+          <div class="home-ai-text-lbl">My Coach</div>
+          <div class="home-ai-text-sub">Describe what you need in your own words &mdash; I'll figure it out.</div>
         </div>
-        <div class="prog-track"><div class="prog-fill" style="width:92.5%;background:linear-gradient(90deg,#7FBC00,#01A6F0)"></div></div>
-        <div class="prog-sub">1,500 XP to Platinum status. Complete 2 more trainings and close 1 deal to get there this sprint.</div>
-      </div>
-      <div class="prog-next">
-        <div class="prog-next-lbl">Next Tier</div>
-        <div class="prog-next-val">Platinum</div>
-      </div>
-      <div class="prog-rank-box">
-        <div class="prog-rank-lbl">Sprint Rank</div>
-        <div class="prog-rank-num" style="color:#FFBA01">#3</div>
-        <div class="prog-rank-streak" style="background:#7FBC00"><i class="fa-solid fa-arrow-trend-up" style="font-size:9px"></i> Up 2</div>
+        <button class="home-ai-btn" onclick="goToCoach()">Ask Coach <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></button>
       </div>
     </div>
 
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-star"></i></div><span class="kpi-delta up">+2,100</span></div>
-        <div class="kpi-val">18,500</div><div class="kpi-label">XP Points</div><div class="kpi-sublabel">This Sprint</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(255,186,1,.1);color:#FFBA01"><i class="fa-solid fa-trophy"></i></div><span class="kpi-delta up">↑ Up 2</span></div>
-        <div class="kpi-val">#3</div><div class="kpi-label">Sprint Rank</div><div class="kpi-sublabel">Global</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-handshake"></i></div><span class="kpi-delta up">+3</span></div>
-        <div class="kpi-val">8</div><div class="kpi-label">Deals Closed</div><div class="kpi-sublabel">$210,000 Revenue</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(1,166,240,.1);color:#01A6F0"><i class="fa-solid fa-fire"></i></div><span class="kpi-delta up">Personal Best</span></div>
-        <div class="kpi-val">14d</div><div class="kpi-label">Login Streak</div><div class="kpi-sublabel">Days Active</div>
-      </div>
-    </div>
-
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Sprint Missions</div>
-          <span class="chart-badge green"><i class="fa-solid fa-fire" style="font-size:9px"></i> Q2 · S3</span>
-        </div>
-        <div class="mission-list">
-          <div class="mission-item done">
-            <div class="mission-check done"><i class="fa-solid fa-check"></i></div>
-            <div class="mission-info"><div class="mission-title">Complete 3 Masterclasses</div><div class="mission-progress">3 / 3 completed</div></div>
-            <div class="mission-xp">+300 XP</div>
-          </div>
-          <div class="mission-item done">
-            <div class="mission-check done"><i class="fa-solid fa-check"></i></div>
-            <div class="mission-info"><div class="mission-title">Submit 2 Proof of Execution</div><div class="mission-progress">2 / 2 submitted</div></div>
-            <div class="mission-xp">+500 XP</div>
-          </div>
-          <div class="mission-item partial">
-            <div class="mission-check partial"><i class="fa-solid fa-clock"></i></div>
-            <div class="mission-info"><div class="mission-title">Close 2 Deals</div><div class="mission-progress">1 / 2 closed — 1 more to go</div></div>
-            <div class="mission-xp pending">+800 XP</div>
-          </div>
-          <div class="mission-item">
-            <div class="mission-check"><i class="fa-solid fa-circle"></i></div>
-            <div class="mission-info"><div class="mission-title">Achieve 90% Training Score</div><div class="mission-progress">88% avg — 2% remaining</div></div>
-            <div class="mission-xp pending">+400 XP</div>
-          </div>
-        </div>
-        <div class="mission-foot">
-          <div style="font-size:11px;color:var(--text-3)">Sprint XP earned so far</div>
-          <div style="font-size:13px;font-weight:900;color:var(--blue)">800 <span style="color:var(--text-3);font-weight:400">/ 2,000 XP</span></div>
+    <!-- Status strip -->
+    <div class="home-status">
+      <div class="home-status-item">
+        <div class="home-status-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-star"></i></div>
+        <div>
+          <div class="home-status-val">18,500 XP</div>
+          <div class="home-status-lbl">Diamond Tier &middot; 1,500 to Platinum</div>
         </div>
       </div>
-
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Activity Breakdown</div>
-          <div class="chart-toggle"><button class="chart-toggle-btn">Q1</button><button class="chart-toggle-btn active">Q2</button></div>
-        </div>
-        <div class="donut-wrap">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#f0f2f7" stroke-width="18"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#0078D7" stroke-width="18" stroke-dasharray="85.2 153.8" stroke-dashoffset="0" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#7FBC00" stroke-width="18" stroke-dasharray="57.1 181.9" stroke-dashoffset="-85.2" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#01A6F0" stroke-width="18" stroke-dasharray="47.1 191.9" stroke-dashoffset="-142.3" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#FFBA01" stroke-width="18" stroke-dasharray="49.6 189.4" stroke-dashoffset="-189.4" transform="rotate(-90 55 55)"/>
-            <text x="55" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#1e293b">247</text>
-            <text x="55" y="64" text-anchor="middle" font-size="9" fill="#737373">Activities</text>
-          </svg>
-          <div class="donut-legend">
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#0078D7"></div><span class="donut-leg-label">Trainings</span><span class="donut-leg-val">35%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#7FBC00"></div><span class="donut-leg-label">Deals</span><span class="donut-leg-val">23%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#01A6F0"></div><span class="donut-leg-label">Campaigns</span><span class="donut-leg-val">22%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#FFBA01"></div><span class="donut-leg-label">Masterclasses</span><span class="donut-leg-val">20%</span></div>
-          </div>
+      <div class="home-status-item">
+        <div class="home-status-icon" style="background:rgba(255,186,1,.15);color:#c48c00"><i class="fa-solid fa-trophy"></i></div>
+        <div>
+          <div class="home-status-val">#3 in Sydney</div>
+          <div class="home-status-lbl">Up 2 places this sprint</div>
         </div>
       </div>
-    </div>
-
-    <div class="bottom-row">
-      <div class="lb-card">
-        <div class="lb-card-head"><div class="lb-card-title">Recent Activity</div><a href="#" class="lb-view-all">View All</a></div>
-        <div class="feed-item">
-          <div class="feed-dot" style="background:#7FBC00"></div>
-          <div class="feed-text"><strong style="color:var(--text-1)">Deal closed — TechPoint Retail</strong><br><span style="font-size:11px">$32,000 · +800 XP earned</span></div>
-          <div class="feed-time">2h ago</div>
+      <div class="home-status-item">
+        <div class="home-status-icon" style="background:rgba(127,188,0,.12);color:#4a8000"><i class="fa-solid fa-fire"></i></div>
+        <div>
+          <div class="home-status-val">14 days left</div>
+          <div class="home-status-lbl">Q2 Sprint 3 &middot; 800 / 2,000 XP earned</div>
         </div>
-        <div class="feed-item">
-          <div class="feed-dot" style="background:#0078D7"></div>
-          <div class="feed-text"><strong style="color:var(--text-1)">Masterclass completed — Azure AI Fundamentals</strong><br><span style="font-size:11px">+150 XP · 95% score</span></div>
-          <div class="feed-time">Yesterday</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot" style="background:#01A6F0"></div>
-          <div class="feed-text"><strong style="color:var(--text-1)">POE submitted — Northfield Campaign</strong><br><span style="font-size:11px">Pending admin approval</span></div>
-          <div class="feed-time">2d ago</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot" style="background:#FFBA01"></div>
-          <div class="feed-text"><strong style="color:var(--text-1)">Climbed to #3 globally</strong><br><span style="font-size:11px">↑ Up 2 positions this sprint</span></div>
-          <div class="feed-time">3d ago</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot" style="background:#F34F1C"></div>
-          <div class="feed-text"><strong style="color:var(--text-1)">Badge unlocked — Deal Streak Champion</strong><br><span style="font-size:11px">5 deals in a single sprint</span></div>
-          <div class="feed-time">5d ago</div>
-        </div>
-      </div>
-
-      <div class="ach-card">
-        <div class="ach-head">Achievement Highlights</div>
-        <div class="ach-grid">
-          <div class="ach-item"><div class="ach-badge unlocked" style="background:#0078D7"><i class="fa-solid fa-dollar-sign"></i></div><div class="ach-name">First $100k</div><div class="ach-status unlocked">Unlocked</div></div>
-          <div class="ach-item"><div class="ach-badge unlocked" style="background:#F34F1C"><i class="fa-solid fa-fire"></i></div><div class="ach-name">Deal Streak</div><div class="ach-status unlocked">Unlocked</div></div>
-          <div class="ach-item"><div class="ach-badge" style="background:rgba(0,120,215,.08);color:var(--blue);border:2px solid rgba(0,120,215,.2)"><i class="fa-solid fa-gem"></i></div><div class="ach-name">$500k Club</div><div class="ach-status" style="color:var(--blue);font-weight:700">8k XP</div></div>
-          <div class="ach-item"><div class="ach-badge locked"><i class="fa-solid fa-crown"></i></div><div class="ach-name">Platinum Rank</div><div class="ach-status locked">Locked</div></div>
-        </div>
-        <div class="ach-footer"><a href="#">All Achievements (12 / 24)</a></div>
       </div>
     </div>
 
@@ -1130,168 +1444,618 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   <!-- ─────── REWARDS ─────── -->
   <div class="reseller-section" id="res-rewards">
 
+    <!-- Hero -->
     <div class="prog-card" style="background:linear-gradient(135deg,#f0f7ff,#e8f3fc);border-color:#c8dff5">
       <div class="prog-main">
-        <div class="prog-eyebrow">Rewards · Alex Rivera</div>
-        <div class="prog-level">Points Balance &amp; Redemption Catalog</div>
+        <div class="prog-eyebrow">Partner Growth Catalogue · Alex Rivera</div>
+        <div class="prog-level">Rewards that grow your business</div>
         <div class="prog-bar-row">
-          <span class="prog-xp-cur">18,500 points available</span>
+          <span class="prog-xp-cur">18,500 XP available</span>
           <span class="prog-xp-max">Earned 2,100 this sprint</span>
         </div>
         <div class="prog-track"><div class="prog-fill" style="width:75%;background:linear-gradient(90deg,#FFBA01,#7FBC00)"></div></div>
-        <div class="prog-sub">1,500 points away from unlocking Platinum Rewards — exclusive merch, experiences, and priority events.</div>
+        <div class="prog-sub">Every reward translates to real business value — licences you can resell, credits you can use, access you can leverage. No t-shirts. No keychains.</div>
       </div>
       <div class="prog-next">
-        <div class="prog-next-lbl">Points Tier</div>
+        <div class="prog-next-lbl">Tier</div>
         <div class="prog-next-val">Diamond</div>
       </div>
       <div class="prog-rank-box">
-        <div class="prog-rank-lbl">Points Value</div>
-        <div class="prog-rank-num" style="color:#FFBA01;font-size:1.5rem">$3.2k</div>
-        <div class="prog-rank-streak" style="background:#7FBC00"><i class="fa-solid fa-gift" style="font-size:9px"></i> Redeemable</div>
+        <div class="prog-rank-lbl">Estimated Cash Value</div>
+        <div class="prog-rank-num" style="color:#7FBC00;font-size:1.5rem">A$3.7k</div>
+        <div class="prog-rank-streak" style="background:#7FBC00"><i class="fa-solid fa-money-bill-trend-up" style="font-size:9px"></i> Resellable</div>
       </div>
     </div>
 
+    <!-- KPI Strip -->
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-top"><div class="kpi-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-coins"></i></div><span class="kpi-delta up">+2,100</span></div>
-        <div class="kpi-val">18,500</div><div class="kpi-label">Points Balance</div><div class="kpi-sublabel">Available to redeem</div>
+        <div class="kpi-val">18,500</div><div class="kpi-label">XP Balance</div><div class="kpi-sublabel">Available to redeem</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(255,186,1,.1);color:#FFBA01"><i class="fa-solid fa-dollar-sign"></i></div></div>
-        <div class="kpi-val">$3,200</div><div class="kpi-label">Points Value</div><div class="kpi-sublabel">Estimated cash equiv.</div>
+        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-money-bill-trend-up"></i></div></div>
+        <div class="kpi-val">A$3,700</div><div class="kpi-label">Cash Equivalent</div><div class="kpi-sublabel">If converted to licences</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-gift"></i></div><span class="kpi-delta up">+2 new</span></div>
-        <div class="kpi-val">6</div><div class="kpi-label">Redeemed</div><div class="kpi-sublabel">Total items claimed</div>
+        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(255,186,1,.1);color:#FFBA01"><i class="fa-solid fa-gift"></i></div><span class="kpi-delta up">+2 new</span></div>
+        <div class="kpi-val">6</div><div class="kpi-label">Redeemed</div><div class="kpi-sublabel">Lifetime claimed</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(243,79,28,.1);color:#F34F1C"><i class="fa-solid fa-star"></i></div></div>
-        <div class="kpi-val">5</div><div class="kpi-label">Available Now</div><div class="kpi-sublabel">Rewards you can claim</div>
+        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(243,79,28,.1);color:#F34F1C"><i class="fa-solid fa-unlock"></i></div></div>
+        <div class="kpi-val">18</div><div class="kpi-label">Available Now</div><div class="kpi-sublabel">Within your XP balance</div>
       </div>
     </div>
 
-    <div class="full-card">
-      <div class="full-card-head">
-        <div class="full-card-title">Reward Catalog</div>
-        <div class="admin-tabs" style="margin-left:auto">
-          <button class="admin-tab active" onclick="adminTabSwitch(this)">All</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Digital</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Physical</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Experiences</button>
-        </div>
+    <!-- Catalogue -->
+    <div class="full-card" style="padding:0">
+
+      <!-- Filter tabs -->
+      <div class="rs-tier-tabs">
+        <button class="rs-tier-tab active" onclick="rsFilter(this,'all')"><i class="fa-solid fa-grip"></i> All <span class="rs-tab-count">28</span></button>
+        <button class="rs-tier-tab" onclick="rsFilter(this,'cash')"><i class="fa-solid fa-money-bill-trend-up" style="color:#7FBC00"></i> Cash &amp; Resellable <span class="rs-tab-count">7</span></button>
+        <button class="rs-tier-tab" onclick="rsFilter(this,'grow')"><i class="fa-solid fa-arrow-trend-up" style="color:#0078D7"></i> Grow My Business <span class="rs-tab-count">8</span></button>
+        <button class="rs-tier-tab" onclick="rsFilter(this,'access')"><i class="fa-solid fa-key" style="color:#7a3fbf"></i> Status &amp; Access <span class="rs-tab-count">6</span></button>
+        <button class="rs-tier-tab" onclick="rsFilter(this,'personal')"><i class="fa-solid fa-user" style="color:#01A6F0"></i> For Me <span class="rs-tab-count">5</span></button>
+        <button class="rs-tier-tab" onclick="rsFilter(this,'top')"><i class="fa-solid fa-crown" style="color:#FFBA01"></i> Top Performer <span class="rs-tab-count">5</span></button>
       </div>
-      <div class="full-card-body">
+
+      <div class="full-card-body" style="padding:1.5rem">
+
+        <!-- Tier banner — explains current filter -->
+        <div class="rs-tier-banner" id="rs-banner-cash" data-banner="cash" style="display:none">
+          <div class="rs-tier-banner-icon" style="background:rgba(127,188,0,.15);color:#3d6800"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+          <div>
+            <div class="rs-tier-banner-title">Cash &amp; Resellable</div>
+            <div class="rs-tier-banner-sub">Licences, devices, and credits with real cash value. Use them or sell them — your call.</div>
+          </div>
+        </div>
+        <div class="rs-tier-banner" id="rs-banner-grow" data-banner="grow" style="display:none">
+          <div class="rs-tier-banner-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+          <div>
+            <div class="rs-tier-banner-title">Grow My Business</div>
+            <div class="rs-tier-banner-sub">Tools and credits that help you sell more or lower the cost of doing business.</div>
+          </div>
+        </div>
+        <div class="rs-tier-banner" id="rs-banner-access" data-banner="access" style="display:none">
+          <div class="rs-tier-banner-icon" style="background:rgba(120,60,220,.15);color:#5b2eb8"><i class="fa-solid fa-key"></i></div>
+          <div>
+            <div class="rs-tier-banner-title">Status &amp; Access</div>
+            <div class="rs-tier-banner-sub">Doors that don't open with money — Microsoft event invites, partner spotlights, dedicated TAM hours.</div>
+          </div>
+        </div>
+        <div class="rs-tier-banner" id="rs-banner-personal" data-banner="personal" style="display:none">
+          <div class="rs-tier-banner-icon" style="background:rgba(1,166,240,.15);color:#005a8e"><i class="fa-solid fa-user"></i></div>
+          <div>
+            <div class="rs-tier-banner-title">For Me</div>
+            <div class="rs-tier-banner-sub">Subscriptions you use every day. Lower-priced items you can stack alongside the bigger rewards.</div>
+          </div>
+        </div>
+        <div class="rs-tier-banner gold" id="rs-banner-top" data-banner="top" style="display:none">
+          <div class="rs-tier-banner-icon"><i class="fa-solid fa-crown"></i></div>
+          <div>
+            <div class="rs-tier-banner-title">Top Performer Cap-stones</div>
+            <div class="rs-tier-banner-sub">Aspirational rewards for the top of the leaderboard. Unlocks fully at Platinum tier.</div>
+          </div>
+        </div>
+
         <div class="rs-grid">
 
-          <!-- Featured: Wireless Headset -->
-          <div class="rs-card rs-card-featured" data-type="physical">
+          <!-- ═══ FEATURED: Windows 11 Pro 5-Pack ═══ -->
+          <div class="rs-card rs-card-featured" data-tier="cash">
             <div class="rs-feat-content">
               <div class="rs-feat-badges">
-                <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited Edition</span>
-                <span class="rs-badge rs-badge-physical">Physical</span>
+                <span class="rs-tier-pill rs-tier-cash"><i class="fa-solid fa-money-bill-trend-up" style="font-size:9px"></i> Cash &amp; Resellable</span>
+                <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-fire" style="font-size:9px"></i> Most Redeemed</span>
               </div>
-              <div class="rs-feat-name">Microsoft Modern<br>Wireless Headset</div>
-              <div class="rs-feat-desc">Teams-certified wireless headset with noise-isolating microphone and all-day comfort — built for focused work sessions.</div>
+              <div class="rs-feat-name">Windows 11 Pro<br>Licence — 5-Pack</div>
+              <div class="rs-feat-desc">Five Windows 11 Pro licence keys. Use them for your own fleet, deploy with a customer, or resell at retail margin — they're yours to do whatever you want with.</div>
               <div class="rs-feat-footer">
-                <div class="rs-feat-pts">8,000 <span>pts</span></div>
+                <div>
+                  <div class="rs-feat-pts">5,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$850 retail value</div>
+                </div>
                 <button class="rs-btn rs-btn-solid"><i class="fa-solid fa-bolt"></i> Redeem Now</button>
               </div>
-              <div class="rs-feat-stock"><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:10px"></i> Only 4 units remaining</div>
+              <div class="rs-feat-stock"><i class="fa-solid fa-check" style="color:#7FBC00;font-size:10px"></i> Delivered as digital keys within 24 hours</div>
             </div>
             <div class="rs-feat-img">
-              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=520&h=400&fit=crop&auto=format&q=85" alt="Microsoft Modern Wireless Headset" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=520&h=400&fit=crop&auto=format&q=85" alt="Windows 11 Pro Licence" loading="lazy">
             </div>
           </div>
 
-          <!-- Microsoft Store Credit $50 -->
-          <div class="rs-card" data-type="digital">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Store Credit" loading="lazy">
-            </div>
+          <!-- ═══ TIER 1 — CASH & RESELLABLE ═══ -->
+
+          <div class="rs-card" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=380&h=220&fit=crop&auto=format&q=80" alt="M365 Business Premium" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-digital">Digital</span><span class="rs-badge rs-badge-stock-in">In Stock</span></div>
-              <div class="rs-card-name">Microsoft Store Credit — $50</div>
-              <div class="rs-card-desc">Digital voucher redeemable for apps, games, devices, and subscriptions on the Microsoft Store.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">2,000 <span>pts</span></div><button class="rs-btn rs-btn-outline">Redeem</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">M365 Business Premium — 10 seats, 1 year</div>
+              <div class="rs-card-desc">High-margin product you already sell. Use for your own staff or flip to a customer at full retail.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">12,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$2,640 retail</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
             </div>
           </div>
 
-          <!-- SEL Gold Badge -->
-          <div class="rs-card" data-type="digital">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1567880905822-56f8e06fe630?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Gold Badge" loading="lazy">
-            </div>
+          <div class="rs-card" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Pen + Type Cover bundle" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-digital">Digital</span><span class="rs-badge rs-badge-stock-in">In Stock</span></div>
-              <div class="rs-card-name">SEL Gold Champion Badge</div>
-              <div class="rs-card-desc">Premium digital credential — shareable on LinkedIn and your SEL partner profile page.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">1,500 <span>pts</span></div><button class="rs-btn rs-btn-outline">Redeem</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">Surface Pen + Type Cover bundle</div>
+              <div class="rs-card-desc">Accessories ship with strong margins. Easy upsell with any Surface deal.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">3,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$420 retail</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
             </div>
           </div>
 
-          <!-- SEL Champion T-Shirt -->
-          <div class="rs-card" data-type="physical">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Champion T-Shirt" loading="lazy">
-            </div>
+          <div class="rs-card tier-locked" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Pro 11" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-physical">Physical</span><span class="rs-badge rs-badge-stock-in">48 left</span></div>
-              <div class="rs-card-name">SEL Champion T-Shirt</div>
-              <div class="rs-card-desc">Premium cotton tee with embroidered SEL branding. Available in sizes S–XXL, delivered to your door.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">2,500 <span>pts</span></div><button class="rs-btn rs-btn-outline">Redeem</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">Surface Pro 11</div>
+              <div class="rs-card-desc">Demo unit, personal device, or sale at retail. Either way, real money in your pocket.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">22,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">≈ A$2,499 retail · Need 3,500 more XP</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
             </div>
           </div>
 
-          <!-- Microsoft Partner Cap -->
-          <div class="rs-card" data-type="physical">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Partner Cap" loading="lazy">
-            </div>
+          <div class="rs-card" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Series S" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-physical">Physical</span><span class="rs-badge rs-badge-stock-low">22 left</span></div>
-              <div class="rs-card-name">Microsoft Partner Cap</div>
-              <div class="rs-card-desc">Structured cap with Microsoft partner logo. One size fits all — adjustable strap.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">1,800 <span>pts</span></div><button class="rs-btn rs-btn-outline">Redeem</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">Xbox Series S</div>
+              <div class="rs-card-desc">Universal cash equivalence — easy to sell, gift, or keep for yourself.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">6,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$549 retail</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
             </div>
           </div>
 
-          <!-- Surface Arc Mouse -->
-          <div class="rs-card" data-type="physical">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Arc Mouse" loading="lazy">
-            </div>
+          <div class="rs-card" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Series X" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-physical">Physical</span><span class="rs-badge rs-badge-stock-low">12 left</span></div>
-              <div class="rs-card-name">Surface Arc Mouse</div>
-              <div class="rs-card-desc">Microsoft's iconic Bluetooth arc mouse — snaps flat for travel, curves to use.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">4,000 <span>pts</span></div><button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">Xbox Series X</div>
+              <div class="rs-card-desc">Top-tier console. Strong resale value or a great team gift.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">9,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$899 retail</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
             </div>
           </div>
 
-          <!-- Microsoft 365 Personal -->
-          <div class="rs-card" data-type="digital">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft 365 Personal" loading="lazy">
-            </div>
+          <div class="rs-card" data-tier="cash">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=380&h=220&fit=crop&auto=format&q=80" alt="Office Home & Business" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-digital">Digital</span><span class="rs-badge rs-badge-stock-in">In Stock</span></div>
-              <div class="rs-card-name">Microsoft 365 Personal — 1 Year</div>
-              <div class="rs-card-desc">Full Word, Excel, PowerPoint + 1TB OneDrive for 12 months. Yours to keep.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">5,000 <span>pts</span></div><button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+              <div class="rs-card-name">Office Home &amp; Business 2024 — 3-pack</div>
+              <div class="rs-card-desc">Three perpetual licence keys. Old-school but still highly resellable to SMB customers.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">4,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$749 retail</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
             </div>
           </div>
 
-          <!-- SEL Award Trophy -->
-          <div class="rs-card" data-type="physical">
-            <div class="rs-card-img">
-              <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Award Trophy" loading="lazy">
-            </div>
+          <!-- ═══ TIER 2 — GROW MY BUSINESS ═══ -->
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits" loading="lazy"></div>
             <div class="rs-card-body">
-              <div class="rs-card-tags"><span class="rs-badge rs-badge-physical">Physical</span><span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited</span></div>
-              <div class="rs-card-name">SEL Award Trophy Kit</div>
-              <div class="rs-card-desc">Engraved crystal trophy + printed certificate in premium gift packaging — for top performers.</div>
-              <div class="rs-card-footer"><div class="rs-card-pts">6,000 <span>pts</span></div><button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button></div>
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Azure Credits — A$500</div>
+              <div class="rs-card-desc">Use for customer demos, your own dev/test workloads, or proof-of-concept builds.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">4,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-cloud"></i> A$500 cloud credit</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits A$1k" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Azure Credits — A$1,000</div>
+              <div class="rs-card-desc">Double the cloud budget. Enough for a 3-month POC environment for a serious customer.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">7,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-cloud"></i> A$1,000 cloud credit</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits A$2.5k" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Azure Credits — A$2,500</div>
+              <div class="rs-card-desc">A serious cloud budget for a large customer engagement or your own product build.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">16,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">A$2,500 cloud credit</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=380&h=220&fit=crop&auto=format&q=80" alt="MDF Funds" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Market Development Funds — A$1,000</div>
+              <div class="rs-card-desc">Run a real marketing campaign — LinkedIn ads, email outreach, or a local event. Microsoft pays.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">7,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-bullhorn"></i> A$1,000 marketing budget</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Exam Voucher" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Microsoft Exam Voucher</div>
+              <div class="rs-card-desc">Free certification exam (AZ-104, MS-900, MS-700, etc.). Counts toward your business's partner tier.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">2,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-certificate"></i> A$250 exam value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=380&h=220&fit=crop&auto=format&q=80" alt="Qualified Lead Pack" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Qualified Lead Pack — 5 leads</div>
+              <div class="rs-card-desc">Five Microsoft-warm leads in your region. Real opportunities, not cold contacts.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">5,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-bullseye"></i> Potential A$50k+ pipeline</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=380&h=220&fit=crop&auto=format&q=80" alt="Priority Deal Registration" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">Priority Deal Registration — 1 quarter</div>
+              <div class="rs-card-desc">Your deals get first right of refusal vs lower-ranked partners in your region. Massive competitive edge.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">8,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-bolt"></i> Direct revenue impact</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="grow">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=380&h=220&fit=crop&auto=format&q=80" alt="LinkedIn Premium Business" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+              <div class="rs-card-name">LinkedIn Premium Business — 1 year</div>
+              <div class="rs-card-desc">InMail credits, prospecting tools, and Sales Navigator-style insights. Real prospecting power.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">3,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$900 value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ TIER 3 — STATUS & ACCESS ═══ -->
+
+          <div class="rs-card tier-locked" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft AU Partner Summit" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">Microsoft AU Partner Summit invite</div>
+              <div class="rs-card-desc">Flights, accommodation, and event pass included. The top networking opportunity in the AU partner ecosystem.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">30,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">≈ A$3,500 trip value</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=380&h=220&fit=crop&auto=format&q=80" alt="TAM Hour" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">1 hour with a Microsoft TAM</div>
+              <div class="rs-card-desc">Direct time with a Microsoft Technical Account Manager. Use it on your biggest pending deal.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">4,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-headset"></i> Specialist guidance</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=380&h=220&fit=crop&auto=format&q=80" alt="Case Study" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">Featured Case Study on Microsoft Partner page</div>
+              <div class="rs-card-desc">Microsoft publishes your customer success story. A marketing asset you can use for years.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">10,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-star"></i> Long-term credibility</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=380&h=220&fit=crop&auto=format&q=80" alt="Reactor Speaking Slot" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">Speaking slot at Microsoft Reactor</div>
+              <div class="rs-card-desc">Present at a local Microsoft Reactor event. Brand-building, lead-generating, recognised expert status.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">8,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-microphone-lines"></i> Audience of peers</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=380&h=220&fit=crop&auto=format&q=80" alt="Partner Tier Promotion" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">Microsoft Partner Tier Accelerator</div>
+              <div class="rs-card-desc">Fast-track your business toward Solutions Partner status. Direct impact on customer trust and rebate eligibility.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">12,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">Recurring revenue impact</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="access">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=380&h=220&fit=crop&auto=format&q=80" alt="Early Access" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+              <div class="rs-card-name">Early access to new product launches</div>
+              <div class="rs-card-desc">Be first to sell new Surface SKUs, Copilot+ devices, or M365 features before the broader partner base.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">6,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-rocket"></i> Competitive edge</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ TIER 4 — FOR ME (PERSONAL PRODUCTIVITY) ═══ -->
+
+          <div class="rs-card" data-tier="personal">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=380&h=220&fit=crop&auto=format&q=80" alt="Copilot Pro" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+              <div class="rs-card-name">Microsoft Copilot Pro — 1 year</div>
+              <div class="rs-card-desc">Priority access to GPT-4, image generation in Designer, and Copilot in Office apps.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">2,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-wand-magic-sparkles"></i> ≈ A$330 value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="personal">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=380&h=220&fit=crop&auto=format&q=80" alt="GitHub Copilot" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+              <div class="rs-card-name">GitHub Copilot Pro — 1 year</div>
+              <div class="rs-card-desc">AI pair-programmer for VS Code. Useful for technical resellers and anyone selling to developer-led customers.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">2,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-code"></i> ≈ A$165 value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="personal">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=380&h=220&fit=crop&auto=format&q=80" alt="M365 Family" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+              <div class="rs-card-name">Microsoft 365 Family — 1 year</div>
+              <div class="rs-card-desc">Office apps + 6 TB OneDrive for up to 6 family members. A real reward you can take home.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">1,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-house"></i> ≈ A$165 value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="personal">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=380&h=220&fit=crop&auto=format&q=80" alt="Visual Studio Pro" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+              <div class="rs-card-name">Visual Studio Professional Subscription</div>
+              <div class="rs-card-desc">Full Visual Studio Pro + Azure dev credits + access to developer tools and licences.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">3,500 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-laptop-code"></i> Developer toolkit</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card" data-tier="personal">
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Game Pass" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+              <div class="rs-card-name">Xbox Game Pass Ultimate — 6 months</div>
+              <div class="rs-card-desc">Hundreds of games on console, PC, and cloud. A genuinely useful "for me" reward.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">1,000 <span>XP</span></div>
+                  <div class="rs-cash-value"><i class="fa-solid fa-gamepad"></i> ≈ A$120 value</div>
+                </div>
+                <button class="rs-btn rs-btn-outline">Redeem</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ TIER 5 — TOP PERFORMER CAP-STONES ═══ -->
+
+          <div class="rs-card tier-locked tier-top-tier" data-tier="top">
+            <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Studio Laptop" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+              <div class="rs-card-name">Surface Studio Laptop</div>
+              <div class="rs-card-desc">Microsoft's flagship creative laptop. Status symbol, business asset, daily-use device — all in one.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">45,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">≈ A$4,500 retail · Platinum tier</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked tier-top-tier" data-tier="top">
+            <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=380&h=220&fit=crop&auto=format&q=80" alt="HoloLens 2" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+              <div class="rs-card-name">HoloLens 2</div>
+              <div class="rs-card-desc">Microsoft mixed reality headset. A demo unit that makes you unforgettable in enterprise sales meetings.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">50,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">Mixed reality demo asset</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked tier-top-tier" data-tier="top">
+            <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=380&h=220&fit=crop&auto=format&q=80" alt="AsiaPac Partner Conference" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+              <div class="rs-card-name">Microsoft AsiaPac Partner Conference</div>
+              <div class="rs-card-desc">All-expenses-paid trip to the regional flagship event. Flights, hotel, sessions, networking — fully covered.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">50,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">Regional partner network</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked tier-top-tier" data-tier="top">
+            <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft AU Summit + VP intro" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+              <div class="rs-card-name">Microsoft AU Summit + Executive Introduction</div>
+              <div class="rs-card-desc">Full Summit pass plus a personal introduction and dinner with a Microsoft AU executive. Relationship gold.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts">60,000 <span>XP</span></div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">Executive-level access</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rs-card tier-locked tier-top-tier" data-tier="top">
+            <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Annual Award</div>
+            <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=380&h=220&fit=crop&auto=format&q=80" alt="Top Performer Award" loading="lazy"></div>
+            <div class="rs-card-body">
+              <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Annual Award</span></div>
+              <div class="rs-card-name">SEL Reseller of the Year</div>
+              <div class="rs-card-desc">Awarded annually to #1 on the global leaderboard. Engraved trophy, A$10k prize pack, and Microsoft AU public recognition.</div>
+              <div class="rs-card-footer">
+                <div>
+                  <div class="rs-card-pts" style="color:#FFBA01">Top 1 only</div>
+                  <div class="rs-cash-value" style="color:var(--text-3)">Annual leaderboard winner</div>
+                </div>
+                <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-trophy"></i> Compete</button>
+              </div>
             </div>
           </div>
 
@@ -3121,6 +3885,414 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   </div>
 </div>
 
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- WIZARD: ACCREDITATION                                -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-wiz-accreditation" onclick="overlayClose(event,'modal-wiz-accreditation')">
+  <div class="modal" style="width:620px">
+    <div class="wiz-head">
+      <div class="wiz-head-left">
+        <div class="wiz-head-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <div class="wiz-head-title">Find your next accreditation</div>
+          <div class="wiz-head-sub">I'll ask a few quick questions and pick the right course for you</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeWizard('accreditation')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="wiz-progress" id="wiz-acc-progress">
+      <div class="wiz-dot active" data-step="1"></div>
+      <div class="wiz-dot" data-step="2"></div>
+      <div class="wiz-dot" data-step="3"></div>
+      <div class="wiz-dot" data-step="4"></div>
+      <div class="wiz-step-label" id="wiz-acc-steplbl">Step 1 of 4</div>
+    </div>
+
+    <div class="wiz-body">
+
+      <!-- STEP 1: product -->
+      <div class="wiz-step" data-step="1">
+        <div class="wiz-question">What product do you want to learn?</div>
+        <div class="wiz-hint">Pick the one most relevant to your customers right now.</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('accreditation','product','Surface',this)">
+            <div class="wiz-choice-emoji">💻</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Surface devices</div><div class="wiz-choice-sub">Pro, Laptop, Studio, accessories</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','product','Copilot',this)">
+            <div class="wiz-choice-emoji">🪄</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Microsoft Copilot</div><div class="wiz-choice-sub">Copilot+ PCs, Copilot for M365, Copilot Studio</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','product','M365',this)">
+            <div class="wiz-choice-emoji">📊</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Microsoft 365</div><div class="wiz-choice-sub">Business plans, Teams, Office apps</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','product','Azure',this)">
+            <div class="wiz-choice-emoji">☁️</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Azure cloud</div><div class="wiz-choice-sub">Compute, storage, AI services</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','product','Windows',this)">
+            <div class="wiz-choice-emoji">🪟</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Windows 11</div><div class="wiz-choice-sub">Pro, Business, security features</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: level -->
+      <div class="wiz-step" data-step="2" style="display:none">
+        <div class="wiz-question">What's your level?</div>
+        <div class="wiz-hint">Be honest &mdash; I'll match the course to where you are.</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('accreditation','level','Beginner',this)">
+            <div class="wiz-choice-emoji">🌱</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">New to it</div><div class="wiz-choice-sub">I want the basics &mdash; what it does, who it's for, how to talk about it</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','level','Intermediate',this)">
+            <div class="wiz-choice-emoji">📘</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Familiar with it</div><div class="wiz-choice-sub">I've sold it before &mdash; ready to go deeper on use cases and objections</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','level','Advanced',this)">
+            <div class="wiz-choice-emoji">🎯</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Already certified</div><div class="wiz-choice-sub">I have the foundation cert &mdash; show me the next level</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: time -->
+      <div class="wiz-step" data-step="3" style="display:none">
+        <div class="wiz-question">How much time do you have?</div>
+        <div class="wiz-hint">You can always come back &mdash; pick what works this week.</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('accreditation','time','Quick',this)">
+            <div class="wiz-choice-emoji">⚡</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Quick win</div><div class="wiz-choice-sub">Under 30 minutes &mdash; just the essentials</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','time','Half-day',this)">
+            <div class="wiz-choice-emoji">☕</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Half a day</div><div class="wiz-choice-sub">2&ndash;4 hours &mdash; a full path with quizzes</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('accreditation','time','Full',this)">
+            <div class="wiz-choice-emoji">🎓</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Full track</div><div class="wiz-choice-sub">A complete certification &mdash; multiple sessions over a few days</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: recommendations -->
+      <div class="wiz-step" data-step="4" style="display:none">
+        <div class="wiz-summary-pill" id="wiz-acc-summary"><i class="fa-solid fa-check"></i> Based on your answers</div>
+        <div class="wiz-question" style="font-size:1.05rem;margin-bottom:1rem">Here's what I'd take next</div>
+
+        <div id="wiz-acc-recs">
+          <!-- recs injected by JS based on selections -->
+        </div>
+
+        <div class="wiz-followup">
+          <div class="wiz-followup-text">Not quite right?</div>
+          <button class="wiz-followup-btn" onclick="wizRestart('accreditation')"><i class="fa-solid fa-rotate-left"></i> Start over</button>
+          <button class="wiz-followup-btn primary" onclick="wizToCoach('accreditation')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask Coach instead</button>
+        </div>
+      </div>
+
+      <!-- Persistent Ask Coach callout — shows on all question steps -->
+      <div class="wiz-coach-callout" id="wiz-acc-callout">
+        <div class="wiz-coach-callout-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="wiz-coach-callout-text">
+          <div class="wiz-coach-callout-title">Not sure how to answer?</div>
+          <div class="wiz-coach-callout-sub">Describe what you want to learn in your own words &mdash; My Coach will pick the right course for you.</div>
+        </div>
+        <button class="wiz-followup-btn primary" onclick="wizToCoach('accreditation')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask My Coach</button>
+      </div>
+
+    </div>
+
+    <div class="wiz-foot">
+      <div class="wiz-foot-left" id="wiz-acc-footnote">Step 1 of 4 &middot; Pick a product to continue</div>
+      <div class="wiz-foot-right">
+        <button class="btn-ghost" id="wiz-acc-back" style="display:none" onclick="wizBack('accreditation')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- WIZARD: MARKETING ASSETS                             -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-wiz-marketing" onclick="overlayClose(event,'modal-wiz-marketing')">
+  <div class="modal" style="width:620px">
+    <div class="wiz-head">
+      <div class="wiz-head-left">
+        <div class="wiz-head-icon" style="background:rgba(255,186,1,.15);color:#c48c00"><i class="fa-solid fa-bullhorn"></i></div>
+        <div>
+          <div class="wiz-head-title">Find the right marketing asset</div>
+          <div class="wiz-head-sub">A few quick questions and I'll point you to exactly what you need</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeWizard('marketing')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="wiz-progress">
+      <div class="wiz-dot active" data-step="1"></div>
+      <div class="wiz-dot" data-step="2"></div>
+      <div class="wiz-dot" data-step="3"></div>
+      <div class="wiz-dot" data-step="4"></div>
+      <div class="wiz-dot" data-step="5"></div>
+      <div class="wiz-step-label" id="wiz-mkt-steplbl">Step 1 of 5</div>
+    </div>
+
+    <div class="wiz-body">
+
+      <!-- STEP 1: product -->
+      <div class="wiz-step" data-step="1">
+        <div class="wiz-question">What product are you pitching?</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('marketing','product','Surface',this)">
+            <div class="wiz-choice-emoji">💻</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Surface devices</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','product','Copilot',this)">
+            <div class="wiz-choice-emoji">🪄</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Microsoft Copilot</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','product','M365',this)">
+            <div class="wiz-choice-emoji">📊</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Microsoft 365</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','product','Azure',this)">
+            <div class="wiz-choice-emoji">☁️</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Azure cloud</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: customer -->
+      <div class="wiz-step" data-step="2" style="display:none">
+        <div class="wiz-question">Who is the customer?</div>
+        <div class="wiz-hint">Pick the closest match.</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('marketing','customer','SMB',this)">
+            <div class="wiz-choice-emoji">🏢</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Small / medium business</div><div class="wiz-choice-sub">Under 250 employees</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','customer','Enterprise',this)">
+            <div class="wiz-choice-emoji">🏬</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Enterprise</div><div class="wiz-choice-sub">Large companies, multi-site</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','customer','Education',this)">
+            <div class="wiz-choice-emoji">🎓</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Education</div><div class="wiz-choice-sub">Schools, universities, training</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','customer','Healthcare',this)">
+            <div class="wiz-choice-emoji">🏥</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Healthcare</div><div class="wiz-choice-sub">Hospitals, clinics, allied health</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','customer','Government',this)">
+            <div class="wiz-choice-emoji">🏛️</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Government</div><div class="wiz-choice-sub">Public sector, local council</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: stage -->
+      <div class="wiz-step" data-step="3" style="display:none">
+        <div class="wiz-question">Where are you in the sale?</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('marketing','stage','First',this)">
+            <div class="wiz-choice-emoji">👋</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">First conversation</div><div class="wiz-choice-sub">Introducing the product, building interest</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','stage','Pitch',this)">
+            <div class="wiz-choice-emoji">📊</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Pitch meeting</div><div class="wiz-choice-sub">Detailed proposal, demo, decision-makers in the room</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','stage','Closing',this)">
+            <div class="wiz-choice-emoji">🤝</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Closing the deal</div><div class="wiz-choice-sub">Final objections, pricing, contracts</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','stage','Post',this)">
+            <div class="wiz-choice-emoji">📨</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Post-sale follow-up</div><div class="wiz-choice-sub">Onboarding, upsell, renewals</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: format -->
+      <div class="wiz-step" data-step="4" style="display:none">
+        <div class="wiz-question">What format do you need?</div>
+        <div class="wiz-choices">
+          <button class="wiz-choice" onclick="wizSelect('marketing','format','Email',this)">
+            <div class="wiz-choice-emoji">📧</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Email template</div><div class="wiz-choice-sub">Customer-ready copy you can edit and send</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','format','Deck',this)">
+            <div class="wiz-choice-emoji">🎬</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Pitch deck</div><div class="wiz-choice-sub">PowerPoint you can present in a meeting</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','format','OnePager',this)">
+            <div class="wiz-choice-emoji">📄</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Customer one-pager</div><div class="wiz-choice-sub">A PDF to leave behind or attach to an email</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+          <button class="wiz-choice" onclick="wizSelect('marketing','format','Social',this)">
+            <div class="wiz-choice-emoji">📱</div>
+            <div class="wiz-choice-text"><div class="wiz-choice-title">Social / LinkedIn post</div><div class="wiz-choice-sub">Ready-to-publish copy and image pack</div></div>
+            <div class="wiz-choice-check"><i class="fa-solid fa-check"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 5: recommendations -->
+      <div class="wiz-step" data-step="5" style="display:none">
+        <div class="wiz-summary-pill" id="wiz-mkt-summary"><i class="fa-solid fa-check"></i> Based on your answers</div>
+        <div class="wiz-question" style="font-size:1.05rem;margin-bottom:1rem">Here's what I'd use</div>
+
+        <div id="wiz-mkt-recs">
+          <!-- recs injected by JS -->
+        </div>
+
+        <div class="wiz-followup">
+          <div class="wiz-followup-text">Not quite right?</div>
+          <button class="wiz-followup-btn" onclick="wizRestart('marketing')"><i class="fa-solid fa-rotate-left"></i> Start over</button>
+          <button class="wiz-followup-btn primary" onclick="wizToCoach('marketing')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask Coach instead</button>
+        </div>
+      </div>
+
+      <!-- Persistent Ask Coach callout — shows on all question steps -->
+      <div class="wiz-coach-callout" id="wiz-mkt-callout">
+        <div class="wiz-coach-callout-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="wiz-coach-callout-text">
+          <div class="wiz-coach-callout-title">Hard to describe in buttons?</div>
+          <div class="wiz-coach-callout-sub">Tell My Coach about your customer in plain language &mdash; like "I'm pitching Copilot to a hospital next week."</div>
+        </div>
+        <button class="wiz-followup-btn primary" onclick="wizToCoach('marketing')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask My Coach</button>
+      </div>
+
+    </div>
+
+    <div class="wiz-foot">
+      <div class="wiz-foot-left" id="wiz-mkt-footnote">Step 1 of 5 &middot; Pick a product to continue</div>
+      <div class="wiz-foot-right">
+        <button class="btn-ghost" id="wiz-mkt-back" style="display:none" onclick="wizBack('marketing')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- WIZARD: KNOWLEDGE BASE                               -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-wiz-knowledge" onclick="overlayClose(event,'modal-wiz-knowledge')">
+  <div class="modal" style="width:640px">
+    <div class="wiz-head">
+      <div class="wiz-head-left">
+        <div class="wiz-head-icon" style="background:rgba(127,188,0,.12);color:#4a8000"><i class="fa-solid fa-book-open"></i></div>
+        <div>
+          <div class="wiz-head-title">Knowledge Base</div>
+          <div class="wiz-head-sub">Quick answers to the questions customers actually ask</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeWizard('knowledge')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="wiz-body">
+
+      <!-- STEP 1: category -->
+      <div class="wiz-step" data-step="1">
+        <div class="wiz-question" style="font-size:1.05rem">What kind of question is it?</div>
+        <div class="kb-cat-grid">
+          <button class="kb-cat" onclick="wizKbCategory('objections')">
+            <div class="kb-cat-emoji">🛡️</div>
+            <div class="kb-cat-text">
+              <div class="kb-cat-title">Customer objections</div>
+              <div class="kb-cat-count">Pricing, security, competitors</div>
+            </div>
+          </button>
+          <button class="kb-cat" onclick="wizKbCategory('compare')">
+            <div class="kb-cat-emoji">⚖️</div>
+            <div class="kb-cat-text">
+              <div class="kb-cat-title">Product comparisons</div>
+              <div class="kb-cat-count">Plans, editions, alternatives</div>
+            </div>
+          </button>
+          <button class="kb-cat" onclick="wizKbCategory('pricing')">
+            <div class="kb-cat-emoji">💰</div>
+            <div class="kb-cat-text">
+              <div class="kb-cat-title">Pricing &amp; licensing</div>
+              <div class="kb-cat-count">Tiers, discounts, contracts</div>
+            </div>
+          </button>
+          <button class="kb-cat" onclick="wizKbCategory('scripts')">
+            <div class="kb-cat-emoji">📝</div>
+            <div class="kb-cat-text">
+              <div class="kb-cat-title">Sales scripts &amp; emails</div>
+              <div class="kb-cat-count">Outreach, follow-up, intros</div>
+            </div>
+          </button>
+        </div>
+
+        <div style="margin-top:1.25rem;padding:14px 16px;background:rgba(0,120,215,.04);border:1px solid rgba(0,120,215,.12);border-radius:10px">
+          <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Can't find your question?</div>
+          <div style="font-size:13px;color:var(--text-2);margin-bottom:10px">My Coach can answer in plain language &mdash; just describe it.</div>
+          <button class="wiz-followup-btn primary" onclick="wizToCoach('knowledge')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask My Coach</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: FAQ list (populated by JS) -->
+      <div class="wiz-step" data-step="2" style="display:none">
+        <div class="wiz-question" id="wiz-kb-cat-title" style="font-size:1.05rem">&nbsp;</div>
+        <div id="wiz-kb-faqs">
+          <!-- FAQ accordions injected here -->
+        </div>
+
+        <div class="wiz-followup">
+          <div class="wiz-followup-text">Didn't help?</div>
+          <button class="wiz-followup-btn" onclick="wizRestart('knowledge')"><i class="fa-solid fa-rotate-left"></i> Other categories</button>
+          <button class="wiz-followup-btn primary" onclick="wizToCoach('knowledge')"><i class="fa-solid fa-wand-magic-sparkles"></i> Ask Coach</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wiz-foot">
+      <div class="wiz-foot-left" id="wiz-kb-footnote">Pick a category to see common questions</div>
+      <div class="wiz-foot-right">
+        <button class="btn-ghost" id="wiz-kb-back" style="display:none" onclick="wizRestart('knowledge')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
 // Role detection — runs before DOMContentLoaded to minimise flash
 (function(){
@@ -3154,13 +4326,11 @@ window.addEventListener('DOMContentLoaded', function(){
       tier: 'Diamond Tier Partner',
       btn:  { icon: 'fa-plus', text: 'Log a Deal', action: "openModal('modal-log-deal')" },
       items: [
-        { icon: 'fa-star',            text: 'My Zone',      section: 'res-zone' },
+        { icon: 'fa-house',           text: 'Home',         section: 'res-zone' },
+        { icon: 'fa-user-tie',        text: 'My Coach',     section: 'res-coach' },
         { icon: 'fa-trophy',          text: 'Leaderboard',  section: 'res-leaderboard' },
         { icon: 'fa-handshake',       text: 'My Deals',     section: 'res-deals' },
-        { icon: 'fa-graduation-cap',  text: 'Training',     section: 'res-training' },
-        { icon: 'fa-gift',            text: 'Rewards',      section: 'res-rewards' },
-        { icon: 'fa-medal',           text: 'Achievements', section: 'res-achievements' },
-        { icon: 'fa-user-tie',        text: 'My Coach',     section: 'res-coach' }
+        { icon: 'fa-gift',            text: 'Rewards',      section: 'res-rewards' }
       ]
     },
     distributor: {
@@ -3614,6 +4784,411 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// ════════════════════════════════════════════════════
+// HOME PAGE — CONCIERGE WIZARDS
+// ════════════════════════════════════════════════════
+
+// Wizard state — per-wizard step + selections
+var wizState = {
+  accreditation: { step: 1, totalSteps: 4, selections: {} },
+  marketing:     { step: 1, totalSteps: 5, selections: {} },
+  knowledge:     { step: 1, totalSteps: 2, selections: {} }
+};
+
+var wizModalIds = {
+  accreditation: 'modal-wiz-accreditation',
+  marketing:     'modal-wiz-marketing',
+  knowledge:     'modal-wiz-knowledge'
+};
+
+var wizPrefix = {
+  accreditation: 'wiz-acc',
+  marketing:     'wiz-mkt',
+  knowledge:     'wiz-kb'
+};
+
+function openWizard(name) {
+  wizState[name].step = 1;
+  wizState[name].selections = {};
+  wizShowStep(name, 1);
+  openModal(wizModalIds[name]);
+}
+
+function closeWizard(name) {
+  closeModal(wizModalIds[name]);
+}
+
+function wizShowStep(name, step) {
+  var modal = document.getElementById(wizModalIds[name]);
+  if (!modal) return;
+  var steps = modal.querySelectorAll('.wiz-step');
+  steps.forEach(function(s) {
+    s.style.display = (parseInt(s.getAttribute('data-step'), 10) === step) ? '' : 'none';
+  });
+
+  // Progress dots
+  var dots = modal.querySelectorAll('.wiz-progress .wiz-dot');
+  dots.forEach(function(d) {
+    var n = parseInt(d.getAttribute('data-step'), 10);
+    d.classList.remove('active', 'done');
+    if (n < step) d.classList.add('done');
+    else if (n === step) d.classList.add('active');
+  });
+
+  // Step label
+  var stepLbl = document.getElementById(wizPrefix[name] + '-steplbl');
+  if (stepLbl) stepLbl.textContent = 'Step ' + step + ' of ' + wizState[name].totalSteps;
+
+  // Footnote
+  var foot = document.getElementById(wizPrefix[name] + '-footnote');
+  if (foot) {
+    if (step === wizState[name].totalSteps) {
+      foot.textContent = 'Tap a recommendation to open it on the right platform.';
+    } else {
+      foot.textContent = 'Step ' + step + ' of ' + wizState[name].totalSteps + ' · Pick an answer to continue';
+    }
+  }
+
+  // Back button visibility
+  var back = document.getElementById(wizPrefix[name] + '-back');
+  if (back) back.style.display = step > 1 ? '' : 'none';
+
+  // Persistent "Ask Coach" callout — hide on final recs step (avoids duplicate CTA)
+  var callout = document.getElementById(wizPrefix[name] + '-callout');
+  if (callout) {
+    callout.style.display = (step === wizState[name].totalSteps) ? 'none' : '';
+  }
+
+  wizState[name].step = step;
+}
+
+function wizSelect(name, key, value, btn) {
+  // Visual selection
+  var step = btn.closest('.wiz-step');
+  step.querySelectorAll('.wiz-choice').forEach(function(c){ c.classList.remove('selected'); });
+  btn.classList.add('selected');
+
+  // Persist
+  wizState[name].selections[key] = value;
+
+  // Auto-advance after a short beat (feels responsive without being abrupt)
+  setTimeout(function() {
+    var next = wizState[name].step + 1;
+    if (next < wizState[name].totalSteps) {
+      wizShowStep(name, next);
+    } else if (next === wizState[name].totalSteps) {
+      // Render recommendations on the final step
+      wizRenderRecs(name);
+      wizShowStep(name, next);
+    }
+  }, 280);
+}
+
+function wizBack(name) {
+  var s = wizState[name].step;
+  if (s > 1) wizShowStep(name, s - 1);
+}
+
+function wizRestart(name) {
+  wizState[name].step = 1;
+  wizState[name].selections = {};
+  // Clear visual selections
+  var modal = document.getElementById(wizModalIds[name]);
+  modal.querySelectorAll('.wiz-choice.selected').forEach(function(c){ c.classList.remove('selected'); });
+  wizShowStep(name, 1);
+}
+
+function wizToCoach(name) {
+  // Close wizard, open Coach with selections as a prefilled query
+  closeWizard(name);
+  var sel = wizState[name].selections;
+  var prefill = '';
+  if (name === 'accreditation') {
+    prefill = 'Help me find a course on ' + (sel.product || 'a Microsoft product') + ' — level: ' + (sel.level || 'any') + ', time: ' + (sel.time || 'flexible');
+  } else if (name === 'marketing') {
+    prefill = 'I need a ' + (sel.format || 'marketing asset') + ' for ' + (sel.product || 'a Microsoft product') + ' for a ' + (sel.customer || 'customer') + ' at the ' + (sel.stage || 'sales') + ' stage';
+  } else {
+    prefill = 'I have a question about ' + (sel.category || 'something') + ' — can you help?';
+  }
+  goToCoach(prefill);
+}
+
+function goToCoach(prefill) {
+  // Activate the Coach nav item + section
+  var navItems = document.querySelectorAll('.sb-nav-item');
+  navItems.forEach(function(item) {
+    var s = item.getAttribute('data-role-section');
+    item.classList.toggle('active', s === 'res-coach');
+  });
+
+  // Show coach section
+  document.querySelectorAll('.reseller-section').forEach(function(s) { s.classList.remove('active'); });
+  var coach = document.getElementById('res-coach');
+  if (coach) coach.classList.add('active');
+
+  // Prefill the coach input if a query was passed
+  if (prefill) {
+    setTimeout(function() {
+      var inp = document.getElementById('coach-input');
+      if (inp) {
+        inp.value = prefill;
+        inp.focus();
+      }
+    }, 100);
+  }
+}
+
+// ────────────────────────────────────────────────
+// RECOMMENDATION ENGINE — Sample curated content
+// (In production this lives in a DB / RAG index)
+// ────────────────────────────────────────────────
+
+var dpuPaths = {
+  Surface: {
+    Beginner: [
+      { title: 'Surface Pro Fundamentals', meta: ['30 min', '4 videos', '+400 XP', 'Beginner'], desc: 'Specs, pricing tiers, ideal customer profiles, and the top 3 objections you\'ll hear.' },
+      { title: 'Surface Family Tour', meta: ['18 min', '3 videos', '+250 XP', 'Beginner'], desc: 'Walk-through of every device in the Surface line — when to recommend each.' }
+    ],
+    Intermediate: [
+      { title: 'Surface for Frontline Workers', meta: ['1h 10min', '6 videos', '+600 XP', 'Intermediate'], desc: 'Deeper use-case selling for retail, healthcare, and field service customers.' },
+      { title: 'Surface Accessories &amp; Add-ons', meta: ['45 min', '5 videos', '+450 XP', 'Intermediate'], desc: 'Pen, Dock, Type Cover — how to bundle for higher margins.' }
+    ],
+    Advanced: [
+      { title: 'Surface Solutions Architect Certification', meta: ['3 hours', 'Full cert', '+1,200 XP', 'Expert'], desc: 'Multi-device deployment, MDM integration, and enterprise procurement playbooks.' }
+    ]
+  },
+  Copilot: {
+    Beginner: [
+      { title: 'Copilot+ PCs — What They Are', meta: ['22 min', '4 videos', '+350 XP', 'Beginner'], desc: 'NPU explained simply, when to pitch a Copilot+ PC, and how it differs from regular Windows.' },
+      { title: 'Selling Copilot for Microsoft 365', meta: ['28 min', '5 videos', '+400 XP', 'Beginner'], desc: 'Use cases, pricing, common questions from first-time buyers.' }
+    ],
+    Intermediate: [
+      { title: 'Copilot for Healthcare &amp; Regulated Industries', meta: ['1h', '6 videos', '+600 XP', 'Intermediate'], desc: 'Compliance, data handling, and the questions your customers in regulated sectors will ask.' },
+      { title: 'Copilot Studio for SMB', meta: ['50 min', '5 videos', '+500 XP', 'Intermediate'], desc: 'Building custom Copilots — when to pitch this to a customer vs. off-the-shelf.' }
+    ],
+    Advanced: [
+      { title: 'Copilot Solutions Expert Certification', meta: ['4 hours', 'Full cert', '+1,500 XP', 'Expert'], desc: 'Multi-product Copilot architecture, security boundaries, and enterprise deployment.' }
+    ]
+  },
+  M365: {
+    Beginner: [
+      { title: 'Microsoft 365 Business Plans Explained', meta: ['25 min', '4 videos', '+350 XP', 'Beginner'], desc: 'Basic, Standard, Premium — which plan fits which customer, in plain language.' }
+    ],
+    Intermediate: [
+      { title: 'M365 Migration &amp; Onboarding', meta: ['1h 15min', '7 videos', '+650 XP', 'Intermediate'], desc: 'Moving customers from competitor products — the playbook.' }
+    ],
+    Advanced: [
+      { title: 'M365 Solutions Specialist Certification', meta: ['3.5 hours', 'Full cert', '+1,400 XP', 'Expert'], desc: 'Identity, security, governance — the full picture for enterprise selling.' }
+    ]
+  },
+  Azure: {
+    Beginner: [
+      { title: 'Azure Fundamentals for Sellers', meta: ['28 min', '5 videos', '+400 XP', 'Beginner'], desc: 'Cloud basics, when customers need Azure, and how to start the conversation.' }
+    ],
+    Intermediate: [
+      { title: 'Azure for SMB Workloads', meta: ['55 min', '6 videos', '+550 XP', 'Intermediate'], desc: 'Cost modelling, common workloads, and migration triggers.' }
+    ],
+    Advanced: [
+      { title: 'Azure Solutions Architect Certification', meta: ['4 hours', 'Full cert', '+1,500 XP', 'Expert'], desc: 'AZ-305 prep — the most valuable Azure cert for sales-focused partners.' }
+    ]
+  },
+  Windows: {
+    Beginner: [
+      { title: 'Windows 11 Pro for Business', meta: ['20 min', '4 videos', '+350 XP', 'Beginner'], desc: 'Security features, what\'s new, and how to upsell from Windows 10.' }
+    ],
+    Intermediate: [
+      { title: 'Windows 11 Security Deep Dive', meta: ['1h', '6 videos', '+600 XP', 'Intermediate'], desc: 'TPM, Pluton, Secured-core PCs — the security story customers want to hear.' }
+    ],
+    Advanced: [
+      { title: 'Windows 11 Deployment Specialist', meta: ['3 hours', 'Full cert', '+1,300 XP', 'Expert'], desc: 'Enterprise rollouts, Autopilot, Intune — the technical depth for big deals.' }
+    ]
+  }
+};
+
+var dpcAssets = {
+  // Keyed by product · customer · stage · format — fuzzy matched in code
+  default: [
+    { title: 'Customer-Ready Product Overview', meta: ['PDF', '8 pages', 'English'], desc: 'A clean, brandable one-pager you can attach to an email or print for a meeting.', cta: 'Open in DPC' }
+  ]
+};
+
+function wizRenderRecs(name) {
+  var sel = wizState[name].selections;
+
+  if (name === 'accreditation') {
+    var product = sel.product || 'Surface';
+    var level   = sel.level   || 'Beginner';
+    var bucket  = (dpuPaths[product] && dpuPaths[product][level]) || dpuPaths.Surface.Beginner;
+
+    var summary = document.getElementById('wiz-acc-summary');
+    summary.innerHTML = '<i class="fa-solid fa-check"></i> ' + product + ' &middot; ' + level + ' &middot; ' + (sel.time || 'Flexible');
+
+    var html = '';
+    bucket.forEach(function(p) {
+      var metaHtml = p.meta.map(function(m) { return '<span>' + m + '</span>'; }).join(' &middot; ');
+      html += ''
+        + '<div class="wiz-rec">'
+        +   '<div class="wiz-rec-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-graduation-cap"></i></div>'
+        +   '<div class="wiz-rec-body">'
+        +     '<div class="wiz-rec-title">' + p.title + '</div>'
+        +     '<div class="wiz-rec-meta">' + metaHtml + '</div>'
+        +     '<div class="wiz-rec-desc">' + p.desc + '</div>'
+        +     '<a class="wiz-rec-cta" href="https://partner.microsoft.com/en-US/Training/Business-school" target="_blank" rel="noopener">Start on DPU <i class="fa-solid fa-arrow-up-right-from-square"></i></a>'
+        +   '</div>'
+        + '</div>';
+    });
+    document.getElementById('wiz-acc-recs').innerHTML = html;
+  }
+
+  if (name === 'marketing') {
+    var product = sel.product || 'Surface';
+    var customer = sel.customer || 'SMB';
+    var stage = sel.stage || 'Pitch';
+    var format = sel.format || 'Deck';
+
+    var summary = document.getElementById('wiz-mkt-summary');
+    summary.innerHTML = '<i class="fa-solid fa-check"></i> ' + product + ' &middot; ' + customer + ' &middot; ' + stage + ' &middot; ' + format;
+
+    var formatMeta = {
+      Email:    { icon: 'fa-envelope',  label: 'Email template',   ext: 'DOCX' },
+      Deck:     { icon: 'fa-display',   label: 'Pitch deck',       ext: 'PPTX' },
+      OnePager: { icon: 'fa-file-pdf',  label: 'Customer one-pager', ext: 'PDF' },
+      Social:   { icon: 'fa-mobile-screen', label: 'Social post pack', ext: 'ZIP' }
+    };
+    var fm = formatMeta[format] || formatMeta.Deck;
+
+    var recs = [
+      {
+        title: product + ' for ' + customer + ' — ' + fm.label,
+        meta: [fm.ext, 'English', 'Updated this quarter'],
+        desc: 'A ' + customer.toLowerCase() + '-focused asset positioned for ' + stage.toLowerCase() + ' conversations. Edit the customer name and you\'re ready to send.',
+        primary: true
+      },
+      {
+        title: product + ' Objection Handler — ' + customer,
+        meta: ['PDF', '2 pages', 'Quick reference'],
+        desc: 'Top 5 objections you\'ll hear from a ' + customer.toLowerCase() + ' customer and how to respond to each.',
+        primary: false
+      },
+      {
+        title: product + ' Customer Email Sequence',
+        meta: ['DOCX', '3 emails', 'Ready to send'],
+        desc: 'A 3-email follow-up sequence for after a ' + stage.toLowerCase() + ' conversation. Just personalise the opening line.',
+        primary: false
+      }
+    ];
+
+    var html = '';
+    recs.forEach(function(r) {
+      var metaHtml = r.meta.map(function(m) { return '<span>' + m + '</span>'; }).join(' &middot; ');
+      html += ''
+        + '<div class="wiz-rec">'
+        +   '<div class="wiz-rec-icon" style="background:rgba(255,186,1,.15);color:#c48c00"><i class="fa-solid ' + fm.icon + '"></i></div>'
+        +   '<div class="wiz-rec-body">'
+        +     '<div class="wiz-rec-title">' + r.title + '</div>'
+        +     '<div class="wiz-rec-meta">' + metaHtml + '</div>'
+        +     '<div class="wiz-rec-desc">' + r.desc + '</div>'
+        +     '<a class="wiz-rec-cta" href="https://devicepartner.microsoft.com/support" target="_blank" rel="noopener">Open in DPC <i class="fa-solid fa-arrow-up-right-from-square"></i></a>'
+        +     ' &nbsp; '
+        +     '<button class="wiz-rec-cta" style="background:rgba(120,60,220,.15);color:#7a3fbf;border:1px solid rgba(120,60,220,.25)" onclick="alert(\'AI Marketing Assistant will brand this for you (demo)\')"><i class="fa-solid fa-wand-magic-sparkles"></i> Personalise with AI</button>'
+        +   '</div>'
+        + '</div>';
+    });
+    document.getElementById('wiz-mkt-recs').innerHTML = html;
+  }
+}
+
+// ────────────────────────────────────────────────
+// KNOWLEDGE BASE — category → FAQs
+// ────────────────────────────────────────────────
+
+var kbFaqs = {
+  objections: {
+    title: 'Customer Objections',
+    items: [
+      { q: '"Copilot is too expensive — we can\'t justify the cost"', a: 'Reframe from cost to <strong>time saved</strong>. A typical knowledge worker saves 11 hours/month with Copilot (Microsoft Work Trend Index 2024). At an average salary, that pays for the licence 4x over. Offer a <strong>2-month pilot</strong> with 10 users to prove the time-saving claim before committing.' },
+      { q: '"How do we know our data is safe with Copilot?"', a: 'Three points: <strong>(1)</strong> Customer prompts and data stay within the customer\'s M365 tenant — not used to train foundation models. <strong>(2)</strong> Inherits all existing M365 permissions and DLP policies. <strong>(3)</strong> Available compliance certifications: ISO 27001, SOC 2 Type 2, HIPAA, GDPR. Send them the <em>Copilot Data, Privacy &amp; Security</em> one-pager from DPC.' },
+      { q: '"Why not Google Workspace? It\'s cheaper."', a: 'Lead with <strong>ecosystem depth</strong>: Teams + Outlook + Excel are deeply integrated, and most customers already have Office files. Migration risk and re-training cost are usually higher than the licence delta. Use the <em>Microsoft 365 vs Google Workspace TCO</em> comparison in DPC for specific numbers.' }
+    ]
+  },
+  compare: {
+    title: 'Product Comparisons',
+    items: [
+      { q: 'Surface Pro vs Surface Laptop — which should I recommend?', a: '<strong>Surface Pro</strong> for hybrid workers, frontline staff, anyone who needs tablet flexibility (note-takers, presenters, healthcare). <strong>Surface Laptop</strong> for traditional desk work where keyboard-first wins (admin, finance, customer service). When in doubt, ask: <em>"How often will they take notes by hand or present in meetings?"</em>' },
+      { q: 'Microsoft 365 Business Basic vs Standard vs Premium', a: '<strong>Basic ($6/user)</strong>: web/mobile Office only, 1TB OneDrive, Teams. Good for shared-device retail. <strong>Standard ($12.50)</strong>: desktop Office apps. The default for most SMBs. <strong>Premium ($22)</strong>: adds Intune, Defender, conditional access. Pitch this when the customer mentions <em>security</em>, <em>device management</em>, or <em>compliance</em>.' },
+      { q: 'Windows 11 Pro vs Pro for Workstations vs Enterprise', a: '<strong>Pro</strong>: standard business use, up to 2TB RAM. <strong>Pro for Workstations</strong>: high-end hardware (servers as workstations, CAD, video). <strong>Enterprise</strong>: needs M365 E3/E5 or Windows VL — adds App Locker, DirectAccess, advanced security. Most SMB customers want Pro; only push Enterprise if they\'re on M365 E3+.' }
+    ]
+  },
+  pricing: {
+    title: 'Pricing &amp; Licensing',
+    items: [
+      { q: 'What\'s the discount structure for volume orders?', a: 'For Surface and accessories: <strong>tiered partner pricing</strong> kicks in at 25, 100, and 500 units — check the current quarter\'s margin sheet in DPC. For M365: <strong>Open Value</strong> for 5–249 seats, <strong>Enterprise Agreement</strong> at 500+. Always log volume deals through your distributor for the best margin.' },
+      { q: 'Can customers mix licence types in one tenant?', a: 'Yes — you can have <strong>multiple SKUs in one M365 tenant</strong>. Common pattern: Business Premium for execs and IT, Business Standard for general staff, Basic for shared retail/frontline. Each user gets the features of their assigned SKU.' },
+      { q: 'What\'s the difference between Open and CSP licensing?', a: '<strong>Open</strong>: customer owns perpetual licences — declining in availability. <strong>CSP (Cloud Solution Provider)</strong>: monthly or annual subscription via partner — current default for almost all M365 and Azure. CSP gives you recurring revenue and tighter customer relationship.' }
+    ]
+  },
+  scripts: {
+    title: 'Sales Scripts &amp; Emails',
+    items: [
+      { q: 'Cold email — introducing Copilot to an existing M365 customer', a: '<strong>Subject:</strong> Quick question about [Customer Name]\'s team productivity<br><br>Hi [Name],<br><br>You\'re already running Microsoft 365 across your team — which means you\'re 80% of the way to having Copilot working for you, no extra setup needed.<br><br>Most customers I\'ve added Copilot for report ~10 hours/week saved per person on email, summaries, and document drafting. Worth a 15-min call to show you what it could look like for [Customer Name] specifically?<br><br>[Your name]' },
+      { q: 'Follow-up after a pitch meeting — keep momentum alive', a: '<strong>Subject:</strong> Quick recap from [day] + the numbers you asked for<br><br>Hi [Name],<br><br>Thanks for the time on [day]. Quick recap of what we covered, plus the ROI numbers you asked about:<br><br>• [Item 1 from meeting]<br>• [Item 2 from meeting]<br>• Attached: TCO comparison and case study from a similar [industry] customer<br><br>Happy to set up a 30-min follow-up next week to walk through any questions from your team. Does [date/time] work?<br><br>[Your name]' },
+      { q: 'Reactivating a stale lead — they went quiet 6+ weeks ago', a: '<strong>Subject:</strong> Did this slip off your radar?<br><br>Hi [Name],<br><br>I haven\'t heard back since we chatted about [topic] in [month]. Totally understand if priorities shifted — they always do.<br><br>If [topic] is still on the list, I\'ve got a new resource that might help: [link to relevant DPC asset]. If it\'s not the right time, just say the word and I\'ll circle back next quarter.<br><br>[Your name]' }
+    ]
+  }
+};
+
+function wizKbCategory(catKey) {
+  var data = kbFaqs[catKey];
+  if (!data) return;
+  document.getElementById('wiz-kb-cat-title').textContent = data.title;
+  var html = '';
+  data.items.forEach(function(faq, i) {
+    html += ''
+      + '<div class="kb-faq" id="kb-faq-' + i + '">'
+      +   '<div class="kb-faq-q" onclick="kbFaqToggle(' + i + ')">'
+      +     '<span>' + faq.q + '</span>'
+      +     '<i class="fa-solid fa-chevron-down"></i>'
+      +   '</div>'
+      +   '<div class="kb-faq-a">' + faq.a + '</div>'
+      + '</div>';
+  });
+  document.getElementById('wiz-kb-faqs').innerHTML = html;
+  wizState.knowledge.selections.category = data.title;
+  wizShowStep('knowledge', 2);
+}
+
+function kbFaqToggle(i) {
+  var el = document.getElementById('kb-faq-' + i);
+  if (el) el.classList.toggle('open');
+}
+
+// ════════════════════════════════════════════════════
+// PARTNER GROWTH CATALOGUE — Filter tabs
+// ════════════════════════════════════════════════════
+function rsFilter(btn, tier) {
+  // Toggle active tab
+  var tabs = btn.parentElement.querySelectorAll('.rs-tier-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+
+  // Show/hide banner
+  document.querySelectorAll('.rs-tier-banner').forEach(function(b) {
+    b.style.display = (b.getAttribute('data-banner') === tier) ? '' : 'none';
+  });
+
+  // Filter cards
+  var cards = document.querySelectorAll('#res-rewards .rs-card');
+  cards.forEach(function(c) {
+    var cardTier = c.getAttribute('data-tier');
+    if (tier === 'all' || cardTier === tier) {
+      c.style.display = '';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
 
 // Chart toggle
 document.querySelectorAll('.chart-toggle-btn').forEach(function(btn){

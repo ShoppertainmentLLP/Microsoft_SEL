@@ -229,25 +229,28 @@
 
     .s3-layout {
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 32px;
-      max-width: 900px;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 980px;
       align-items: start;
     }
-
-    .s3-scores { display: flex; flex-direction: column; gap: 12px; }
-    .s3-score-row {
-      display: flex; align-items: center; gap: 14px;
+    .s3-col-head {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 12px;
     }
-    .s3-score-label { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 500; width: 120px; flex-shrink: 0; }
-    .s3-score-bar-wrap {
-      flex: 1; height: 6px; border-radius: 3px;
-      background: rgba(255,255,255,.08); overflow: hidden;
+    .s3-col-head-icon {
+      width: 26px; height: 26px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
     }
-    .s3-score-bar { height: 100%; border-radius: 3px; transition: width 1s ease; }
-    .s3-score-val { font-size: 13px; font-weight: 800; width: 36px; text-align: right; flex-shrink: 0; }
+    .s3-col-head-title { font-size: 12px; font-weight: 800; color: #fff; letter-spacing: .04em; }
+    .s3-col-head-sub { font-size: 10px; color: rgba(255,255,255,.45); }
 
-    .s3-gaps { display: flex; flex-direction: column; gap: 14px; }
+    .s3-gaps { display: flex; flex-direction: column; gap: 10px; }
     .s3-gap {
       display: flex; align-items: flex-start; gap: 14px;
       background: rgba(255,255,255,.04);
@@ -364,6 +367,34 @@
     #s2 .slide-counter { color: rgba(0,0,0,.3); }
     #s2 .nav-dot { background: rgba(0,0,0,.15); }
     #s2 .nav-dot.active { background: var(--blue); }
+
+    /* ── PRINT / PDF EXPORT ── */
+    @media print {
+      @page { size: 1280px 720px; margin: 0; }
+
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      html, body { width: 1280px; height: auto; overflow: visible; background: #000; }
+
+      .deck { width: 1280px; height: auto; position: static; overflow: visible; }
+
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        pointer-events: all !important;
+        transform: none !important;
+        width: 1280px; height: 720px;
+        display: flex !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+      }
+
+      .wordmark, .nav-bar, .nav-arrow, .slide-counter { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -404,45 +435,45 @@
   <!-- ══════════════════════════════════════════ -->
   <section class="slide active" id="s1">
     <div class="s1-ms-badge">
-      <i class="fa-solid fa-shield-halved"></i>
-      Microsoft Partner Enablement Programme
+      <i class="fa-solid fa-layer-group"></i>
+      The Engagement Layer for Microsoft Partner Content
     </div>
     <div class="label">What is SEL</div>
     <div class="slide-title">Sales Excellence<br>League</div>
     <div class="slide-sub">
-      A gamified incentive platform that rewards Microsoft resellers across India
-      for selling, training, and running marketing campaigns — driving measurable
-      partner engagement and revenue growth.
+      SEL is the facilitator layer that brings Microsoft's Device Partner University
+      and Device Partner Center to life — through curation, gamification, and AI —
+      driving measurable engagement across India's 3,000-strong reseller network.
     </div>
 
     <div class="s1-grid">
       <div class="s1-stat">
         <div class="s1-stat-icon" style="background:rgba(1,166,240,.2);color:#01A6F0">
-          <i class="fa-solid fa-users"></i>
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
-        <div class="s1-stat-val">3,000+</div>
-        <div class="s1-stat-lbl">Partners across India</div>
+        <div class="s1-stat-val">DPU</div>
+        <div class="s1-stat-lbl">Training &amp; Certifications — curated &amp; gamified</div>
       </div>
       <div class="s1-stat">
         <div class="s1-stat-icon" style="background:rgba(255,186,1,.2);color:#FFBA01">
-          <i class="fa-solid fa-trophy"></i>
+          <i class="fa-solid fa-bullhorn"></i>
         </div>
-        <div class="s1-stat-val">4 Ways</div>
-        <div class="s1-stat-lbl">to Earn — Train · Sell · Market · Stories</div>
+        <div class="s1-stat-val">DPC</div>
+        <div class="s1-stat-lbl">Sales &amp; Marketing Assets — surfaced via AI</div>
       </div>
       <div class="s1-stat">
         <div class="s1-stat-icon" style="background:rgba(127,188,0,.2);color:#7FBC00">
-          <i class="fa-solid fa-medal"></i>
+          <i class="fa-solid fa-users"></i>
         </div>
-        <div class="s1-stat-val">Tiered</div>
-        <div class="s1-stat-lbl">Silver · Gold · Platinum rewards</div>
+        <div class="s1-stat-val">3,000+</div>
+        <div class="s1-stat-lbl">Resellers via Redington &amp; Ingram Micro</div>
       </div>
       <div class="s1-stat">
         <div class="s1-stat-icon" style="background:rgba(243,79,28,.15);color:#F34F1C">
-          <i class="fa-solid fa-building"></i>
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
         </div>
-        <div class="s1-stat-val">2 Distis</div>
-        <div class="s1-stat-lbl">Redington &amp; Ingram Micro</div>
+        <div class="s1-stat-val">AI-First</div>
+        <div class="s1-stat-lbl">Copilot-powered coaching &amp; discovery</div>
       </div>
     </div>
   </section>
@@ -453,32 +484,33 @@
   <!-- ══════════════════════════════════════════ -->
   <section class="slide" id="s2">
     <div class="label">What's Working</div>
-    <div class="slide-title" style="color:#0d1117">Platform Strengths</div>
+    <div class="slide-title" style="color:#0d1117">The Foundations Are Solid</div>
     <div class="slide-sub">
-      The current SEL platform has a strong programme concept and an existing
-      partner network — the ingredients are there, the execution needs an upgrade.
+      Microsoft has world-class content and an established partner network in India.
+      The raw ingredients are in place — what's missing is the experience layer that
+      makes them work together.
     </div>
 
     <div class="s2-grid">
       <div class="s2-card">
         <div class="s2-card-icon" style="background:rgba(0,120,215,.1);color:#0078D7">
-          <i class="fa-solid fa-rocket"></i>
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
         <div>
-          <div class="s2-card-title">Strong Programme Concept</div>
-          <div class="s2-card-desc">Free Microsoft partner enablement with meaningful, multi-activity rewards. The incentive structure — points, badges, tiers — is a proven engagement model.</div>
-          <div class="s2-check"><i class="fa-solid fa-check"></i> Proven model</div>
+          <div class="s2-card-title">DPU — World-Class Training Library</div>
+          <div class="s2-card-desc">Device Partner University already hosts comprehensive, official Microsoft training across every product line — Surface, Copilot+, Windows, Azure. The content investment is substantial.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> Content layer ready</div>
         </div>
       </div>
 
       <div class="s2-card">
         <div class="s2-card-icon" style="background:rgba(127,188,0,.1);color:#4a8000">
-          <i class="fa-brands fa-microsoft"></i>
+          <i class="fa-solid fa-bullhorn"></i>
         </div>
         <div>
-          <div class="s2-card-title">Microsoft Learn Integration</div>
-          <div class="s2-card-desc">Device Partner University (DPU) content from Microsoft Learn is already integrated — a genuine differentiator that gives resellers access to official Microsoft training.</div>
-          <div class="s2-check"><i class="fa-solid fa-check"></i> Key differentiator</div>
+          <div class="s2-card-title">DPC — Rich Marketing Asset Bank</div>
+          <div class="s2-card-desc">Device Partner Center holds the full library of sales collateral, campaign assets, and customer-facing materials — every reseller's go-to-market toolkit, already built.</div>
+          <div class="s2-check"><i class="fa-solid fa-check"></i> Asset layer ready</div>
         </div>
       </div>
 
@@ -488,18 +520,18 @@
         </div>
         <div>
           <div class="s2-card-title">Established Distribution Network</div>
-          <div class="s2-card-desc">Redington and Ingram Micro partnerships provide immediate reach across thousands of resellers in India, removing the cold-start problem for adoption.</div>
+          <div class="s2-card-desc">Redington and Ingram Micro partnerships provide immediate reach across 3,000+ resellers in India — removing the cold-start problem for adoption entirely.</div>
           <div class="s2-check"><i class="fa-solid fa-check"></i> National reach</div>
         </div>
       </div>
 
       <div class="s2-card">
         <div class="s2-card-icon" style="background:rgba(243,79,28,.1);color:#c93d12">
-          <i class="fa-solid fa-gift"></i>
+          <i class="fa-solid fa-rocket"></i>
         </div>
         <div>
-          <div class="s2-card-title">Reward Ecosystem Exists</div>
-          <div class="s2-card-desc">A physical and digital reward catalogue is already in place. Partners understand the points-for-rewards mechanic and have expectations built around it.</div>
+          <div class="s2-card-title">Proven Programme Concept</div>
+          <div class="s2-card-desc">The reward-based incentive model has been running successfully — partners already understand the value exchange. The mechanic works; it just needs a better platform.</div>
           <div class="s2-check"><i class="fa-solid fa-check"></i> Partner buy-in</div>
         </div>
       </div>
@@ -511,101 +543,115 @@
   <!-- SLIDE 3 — WHAT CAN BE IMPROVED            -->
   <!-- ══════════════════════════════════════════ -->
   <section class="slide" id="s3">
-    <div class="label">Platform Audit · April 2026</div>
-    <div class="slide-title">What Needs to Change</div>
+    <div class="label">The Gaps SEL Will Close</div>
+    <div class="slide-title">Where DPU &amp; DPC Fall Short</div>
     <div class="slide-sub">
-      An independent audit scored the current platform across four dimensions.
-      Every dimension is below 5/10 — requiring a rebuild, not a patch.
+      Microsoft has the content. The gap is in how partners discover it, engage with it,
+      and are rewarded for using it. SEL is built to close exactly these gaps.
     </div>
 
     <div class="s3-layout">
-      <!-- Scores -->
-      <div class="s3-scores">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Audit Scores</div>
 
-        <div class="s3-score-row">
-          <div class="s3-score-label">UI / UX</div>
-          <div class="s3-score-bar-wrap">
-            <div class="s3-score-bar" style="width:30%;background:#F34F1C"></div>
+      <!-- DPU column -->
+      <div>
+        <div class="s3-col-head">
+          <div class="s3-col-head-icon" style="background:rgba(1,166,240,.2);color:#01A6F0">
+            <i class="fa-solid fa-graduation-cap"></i>
           </div>
-          <div class="s3-score-val" style="color:#F34F1C">3/10</div>
+          <div>
+            <div class="s3-col-head-title">DPU — Device Partner University</div>
+            <div class="s3-col-head-sub">Training &amp; certification platform</div>
+          </div>
         </div>
-        <div class="s3-score-row">
-          <div class="s3-score-label">Discovery</div>
-          <div class="s3-score-bar-wrap">
-            <div class="s3-score-bar" style="width:20%;background:#F34F1C"></div>
+
+        <div class="s3-gaps">
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">Overwhelming, unorganised catalogue</div>
+              <div class="s3-gap-desc">Hundreds of videos with no clear paths. Partners don't know what to watch — so they don't watch anything.</div>
+            </div>
           </div>
-          <div class="s3-score-val" style="color:#F34F1C">2/10</div>
-        </div>
-        <div class="s3-score-row">
-          <div class="s3-score-label">Engagement</div>
-          <div class="s3-score-bar-wrap">
-            <div class="s3-score-bar" style="width:40%;background:#FFBA01"></div>
+
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">No gamification or healthy competition</div>
+              <div class="s3-gap-desc">Watching a course feels solitary. No ranks, no streaks, no peer benchmarks — none of what drives engagement on modern platforms.</div>
+            </div>
           </div>
-          <div class="s3-score-val" style="color:#FFBA01">4/10</div>
-        </div>
-        <div class="s3-score-row">
-          <div class="s3-score-label">Security</div>
-          <div class="s3-score-bar-wrap">
-            <div class="s3-score-bar" style="width:30%;background:#F34F1C"></div>
+
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">No rewards for certifications</div>
+              <div class="s3-gap-desc">A reseller who completes an Expert certification gets the same recognition as one who watched a single video — zero. Effort isn't tied to outcome.</div>
+            </div>
           </div>
-          <div class="s3-score-val" style="color:#F34F1C">3/10</div>
-        </div>
-        <div class="s3-score-row">
-          <div class="s3-score-label">AI Features</div>
-          <div class="s3-score-bar-wrap">
-            <div class="s3-score-bar" style="width:0%;background:#F34F1C"></div>
+
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">No AI guidance</div>
+              <div class="s3-gap-desc">No personalised recommendations, no smart summaries, no conversational search. Partners are on their own to figure out what's relevant.</div>
+            </div>
           </div>
-          <div class="s3-score-val" style="color:#F34F1C">0/10</div>
         </div>
       </div>
 
-      <!-- Gaps -->
-      <div class="s3-gaps">
-        <div class="s3-gap">
-          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
-            <i class="fa-solid fa-lock"></i>
+      <!-- DPC column -->
+      <div>
+        <div class="s3-col-head">
+          <div class="s3-col-head-icon" style="background:rgba(255,186,1,.2);color:#FFBA01">
+            <i class="fa-solid fa-bullhorn"></i>
           </div>
           <div>
-            <div class="s3-pill pill-crit">Critical</div>
-            <div class="s3-gap-title">Entire training catalogue is gated</div>
-            <div class="s3-gap-desc">Anonymous visitors can't browse courses. Every page redirects to login — killing conversion before it starts.</div>
+            <div class="s3-col-head-title">DPC — Device Partner Center</div>
+            <div class="s3-col-head-sub">Sales &amp; marketing collateral hub</div>
           </div>
         </div>
 
-        <div class="s3-gap">
-          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
-            <i class="fa-solid fa-chart-bar"></i>
+        <div class="s3-gaps">
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-folder-tree"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">Asset library is hard to traverse</div>
+              <div class="s3-gap-desc">Hundreds of files across products, regions, and formats. Resellers can't find what they need — and when they do, they're not sure which version to use.</div>
+            </div>
           </div>
-          <div>
-            <div class="s3-pill pill-crit">Critical</div>
-            <div class="s3-gap-title">No live leaderboard or personal rank</div>
-            <div class="s3-gap-desc">A static strip of 6 photos is the only recognition mechanic. No rank, no points gap, no motivation to keep climbing.</div>
-          </div>
-        </div>
 
-        <div class="s3-gap">
-          <div class="s3-gap-icon" style="background:rgba(255,186,1,.12);color:#d4a000">
-            <i class="fa-solid fa-mobile-screen"></i>
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">No AI for discovery or content creation</div>
+              <div class="s3-gap-desc">No conversational search to find the right asset, no auto-personalisation of templates, no localisation, no campaign bundles. Every asset is hand-picked, manually.</div>
+            </div>
           </div>
-          <div>
-            <div class="s3-pill pill-mod">Moderate</div>
-            <div class="s3-gap-title">Broken links &amp; poor mobile UX</div>
-            <div class="s3-gap-desc">Privacy Policy, Help, Sign Up — all point to '#'. Fixed-width layouts break on mobile for India's mobile-first resellers.</div>
-          </div>
-        </div>
 
-        <div class="s3-gap">
-          <div class="s3-gap-icon" style="background:rgba(243,79,28,.15);color:#f87350">
-            <i class="fa-solid fa-shield-xmark"></i>
-          </div>
-          <div>
-            <div class="s3-pill pill-crit">Critical</div>
-            <div class="s3-gap-title">Security &amp; compliance gaps</div>
-            <div class="s3-gap-desc">No CAPTCHA, missing HTTP security headers, broken Privacy Policy — a DPDP Act 2023 compliance risk on a platform collecting personal data.</div>
+          <div class="s3-gap">
+            <div class="s3-gap-icon" style="background:rgba(255,186,1,.12);color:#d4a000">
+              <i class="fa-solid fa-link-slash"></i>
+            </div>
+            <div>
+              <div class="s3-gap-title">No engagement or proof-of-execution loop</div>
+              <div class="s3-gap-desc">Downloads aren't tracked back to outcomes. Microsoft has no signal on which assets actually drove a campaign, a deal, or a customer conversation.</div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -615,31 +661,31 @@
   <!-- ══════════════════════════════════════════ -->
   <section class="slide" id="s4">
     <div class="label">Our Solution</div>
-    <div class="slide-title">The New SEL Platform</div>
+    <div class="slide-title">SEL — The Layer That Makes It Work</div>
     <div class="slide-sub">
-      A fully redesigned, Microsoft-native platform — purpose-built for India's
-      partner network with role-based dashboards, live gamification, and a
-      Copilot-powered AI coach for every reseller.
+      A Microsoft-native facilitator platform that curates DPU, surfaces DPC,
+      and wraps both in live gamification and Copilot-powered AI — turning
+      Microsoft's content investment into measurable partner engagement.
     </div>
 
     <div class="s4-grid">
 
       <div class="s4-feat featured">
         <div class="s4-feat-icon" style="background:rgba(1,166,240,.25);color:#01A6F0">
-          <i class="fa-solid fa-gauge-high"></i>
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
-        <div class="s4-feat-title">Role-Based Dashboards</div>
-        <div class="s4-feat-desc">Separate, purpose-built views for Admin, Distributor &amp; Reseller — each with the tools and data they actually need.</div>
-        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Next Best Action Engine</div>
+        <div class="s4-feat-title">Curated DPU Learning Paths</div>
+        <div class="s4-feat-desc">Role-based paths (Surface, Copilot+, Azure) that deep-link into DPU. 5–8 videos per path instead of an overwhelming catalogue.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Course Recommendations</div>
       </div>
 
-      <div class="s4-feat">
+      <div class="s4-feat featured">
         <div class="s4-feat-icon" style="background:rgba(255,186,1,.2);color:#FFBA01">
-          <i class="fa-solid fa-trophy"></i>
+          <i class="fa-solid fa-bullhorn"></i>
         </div>
-        <div class="s4-feat-title">Live Gamified Leaderboard</div>
-        <div class="s4-feat-desc">Real-time rankings by National · State · City with personal rank card, XP gap, and rank delta arrows.</div>
-        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Predictive Re-engagement Nudges</div>
+        <div class="s4-feat-title">DPC Campaign Kits</div>
+        <div class="s4-feat-desc">Pre-bundled campaign packs from DPC — social posts, email templates, customer one-pagers — ready to launch in days, not weeks.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Asset Discovery</div>
       </div>
 
       <div class="s4-feat">
@@ -647,43 +693,43 @@
           <i class="fa-solid fa-user-tie"></i>
         </div>
         <div class="s4-feat-title">My Coach — AI Assistant</div>
-        <div class="s4-feat-desc">Copilot-powered personal AI coach. Each reseller gets performance insights, deal advice, and sprint recommendations.</div>
+        <div class="s4-feat-desc">Personal Copilot-powered coach that recommends DPU courses, surfaces DPC assets, and answers performance questions on demand.</div>
         <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Powered by Microsoft Copilot</div>
       </div>
 
       <div class="s4-feat">
         <div class="s4-feat-icon" style="background:rgba(243,79,28,.15);color:#F34F1C">
-          <i class="fa-solid fa-handshake"></i>
+          <i class="fa-solid fa-paintbrush"></i>
         </div>
-        <div class="s4-feat-title">Deal Submission Module</div>
-        <div class="s4-feat-desc">Structured deal logging with POE upload, admin approval workflow, and instant XP allocation on approval.</div>
+        <div class="s4-feat-title">AI Marketing Assistant</div>
+        <div class="s4-feat-desc">Auto-personalises DPC templates with reseller branding, localises to Hindi &amp; regional languages, and generates WhatsApp + LinkedIn variants.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Copilot Content Generation</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(255,186,1,.18);color:#FFBA01">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="s4-feat-title">Live Gamified Leaderboard</div>
+        <div class="s4-feat-desc">Real-time rankings by National · State · City. Separate training board so strong learners get visibility, not just top sellers.</div>
+        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Predictive Re-engagement Nudges</div>
+      </div>
+
+      <div class="s4-feat">
+        <div class="s4-feat-icon" style="background:rgba(0,120,215,.2);color:#0078D7">
+          <i class="fa-solid fa-file-circle-check"></i>
+        </div>
+        <div class="s4-feat-title">Certification &amp; POE Engine</div>
+        <div class="s4-feat-desc">Upload DPU certificates and campaign proof-of-execution. Admin verifies, XP awarded, rewards unlocked — the loop that's missing today.</div>
         <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI POE Validation</div>
-      </div>
-
-      <div class="s4-feat">
-        <div class="s4-feat-icon" style="background:rgba(0,120,215,.2);color:#01A6F0">
-          <i class="fa-solid fa-graduation-cap"></i>
-        </div>
-        <div class="s4-feat-title">Training &amp; Certifications</div>
-        <div class="s4-feat-desc">MS Learn–integrated course library with progress tracking, completion scoring, and XP tied to every module finished.</div>
-        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Adaptive Quiz Difficulty</div>
-      </div>
-
-      <div class="s4-feat">
-        <div class="s4-feat-icon" style="background:rgba(255,186,1,.15);color:#FFBA01">
-          <i class="fa-solid fa-medal"></i>
-        </div>
-        <div class="s4-feat-title">Achievements &amp; Badges</div>
-        <div class="s4-feat-desc">Sprint missions, badge walls, and XP milestones that keep resellers engaged across the entire quarter.</div>
-        <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Milestone Suggestions</div>
       </div>
 
       <div class="s4-feat">
         <div class="s4-feat-icon" style="background:rgba(127,188,0,.15);color:#7FBC00">
           <i class="fa-solid fa-gift"></i>
         </div>
-        <div class="s4-feat-title">Reward Store</div>
-        <div class="s4-feat-desc">Full digital + physical reward catalogue. Partners redeem points for Microsoft products, vouchers, and merchandise.</div>
+        <div class="s4-feat-title">Partner Growth Catalogue</div>
+        <div class="s4-feat-desc">Rewards that grow the reseller's business — Azure credits, exam vouchers, MDF funds, priority lead referrals, Microsoft event invites.</div>
       </div>
 
       <div class="s4-feat">
@@ -691,7 +737,7 @@
           <i class="fa-solid fa-sliders"></i>
         </div>
         <div class="s4-feat-title">Admin Command Center</div>
-        <div class="s4-feat-desc">Sprint management, partner oversight, approvals queue, and campaign distribution — all from a single admin panel.</div>
+        <div class="s4-feat-desc">Sprint management, partner oversight, certification approvals, and campaign distribution — all from a single admin panel.</div>
         <div class="s4-ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Fraud &amp; Anomaly Detection</div>
       </div>
 
