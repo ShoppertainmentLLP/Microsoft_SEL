@@ -2689,6 +2689,156 @@ footer { background:#111827; color:#9ca3af; border-top:1px solid rgba(255,255,25
   cursor: not-allowed;
 }
 
+/* ── Partner Growth Catalogue — tier filter tabs, pills, banners ── */
+.rs-tabs-wrap.rs-tabs-wide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+}
+.rs-tabs-wrap.rs-tabs-wide .rshop-tab {
+  background: transparent !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: 9px !important;
+  padding: 9px 16px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: var(--text-2) !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .15s;
+  box-shadow: none !important;
+  white-space: nowrap;
+}
+.rs-tabs-wrap.rs-tabs-wide .rshop-tab:hover {
+  border-color: var(--blue) !important;
+  color: var(--blue) !important;
+}
+.rs-tabs-wrap.rs-tabs-wide .rshop-tab.active {
+  background: var(--blue) !important;
+  border-color: var(--blue) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(0,120,215,.25) !important;
+}
+.rs-tabs-wrap.rs-tabs-wide .rshop-tab i { font-size: 11px; }
+.rshop-tab-count {
+  background: rgba(0,0,0,.08);
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  margin-left: 2px;
+}
+.rs-tabs-wrap.rs-tabs-wide .rshop-tab.active .rshop-tab-count {
+  background: rgba(255,255,255,.22);
+}
+
+/* Tier banner — explains the current filter */
+.rs-tier-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(0,120,215,.05), rgba(1,166,240,.03));
+  border: 1px solid rgba(0,120,215,.15);
+  border-radius: 14px;
+}
+.rs-tier-banner.gold {
+  background: linear-gradient(135deg, rgba(255,186,1,.08), rgba(255,186,1,.03));
+  border-color: rgba(255,186,1,.3);
+}
+.rs-tier-banner-icon {
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  background: rgba(0,120,215,.15);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.rs-tier-banner.gold .rs-tier-banner-icon {
+  background: rgba(255,186,1,.2);
+  color: #a07000;
+}
+.rs-tier-banner-title { font-size: 14px; font-weight: 800; color: var(--text-1); }
+.rs-tier-banner-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; line-height: 1.5; }
+
+/* Reward tier pill — small label on each card */
+.rs-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.rs-tier-cash     { background: rgba(127,188,0,.12); color: #3d6800; border: 1px solid rgba(127,188,0,.28); }
+.rs-tier-grow     { background: rgba(0,120,215,.1);  color: #005fa3; border: 1px solid rgba(0,120,215,.22); }
+.rs-tier-access   { background: rgba(120,60,220,.1); color: #5b2eb8; border: 1px solid rgba(120,60,220,.22); }
+.rs-tier-personal { background: rgba(1,166,240,.1); color: #005a8e; border: 1px solid rgba(1,166,240,.22); }
+.rs-tier-top      { background: linear-gradient(90deg,#FFBA01,#d4a000); color: #5c3a00; border: 1px solid rgba(212,160,0,.4); }
+
+/* "Cash equivalent value" line — shows real-world worth */
+.rs-cash-value {
+  font-size: 11px;
+  color: #4a8000;
+  font-weight: 600;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.rs-cash-value i { font-size: 9px; }
+
+/* Locked tier overlay */
+.rs-card.tier-locked { position: relative; opacity: .78; }
+.rs-card.tier-locked::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.04) 100%);
+  pointer-events: none;
+  border-radius: 18px;
+}
+.rs-card.tier-locked .rs-card-img { filter: saturate(.65); }
+
+/* Top performer card — gold glow */
+.rs-card.tier-top-tier {
+  border: 1.5px solid rgba(255,186,1,.45) !important;
+  box-shadow: 0 4px 18px rgba(255,186,1,.12) !important;
+}
+.rs-card.tier-top-tier:hover {
+  box-shadow: 0 14px 38px rgba(255,186,1,.25) !important;
+}
+
+/* Top Performer ribbon (top right corner) */
+.rs-top-ribbon {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 2;
+  background: linear-gradient(135deg, #FFBA01, #d4a000);
+  color: #3d2800;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(212,160,0,.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.rs-top-ribbon i { font-size: 9px; }
+
 @media(max-width:960px){
   .rs-grid { grid-template-columns: repeat(2,1fr); }
   .rs-card-featured { grid-column: span 2; }
@@ -3526,197 +3676,583 @@ footer { background:#111827; color:#9ca3af; border-top:1px solid rgba(255,255,25
 <!-- REWARD SHOP -->
 <section class="section" id="rewards" aria-labelledby="rewards-heading">
   <div class="section-inner">
-    <div class="section-eyebrow">Reward Shop</div>
-    <h2 class="section-title" id="rewards-heading">Redeem your<br>hard-earned points</h2>
-    <p class="section-sub">Spend your points on exclusive digital rewards and physical merchandise &mdash; delivered to your door.</p>
+    <div class="section-eyebrow">Partner Growth Catalogue</div>
+    <h2 class="section-title" id="rewards-heading">Rewards that grow<br>your business</h2>
+    <p class="section-sub">Every reward translates to real business value &mdash; licences you can resell, credits you can use, access you can leverage. No t-shirts. No keychains.</p>
 
-    <!-- Balance + filter header -->
+    <!-- Balance header -->
     <div class="rs-header">
       <div class="rs-balance-block">
         <div class="rs-bal-label">Available Balance</div>
-        <div class="rs-bal-val">4,850 <span class="rs-bal-unit">pts</span></div>
-        <div class="rs-bal-sub">You're <strong>1,150 pts</strong> away from your next milestone reward. <span class="rs-tier-chip"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>Gold Tier &bull; Season 04</span></div>
+        <div class="rs-bal-val">18,500 <span class="rs-bal-unit">XP</span></div>
+        <div class="rs-bal-sub">≈ <strong>A$3,700</strong> in cash-equivalent value &mdash; if redeemed as licences and credits. <span class="rs-tier-chip"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px"></i>Diamond Tier</span></div>
       </div>
-      <div class="rs-filter-block">
-        <div class="rs-tabs-wrap" role="tablist">
-          <button class="rshop-tab active" onclick="filterRewards('all',this)">All Items</button>
-          <button class="rshop-tab" onclick="filterRewards('digital',this)">Digital</button>
-          <button class="rshop-tab" onclick="filterRewards('physical',this)">Physical</button>
-        </div>
+    </div>
+
+    <!-- Tier filter tabs (full row) -->
+    <div class="rs-tabs-wrap rs-tabs-wide" role="tablist" style="margin-bottom:1.5rem">
+      <button class="rshop-tab active" onclick="filterRewards('all',this)"><i class="fa-solid fa-grip"></i> All <span class="rshop-tab-count">28</span></button>
+      <button class="rshop-tab" onclick="filterRewards('cash',this)"><i class="fa-solid fa-money-bill-trend-up" style="color:#7FBC00"></i> Cash &amp; Resellable <span class="rshop-tab-count">7</span></button>
+      <button class="rshop-tab" onclick="filterRewards('grow',this)"><i class="fa-solid fa-arrow-trend-up" style="color:#0078D7"></i> Grow My Business <span class="rshop-tab-count">8</span></button>
+      <button class="rshop-tab" onclick="filterRewards('access',this)"><i class="fa-solid fa-key" style="color:#7a3fbf"></i> Status &amp; Access <span class="rshop-tab-count">6</span></button>
+      <button class="rshop-tab" onclick="filterRewards('personal',this)"><i class="fa-solid fa-user" style="color:#01A6F0"></i> For Me <span class="rshop-tab-count">5</span></button>
+      <button class="rshop-tab" onclick="filterRewards('top',this)"><i class="fa-solid fa-crown" style="color:#FFBA01"></i> Top Performer <span class="rshop-tab-count">5</span></button>
+    </div>
+
+    <!-- Tier banners — explain the current filter (hidden by default) -->
+    <div class="rs-tier-banner" id="rs-banner-cash" data-banner="cash" style="display:none">
+      <div class="rs-tier-banner-icon" style="background:rgba(127,188,0,.15);color:#3d6800"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+      <div>
+        <div class="rs-tier-banner-title">Cash &amp; Resellable</div>
+        <div class="rs-tier-banner-sub">Licences, devices, and credits with real cash value. Use them or sell them &mdash; your call.</div>
+      </div>
+    </div>
+    <div class="rs-tier-banner" id="rs-banner-grow" data-banner="grow" style="display:none">
+      <div class="rs-tier-banner-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+      <div>
+        <div class="rs-tier-banner-title">Grow My Business</div>
+        <div class="rs-tier-banner-sub">Tools and credits that help you sell more or lower the cost of doing business.</div>
+      </div>
+    </div>
+    <div class="rs-tier-banner" id="rs-banner-access" data-banner="access" style="display:none">
+      <div class="rs-tier-banner-icon" style="background:rgba(120,60,220,.15);color:#5b2eb8"><i class="fa-solid fa-key"></i></div>
+      <div>
+        <div class="rs-tier-banner-title">Status &amp; Access</div>
+        <div class="rs-tier-banner-sub">Doors that don't open with money &mdash; Microsoft event invites, partner spotlights, dedicated TAM hours.</div>
+      </div>
+    </div>
+    <div class="rs-tier-banner" id="rs-banner-personal" data-banner="personal" style="display:none">
+      <div class="rs-tier-banner-icon" style="background:rgba(1,166,240,.15);color:#005a8e"><i class="fa-solid fa-user"></i></div>
+      <div>
+        <div class="rs-tier-banner-title">For Me</div>
+        <div class="rs-tier-banner-sub">Subscriptions you use every day. Lower-priced items you can stack alongside the bigger rewards.</div>
+      </div>
+    </div>
+    <div class="rs-tier-banner gold" id="rs-banner-top" data-banner="top" style="display:none">
+      <div class="rs-tier-banner-icon"><i class="fa-solid fa-crown"></i></div>
+      <div>
+        <div class="rs-tier-banner-title">Top Performer Cap-stones</div>
+        <div class="rs-tier-banner-sub">Aspirational rewards for the top of the leaderboard. Unlocks fully at Platinum tier.</div>
       </div>
     </div>
 
     <!-- Product grid -->
     <div class="rs-grid" id="rewardGrid">
 
-      <!-- FEATURED: Wireless Headset -->
-      <div class="reward-card rs-card rs-card-featured" data-type="physical">
+      <!-- ═══ FEATURED: Windows 11 Pro 5-Pack ═══ -->
+      <div class="reward-card rs-card rs-card-featured" data-tier="cash">
         <div class="rs-feat-content">
           <div class="rs-feat-badges">
-            <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited Edition</span>
-            <span class="rs-badge rs-badge-physical">Physical</span>
+            <span class="rs-tier-pill rs-tier-cash"><i class="fa-solid fa-money-bill-trend-up" style="font-size:9px"></i> Cash &amp; Resellable</span>
+            <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-fire" style="font-size:9px"></i> Most Redeemed</span>
           </div>
-          <div class="rs-feat-name">Microsoft Modern<br>Wireless Headset</div>
-          <div class="rs-feat-desc">Teams-certified wireless headset with noise-isolating microphone and all-day comfort — built for focused work sessions.</div>
+          <div class="rs-feat-name">Windows 11 Pro<br>Licence — 5-Pack</div>
+          <div class="rs-feat-desc">Five Windows 11 Pro licence keys. Use them for your own fleet, deploy with a customer, or resell at retail margin — they're yours to do whatever you want with.</div>
           <div class="rs-feat-footer">
-            <div class="rs-feat-pts">8,000 <span>pts</span></div>
+            <div>
+              <div class="rs-feat-pts">5,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$850 retail value</div>
+            </div>
             <button class="rs-btn rs-btn-solid"><i class="fa-solid fa-bolt"></i> Redeem Now</button>
           </div>
-          <div class="rs-feat-stock"><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:10px"></i> Only 4 units remaining</div>
+          <div class="rs-feat-stock"><i class="fa-solid fa-check" style="color:#7FBC00;font-size:10px"></i> Delivered as digital keys within 24 hours</div>
         </div>
         <div class="rs-feat-img">
-          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=520&h=400&fit=crop&auto=format&q=85" alt="Microsoft Modern Wireless Headset" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=520&h=400&fit=crop&auto=format&q=85" alt="Windows 11 Pro Licence" loading="lazy">
         </div>
       </div>
 
-      <!-- Microsoft Store Credit $50 -->
-      <div class="reward-card rs-card" data-type="digital">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Store Credit $50" loading="lazy">
-        </div>
+      <!-- ═══ TIER 1 — CASH & RESELLABLE ═══ -->
+
+      <div class="reward-card rs-card" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=380&h=220&fit=crop&auto=format&q=80" alt="M365 Business Premium" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-digital">Digital</span>
-            <span class="rs-badge rs-badge-stock-in">In Stock</span>
-          </div>
-          <div class="rs-card-name">Microsoft Store Credit — $50</div>
-          <div class="rs-card-desc">Digital voucher redeemable for apps, games, devices, and subscriptions.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">M365 Business Premium — 10 seats, 1 year</div>
+          <div class="rs-card-desc">High-margin product you already sell. Use for your own staff or flip to a customer at full retail.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">2,000 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">12,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$2,640 retail</div>
+            </div>
             <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- MS Store Credit $100 -->
-      <div class="reward-card rs-card" data-type="digital">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Store Credit $100" loading="lazy">
-        </div>
+      <div class="reward-card rs-card" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Pen + Type Cover bundle" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-digital">Digital</span>
-            <span class="rs-badge rs-badge-stock-in">In Stock</span>
-          </div>
-          <div class="rs-card-name">Microsoft Store Credit — $100</div>
-          <div class="rs-card-desc">Perfect for a Surface accessory or a Microsoft 365 upgrade.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">Surface Pen + Type Cover bundle</div>
+          <div class="rs-card-desc">Accessories ship with strong margins. Easy upsell with any Surface deal.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">3,500 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">3,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$420 retail</div>
+            </div>
             <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- SEL Gold Badge -->
-      <div class="reward-card rs-card" data-type="digital">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1567880905822-56f8e06fe630?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Gold Badge" loading="lazy">
-        </div>
+      <div class="reward-card rs-card tier-locked" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Pro 11" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-digital">Digital</span>
-            <span class="rs-badge rs-badge-stock-in">In Stock</span>
-          </div>
-          <div class="rs-card-name">SEL Gold Champion Badge</div>
-          <div class="rs-card-desc">Premium digital credential — shareable on LinkedIn and your partner profile.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">Surface Pro 11</div>
+          <div class="rs-card-desc">Demo unit, personal device, or sale at retail. Either way, real money in your pocket.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">1,500 <span>pts</span></div>
-            <button class="rs-btn rs-btn-outline">Redeem</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Microsoft 365 Personal -->
-      <div class="reward-card rs-card" data-type="digital">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft 365 Personal" loading="lazy">
-        </div>
-        <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-digital">Digital</span>
-            <span class="rs-badge rs-badge-stock-in">In Stock</span>
-          </div>
-          <div class="rs-card-name">Microsoft 365 Personal — 1 Year</div>
-          <div class="rs-card-desc">Full Word, Excel, PowerPoint + OneDrive 1TB for 12 months.</div>
-          <div class="rs-card-footer">
-            <div class="rs-card-pts">5,000 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">22,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">≈ A$2,499 retail · Need 3,500 more XP</div>
+            </div>
             <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
           </div>
         </div>
       </div>
 
-      <!-- SEL T-Shirt -->
-      <div class="reward-card rs-card" data-type="physical">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Champion T-Shirt" loading="lazy">
-        </div>
+      <div class="reward-card rs-card" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Series S" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-physical">Physical</span>
-            <span class="rs-badge rs-badge-stock-in">48 left</span>
-          </div>
-          <div class="rs-card-name">SEL Champion T-Shirt</div>
-          <div class="rs-card-desc">Premium cotton tee with embroidered SEL branding. Sizes S–XXL.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">Xbox Series S</div>
+          <div class="rs-card-desc">Universal cash equivalence — easy to sell, gift, or keep for yourself.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">2,500 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">6,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$549 retail</div>
+            </div>
             <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Microsoft Partner Cap -->
-      <div class="reward-card rs-card" data-type="physical">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Partner Cap" loading="lazy">
-        </div>
+      <div class="reward-card rs-card" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Series X" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-physical">Physical</span>
-            <span class="rs-badge rs-badge-stock-low">22 left</span>
-          </div>
-          <div class="rs-card-name">Microsoft Partner Cap</div>
-          <div class="rs-card-desc">Structured cap with Microsoft partner logo. One size — adjustable strap.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">Xbox Series X</div>
+          <div class="rs-card-desc">Top-tier console. Strong resale value or a great team gift.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">1,800 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">9,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$899 retail</div>
+            </div>
             <button class="rs-btn rs-btn-outline">Redeem</button>
           </div>
         </div>
       </div>
 
-      <!-- Surface Arc Mouse -->
-      <div class="reward-card rs-card" data-type="physical">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Arc Mouse" loading="lazy">
-        </div>
+      <div class="reward-card rs-card" data-tier="cash">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=380&h=220&fit=crop&auto=format&q=80" alt="Office Home & Business" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-physical">Physical</span>
-            <span class="rs-badge rs-badge-stock-low">12 left</span>
-          </div>
-          <div class="rs-card-name">Surface Arc Mouse</div>
-          <div class="rs-card-desc">Microsoft's iconic arc-form Bluetooth mouse. Snaps flat to travel, curves to use.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-cash">Cash &amp; Resellable</span></div>
+          <div class="rs-card-name">Office Home &amp; Business 2024 — 3-pack</div>
+          <div class="rs-card-desc">Three perpetual licence keys. Old-school but still highly resellable to SMB customers.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">4,000 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">4,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$749 retail</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TIER 2 — GROW MY BUSINESS ═══ -->
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits A$500" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Azure Credits — A$500</div>
+          <div class="rs-card-desc">Use for customer demos, your own dev/test workloads, or proof-of-concept builds.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">4,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-cloud"></i> A$500 cloud credit</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits A$1k" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Azure Credits — A$1,000</div>
+          <div class="rs-card-desc">Double the cloud budget. Enough for a 3-month POC environment for a serious customer.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">7,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-cloud"></i> A$1,000 cloud credit</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=380&h=220&fit=crop&auto=format&q=80" alt="Azure Credits A$2.5k" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Azure Credits — A$2,500</div>
+          <div class="rs-card-desc">A serious cloud budget for a large customer engagement or your own product build.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">16,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">A$2,500 cloud credit</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=380&h=220&fit=crop&auto=format&q=80" alt="MDF Funds" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Market Development Funds — A$1,000</div>
+          <div class="rs-card-desc">Run a real marketing campaign — LinkedIn ads, email outreach, or a local event. Microsoft pays.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">7,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-bullhorn"></i> A$1,000 marketing budget</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft Exam Voucher" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Microsoft Exam Voucher</div>
+          <div class="rs-card-desc">Free certification exam (AZ-104, MS-900, MS-700, etc.). Counts toward your business's partner tier.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">2,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-certificate"></i> A$250 exam value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=380&h=220&fit=crop&auto=format&q=80" alt="Qualified Lead Pack" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Qualified Lead Pack — 5 leads</div>
+          <div class="rs-card-desc">Five Microsoft-warm leads in your region. Real opportunities, not cold contacts.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">5,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-bullseye"></i> Potential A$50k+ pipeline</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=380&h=220&fit=crop&auto=format&q=80" alt="Priority Deal Registration" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">Priority Deal Registration — 1 quarter</div>
+          <div class="rs-card-desc">Your deals get first right of refusal vs lower-ranked partners in your region. Massive competitive edge.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">8,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-bolt"></i> Direct revenue impact</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="grow">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=380&h=220&fit=crop&auto=format&q=80" alt="LinkedIn Premium Business" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-grow">Grow My Business</span></div>
+          <div class="rs-card-name">LinkedIn Premium Business — 1 year</div>
+          <div class="rs-card-desc">InMail credits, prospecting tools, and Sales Navigator-style insights. Real prospecting power.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">3,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-money-bill-trend-up"></i> ≈ A$900 value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TIER 3 — STATUS & ACCESS ═══ -->
+
+      <div class="reward-card rs-card tier-locked" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft AU Partner Summit" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">Microsoft AU Partner Summit invite</div>
+          <div class="rs-card-desc">Flights, accommodation, and event pass included. The top networking opportunity in the AU partner ecosystem.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">30,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">≈ A$3,500 trip value</div>
+            </div>
             <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
           </div>
         </div>
       </div>
 
-      <!-- SEL Trophy Kit -->
-      <div class="reward-card rs-card" data-type="physical">
-        <div class="rs-card-img">
-          <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=380&h=220&fit=crop&auto=format&q=80" alt="SEL Award Trophy" loading="lazy">
-        </div>
+      <div class="reward-card rs-card" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=380&h=220&fit=crop&auto=format&q=80" alt="TAM Hour" loading="lazy"></div>
         <div class="rs-card-body">
-          <div class="rs-card-tags">
-            <span class="rs-badge rs-badge-physical">Physical</span>
-            <span class="rs-badge rs-badge-limited"><i class="fa-solid fa-star" style="font-size:9px"></i> Limited</span>
-          </div>
-          <div class="rs-card-name">SEL Award Trophy Kit</div>
-          <div class="rs-card-desc">Engraved crystal trophy + certificate in premium gift packaging.</div>
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">1 hour with a Microsoft TAM</div>
+          <div class="rs-card-desc">Direct time with a Microsoft Technical Account Manager. Use it on your biggest pending deal.</div>
           <div class="rs-card-footer">
-            <div class="rs-card-pts">6,000 <span>pts</span></div>
+            <div>
+              <div class="rs-card-pts">4,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-headset"></i> Specialist guidance</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=380&h=220&fit=crop&auto=format&q=80" alt="Case Study" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">Featured Case Study on Microsoft Partner page</div>
+          <div class="rs-card-desc">Microsoft publishes your customer success story. A marketing asset you can use for years.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">10,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-star"></i> Long-term credibility</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=380&h=220&fit=crop&auto=format&q=80" alt="Reactor Speaking Slot" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">Speaking slot at Microsoft Reactor</div>
+          <div class="rs-card-desc">Present at a local Microsoft Reactor event. Brand-building, lead-generating, recognised expert status.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">8,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-microphone-lines"></i> Audience of peers</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=380&h=220&fit=crop&auto=format&q=80" alt="Partner Tier Promotion" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">Microsoft Partner Tier Accelerator</div>
+          <div class="rs-card-desc">Fast-track your business toward Solutions Partner status. Direct impact on customer trust and rebate eligibility.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">12,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">Recurring revenue impact</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="access">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=380&h=220&fit=crop&auto=format&q=80" alt="Early Access" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-access">Status &amp; Access</span></div>
+          <div class="rs-card-name">Early access to new product launches</div>
+          <div class="rs-card-desc">Be first to sell new Surface SKUs, Copilot+ devices, or M365 features before the broader partner base.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">6,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-rocket"></i> Competitive edge</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TIER 4 — FOR ME (PERSONAL PRODUCTIVITY) ═══ -->
+
+      <div class="reward-card rs-card" data-tier="personal">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=380&h=220&fit=crop&auto=format&q=80" alt="Copilot Pro" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+          <div class="rs-card-name">Microsoft Copilot Pro — 1 year</div>
+          <div class="rs-card-desc">Priority access to GPT-4, image generation in Designer, and Copilot in Office apps.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">2,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-wand-magic-sparkles"></i> ≈ A$330 value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="personal">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=380&h=220&fit=crop&auto=format&q=80" alt="GitHub Copilot" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+          <div class="rs-card-name">GitHub Copilot Pro — 1 year</div>
+          <div class="rs-card-desc">AI pair-programmer for VS Code. Useful for technical resellers and anyone selling to developer-led customers.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">2,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-code"></i> ≈ A$165 value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="personal">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=380&h=220&fit=crop&auto=format&q=80" alt="M365 Family" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+          <div class="rs-card-name">Microsoft 365 Family — 1 year</div>
+          <div class="rs-card-desc">Office apps + 6 TB OneDrive for up to 6 family members. A real reward you can take home.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">1,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-house"></i> ≈ A$165 value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="personal">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=380&h=220&fit=crop&auto=format&q=80" alt="Visual Studio Pro" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+          <div class="rs-card-name">Visual Studio Professional Subscription</div>
+          <div class="rs-card-desc">Full Visual Studio Pro + Azure dev credits + access to developer tools and licences.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">3,500 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-laptop-code"></i> Developer toolkit</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card" data-tier="personal">
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=380&h=220&fit=crop&auto=format&q=80" alt="Xbox Game Pass" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-personal">For Me</span></div>
+          <div class="rs-card-name">Xbox Game Pass Ultimate — 6 months</div>
+          <div class="rs-card-desc">Hundreds of games on console, PC, and cloud. A genuinely useful "for me" reward.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">1,000 <span>XP</span></div>
+              <div class="rs-cash-value"><i class="fa-solid fa-gamepad"></i> ≈ A$120 value</div>
+            </div>
+            <button class="rs-btn rs-btn-outline">Redeem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TIER 5 — TOP PERFORMER CAP-STONES ═══ -->
+
+      <div class="reward-card rs-card tier-locked tier-top-tier" data-tier="top">
+        <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=380&h=220&fit=crop&auto=format&q=80" alt="Surface Studio Laptop" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+          <div class="rs-card-name">Surface Studio Laptop</div>
+          <div class="rs-card-desc">Microsoft's flagship creative laptop. Status symbol, business asset, daily-use device — all in one.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">45,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">≈ A$4,500 retail · Platinum tier</div>
+            </div>
             <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked tier-top-tier" data-tier="top">
+        <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=380&h=220&fit=crop&auto=format&q=80" alt="HoloLens 2" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+          <div class="rs-card-name">HoloLens 2</div>
+          <div class="rs-card-desc">Microsoft mixed reality headset. A demo unit that makes you unforgettable in enterprise sales meetings.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">50,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">Mixed reality demo asset</div>
+            </div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked tier-top-tier" data-tier="top">
+        <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=380&h=220&fit=crop&auto=format&q=80" alt="AsiaPac Partner Conference" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+          <div class="rs-card-name">Microsoft AsiaPac Partner Conference</div>
+          <div class="rs-card-desc">All-expenses-paid trip to the regional flagship event. Flights, hotel, sessions, networking — fully covered.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">50,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">Regional partner network</div>
+            </div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked tier-top-tier" data-tier="top">
+        <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Top Performer</div>
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=380&h=220&fit=crop&auto=format&q=80" alt="Microsoft AU Summit + VP intro" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Top Performer</span></div>
+          <div class="rs-card-name">Microsoft AU Summit + Executive Introduction</div>
+          <div class="rs-card-desc">Full Summit pass plus a personal introduction and dinner with a Microsoft AU executive. Relationship gold.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts">60,000 <span>XP</span></div>
+              <div class="rs-cash-value" style="color:var(--text-3)">Executive-level access</div>
+            </div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card rs-card tier-locked tier-top-tier" data-tier="top">
+        <div class="rs-top-ribbon"><i class="fa-solid fa-crown"></i> Annual Award</div>
+        <div class="rs-card-img"><img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=380&h=220&fit=crop&auto=format&q=80" alt="Top Performer Award" loading="lazy"></div>
+        <div class="rs-card-body">
+          <div class="rs-card-tags"><span class="rs-tier-pill rs-tier-top">Annual Award</span></div>
+          <div class="rs-card-name">SEL Reseller of the Year</div>
+          <div class="rs-card-desc">Awarded annually to #1 on the global leaderboard. Engraved trophy, A$10k prize pack, and Microsoft AU public recognition.</div>
+          <div class="rs-card-footer">
+            <div>
+              <div class="rs-card-pts" style="color:#FFBA01">Top 1 only</div>
+              <div class="rs-cash-value" style="color:var(--text-3)">Annual leaderboard winner</div>
+            </div>
+            <button class="rs-btn rs-btn-locked"><i class="fa-solid fa-trophy"></i> Compete</button>
           </div>
         </div>
       </div>
@@ -3725,11 +4261,21 @@ footer { background:#111827; color:#9ca3af; border-top:1px solid rgba(255,255,25
   </div>
 </section>
 <script>
-function filterRewards(type,btn){
-  document.querySelectorAll('.rshop-tab').forEach(function(t){t.classList.remove('active')});
+function filterRewards(tier,btn){
+  // Active tab — scope to this tab row so other rshop-tabs elsewhere aren't touched
+  var row = btn.closest('.rs-tabs-wrap') || btn.parentElement;
+  row.querySelectorAll('.rshop-tab').forEach(function(t){t.classList.remove('active')});
   btn.classList.add('active');
+
+  // Show/hide tier banner
+  document.querySelectorAll('.rs-tier-banner').forEach(function(b){
+    b.style.display = (b.getAttribute('data-banner') === tier) ? '' : 'none';
+  });
+
+  // Filter cards by data-tier
   document.querySelectorAll('.reward-card').forEach(function(c){
-    c.style.display=(type==='all'||c.dataset.type===type)?'':'none';
+    var cardTier = c.dataset.tier;
+    c.style.display = (tier === 'all' || cardTier === tier) ? '' : 'none';
   });
 }
 </script>
