@@ -4959,6 +4959,44 @@ footer { background:#111827; color:#9ca3af; border-top:1px solid rgba(255,255,25
   background: rgba(255, 255, 255, .25);
 }
 
+/* Secondary sub-filter — appears only when Master Classes is the active category.
+   Renders as a slim segmented control inside the items panel so it's clearly tied
+   to filtering the list rather than the detail view. */
+.wi-tense-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px .25rem 14px;
+  padding: 4px;
+  background: rgba(10, 17, 40, .04);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.wi-tense-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .005em;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.wi-tense-chip i { font-size: 10px; }
+.wi-tense-chip:hover:not(.active) { color: var(--text-1); }
+.wi-tense-chip.active {
+  background: #fff;
+  color: var(--active-accent);
+  box-shadow: 0 1px 4px rgba(10, 17, 40, .08);
+}
+.wi-tense-chip .wi-cat-count {
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+
 /* Empty-state inside the items list when a category has zero items */
 .wi-empty {
   text-align: center;
@@ -7677,7 +7715,7 @@ var wiData = {
     cta: 'Sign in with MS Learn to begin'
   },
   'm365-mod': {
-    cat: 'masterclass',
+    cat: 'masterclass', tense: 'upcoming',
     accent: '#01A6F0', icon: 'fa-people-group', badge: '+100 Points',
     title: 'M365 Modern Workplace',
     subtitle: '2 hours &middot; Master Class &middot; Apr 18 (Tue)',
@@ -7695,7 +7733,7 @@ var wiData = {
     cta: 'Sign in with MS Learn to begin'
   },
   'touchstone-q2': {
-    cat: 'masterclass',
+    cat: 'masterclass', tense: 'upcoming',
     accent: '#01A6F0', icon: 'fa-tower-broadcast', badge: 'Upcoming',
     title: 'Touchstone Webinars &mdash; Q2 Series',
     subtitle: '6 webinars &middot; Device Partner University (DPU) Live Series &middot; Apr&ndash;Jun 2026',
@@ -7711,6 +7749,42 @@ var wiData = {
     bullets: ['Apr 9 &mdash; Win11 24H2 partner update', 'Apr 23 &mdash; Copilot for M365 deep dive', 'May 14 &mdash; Modern endpoints and Intune', 'May 28 &mdash; Surface FY26 line refresh', 'Jun 11 &mdash; Azure for SMB partner motion', 'Jun 25 &mdash; Q3 outlook and pipeline planning'],
     earn: ['+50 Points per attended session', 'Partner-only pricing &amp; motion previews', 'Recording library access for the full series'],
     cta: 'Sign in with MS Learn to begin'
+  },
+  'copilot-launch-recap': {
+    cat: 'masterclass', tense: 'past',
+    accent: '#01A6F0', icon: 'fa-video', badge: 'Recording',
+    title: 'Copilot for M365 &mdash; Spring Launch Recap',
+    subtitle: '90 min &middot; Master Class &middot; Mar 7, 2026',
+    hook: 'Catch up on the spring launch &mdash; the recording is yours on demand.',
+    glance: [
+      { icon: 'fa-signal', label: 'Level', value: 'Intermediate' },
+      { icon: 'fa-cube', label: 'Product', value: 'Copilot for M365' },
+      { icon: 'fa-user', label: 'Role', value: 'All AU partners' },
+      { icon: 'fa-video', label: 'Access', value: 'On-demand replay' }
+    ],
+    desc: 'A live master class from March covering the Copilot for M365 spring launch &mdash; new SKUs, pricing changes, and the updated pitch story. Recording and slides available.',
+    listTitle: 'What you&rsquo;ll find inside',
+    bullets: ['New Copilot for M365 SKU walkthrough', 'AU-specific pricing changes for April onwards', 'Updated objection handlers for the new pricing', 'Slides and partner FAQ included'],
+    earn: ['+50 Points for watching the full replay', 'Partner FAQ document included', 'Slides shareable with your team'],
+    cta: 'Sign in with MS Learn to watch'
+  },
+  'surface-fy26-preview': {
+    cat: 'masterclass', tense: 'past',
+    accent: '#01A6F0', icon: 'fa-laptop', badge: 'Recording',
+    title: 'Surface FY26 Line Preview',
+    subtitle: '60 min &middot; Master Class &middot; Feb 12, 2026',
+    hook: 'Everything we showed partners about the FY26 Surface line &mdash; on demand.',
+    glance: [
+      { icon: 'fa-signal', label: 'Level', value: 'Foundation' },
+      { icon: 'fa-cube', label: 'Product', value: 'Surface FY26' },
+      { icon: 'fa-user', label: 'Role', value: 'Sales Specialist' },
+      { icon: 'fa-video', label: 'Access', value: 'On-demand replay' }
+    ],
+    desc: 'A walk-through of the FY26 Surface line &mdash; what changed, what to highlight in customer conversations, and the partner pricing structure for the new quarter.',
+    listTitle: 'What you&rsquo;ll find inside',
+    bullets: ['New Surface FY26 line SKU-by-SKU walkthrough', 'AU launch timeline and stock availability', 'Refreshed customer talking points', 'Updated co-marketing assets to use this quarter'],
+    earn: ['+50 Points for watching the full replay', 'New customer talking points download', 'Co-marketing asset pack access'],
+    cta: 'Sign in with MS Learn to watch'
   },
   'copilot-pitch': {
     cat: 'pitch',
@@ -7896,6 +7970,8 @@ var WI_PILLAR_CATS = {
 
 // Tracks the currently selected category. There's no "All" — wiSwitch sets this to the pillar's first category.
 var wiActiveCat = '';
+// Sub-filter that only applies to the Master Classes category — 'upcoming' or 'past'
+var wiActiveTense = 'upcoming';
 
 var WI_PILLAR_META = {
   learn: { num: '01', name: 'Learn', sub: 'MS Learn · Device Partner University (DPU)',         accent: '#01A6F0' },
@@ -7946,7 +8022,7 @@ function pillarRenderOverview(pillarName){
 // Map each pillar to its item IDs (must exist in wiData)
 // Sell absorbs the former Convince items so the merged pillar covers both selling and convincing.
 var WI_PILLAR_ITEMS = {
-  learn: ['win11-pro', 'copilot-pc', 'm365-mod', 'touchstone-q2'],
+  learn: ['win11-pro', 'copilot-pc', 'm365-mod', 'touchstone-q2', 'copilot-launch-recap', 'surface-fy26-preview'],
   sell:  ['copilot-pitch', 'surface-one', 'whatsapp-tpl', 'google-vs', 'pricing-cheat', 'security-brief'],
   earn:  ['surface-reward', 'azure-credits', 'summit-pass']
 };
@@ -7978,10 +8054,32 @@ function wiRenderItemList(pillarName, activeItemId){
   });
   html += '</div>';
 
-  // 2) Filtered items list
+  // 1b) Secondary filter — only when Master Classes is the active category. Splits the list into Upcoming vs Past.
+  if (wiActiveCat === 'masterclass') {
+    function countTense(t){
+      return ids.filter(function(id){
+        var d = wiData[id];
+        return d && d.cat === 'masterclass' && d.tense === t;
+      }).length;
+    }
+    html += '<div class="wi-tense-chips" role="tablist" aria-label="Filter by time">' +
+      '<button type="button" class="wi-tense-chip' + (wiActiveTense === 'upcoming' ? ' active' : '') +
+              '" data-tense="upcoming" onclick="wiFilterTense(\'upcoming\')">' +
+              '<i class="fa-regular fa-calendar"></i> Upcoming <span class="wi-cat-count">' + countTense('upcoming') + '</span>' +
+      '</button>' +
+      '<button type="button" class="wi-tense-chip' + (wiActiveTense === 'past' ? ' active' : '') +
+              '" data-tense="past" onclick="wiFilterTense(\'past\')">' +
+              '<i class="fa-solid fa-clock-rotate-left"></i> Past <span class="wi-cat-count">' + countTense('past') + '</span>' +
+      '</button>' +
+      '</div>';
+  }
+
+  // 2) Filtered items list — match category, and when Master Classes is active, also match tense
   var filtered = ids.filter(function(id){
     var d = wiData[id];
-    return d && d.cat === wiActiveCat;
+    if (!d || d.cat !== wiActiveCat) return false;
+    if (wiActiveCat === 'masterclass') return d.tense === wiActiveTense;
+    return true;
   });
   if (filtered.length === 0) {
     html += '<div class="wi-empty"><i class="fa-regular fa-folder-open"></i> Nothing here yet. Check back next sprint.</div>';
@@ -8003,13 +8101,33 @@ function wiRenderItemList(pillarName, activeItemId){
 // Filter the active pillar's items by category; auto-select the first match
 function wiFilterCategory(catId){
   wiActiveCat = catId;
+  // Whenever a category changes, default the Upcoming/Past sub-filter back to Upcoming
+  wiActiveTense = 'upcoming';
   var activeTab = document.querySelector('.wi-ptab.active');
   if (!activeTab) return;
   var pillar = activeTab.dataset.tab;
   var ids = WI_PILLAR_ITEMS[pillar] || [];
   var filtered = ids.filter(function(id){
     var d = wiData[id];
-    return d && d.cat === catId;
+    if (!d || d.cat !== catId) return false;
+    if (catId === 'masterclass') return d.tense === 'upcoming';
+    return true;
+  });
+  var firstId = filtered[0];
+  wiRenderItemList(pillar, firstId);
+  if (firstId) wiRenderDetail(firstId);
+}
+
+// Secondary filter — only relevant when Master Classes is the active category
+function wiFilterTense(tense){
+  wiActiveTense = tense;
+  var activeTab = document.querySelector('.wi-ptab.active');
+  if (!activeTab) return;
+  var pillar = activeTab.dataset.tab;
+  var ids = WI_PILLAR_ITEMS[pillar] || [];
+  var filtered = ids.filter(function(id){
+    var d = wiData[id];
+    return d && d.cat === 'masterclass' && d.tense === tense;
   });
   var firstId = filtered[0];
   wiRenderItemList(pillar, firstId);
@@ -8074,6 +8192,7 @@ function wiSwitch(tabName, el){
   // Reset category to the pillar's first category (no "All" option)
   var firstCat = (WI_PILLAR_CATS[tabName] && WI_PILLAR_CATS[tabName][0]) || null;
   wiActiveCat = firstCat ? firstCat.id : '';
+  wiActiveTense = 'upcoming';   // Reset the Master Classes sub-filter to Upcoming on every pillar switch
   // Toggle active state on pillar tabs
   document.querySelectorAll('.wi-ptab').forEach(function(t){
     var isActive = t.dataset.tab === tabName;
@@ -8088,11 +8207,14 @@ function wiSwitch(tabName, el){
   if (overviewEl && meta.accent) overviewEl.style.setProperty('--active-accent', meta.accent);
   // Render pillar overview banner
   pillarRenderOverview(tabName);
-  // Render item list filtered to the first category; auto-select the first matching item
+  // Render item list filtered to the first category; auto-select the first matching item.
+  // When the first category is Master Classes, also respect the Upcoming/Past sub-filter.
   var ids = WI_PILLAR_ITEMS[tabName] || [];
   var firstId = ids.filter(function(id){
     var d = wiData[id];
-    return d && d.cat === wiActiveCat;
+    if (!d || d.cat !== wiActiveCat) return false;
+    if (wiActiveCat === 'masterclass') return d.tense === wiActiveTense;
+    return true;
   })[0] || ids[0];
   wiRenderItemList(tabName, firstId);
   if (firstId) wiRenderDetail(firstId);
