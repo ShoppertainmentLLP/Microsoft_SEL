@@ -13,12 +13,13 @@
 :root{
   --blue:#0078D7; --blue-dk:#005fa3; --blue-lt:#e8f3fc;
   --azure:#01A6F0; --gold:#FFBA01; --green:#7FBC00; --orange:#F34F1C;
-  --bg:#F0F2F7; --surface:#ffffff;
-  --border:#e2e6f0; --border-2:#cdd3e0;
-  --text-1:#1e293b; --text-2:#505070; --text-3:#737373;
-  --sidebar-w:172px; --topbar-h:72px;
+  /* Match index.html hero exactly so the portal reads as a continuation of the marketing site */
+  --bg:#f5f7fa; --surface:#ffffff;
+  --border:#e5e8ee; --border-2:#d6dae3;
+  --text-1:#0a1128; --text-2:#475569; --text-3:#94a3b8;
+  --sidebar-w:200px; --topbar-h:72px;
   --font:'Plus Jakarta Sans',sans-serif;
-  --r:8px; --r-lg:14px; --r-xl:18px;
+  --r:10px; --r-lg:16px; --r-xl:20px;
 }
 
 html,body{height:100%}
@@ -33,14 +34,31 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 }
 .sb-logo-area{padding:18px 16px 16px;border-bottom:1px solid var(--border)}
 .sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.sb-logo-icon{
-  width:34px;height:34px;border-radius:8px;
-  background:var(--blue);display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:14px;flex-shrink:0;
-  box-shadow:0 3px 10px rgba(0,120,215,.3);
+.sb-logo-img{
+  width:34px;height:34px;
+  object-fit:contain;
+  flex-shrink:0;
+  filter: drop-shadow(0 3px 8px rgba(0, 120, 215, .18));
 }
-.sb-logo-text{font-size:14px;font-weight:800;color:var(--text-1);letter-spacing:-.01em}
-.sb-tier{font-size:9px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.1em;padding-left:44px}
+.sb-logo-text{
+  font-size:15px;font-weight:800;
+  color:var(--text-1);
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:6px;
+}
+/* "2.0" version chip — same treatment as the index.html nav logo */
+.sb-logo-version{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+  font-size:9.5px; font-weight:700;
+  letter-spacing:.04em;
+  padding:2px 6px;
+  border-radius:5px;
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--blue);
+  border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
+}
+.sb-tier{font-size:9.5px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.12em;padding-left:44px}
 
 .sb-nav{flex:1;padding:14px 10px;display:flex;flex-direction:column;gap:2px}
 .sb-nav-item{
@@ -71,9 +89,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 /* ── MAIN ────────────────────────────────────── */
 .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
 
-/* Top bar */
+/* Top bar — translucent + backdrop-blur, same treatment as the index.html nav */
 .topbar{
-  background:var(--surface);
+  background:rgba(255, 255, 255, .82);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;gap:16px;
   padding:18px 28px;position:sticky;top:0;z-index:50;
@@ -111,8 +131,20 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   color:#fff;font-size:12px;font-weight:800;
 }
 
-/* ── DASHBOARD CONTENT ───────────────────────── */
-.dash-content{padding:32px 28px;display:flex;flex-direction:column;gap:18px}
+/* ── DASHBOARD CONTENT ─────────────────────────
+   Light, airy background that matches index.html hero — the same subtle grid pattern,
+   the same off-white tone. The portal feels like a continuation of the marketing site. */
+.dash-content{
+  padding:32px 28px;
+  display:flex;flex-direction:column;gap:18px;
+  background-color: #f5f7fa;
+  background-image:
+    linear-gradient(to right,  rgba(10, 17, 40, .028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 17, 40, .028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center center;
+  min-height: 100vh;
+}
 
 /* Progress Card */
 .prog-card{
@@ -294,26 +326,35 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
   margin-bottom:1.5rem;
 }
+/* Home pillar cards — accent-tinted gradient fades to white, exactly like index.html About / pillar cards */
 .home-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
+  --accent: var(--blue);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 6%, #fff) 0%,
+      #fff 70%);
+  border:1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius:18px;
   padding:1.5rem 1.25rem 1.25rem;
   cursor:pointer;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
+  transition:transform .25s, box-shadow .25s, border-color .25s;
   display:flex;flex-direction:column;
   min-height:200px;
   text-align:left;
+  font-family:var(--font);
 }
 .home-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(0,0,0,.1);
-  border-color:rgba(0,120,215,.3);
+  transform:translateY(-4px);
+  box-shadow:0 18px 38px color-mix(in srgb, var(--accent) 16%, rgba(10,20,40,.05));
+  border-color:color-mix(in srgb, var(--accent) 40%, var(--border));
 }
 .home-card-icon{
   width:52px;height:52px;border-radius:14px;
   display:flex;align-items:center;justify-content:center;
   font-size:22px;margin-bottom:14px;flex-shrink:0;
+  background: color-mix(in srgb, var(--accent) 14%, #fff);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
 }
 .home-card-title{
   font-size:17px;font-weight:800;color:var(--text-1);
@@ -325,9 +366,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 }
 .home-card-cta{
   display:inline-flex;align-items:center;gap:6px;
-  font-size:13px;font-weight:700;color:var(--blue);
+  font-size:13px;font-weight:700;color:var(--accent);
 }
-.home-card:hover .home-card-cta{color:#005fa3}
 .home-card:hover .home-card-cta i{transform:translateX(3px)}
 .home-card-cta i{transition:transform .2s;font-size:11px}
 
@@ -538,6 +578,539 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 }
 .wiz-coach-callout .wiz-followup-btn.primary:hover{
   background:linear-gradient(135deg,#6a2faf,#005fa3);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PILLAR EXPERIENCES — Learn / Sell guided walkthroughs + Earn page
+   Light, airy, matches index.html visual language.
+   ───────────────────────────────────────────────────────────── */
+
+.pillar-page { max-width: 1100px; margin: 0 auto; padding: 8px 0; }
+.pillar-header { margin-bottom: 28px; }
+.pillar-eyebrow {
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 8px;
+}
+.pillar-eyebrow.eyebrow-gold { color: #c48c00; }
+.pillar-eyebrow.eyebrow-orange { color: #F34F1C; }
+.pillar-title {
+  font-family: var(--font);
+  font-size: clamp(1.6rem, 2.8vw, 2rem);
+  font-weight: 800; letter-spacing: -.02em;
+  color: var(--text-1); line-height: 1.15;
+  margin: 0 0 8px;
+}
+.pillar-sub {
+  font-size: 14.5px; color: var(--text-2);
+  line-height: 1.55; max-width: 640px; margin: 0;
+}
+
+/* ─── Wizard step container ─── */
+.wiz-step { display: none; }
+.wiz-step.active { display: block; }
+.wiz-back {
+  background: transparent; border: none;
+  color: var(--blue); font-weight: 600; font-size: 13px;
+  display: inline-flex; align-items: center; gap: 6px;
+  cursor: pointer; margin-bottom: 18px; padding: 6px 0;
+  font-family: var(--font);
+}
+.wiz-back:hover { text-decoration: underline; }
+
+/* ─── Step 1: goal/situation cards ─── */
+.wiz-goal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+.wiz-goal {
+  --accent: var(--blue);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 6%, #fff) 0%,
+      #fff 70%);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: 18px;
+  padding: 22px 20px 20px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font);
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.wiz-goal:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--accent) 16%, rgba(10,20,40,.05));
+}
+.wiz-goal-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 12%, #fff);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.wiz-goal-title {
+  font-size: 15.5px; font-weight: 700;
+  color: var(--text-1); letter-spacing: -.008em;
+  margin-bottom: 4px;
+}
+.wiz-goal-desc {
+  font-size: 12.5px; color: var(--text-3);
+  line-height: 1.5;
+}
+
+/* ─── Step 2: results grid ─── */
+.wiz-results-head {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 20px;
+}
+.wiz-results-title {
+  font-size: 18px; font-weight: 700;
+  color: var(--text-1); letter-spacing: -.01em;
+}
+.wiz-results-count {
+  font-size: 12.5px; color: var(--text-3);
+  font-family: ui-monospace, monospace;
+}
+.wiz-item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.wiz-item {
+  --accent: var(--blue);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 5%, #fff) 0%,
+      #fff 70%);
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+  border-radius: 16px;
+  padding: 20px 20px 18px;
+  display: flex; flex-direction: column;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.wiz-item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 14%, rgba(10,20,40,.05));
+}
+.wiz-item-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 12px;
+}
+.wiz-chip {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 5px;
+  background: rgba(10,20,40,.05); color: var(--text-3);
+  font-family: ui-monospace, monospace;
+}
+.wiz-chip.chip-points {
+  background: color-mix(in srgb, var(--accent) 14%, #fff);
+  color: var(--accent);
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.wiz-item-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--text-1); letter-spacing: -.008em;
+  line-height: 1.3; margin-bottom: 8px;
+}
+.wiz-item-desc {
+  font-size: 13px; color: var(--text-2);
+  line-height: 1.55; flex: 1; margin-bottom: 14px;
+}
+.wiz-item-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 999px;
+  background: var(--accent); color: #fff;
+  border: none; font-family: var(--font);
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: filter .2s, transform .2s;
+}
+.wiz-item-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+/* Pillar accent overrides */
+.res-learn-page { --accent: #01A6F0; }
+.res-sell-page  { --accent: #E5A100; }
+.res-sell-page .wiz-goal,
+.res-sell-page .wiz-item { --accent: #E5A100; }
+.res-learn-page .wiz-goal,
+.res-learn-page .wiz-item { --accent: #01A6F0; }
+
+/* Hide the data-key labels (used only as a JS lookup) */
+[data-keys-label] { display: none; }
+
+/* ─────────────────────────────────────────────────────────────
+   EARN page — points banner + filters + reward cards w/ status
+   ───────────────────────────────────────────────────────────── */
+
+.earn-banner {
+  background: linear-gradient(135deg, #fff 0%, #fff8ed 100%);
+  border: 1px solid #f5e0b0;
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.earn-banner-left { min-width: 0; }
+.earn-tier {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #c48c00;
+  margin-bottom: 8px;
+}
+.earn-tier i { font-size: 13px; color: #FFBA01; }
+.earn-balance {
+  font-family: var(--font);
+  font-size: 30px; font-weight: 800;
+  color: var(--text-1); letter-spacing: -.025em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.earn-balance span { color: #c48c00; }
+.earn-progress {
+  background: rgba(255,186,1,.18);
+  height: 8px; border-radius: 4px; overflow: hidden;
+  margin-bottom: 8px;
+  max-width: 360px;
+}
+.earn-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFBA01 0%, #c48c00 100%);
+  border-radius: 4px;
+}
+.earn-progress-sub {
+  font-size: 12px; color: var(--text-3);
+}
+.earn-banner-meta {
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 6px;
+  font-size: 13px; color: var(--text-2);
+  text-align: right;
+}
+.earn-banner-meta strong {
+  font-size: 18px; color: var(--text-1);
+  font-weight: 800; letter-spacing: -.01em;
+}
+
+/* Filter chip row */
+.earn-filters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 20px;
+}
+.earn-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 12.5px; font-weight: 700;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all .2s;
+}
+.earn-chip:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+.earn-chip.active {
+  background: var(--text-1); color: #fff; border-color: var(--text-1);
+}
+.earn-chip-count {
+  font-size: 10.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  font-family: ui-monospace, monospace;
+}
+
+/* Reward cards with status */
+.earn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.earn-card {
+  --status: #7FBC00;
+  --status-bg: rgba(127,188,0,.10);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--status) 6%, #fff) 0%,
+      #fff 75%);
+  border: 1px solid color-mix(in srgb, var(--status) 18%, var(--border));
+  border-top: 3px solid var(--status);
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  display: flex; flex-direction: column;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.earn-card[data-status="locked"] { opacity: .85; }
+.earn-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--status) 45%, var(--border));
+  border-top-color: var(--status);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--status) 16%, rgba(10,20,40,.05));
+}
+.earn-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 9px;
+  background: var(--status-bg);
+  color: var(--status);
+  border-radius: 5px;
+  font-family: ui-monospace, monospace;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+.earn-card-img {
+  font-size: 32px;
+  color: var(--text-3);
+  background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  aspect-ratio: 16 / 10;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.earn-card-name {
+  font-size: 14px; font-weight: 700;
+  color: var(--text-1); letter-spacing: -.005em;
+  margin-bottom: 4px;
+}
+.earn-card-cost {
+  font-family: ui-monospace, monospace;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.earn-card-state {
+  font-size: 12px; color: var(--text-3);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.earn-card-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 12.5px; font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .2s;
+}
+.earn-card-btn.btn-swap   { background: var(--status); color: #fff; }
+.earn-card-btn.btn-swap:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.earn-card-btn.btn-progress { background: rgba(255,186,1,.12); color: #b07400; border-color: rgba(255,186,1,.4); }
+.earn-card-btn.btn-locked   { background: rgba(10,20,40,.05); color: var(--text-3); cursor: not-allowed; }
+
+/* Status colour map */
+.earn-card[data-status="swap"]    { --status: #7FBC00; --status-bg: rgba(127,188,0,.10); }
+.earn-card[data-status="almost"]  { --status: #FFBA01; --status-bg: rgba(255,186,1,.14); }
+.earn-card[data-status="locked"]  { --status: #a0a8b8; --status-bg: rgba(10,20,40,.05); }
+
+/* Earn page leaderboard preview */
+.earn-lb {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+.earn-lb-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 16px;
+}
+.earn-lb-title {
+  font-size: 11.5px; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-3);
+}
+.earn-lb-link {
+  font-size: 13px; font-weight: 700;
+  color: var(--blue); text-decoration: none;
+}
+.earn-lb-link:hover { text-decoration: underline; }
+.earn-lb-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+}
+.earn-lb-row + .earn-lb-row { margin-top: 2px; }
+.earn-lb-row.you {
+  background: linear-gradient(90deg, rgba(0,120,215,.10), rgba(0,120,215,.04));
+  outline: 1.5px solid rgba(0,120,215,.18);
+}
+.earn-lb-rank {
+  font-family: ui-monospace, monospace;
+  font-size: 13px; font-weight: 800;
+  color: var(--text-3);
+  text-align: center;
+}
+.earn-lb-rank.r1 { color: #FFBA01; }
+.earn-lb-rank.r2 { color: #a0a0a0; }
+.earn-lb-rank.r3 { color: #cd7f32; }
+.earn-lb-name {
+  color: var(--text-1); font-weight: 600;
+}
+.earn-lb-row.you .earn-lb-name { color: var(--blue); font-weight: 800; }
+.earn-lb-pts {
+  font-family: ui-monospace, monospace;
+  font-size: 13px; font-weight: 700;
+  color: var(--text-1);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FLOATING AI ASSISTANT BUTTON — visible on every screen
+   ───────────────────────────────────────────────────────────── */
+
+.float-coach {
+  position: fixed;
+  right: 28px; bottom: 28px;
+  z-index: 90;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0078D7, #4DA9F0);
+  color: #fff;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow:
+    0 12px 28px rgba(0,120,215,.35),
+    0 0 0 4px rgba(255,255,255,.7);
+  transition: transform .2s, box-shadow .2s;
+}
+.float-coach:hover {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 18px 36px rgba(0,120,215,.45), 0 0 0 4px rgba(255,255,255,.8);
+}
+
+/* Slide-in panel */
+.float-coach-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: 100%;
+  max-width: 460px;
+  z-index: 100;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  box-shadow: -16px 0 50px rgba(10,20,40,.14);
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1);
+  display: flex; flex-direction: column;
+}
+.float-coach-panel.open { transform: translateX(0); }
+.fcp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.fcp-title {
+  display: flex; align-items: center; gap: 10px;
+}
+.fcp-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0078D7, #4DA9F0);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.fcp-name { font-size: 15px; font-weight: 800; color: var(--text-1); }
+.fcp-status {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11.5px; color: #4a8000;
+}
+.fcp-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #7FBC00;
+}
+.fcp-close {
+  background: transparent; border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: var(--text-3); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+.fcp-close:hover { background: rgba(10,20,40,.05); color: var(--text-1); }
+.fcp-body { flex: 1; overflow-y: auto; padding: 20px 22px; }
+.fcp-msg {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin-bottom: 10px;
+  max-width: 86%;
+}
+.fcp-msg.bot { background: #f5f7fa; color: var(--text-1); border-bottom-left-radius: 4px; }
+.fcp-msg.user { background: var(--blue); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+.fcp-suggest {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+.fcp-suggest-chip {
+  font-size: 12px;
+  padding: 7px 12px;
+  background: rgba(0,120,215,.08);
+  color: var(--blue);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 500;
+}
+.fcp-input-row {
+  display: flex; gap: 8px;
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--border);
+}
+.fcp-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font); font-size: 13.5px;
+  outline: none;
+}
+.fcp-input:focus { border-color: var(--blue); }
+.fcp-send {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--blue); color: #fff;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: filter .2s;
+}
+.fcp-send:hover { filter: brightness(1.1); }
+.float-coach-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(10,20,40,.32);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s;
+}
+.float-coach-backdrop.open { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 520px) {
+  .float-coach { right: 16px; bottom: 16px; width: 50px; height: 50px; font-size: 17px; }
+  .float-coach-panel { max-width: 100%; }
 }
 
 /* Knowledge Base specific */
@@ -1007,8 +1580,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 <aside class="sidebar">
   <div class="sb-logo-area">
     <div class="sb-logo">
-      <div class="sb-logo-icon"><i class="fa-solid fa-trophy"></i></div>
-      <div class="sb-logo-text">SEL Portal</div>
+      <img src="SEL Logo.png" alt="" class="sb-logo-img">
+      <div class="sb-logo-text">SEL <span class="sb-logo-version">2.0</span></div>
     </div>
     <div class="sb-tier" id="sb-tier">Elite Tier Partner</div>
   </div>
@@ -1053,7 +1626,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   <!-- Dashboard content -->
   <div class="dash-content">
 
-  <!-- ══ RESELLER VIEW ══ -->
+  <!-- ══ PARTNER VIEW ══ -->
   <div id="view-reseller" class="dash-view">
 
   <!-- ─────── MY ZONE ─────── -->
@@ -1065,31 +1638,31 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
       <div class="home-greet-sub">Let's get you to the right place in just a few clicks.</div>
 
       <div class="home-cards">
-        <button class="home-card" onclick="openWizard('accreditation')">
-          <div class="home-card-icon" style="background:rgba(0,120,215,.1);color:#0078D7">
+        <button class="home-card" style="--accent:#01A6F0" onclick="goToPillar('learn')">
+          <div class="home-card-icon">
             <i class="fa-solid fa-graduation-cap"></i>
           </div>
-          <div class="home-card-title">Accreditation</div>
-          <div class="home-card-desc">Find your next certification on Device Partner University and earn XP for completing it.</div>
-          <div class="home-card-cta">Find a course <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="home-card-title">Learn</div>
+          <div class="home-card-desc">Courses, certifications, and master classes &mdash; all in one place.</div>
+          <div class="home-card-cta">Start learning <i class="fa-solid fa-arrow-right"></i></div>
         </button>
 
-        <button class="home-card" onclick="openWizard('marketing')">
-          <div class="home-card-icon" style="background:rgba(255,186,1,.15);color:#c48c00">
-            <i class="fa-solid fa-bullhorn"></i>
+        <button class="home-card" style="--accent:#E5A100" onclick="goToPillar('sell')">
+          <div class="home-card-icon">
+            <i class="fa-solid fa-briefcase"></i>
           </div>
-          <div class="home-card-title">Marketing Assets</div>
-          <div class="home-card-desc">Pitch decks, customer one-pagers, email templates &mdash; ready for your next customer conversation.</div>
-          <div class="home-card-cta">Find an asset <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="home-card-title">Sell</div>
+          <div class="home-card-desc">Pitch decks, talk tracks, and answers to common customer questions.</div>
+          <div class="home-card-cta">Find sales tools <i class="fa-solid fa-arrow-right"></i></div>
         </button>
 
-        <button class="home-card" onclick="openWizard('knowledge')">
-          <div class="home-card-icon" style="background:rgba(127,188,0,.12);color:#4a8000">
-            <i class="fa-solid fa-book-open"></i>
+        <button class="home-card" style="--accent:#F34F1C" onclick="goToPillar('earn')">
+          <div class="home-card-icon">
+            <i class="fa-solid fa-trophy"></i>
           </div>
-          <div class="home-card-title">Knowledge Base</div>
-          <div class="home-card-desc">FAQs, objection handling, pricing answers, and product comparisons &mdash; all in one place.</div>
-          <div class="home-card-cta">Get an answer <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="home-card-title">Earn</div>
+          <div class="home-card-desc">Climb the leaderboard. Swap your Points for real rewards.</div>
+          <div class="home-card-cta">See rewards <i class="fa-solid fa-arrow-right"></i></div>
         </button>
       </div>
 
@@ -1131,6 +1704,453 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
     </div>
 
   </div><!-- /res-zone -->
+
+
+  <!-- ═════════════════════════════════════════════════════════
+       PILLAR: LEARN — 2-step guided walkthrough
+       ═════════════════════════════════════════════════════════ -->
+  <div class="reseller-section res-learn-page" id="res-learn">
+    <div class="pillar-page">
+
+      <!-- Step 1: pick a goal -->
+      <div class="wiz-step wiz-step-1 active">
+        <div class="pillar-header">
+          <div class="pillar-eyebrow">Learn</div>
+          <h2 class="pillar-title">What&rsquo;s your goal?</h2>
+          <p class="pillar-sub">Tell us what you want to do and we&rsquo;ll show you the courses, certifications, and classes that get you there.</p>
+        </div>
+        <div class="wiz-goal-grid">
+          <button class="wiz-goal" onclick="wizGoToResults('learn','certify')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-medal"></i></div>
+            <div class="wiz-goal-title">Get certified</div>
+            <div class="wiz-goal-desc">Earn an official badge or accreditation.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('learn','product')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+            <div class="wiz-goal-title">Learn a product</div>
+            <div class="wiz-goal-desc">M365, Azure, Copilot, Windows 11, and more.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('learn','catchup')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="wiz-goal-title">Catch up on what&rsquo;s new</div>
+            <div class="wiz-goal-desc">Live Touchstone webinars from our AU team.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('learn','deal')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="wiz-goal-title">Prep for a customer deal</div>
+            <div class="wiz-goal-desc">Industry-specific tracks &mdash; healthcare, retail, finance.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: results -->
+      <div class="wiz-step wiz-step-2">
+        <button class="wiz-back" onclick="resetWizard('learn')"><i class="fa-solid fa-arrow-left"></i> Back to goals</button>
+        <div class="pillar-header">
+          <div class="pillar-eyebrow">Learn</div>
+          <h2 class="pillar-title wiz-results-title">Recommended for you</h2>
+        </div>
+        <!-- Lookup labels for the wiz title (hidden via CSS) -->
+        <span data-keys-label data-keys-label-key="certify">Get certified</span>
+        <span data-keys-label data-keys-label-key="product">Learn a product</span>
+        <span data-keys-label data-keys-label-key="catchup">What&rsquo;s new this quarter</span>
+        <span data-keys-label data-keys-label-key="deal">Prep for a customer deal</span>
+
+        <div class="wiz-item-grid">
+          <div class="wiz-item" data-keys="certify product deal">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">2.5 hours</span>
+              <span class="wiz-chip">MS Learn</span>
+              <span class="wiz-chip">Intermediate</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +100 Points</span>
+            </div>
+            <div class="wiz-item-title">Windows 11 Accreditation 2025</div>
+            <div class="wiz-item-desc">The full track for selling Windows 11 to Australian customers. Covers premium edition features, security, and Intune endpoint management.</div>
+            <button class="wiz-item-cta">Start course <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="certify product">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">3 hours</span>
+              <span class="wiz-chip">MS Learn Lab</span>
+              <span class="wiz-chip">Advanced</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +150 Points</span>
+            </div>
+            <div class="wiz-item-title">Copilot+ PC Specialist</div>
+            <div class="wiz-item-desc">Master the Copilot+ PC story end-to-end &mdash; what the NPU does, who it&rsquo;s for, and how to walk a customer from curiosity to purchase.</div>
+            <button class="wiz-item-cta">Start course <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="product deal">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">2 hours</span>
+              <span class="wiz-chip">Master Class</span>
+              <span class="wiz-chip">Foundation</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +100 Points</span>
+            </div>
+            <div class="wiz-item-title">M365 Modern Workplace</div>
+            <div class="wiz-item-desc">A live master class with our AU expert team (MTT). Foundation-level &mdash; perfect if M365 is new to you or your team. Hosted via Teams.</div>
+            <button class="wiz-item-cta">Reserve a seat <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="catchup">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">6 sessions</span>
+              <span class="wiz-chip">DPU Live</span>
+              <span class="wiz-chip">Apr&ndash;Jun 2026</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +50 Pts per session</span>
+            </div>
+            <div class="wiz-item-title">Touchstone Webinars &mdash; Q2 Series</div>
+            <div class="wiz-item-desc">Live monthly sessions on what&rsquo;s coming in Q2 &mdash; product launches, pricing changes, and partner moves you need to know about.</div>
+            <button class="wiz-item-cta">See schedule <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="deal">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">90 min</span>
+              <span class="wiz-chip">Industry track</span>
+              <span class="wiz-chip">Healthcare</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +75 Points</span>
+            </div>
+            <div class="wiz-item-title">Copilot for Healthcare</div>
+            <div class="wiz-item-desc">Compliance, data residency, and the pitch story for healthcare buyers. Watch on demand or attend the next live cohort.</div>
+            <button class="wiz-item-cta">Start course <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="deal">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">75 min</span>
+              <span class="wiz-chip">Industry track</span>
+              <span class="wiz-chip">Retail</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +75 Points</span>
+            </div>
+            <div class="wiz-item-title">M365 for Retail</div>
+            <div class="wiz-item-desc">Frontline worker scenarios, store ops, and the seasonal upsell motion. Built for partners selling into Australian retail.</div>
+            <button class="wiz-item-cta">Start course <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /res-learn -->
+
+
+  <!-- ═════════════════════════════════════════════════════════
+       PILLAR: SELL — 2-step guided walkthrough
+       ═════════════════════════════════════════════════════════ -->
+  <div class="reseller-section res-sell-page" id="res-sell">
+    <div class="pillar-page">
+
+      <!-- Step 1: pick a situation -->
+      <div class="wiz-step wiz-step-1 active">
+        <div class="pillar-header">
+          <div class="pillar-eyebrow eyebrow-gold">Sell</div>
+          <h2 class="pillar-title">What&rsquo;s the conversation?</h2>
+          <p class="pillar-sub">Pick the moment you&rsquo;re in. We&rsquo;ll show you the right pitch deck, talk track, or answer to use right now.</p>
+        </div>
+        <div class="wiz-goal-grid">
+          <button class="wiz-goal" onclick="wizGoToResults('sell','firstpitch')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-microphone"></i></div>
+            <div class="wiz-goal-title">First customer pitch</div>
+            <div class="wiz-goal-desc">Decks and one-pagers to open the conversation.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('sell','objection')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-comment-dots"></i></div>
+            <div class="wiz-goal-title">Handle an objection</div>
+            <div class="wiz-goal-desc">Plain-language answers to common pushbacks.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('sell','pricing')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-tags"></i></div>
+            <div class="wiz-goal-title">Pricing &amp; licensing</div>
+            <div class="wiz-goal-desc">Cheat sheets and scenarios for every plan.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('sell','competitor')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="wiz-goal-title">Beat a rival product</div>
+            <div class="wiz-goal-desc">Side-by-sides vs Google, Slack, AWS.</div>
+          </button>
+          <button class="wiz-goal" onclick="wizGoToResults('sell','closing')">
+            <div class="wiz-goal-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div class="wiz-goal-title">Close the deal</div>
+            <div class="wiz-goal-desc">Follow-up templates and proposal builders.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: results -->
+      <div class="wiz-step wiz-step-2">
+        <button class="wiz-back" onclick="resetWizard('sell')"><i class="fa-solid fa-arrow-left"></i> Back to situations</button>
+        <div class="pillar-header">
+          <div class="pillar-eyebrow eyebrow-gold">Sell</div>
+          <h2 class="pillar-title wiz-results-title">Recommended for you</h2>
+        </div>
+        <span data-keys-label data-keys-label-key="firstpitch">First customer pitch</span>
+        <span data-keys-label data-keys-label-key="objection">Handle an objection</span>
+        <span data-keys-label data-keys-label-key="pricing">Pricing &amp; licensing</span>
+        <span data-keys-label data-keys-label-key="competitor">Beat a rival product</span>
+        <span data-keys-label data-keys-label-key="closing">Close the deal</span>
+
+        <div class="wiz-item-grid">
+          <div class="wiz-item" data-keys="firstpitch">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">PPTX</span>
+              <span class="wiz-chip">28 slides</span>
+              <span class="wiz-chip">Editable</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +50 Pts on first use</span>
+            </div>
+            <div class="wiz-item-title">Copilot for M365 &mdash; Pitch Asset</div>
+            <div class="wiz-item-desc">A ready-to-customise sales presentation. Built around the AU mid-market story &mdash; localised stats, customer wins, pricing.</div>
+            <button class="wiz-item-cta">Open <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="firstpitch">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">PDF + DOCX</span>
+              <span class="wiz-chip">A4 one-pager</span>
+              <span class="wiz-chip">Co-brandable</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +25 Pts per share</span>
+            </div>
+            <div class="wiz-item-title">Surface Pro 11 &mdash; Customer One-Pager</div>
+            <div class="wiz-item-desc">A clean leave-behind for Surface Pro 11 customer conversations. Add your logo, send before the meeting, leave behind after.</div>
+            <button class="wiz-item-cta">Download <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="firstpitch closing">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">12 templates</span>
+              <span class="wiz-chip">WhatsApp</span>
+              <span class="wiz-chip">6 languages</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +10 Pts per use</span>
+            </div>
+            <div class="wiz-item-title">Win11 Customer WhatsApp Templates</div>
+            <div class="wiz-item-desc">Pre-approved WhatsApp message templates for following up with customers on Windows 11 conversations.</div>
+            <button class="wiz-item-cta">Open <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="competitor">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">PDF</span>
+              <span class="wiz-chip">4 pages</span>
+              <span class="wiz-chip">Side-by-side</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +25 Pts per use</span>
+            </div>
+            <div class="wiz-item-title">&ldquo;We use Google Workspace&rdquo;</div>
+            <div class="wiz-item-desc">The full answer to the question every Australian customer asks. Feature table, security differences, migration path.</div>
+            <button class="wiz-item-cta">Open <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="pricing objection">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">Reference</span>
+              <span class="wiz-chip">Q2 refresh</span>
+              <span class="wiz-chip">All plans</span>
+            </div>
+            <div class="wiz-item-title">Pricing &amp; Licensing Cheat Sheet</div>
+            <div class="wiz-item-desc">The reference you keep open during pricing conversations. All M365 plans, Copilot add-ons, Azure tiers.</div>
+            <button class="wiz-item-cta">Open <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="wiz-item" data-keys="objection">
+            <div class="wiz-item-chips">
+              <span class="wiz-chip">PDF</span>
+              <span class="wiz-chip">6 pages</span>
+              <span class="wiz-chip">AU-specific</span>
+              <span class="wiz-chip chip-points"><i class="fa-solid fa-bolt"></i> +25 Pts per use</span>
+            </div>
+            <div class="wiz-item-title">Copilot Security &amp; Compliance Brief</div>
+            <div class="wiz-item-desc">Everything you need to answer security worries about Copilot &mdash; calibrated for the Australian regulatory environment.</div>
+            <button class="wiz-item-cta">Open <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /res-sell -->
+
+
+  <!-- ═════════════════════════════════════════════════════════
+       PILLAR: EARN — Points banner + reward grid + leaderboard preview
+       ═════════════════════════════════════════════════════════ -->
+  <div class="reseller-section" id="res-earn">
+    <div class="pillar-page">
+
+      <!-- Header -->
+      <div class="pillar-header">
+        <div class="pillar-eyebrow eyebrow-orange">Earn</div>
+        <h2 class="pillar-title">Your Points &amp; rewards</h2>
+        <p class="pillar-sub">Every action earns Points. Climb the leaderboard and swap your Points for real rewards.</p>
+      </div>
+
+      <!-- Points balance banner -->
+      <div class="earn-banner">
+        <div class="earn-banner-left">
+          <div class="earn-tier"><i class="fa-solid fa-gem"></i> Diamond Tier</div>
+          <div class="earn-balance"><span>18,500</span> Points</div>
+          <div class="earn-progress"><div class="earn-progress-fill" style="width:78%"></div></div>
+          <div class="earn-progress-sub">1,500 Points to Platinum Tier</div>
+        </div>
+        <div class="earn-banner-meta">
+          <div><strong>#3</strong> in Sydney this sprint</div>
+          <div>14 days left in Q2 Sprint 3</div>
+        </div>
+      </div>
+
+      <!-- Filter chips -->
+      <div class="earn-filters">
+        <button class="earn-chip active" data-status="all" onclick="earnFilter('all')">All rewards <span class="earn-chip-count">12</span></button>
+        <button class="earn-chip" data-status="swap" onclick="earnFilter('swap')"><i class="fa-solid fa-check" style="font-size:11px;color:#7FBC00"></i> Swap now <span class="earn-chip-count">5</span></button>
+        <button class="earn-chip" data-status="almost" onclick="earnFilter('almost')"><i class="fa-solid fa-hourglass-half" style="font-size:11px;color:#FFBA01"></i> Almost there <span class="earn-chip-count">3</span></button>
+        <button class="earn-chip" data-status="locked" onclick="earnFilter('locked')"><i class="fa-solid fa-lock" style="font-size:11px;color:#a0a8b8"></i> Locked <span class="earn-chip-count">4</span></button>
+      </div>
+
+      <!-- Reward grid -->
+      <div class="earn-grid">
+
+        <div class="earn-card" data-status="swap">
+          <span class="earn-status"><i class="fa-solid fa-check"></i> Swap now</span>
+          <div class="earn-card-img"><i class="fa-solid fa-mug-hot"></i></div>
+          <div class="earn-card-name">Coffee credits</div>
+          <div class="earn-card-cost">2,500 Points · A$50</div>
+          <div class="earn-card-state">You have enough!</div>
+          <button class="earn-card-btn btn-swap">Swap now <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="earn-card" data-status="swap">
+          <span class="earn-status"><i class="fa-solid fa-check"></i> Swap now</span>
+          <div class="earn-card-img"><i class="fa-solid fa-book"></i></div>
+          <div class="earn-card-name">Microsoft Press book bundle</div>
+          <div class="earn-card-cost">2,500 Points · A$50</div>
+          <div class="earn-card-state">You have enough!</div>
+          <button class="earn-card-btn btn-swap">Swap now <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="earn-card" data-status="swap">
+          <span class="earn-status"><i class="fa-solid fa-check"></i> Swap now</span>
+          <div class="earn-card-img"><i class="fa-solid fa-headset"></i></div>
+          <div class="earn-card-name">Modern Headset</div>
+          <div class="earn-card-cost">8,000 Points · A$250</div>
+          <div class="earn-card-state">You have enough!</div>
+          <button class="earn-card-btn btn-swap">Swap now <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="earn-card" data-status="swap">
+          <span class="earn-status"><i class="fa-solid fa-check"></i> Swap now</span>
+          <div class="earn-card-img"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="earn-card-name">Cert exam voucher</div>
+          <div class="earn-card-cost">8,000 Points · A$250</div>
+          <div class="earn-card-state">You have enough!</div>
+          <button class="earn-card-btn btn-swap">Swap now <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="earn-card" data-status="swap">
+          <span class="earn-status"><i class="fa-solid fa-check"></i> Swap now</span>
+          <div class="earn-card-img"><i class="fa-solid fa-cloud"></i></div>
+          <div class="earn-card-name">Azure Credits</div>
+          <div class="earn-card-cost">15,000 Points · A$500</div>
+          <div class="earn-card-state">You have enough!</div>
+          <button class="earn-card-btn btn-swap">Swap now <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="earn-card" data-status="almost">
+          <span class="earn-status"><i class="fa-solid fa-hourglass-half"></i> Almost there</span>
+          <div class="earn-card-img"><i class="fa-solid fa-ticket"></i></div>
+          <div class="earn-card-name">AU partner event pass</div>
+          <div class="earn-card-cost">20,000 Points · A$500</div>
+          <div class="earn-card-state">Earn <strong>1,500 more Points</strong> to unlock.</div>
+          <button class="earn-card-btn btn-progress">See how to earn</button>
+        </div>
+
+        <div class="earn-card" data-status="almost">
+          <span class="earn-status"><i class="fa-solid fa-hourglass-half"></i> Almost there</span>
+          <div class="earn-card-img"><i class="fa-solid fa-tablet-screen-button"></i></div>
+          <div class="earn-card-name">Surface Go (refurb)</div>
+          <div class="earn-card-cost">22,000 Points · A$1,000</div>
+          <div class="earn-card-state">Earn <strong>3,500 more Points</strong> to unlock.</div>
+          <button class="earn-card-btn btn-progress">See how to earn</button>
+        </div>
+
+        <div class="earn-card" data-status="almost">
+          <span class="earn-status"><i class="fa-solid fa-hourglass-half"></i> Almost there</span>
+          <div class="earn-card-img"><i class="fa-solid fa-handshake"></i></div>
+          <div class="earn-card-name">Co-marketing budget</div>
+          <div class="earn-card-cost">25,000 Points · A$1,000</div>
+          <div class="earn-card-state">Earn <strong>6,500 more Points</strong> to unlock.</div>
+          <button class="earn-card-btn btn-progress">See how to earn</button>
+        </div>
+
+        <div class="earn-card" data-status="locked">
+          <span class="earn-status"><i class="fa-solid fa-lock"></i> Locked</span>
+          <div class="earn-card-img"><i class="fa-solid fa-laptop"></i></div>
+          <div class="earn-card-name">Surface Pro 11</div>
+          <div class="earn-card-cost">60,000 Points · A$2,500</div>
+          <div class="earn-card-state">Reach <strong>Platinum Tier</strong> to unlock this reward.</div>
+          <button class="earn-card-btn btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+        </div>
+
+        <div class="earn-card" data-status="locked">
+          <span class="earn-status"><i class="fa-solid fa-lock"></i> Locked</span>
+          <div class="earn-card-img"><i class="fa-solid fa-plane-departure"></i></div>
+          <div class="earn-card-name">AU Partner Summit pass</div>
+          <div class="earn-card-cost">60,000 Points · A$2,500</div>
+          <div class="earn-card-state">Reach <strong>Platinum Tier</strong> to unlock. Travel and accom included.</div>
+          <button class="earn-card-btn btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+        </div>
+
+        <div class="earn-card" data-status="locked">
+          <span class="earn-status"><i class="fa-solid fa-lock"></i> Locked</span>
+          <div class="earn-card-img"><i class="fa-solid fa-medal"></i></div>
+          <div class="earn-card-name">SEL 2.0 Champion package</div>
+          <div class="earn-card-cost">Top 10 / quarter</div>
+          <div class="earn-card-state">Finish in the <strong>top 10 this sprint</strong> to qualify.</div>
+          <button class="earn-card-btn btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+        </div>
+
+        <div class="earn-card" data-status="locked">
+          <span class="earn-status"><i class="fa-solid fa-lock"></i> Locked</span>
+          <div class="earn-card-img"><i class="fa-solid fa-gift"></i></div>
+          <div class="earn-card-name">Mystery prize</div>
+          <div class="earn-card-cost">Top 100 / quarter</div>
+          <div class="earn-card-state">Finish in the <strong>top 100 this sprint</strong> to enter the draw.</div>
+          <button class="earn-card-btn btn-locked"><i class="fa-solid fa-lock"></i> Locked</button>
+        </div>
+
+      </div>
+
+      <!-- Leaderboard preview -->
+      <div class="earn-lb">
+        <div class="earn-lb-head">
+          <div class="earn-lb-title">Top 5 in Sydney &middot; Q2 Sprint 3</div>
+          <a href="#" class="earn-lb-link" onclick="event.preventDefault();var lb=document.getElementById('res-leaderboard');if(lb){document.querySelectorAll('.reseller-section').forEach(function(s){s.classList.remove('active');});lb.classList.add('active');}">See full leaderboard <i class="fa-solid fa-arrow-right" style="font-size:11px"></i></a>
+        </div>
+        <div class="earn-lb-row">
+          <div class="earn-lb-rank r1">#1</div>
+          <div class="earn-lb-name">Matt Wilson</div>
+          <div class="earn-lb-pts">20,100 Pts</div>
+        </div>
+        <div class="earn-lb-row">
+          <div class="earn-lb-rank r2">#2</div>
+          <div class="earn-lb-name">Sarah O&rsquo;Brien</div>
+          <div class="earn-lb-pts">18,700 Pts</div>
+        </div>
+        <div class="earn-lb-row you">
+          <div class="earn-lb-rank r3">#3</div>
+          <div class="earn-lb-name">You (Alex Rivera)</div>
+          <div class="earn-lb-pts">18,500 Pts</div>
+        </div>
+        <div class="earn-lb-row">
+          <div class="earn-lb-rank">#4</div>
+          <div class="earn-lb-name">Tom Fletcher</div>
+          <div class="earn-lb-pts">17,100 Pts</div>
+        </div>
+        <div class="earn-lb-row">
+          <div class="earn-lb-rank">#5</div>
+          <div class="earn-lb-name">Claire Davidson</div>
+          <div class="earn-lb-pts">15,900 Pts</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /res-earn -->
 
 
   <!-- ─────── LEADERBOARD ─────── -->
@@ -1215,42 +2235,42 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
       </div>
       <div style="overflow-x:auto">
         <table class="dt">
-          <thead><tr><th>Rank</th><th>Reseller</th><th>Network</th><th>Revenue</th><th>XP</th><th>Tier</th><th>Streak</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Partner</th><th>Region</th><th>Revenue</th><th>XP</th><th>Tier</th><th>Streak</th></tr></thead>
           <tbody>
             <tr>
               <td style="font-weight:700;color:#FFBA01">#1</td>
               <td><span class="dt-avatar" style="background:linear-gradient(135deg,#FFBA01,#c49000);color:#fff">MW</span><span class="dt-name">Matt Wilson</span></td>
-              <td>Pacific Distro Co.</td><td>$218,000</td><td style="font-weight:700">20,100</td>
+              <td>Sydney</td><td>$218,000</td><td style="font-weight:700">20,100</td>
               <td><span class="tier-pill tier-diamond">Diamond</span></td><td><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:11px"></i> 21d</td>
             </tr>
             <tr>
               <td style="font-weight:700;color:#a0a0a0">#2</td>
               <td><span class="dt-avatar" style="background:linear-gradient(135deg,#ccc,#888);color:#fff">SO</span><span class="dt-name">Sarah O'Brien</span></td>
-              <td>Pacific Distro Co.</td><td>$195,000</td><td style="font-weight:700">18,700</td>
+              <td>Sydney</td><td>$195,000</td><td style="font-weight:700">18,700</td>
               <td><span class="tier-pill tier-diamond">Diamond</span></td><td><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:11px"></i> 18d</td>
             </tr>
             <tr style="background:rgba(0,120,215,.04);outline:2px solid rgba(0,120,215,.15)">
               <td style="font-weight:700;color:#cd7f32">#3</td>
               <td><span class="dt-avatar" style="background:linear-gradient(135deg,#0078D7,#005fa3);color:#fff">AR</span><span class="dt-name" style="color:var(--blue);font-weight:800">Alex Rivera (You)</span></td>
-              <td style="color:var(--blue);font-weight:700">Pacific Distro Co.</td><td style="font-weight:700">$210,000</td><td style="font-weight:800;color:var(--blue)">18,500</td>
+              <td style="color:var(--blue);font-weight:700">Sydney</td><td style="font-weight:700">$210,000</td><td style="font-weight:800;color:var(--blue)">18,500</td>
               <td><span class="tier-pill tier-diamond">Diamond</span></td><td><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:11px"></i> 14d</td>
             </tr>
             <tr>
               <td>#4</td>
               <td><span class="dt-avatar" style="background:linear-gradient(135deg,#d17a4a,#a04e1e);color:#fff">TF</span><span class="dt-name">Tom Fletcher</span></td>
-              <td>Pacific Distro Co.</td><td>$178,500</td><td style="font-weight:700">17,100</td>
+              <td>Sydney</td><td>$178,500</td><td style="font-weight:700">17,100</td>
               <td><span class="tier-pill tier-gold">Gold</span></td><td><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:11px"></i> 9d</td>
             </tr>
             <tr>
               <td>#5</td>
               <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">CD</span><span class="dt-name">Claire Davidson</span></td>
-              <td>CoreLink Distro</td><td>$164,200</td><td style="font-weight:700">15,900</td>
+              <td>Brisbane</td><td>$164,200</td><td style="font-weight:700">15,900</td>
               <td><span class="tier-pill tier-gold">Gold</span></td><td><i class="fa-solid fa-fire" style="color:#F34F1C;font-size:11px"></i> 6d</td>
             </tr>
             <tr>
               <td>#6</td>
               <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">JL</span><span class="dt-name">James Liu</span></td>
-              <td>Sunrise Distribution</td><td>$158,000</td><td style="font-weight:700">15,200</td>
+              <td>Melbourne</td><td>$158,000</td><td style="font-weight:700">15,200</td>
               <td><span class="tier-pill tier-gold">Gold</span></td><td>—</td>
             </tr>
           </tbody>
@@ -2188,480 +3208,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   </div><!-- /res-coach -->
 
   </div><!-- /view-reseller -->
-
-  <!-- ══ DISTRIBUTOR VIEW ══ -->
-  <div id="view-distributor" class="dash-view">
-
-  <!-- ─────── OVERVIEW ─────── -->
-  <div class="dist-section active" id="dist-overview">
-
-    <div class="prog-card" style="background:linear-gradient(135deg,#fffcf0,#fff8e6);border-color:#fde8a0">
-      <div class="prog-main">
-        <div class="prog-eyebrow">Pacific Distro Co. · Gold Distributor</div>
-        <div class="prog-level">Gold Partner Network — Marcus Kim</div>
-        <div class="prog-bar-row">
-          <span class="prog-xp-cur">Network Score: 87 / 100</span>
-          <span class="prog-xp-max">Platinum threshold: 95</span>
-        </div>
-        <div class="prog-track"><div class="prog-fill" style="width:87%;background:linear-gradient(90deg,#FFBA01,#7FBC00)"></div></div>
-        <div class="prog-sub">13 points to unlock Platinum Partner status. 3 more active resellers will get you there.</div>
-      </div>
-      <div class="prog-next">
-        <div class="prog-next-lbl">Next Tier</div>
-        <div class="prog-next-val">Platinum</div>
-      </div>
-      <div class="prog-rank-box">
-        <div class="prog-rank-lbl">Network Rank</div>
-        <div class="prog-rank-num" style="color:#FFBA01">#2</div>
-        <div class="prog-rank-streak" style="background:#7FBC00"><i class="fa-solid fa-users" style="font-size:9px"></i> 18 Resellers</div>
-      </div>
-    </div>
-
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(1,166,240,.1);color:#01A6F0"><i class="fa-solid fa-store"></i></div><span class="kpi-delta up">+3</span></div>
-        <div class="kpi-val">18</div><div class="kpi-label">Active Resellers</div><div class="kpi-sublabel">14 Active · 3 At Risk · 1 Inactive</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-circle-dollar-to-slot"></i></div><span class="kpi-delta up">+11.2%</span></div>
-        <div class="kpi-val">$485k</div><div class="kpi-label">Network Revenue</div><div class="kpi-sublabel">This Quarter</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-crown"></i></div><span class="kpi-delta up">↑ Up 1</span></div>
-        <div class="kpi-val">#3</div><div class="kpi-label">Best Reseller</div><div class="kpi-sublabel">Matt Wilson · Global</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-top"><div class="kpi-icon" style="background:rgba(255,186,1,.1);color:#FFBA01"><i class="fa-solid fa-graduation-cap"></i></div><span class="kpi-delta up">+5%</span></div>
-        <div class="kpi-val">87%</div><div class="kpi-label">Avg. Training</div><div class="kpi-sublabel">Completion Rate</div>
-      </div>
-    </div>
-
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Reseller Engagement Funnel</div>
-          <span class="chart-badge green"><i class="fa-solid fa-arrow-trend-up" style="font-size:9px"></i> Q2 2026</span>
-        </div>
-        <div class="funnel">
-          <div class="funnel-row"><span class="funnel-label">Total Resellers</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%;background:var(--blue)">18</div></div><span class="funnel-val">18</span></div>
-          <div class="funnel-row"><span class="funnel-label">Active (30d)</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:78%;background:var(--azure)">14</div></div><span class="funnel-val">14</span></div>
-          <div class="funnel-row"><span class="funnel-label">Training Done</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:72%;background:#7FBC00">13</div></div><span class="funnel-val">13</span></div>
-          <div class="funnel-row"><span class="funnel-label">Deal Submitted</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:56%;background:var(--gold)">10</div></div><span class="funnel-val">10</span></div>
-          <div class="funnel-row"><span class="funnel-label">Deal Closed</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:44%;background:var(--orange)">8</div></div><span class="funnel-val">8</span></div>
-        </div>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-title">Network Activity Mix</div>
-          <div class="chart-toggle"><button class="chart-toggle-btn">Q1</button><button class="chart-toggle-btn active">Q2</button></div>
-        </div>
-        <div class="donut-wrap">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#f0f2f7" stroke-width="18"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#FFBA01" stroke-width="18" stroke-dasharray="85.2 153.8" stroke-dashoffset="0" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#7FBC00" stroke-width="18" stroke-dasharray="66.7 172.3" stroke-dashoffset="-85.2" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#01A6F0" stroke-width="18" stroke-dasharray="47.1 191.9" stroke-dashoffset="-151.9" transform="rotate(-90 55 55)"/>
-            <circle cx="55" cy="55" r="38" fill="none" stroke="#F34F1C" stroke-width="18" stroke-dasharray="40.1 198.9" stroke-dashoffset="-199" transform="rotate(-90 55 55)"/>
-            <text x="55" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#1e293b">542</text>
-            <text x="55" y="64" text-anchor="middle" font-size="9" fill="#737373">Activities</text>
-          </svg>
-          <div class="donut-legend">
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#FFBA01"></div><span class="donut-leg-label">Deal Activity</span><span class="donut-leg-val">35%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#7FBC00"></div><span class="donut-leg-label">Trainings</span><span class="donut-leg-val">27%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#01A6F0"></div><span class="donut-leg-label">Campaigns</span><span class="donut-leg-val">22%</span></div>
-            <div class="donut-leg-item"><div class="donut-dot" style="background:#F34F1C"></div><span class="donut-leg-label">At-Risk Events</span><span class="donut-leg-val">16%</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- At-risk alert -->
-    <div class="alert-strip">
-      <div class="alert-strip-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-      <div class="alert-strip-text"><strong>3 resellers are at risk</strong> — Adam Sullivan, Amy Knight and Ben Carter haven't logged in for 14+ days. Send them a nudge to re-engage before they fall further behind.</div>
-      <button class="btn-outline" style="flex-shrink:0;font-size:11px;padding:7px 12px" onclick="openModal('modal-invite-reseller')"><i class="fa-solid fa-bell"></i> Nudge All</button>
-    </div>
-
-    <div class="bottom-row">
-      <div class="lb-card">
-        <div class="lb-card-head">
-          <div class="lb-card-title">My Reseller Network</div>
-          <a href="#" class="lb-view-all">View All</a>
-        </div>
-        <div class="lb-thead">
-          <span>Rank</span><span>Reseller</span><span>Revenue</span><span style="text-align:right">Status</span>
-        </div>
-        <div class="lb-trow">
-          <span class="lb-rank" style="color:#FFBA01">#3</span>
-          <div class="lb-reseller"><div class="lb-avatar" style="background:#0078D7;color:#fff">MW</div><span class="lb-name">Matt Wilson</span></div>
-          <span class="lb-rev">$210,000</span><span style="font-size:11px;font-weight:700;color:#7FBC00;text-align:right">Active</span>
-        </div>
-        <div class="lb-trow">
-          <span class="lb-rank">#7</span>
-          <div class="lb-reseller"><div class="lb-avatar" style="background:#e8f0fe;color:#005fa3">SO</div><span class="lb-name">Sarah O'Brien</span></div>
-          <span class="lb-rev">$158,000</span><span style="font-size:11px;font-weight:700;color:#7FBC00;text-align:right">Active</span>
-        </div>
-        <div class="lb-trow">
-          <span class="lb-rank">#12</span>
-          <div class="lb-reseller"><div class="lb-avatar" style="background:#e8f0fe;color:#005fa3">TF</div><span class="lb-name">Tom Fletcher</span></div>
-          <span class="lb-rev">$112,200</span><span style="font-size:11px;font-weight:700;color:#7FBC00;text-align:right">Active</span>
-        </div>
-        <div class="lb-trow">
-          <span class="lb-rank" style="color:#FFBA01">#28</span>
-          <div class="lb-reseller"><div class="lb-avatar" style="background:#fff3cd;color:#7a5800">AS</div><span class="lb-name">Adam Sullivan</span></div>
-          <span class="lb-rev">$38,400</span><span style="font-size:11px;font-weight:700;color:#FFBA01;text-align:right">At Risk</span>
-        </div>
-      </div>
-
-      <div class="ach-card">
-        <div class="ach-head">Network Milestones</div>
-        <div class="ach-grid">
-          <div class="ach-item">
-            <div class="ach-badge unlocked"><i class="fa-solid fa-network-wired"></i></div>
-            <div class="ach-name">15 Resellers</div>
-            <div class="ach-status unlocked">Unlocked</div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-badge unlocked"><i class="fa-solid fa-dollar-sign"></i></div>
-            <div class="ach-name">$400k Network</div>
-            <div class="ach-status unlocked">Unlocked</div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-badge locked"><i class="fa-solid fa-trophy"></i></div>
-            <div class="ach-name">Top Distributor</div>
-            <div class="ach-status locked">Locked</div>
-          </div>
-          <div class="ach-item">
-            <div class="ach-badge locked"><i class="fa-solid fa-star"></i></div>
-            <div class="ach-name">Platinum Network</div>
-            <div class="ach-status locked">Locked</div>
-          </div>
-        </div>
-        <div class="ach-footer"><a href="#">View Network Report</a></div>
-      </div>
-    </div>
-
-  </div><!-- /dist-overview -->
-
-
-  <!-- ─────── MY RESELLERS ─────── -->
-  <div class="dist-section" id="dist-resellers">
-
-    <div class="admin-ph">
-      <div><div class="admin-ph-title">My Resellers</div><div class="admin-ph-sub">18 resellers in the Pacific Distro Co. network</div></div>
-      <button class="btn-primary" onclick="openModal('modal-invite-reseller')"><i class="fa-solid fa-user-plus"></i> Invite Reseller</button>
-    </div>
-
-    <div class="full-card">
-      <div class="full-card-head">
-        <div class="admin-tabs">
-          <button class="admin-tab active" onclick="adminTabSwitch(this)">All (18)</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Active (14)</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">At Risk (3)</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Inactive (1)</button>
-        </div>
-        <div class="search-input-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search resellers..."></div>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="dt">
-          <thead><tr><th>Reseller</th><th>Company</th><th>Tier</th><th>Points</th><th>Training %</th><th>Deals</th><th>Last Active</th><th>Status</th><th style="text-align:right">Action</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><span class="dt-avatar" style="background:#0078D7">MW</span><span class="dt-name">Matt Wilson</span></td>
-              <td>Orion Tech Solutions</td><td><span class="tier-pill tier-diamond">Diamond</span></td>
-              <td style="font-weight:700;color:var(--text-1)">18,500</td><td><span style="color:#3a6600;font-weight:700">94%</span></td>
-              <td>24</td><td>Today</td><td><span class="sbadge active">Active</span></td>
-              <td style="text-align:right"><button class="btn-ghost">View</button></td>
-            </tr>
-            <tr>
-              <td><span class="dt-avatar" style="background:#01A6F0">SO</span><span class="dt-name">Sarah O'Brien</span></td>
-              <td>BlueEdge Systems</td><td><span class="tier-pill tier-diamond">Diamond</span></td>
-              <td style="font-weight:700;color:var(--text-1)">16,900</td><td><span style="color:#3a6600;font-weight:700">91%</span></td>
-              <td>19</td><td>Yesterday</td><td><span class="sbadge active">Active</span></td>
-              <td style="text-align:right"><button class="btn-ghost">View</button></td>
-            </tr>
-            <tr>
-              <td><span class="dt-avatar" style="background:#7FBC00">TF</span><span class="dt-name">Tom Fletcher</span></td>
-              <td>NexGen Retail</td><td><span class="tier-pill tier-gold">Gold</span></td>
-              <td style="font-weight:700;color:var(--text-1)">15,200</td><td><span style="color:#3a6600;font-weight:700">88%</span></td>
-              <td>16</td><td>2 days ago</td><td><span class="sbadge active">Active</span></td>
-              <td style="text-align:right"><button class="btn-ghost">View</button></td>
-            </tr>
-            <tr>
-              <td><span class="dt-avatar" style="background:#FFBA01;color:#fff">CD</span><span class="dt-name">Claire Davidson</span></td>
-              <td>CapCity Commerce</td><td><span class="tier-pill tier-gold">Gold</span></td>
-              <td style="font-weight:700;color:var(--text-1)">13,800</td><td><span style="color:#3a6600;font-weight:700">82%</span></td>
-              <td>14</td><td>3 days ago</td><td><span class="sbadge active">Active</span></td>
-              <td style="text-align:right"><button class="btn-ghost">View</button></td>
-            </tr>
-            <tr style="background:rgba(255,186,1,.03)">
-              <td><span class="dt-avatar" style="background:#a0a0a0">AS</span><span class="dt-name">Adam Sullivan</span></td>
-              <td>SA Tech Wholesale</td><td><span class="tier-pill tier-silver">Silver</span></td>
-              <td style="font-weight:700;color:var(--text-1)">9,200</td><td><span style="color:#7a5800;font-weight:700">61%</span></td>
-              <td>6</td><td>14 days ago</td><td><span class="sbadge pending">At Risk</span></td>
-              <td style="text-align:right"><div style="display:flex;gap:5px;justify-content:flex-end"><button class="btn-ghost" style="color:#c03000;border-color:rgba(243,79,28,.3)"><i class="fa-solid fa-bell"></i> Nudge</button><button class="btn-ghost">View</button></div></td>
-            </tr>
-            <tr style="background:rgba(255,186,1,.03)">
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">AK</span><span class="dt-name">Amy Knight</span></td>
-              <td>Coastal IT Group</td><td><span class="tier-pill tier-silver">Silver</span></td>
-              <td style="font-weight:700;color:var(--text-1)">7,400</td><td><span style="color:#7a5800;font-weight:700">55%</span></td>
-              <td>4</td><td>18 days ago</td><td><span class="sbadge pending">At Risk</span></td>
-              <td style="text-align:right"><div style="display:flex;gap:5px;justify-content:flex-end"><button class="btn-ghost" style="color:#c03000;border-color:rgba(243,79,28,.3)"><i class="fa-solid fa-bell"></i> Nudge</button><button class="btn-ghost">View</button></div></td>
-            </tr>
-            <tr style="background:rgba(255,186,1,.03)">
-              <td><span class="dt-avatar" style="background:#ddd;color:#888">BC</span><span class="dt-name">Ben Carter</span></td>
-              <td>Hartwell Electronics</td><td><span class="tier-pill tier-silver">Silver</span></td>
-              <td style="font-weight:700;color:var(--text-1)">5,100</td><td><span style="color:#7a5800;font-weight:700">48%</span></td>
-              <td>2</td><td>21 days ago</td><td><span class="sbadge pending">At Risk</span></td>
-              <td style="text-align:right"><div style="display:flex;gap:5px;justify-content:flex-end"><button class="btn-ghost" style="color:#c03000;border-color:rgba(243,79,28,.3)"><i class="fa-solid fa-bell"></i> Nudge</button><button class="btn-ghost">View</button></div></td>
-            </tr>
-            <tr style="background:rgba(243,79,28,.02)">
-              <td><span class="dt-avatar" style="background:#F34F1C">AR</span><span class="dt-name">Alex Rivera</span></td>
-              <td>Apex Solutions</td><td><span class="tier-pill tier-bronze">Bronze</span></td>
-              <td style="font-weight:700;color:var(--text-1)">2,100</td><td><span style="color:var(--text-3);font-weight:700">28%</span></td>
-              <td>1</td><td>32 days ago</td><td><span class="sbadge inactive">Inactive</span></td>
-              <td style="text-align:right"><div style="display:flex;gap:5px;justify-content:flex-end"><button class="btn-ghost" style="color:#c03000;border-color:rgba(243,79,28,.3)"><i class="fa-solid fa-bell"></i> Nudge</button><button class="btn-ghost">View</button></div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="padding:.75rem 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:12px;color:var(--text-3)">Showing 8 of 18 resellers</span>
-        <div style="display:flex;gap:6px">
-          <button class="btn-ghost">← Prev</button>
-          <button class="btn-ghost" style="background:var(--blue);color:#fff;border-color:var(--blue)">1</button>
-          <button class="btn-ghost">2</button>
-          <button class="btn-ghost">Next →</button>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /dist-resellers -->
-
-
-  <!-- ─────── LEADERBOARD ─────── -->
-  <div class="dist-section" id="dist-leaderboard">
-
-    <div class="prog-card" style="background:linear-gradient(135deg,#fffcf0,#fff8e6);border-color:#fde8a0">
-      <div class="prog-main">
-        <div class="prog-eyebrow">Network Leaderboard · Pacific Distro Co.</div>
-        <div class="prog-level">Q2 2026 Sprint 3 — Distributor Rankings</div>
-        <div class="prog-bar-row">
-          <span class="prog-xp-cur">Your Rank: #2 of 12</span>
-          <span class="prog-xp-max">Sprint ends in 14 days</span>
-        </div>
-        <div class="prog-track"><div class="prog-fill" style="width:79%;background:linear-gradient(90deg,#FFBA01,#7FBC00)"></div></div>
-        <div class="prog-sub">$127k gap to #1 Sunrise Distribution. Activate 2 more resellers to close the revenue lead this sprint.</div>
-      </div>
-      <div class="prog-next">
-        <div class="prog-next-lbl">Sprint</div>
-        <div class="prog-next-val">Q2 · S3</div>
-      </div>
-      <div class="prog-rank-box">
-        <div class="prog-rank-lbl">Network Score</div>
-        <div class="prog-rank-num" style="color:#FFBA01">#2</div>
-        <div class="prog-rank-streak" style="background:#7FBC00"><i class="fa-solid fa-arrow-trend-up" style="font-size:9px"></i> Up 1 Sprint</div>
-      </div>
-    </div>
-
-    <div class="charts-row">
-      <!-- KPI mini cards -->
-      <div class="chart-card" style="flex:0 0 auto;min-width:200px;display:flex;flex-direction:column;gap:14px;justify-content:center">
-        <div style="text-align:center;padding:8px 0 4px">
-          <div style="font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Your Network Rank</div>
-          <div style="font-size:2.8rem;font-weight:900;color:#FFBA01;line-height:1">#2</div>
-          <div style="font-size:11px;color:var(--text-3);margin-top:2px">of 12 distributors</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="background:var(--bg);border-radius:8px;padding:8px 10px;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:var(--text-1)">18</div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:600;margin-top:2px">Resellers</div>
-          </div>
-          <div style="background:var(--bg);border-radius:8px;padding:8px 10px;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:#7FBC00">$485k</div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:600;margin-top:2px">Revenue</div>
-          </div>
-          <div style="background:var(--bg);border-radius:8px;padding:8px 10px;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:var(--blue)">87%</div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:600;margin-top:2px">Training</div>
-          </div>
-          <div style="background:var(--bg);border-radius:8px;padding:8px 10px;text-align:center">
-            <div style="font-size:1rem;font-weight:900;color:var(--azure)">3</div>
-            <div style="font-size:10px;color:var(--text-3);font-weight:600;margin-top:2px">Top 25</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Network vs network bars -->
-      <div class="chart-card" style="flex:1">
-        <div class="chart-header">
-          <div class="chart-title">Network Revenue Comparison</div>
-          <span style="font-size:11px;color:var(--text-3)">Q2 2026</span>
-        </div>
-        <div class="net-compare">
-          <div class="net-compare-row">
-            <span class="net-compare-label">#1 Sunrise Distribution</span>
-            <div class="net-compare-bar-wrap"><div class="net-compare-bar" style="width:100%;background:#dce9f7;color:var(--text-2)">$612k</div></div>
-            <span class="net-compare-val">$612k</span>
-          </div>
-          <div class="net-compare-row">
-            <span class="net-compare-label" style="color:var(--blue);font-weight:800">#2 Pacific Distro Co. ★</span>
-            <div class="net-compare-bar-wrap"><div class="net-compare-bar" style="width:79%;background:var(--blue)">$485k</div></div>
-            <span class="net-compare-val" style="color:var(--blue);font-weight:800">$485k</span>
-          </div>
-          <div class="net-compare-row">
-            <span class="net-compare-label">#3 CoreLink Distro</span>
-            <div class="net-compare-bar-wrap"><div class="net-compare-bar" style="width:62%;background:#dce9f7;color:var(--text-2)">$378k</div></div>
-            <span class="net-compare-val">$378k</span>
-          </div>
-          <div class="net-compare-row">
-            <span class="net-compare-label">#4 Apex Wholesale</span>
-            <div class="net-compare-bar-wrap"><div class="net-compare-bar" style="width:48%;background:#dce9f7;color:var(--text-2)">$294k</div></div>
-            <span class="net-compare-val">$294k</span>
-          </div>
-          <div class="net-compare-row">
-            <span class="net-compare-label">#5 TechBridge Dist.</span>
-            <div class="net-compare-bar-wrap"><div class="net-compare-bar" style="width:38%;background:#dce9f7;color:var(--text-2)">$231k</div></div>
-            <span class="net-compare-val">$231k</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="full-card">
-      <div class="full-card-head">
-        <div class="full-card-title">Global Reseller Rankings — Your Network Highlighted</div>
-        <span style="font-size:11px;color:var(--text-3)">3 of your resellers in top 25</span>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="dt">
-          <thead><tr><th>Rank</th><th>Reseller</th><th>Network</th><th>Revenue</th><th>XP</th><th>Tier</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr>
-              <td style="font-weight:700;color:#FFBA01">#1</td>
-              <td><span class="dt-avatar" style="background:linear-gradient(135deg,#FFBA01,#c49000);color:#fff">MW</span><span class="dt-name">Matt Wilson</span></td>
-              <td style="font-weight:700;color:var(--blue)">★ Pacific Distro Co.</td>
-              <td>$210,000</td><td style="font-weight:700">18,500</td><td><span class="tier-pill tier-diamond">Diamond</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr>
-              <td style="font-weight:700;color:#a0a0a0">#2</td>
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">JL</span><span class="dt-name">James Liu</span></td>
-              <td>Sunrise Distribution</td>
-              <td>$198,000</td><td style="font-weight:700">17,800</td><td><span class="tier-pill tier-diamond">Diamond</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr>
-              <td style="font-weight:700;color:#cd7f32">#3</td>
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">EW</span><span class="dt-name">Emma Watson</span></td>
-              <td>Sunrise Distribution</td>
-              <td>$182,500</td><td style="font-weight:700">16,400</td><td><span class="tier-pill tier-diamond">Diamond</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr>
-              <td>#4</td>
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">RB</span><span class="dt-name">Ryan Brooks</span></td>
-              <td>CoreLink Distro</td>
-              <td>$164,200</td><td style="font-weight:700">15,900</td><td><span class="tier-pill tier-gold">Gold</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr>
-              <td>#5</td>
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">LH</span><span class="dt-name">Lucy Hanson</span></td>
-              <td>Apex Wholesale</td>
-              <td>$159,800</td><td style="font-weight:700">14,700</td><td><span class="tier-pill tier-gold">Gold</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr style="background:rgba(0,120,215,.03)">
-              <td>#7</td>
-              <td><span class="dt-avatar" style="background:#01A6F0">SO</span><span class="dt-name">Sarah O'Brien</span></td>
-              <td style="font-weight:700;color:var(--blue)">★ Pacific Distro Co.</td>
-              <td>$158,000</td><td style="font-weight:700;color:var(--blue)">16,900</td><td><span class="tier-pill tier-diamond">Diamond</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr>
-              <td>#9</td>
-              <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">PJ</span><span class="dt-name">Peter Johnson</span></td>
-              <td>Sunrise Distribution</td>
-              <td>$134,000</td><td style="font-weight:700">12,200</td><td><span class="tier-pill tier-gold">Gold</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-            <tr style="background:rgba(0,120,215,.03)">
-              <td>#12</td>
-              <td><span class="dt-avatar" style="background:#7FBC00">TF</span><span class="dt-name">Tom Fletcher</span></td>
-              <td style="font-weight:700;color:var(--blue)">★ Pacific Distro Co.</td>
-              <td>$112,200</td><td style="font-weight:700;color:var(--blue)">15,200</td><td><span class="tier-pill tier-gold">Gold</span></td><td><span class="sbadge active">Active</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div><!-- /dist-leaderboard -->
-
-
-  <!-- ─────── REPORTS ─────── -->
-  <div class="dist-section" id="dist-reports">
-
-    <div class="admin-ph">
-      <div><div class="admin-ph-title">Reports</div><div class="admin-ph-sub">Network performance reports for Pacific Distro Co.</div></div>
-      <select class="comm-select" style="width:auto;font-size:12px;padding:8px 12px">
-        <option>Q2 2026</option><option>Q1 2026</option><option>Q4 2025</option>
-      </select>
-    </div>
-
-    <div class="report-grid">
-      <div class="report-card">
-        <div class="report-icon" style="background:rgba(1,166,240,.1);color:#01A6F0"><i class="fa-solid fa-chart-line"></i></div>
-        <div class="report-body">
-          <div class="report-title">Network Health Report</div>
-          <div class="report-desc">Overview of your reseller network: engagement rates, training completion, deal activity, and tier distribution.</div>
-          <div class="report-meta">Last generated: May 1, 2026 · 8 pages</div>
-          <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-users"></i></div>
-        <div class="report-body">
-          <div class="report-title">Reseller Engagement Report</div>
-          <div class="report-desc">Individual reseller activity breakdown — logins, activities completed, POEs submitted, and at-risk flags.</div>
-          <div class="report-meta">Last generated: May 1, 2026 · 14 pages</div>
-          <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-handshake"></i></div>
-        <div class="report-body">
-          <div class="report-title">Deal Pipeline Report</div>
-          <div class="report-desc">All deal closures submitted by your resellers — SKUs, values, approval status, and revenue totals for the quarter.</div>
-          <div class="report-meta">Last generated: Apr 28, 2026 · 10 pages</div>
-          <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
-        </div>
-      </div>
-      <div class="report-card">
-        <div class="report-icon" style="background:rgba(255,186,1,.1);color:#FFBA01"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="report-body">
-          <div class="report-title">Training Completion Report</div>
-          <div class="report-desc">Masterclass attendance, MS Learn completions, quiz scores, and accreditation status per reseller.</div>
-          <div class="report-meta">Last generated: May 1, 2026 · 6 pages</div>
-          <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="full-card">
-      <div class="full-card-head"><div class="full-card-title">Report History</div><button class="btn-ghost"><i class="fa-solid fa-rotate"></i> Regenerate All</button></div>
-      <div style="overflow-x:auto">
-        <table class="dt">
-          <thead><tr><th>Report Name</th><th>Quarter</th><th>Generated</th><th>Pages</th><th style="text-align:right">Download</th></tr></thead>
-          <tbody>
-            <tr><td class="dt-name">Network Health Report</td><td>Q2 2026</td><td>May 1, 2026</td><td>8</td><td style="text-align:right"><button class="btn-ghost"><i class="fa-solid fa-download"></i> PDF</button></td></tr>
-            <tr><td class="dt-name">Reseller Engagement Report</td><td>Q2 2026</td><td>May 1, 2026</td><td>14</td><td style="text-align:right"><button class="btn-ghost"><i class="fa-solid fa-download"></i> PDF</button></td></tr>
-            <tr><td class="dt-name">Deal Pipeline Report</td><td>Q2 2026</td><td>Apr 28, 2026</td><td>10</td><td style="text-align:right"><button class="btn-ghost"><i class="fa-solid fa-download"></i> PDF</button></td></tr>
-            <tr><td class="dt-name">Network Health Report</td><td>Q1 2026</td><td>Mar 31, 2026</td><td>7</td><td style="text-align:right"><button class="btn-ghost"><i class="fa-solid fa-download"></i> PDF</button></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div><!-- /dist-reports -->
-
-  </div><!-- /view-distributor -->
-
   <!-- ══ ADMIN VIEW ══ -->
   <div id="view-admin" class="dash-view">
 
@@ -2677,7 +3223,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
           <span class="prog-xp-max">Sprint ends in 14 days</span>
         </div>
         <div class="prog-track"><div class="prog-fill" style="width:68%;background:linear-gradient(90deg,#7FBC00,#01A6F0)"></div></div>
-        <div class="prog-sub">Sprint completion: 68% · 284 active partners across 3 distributor networks.</div>
+        <div class="prog-sub">Sprint completion: 68% · 272 active partners across AU.</div>
       </div>
       <div class="prog-next">
         <div class="prog-next-lbl">Sprint</div>
@@ -2693,7 +3239,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-top"><div class="kpi-icon" style="background:rgba(1,166,240,.1);color:#01A6F0"><i class="fa-solid fa-users"></i></div><span class="kpi-delta up">+24</span></div>
-        <div class="kpi-val">284</div><div class="kpi-label">Total Partners</div><div class="kpi-sublabel">12 Distributors · 272 Resellers</div>
+        <div class="kpi-val">284</div><div class="kpi-label">Total Partners</div><div class="kpi-sublabel">272 active across AU</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-top"><div class="kpi-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-circle-dollar-to-slot"></i></div><span class="kpi-delta up">+18.3%</span></div>
@@ -2793,7 +3339,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
   <div class="admin-section" id="admin-partners">
 
     <div class="admin-ph">
-      <div><div class="admin-ph-title">Partners</div><div class="admin-ph-sub">Manage resellers and distributors across the SEL ecosystem</div></div>
+      <div><div class="admin-ph-title">Partners</div><div class="admin-ph-sub">Manage partners across the SEL 2.0 ecosystem</div></div>
       <div class="admin-btn-row">
         <button class="btn-outline" onclick="openModal('modal-csv')"><i class="fa-solid fa-upload"></i> Upload CSV</button>
         <button class="btn-primary" onclick="openModal('modal-invite')"><i class="fa-solid fa-envelope"></i> Invite via Email</button>
@@ -2803,69 +3349,63 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
     <div class="full-card">
       <div class="full-card-head">
         <div class="admin-tabs">
-          <button class="admin-tab active" onclick="adminTabSwitch(this)">All (284)</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Resellers (272)</button>
-          <button class="admin-tab" onclick="adminTabSwitch(this)">Distributors (12)</button>
+          <button class="admin-tab active" onclick="adminTabSwitch(this)">All (272)</button>
+          <button class="admin-tab" onclick="adminTabSwitch(this)">Partners (272)</button>
+          
         </div>
         <div class="search-input-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search partners..."></div>
       </div>
       <div style="overflow-x:auto">
         <table class="dt">
-          <thead><tr><th>Partner</th><th>Company</th><th>Type</th><th>Tier</th><th>Points</th><th>Last Active</th><th>Distributor</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead>
+          <thead><tr><th>Partner</th><th>Company</th><th>Type</th><th>Tier</th><th>Points</th><th>Last Active</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead>
           <tbody>
             <tr>
               <td><span class="dt-avatar" style="background:#0078D7">MW</span><span class="dt-name">Matt Wilson</span></td>
               <td>Orion Tech Solutions</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-diamond">Diamond</span></td>
-              <td style="font-weight:700;color:var(--text-1)">18,500</td><td>Today</td><td>Pacific Distro Co.</td><td><span class="sbadge active">Active</span></td>
+              <td style="font-weight:700;color:var(--text-1)">18,500</td><td>Today</td><td><span class="sbadge active">Active</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#01A6F0">SO</span><span class="dt-name">Sarah O'Brien</span></td>
               <td>BlueEdge Systems</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-diamond">Diamond</span></td>
-              <td style="font-weight:700;color:var(--text-1)">16,900</td><td>Yesterday</td><td>Pacific Distro Co.</td><td><span class="sbadge active">Active</span></td>
+              <td style="font-weight:700;color:var(--text-1)">16,900</td><td>Yesterday</td><td><span class="sbadge active">Active</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#7FBC00">TF</span><span class="dt-name">Tom Fletcher</span></td>
               <td>NexGen Retail</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-gold">Gold</span></td>
-              <td style="font-weight:700;color:var(--text-1)">15,200</td><td>2 days ago</td><td>Sunrise Distribution</td><td><span class="sbadge active">Active</span></td>
+              <td style="font-weight:700;color:var(--text-1)">15,200</td><td>2 days ago</td><td><span class="sbadge active">Active</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#FFBA01;color:#fff">CD</span><span class="dt-name">Claire Davidson</span></td>
               <td>CapCity Commerce</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-gold">Gold</span></td>
-              <td style="font-weight:700;color:var(--text-1)">13,800</td><td>3 days ago</td><td>Sunrise Distribution</td><td><span class="sbadge active">Active</span></td>
+              <td style="font-weight:700;color:var(--text-1)">13,800</td><td>3 days ago</td><td><span class="sbadge active">Active</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#a0a0a0">AS</span><span class="dt-name">Adam Sullivan</span></td>
               <td>SA Tech Wholesale</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-silver">Silver</span></td>
-              <td style="font-weight:700;color:var(--text-1)">9,200</td><td>5 days ago</td><td>CoreLink Distro</td><td><span class="sbadge pending">At Risk</span></td>
+              <td style="font-weight:700;color:var(--text-1)">9,200</td><td>5 days ago</td><td><span class="sbadge pending">At Risk</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#e8f0fe;color:#005fa3">AK</span><span class="dt-name">Amy Knight</span></td>
               <td>Coastal IT Group</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-silver">Silver</span></td>
-              <td style="font-weight:700;color:var(--text-1)">7,400</td><td>1 week ago</td><td>CoreLink Distro</td><td><span class="sbadge pending">At Risk</span></td>
+              <td style="font-weight:700;color:var(--text-1)">7,400</td><td>1 week ago</td><td><span class="sbadge pending">At Risk</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
             <tr>
               <td><span class="dt-avatar" style="background:#F34F1C">AR</span><span class="dt-name">Alex Rivera</span></td>
               <td>Apex Solutions</td><td><span class="sbadge draft">Reseller</span></td><td><span class="tier-pill tier-bronze">Bronze</span></td>
-              <td style="font-weight:700;color:var(--text-1)">2,100</td><td>32 days ago</td><td>Pacific Distro Co.</td><td><span class="sbadge inactive">Inactive</span></td>
-              <td style="text-align:right"><button class="btn-ghost">View</button></td>
-            </tr>
-            <tr>
-              <td><span class="dt-avatar" style="background:#0078D7">PD</span><span class="dt-name">Pacific Distro Co.</span></td>
-              <td>Pacific Distro Co.</td><td><span class="sbadge" style="background:rgba(0,120,215,.1);color:#005fa3">Distributor</span></td><td><span class="tier-pill tier-platinum">Platinum</span></td>
-              <td style="font-weight:700;color:var(--text-1)">—</td><td>Today</td><td>—</td><td><span class="sbadge active">Active</span></td>
+              <td style="font-weight:700;color:var(--text-1)">2,100</td><td>32 days ago</td><td><span class="sbadge inactive">Inactive</span></td>
               <td style="text-align:right"><button class="btn-ghost">View</button></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div style="padding:.75rem 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:12px;color:var(--text-3)">Showing 8 of 284 partners</span>
+        <span style="font-size:12px;color:var(--text-3)">Showing 7 of 272 partners</span>
         <div style="display:flex;gap:6px">
           <button class="btn-ghost">← Prev</button>
           <button class="btn-ghost" style="background:var(--blue);color:#fff;border-color:var(--blue)">1</button>
@@ -3136,9 +3676,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
           <div class="comm-form">
             <input class="comm-input" type="text" placeholder="Announcement title...">
             <select class="comm-select">
-              <option>All Partners (284)</option>
-              <option>Resellers Only (272)</option>
-              <option>Distributors Only (12)</option>
+              <option>All Partners (272)</option>
               <option>Gold Tier &amp; Above</option>
               <option>Diamond Tier Partners</option>
               <option>At-Risk Partners (12)</option>
@@ -3214,7 +3752,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
         <div class="report-icon" style="background:rgba(127,188,0,.1);color:#7FBC00"><i class="fa-solid fa-users"></i></div>
         <div class="report-body">
           <div class="report-title">Partner Engagement Report</div>
-          <div class="report-desc">Breakdown by partner, distributor, and tier. Includes at-risk partner list with last activity dates.</div>
+          <div class="report-desc">Breakdown by partner and tier. Includes at-risk partner list with last activity dates.</div>
           <div class="report-meta">Last generated: May 1, 2026 · 22 pages</div>
           <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
         </div>
@@ -3223,7 +3761,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
         <div class="report-icon" style="background:rgba(0,120,215,.1);color:#0078D7"><i class="fa-solid fa-handshake"></i></div>
         <div class="report-body">
           <div class="report-title">Deal Pipeline Report</div>
-          <div class="report-desc">All submitted deal closures with SKUs, deal values, approval status, and revenue attribution by distributor.</div>
+          <div class="report-desc">All submitted deal closures with SKUs, deal values, approval status, and revenue attribution by partner.</div>
           <div class="report-meta">Last generated: Apr 28, 2026 · 18 pages</div>
           <div class="report-dl"><button class="btn-primary"><i class="fa-solid fa-file-pdf"></i> PDF</button><button class="btn-outline"><i class="fa-solid fa-table"></i> CSV</button></div>
         </div>
@@ -3279,25 +3817,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 
     <!-- Form body -->
     <div class="modal-body" id="invite-form-body">
-
-      <!-- Role + Distributor -->
-      <div class="field-row-2">
-        <div class="field-group">
-          <div class="field-label">Partner Type</div>
-          <select class="comm-select" id="invite-role" onchange="toggleDistributorField()" style="width:100%">
-            <option value="reseller">Reseller</option>
-            <option value="distributor">Distributor</option>
-          </select>
-        </div>
-        <div class="field-group" id="invite-disti-wrap">
-          <div class="field-label">Assign to Distributor</div>
-          <select class="comm-select" style="width:100%">
-            <option>Pacific Distro Co.</option>
-            <option>Sunrise Distribution</option>
-            <option>CoreLink Distro</option>
-          </select>
-        </div>
-      </div>
 
       <!-- Personal message -->
       <div class="field-group">
@@ -3360,7 +3879,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
         <div class="modal-title-icon" style="background:rgba(127,188,0,.1);color:#3a6600"><i class="fa-solid fa-file-csv"></i></div>
         <div>
           <div class="modal-title">Upload Partner CSV</div>
-          <div class="modal-subtitle">Bulk-import resellers or distributors from a spreadsheet</div>
+          <div class="modal-subtitle">Bulk-import partners from a spreadsheet</div>
         </div>
       </div>
       <button class="modal-close" onclick="closeModal('modal-csv')"><i class="fa-solid fa-xmark"></i></button>
@@ -3384,26 +3903,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
           <div id="csv-file-size" style="font-size:11px;color:var(--text-3)">—</div>
         </div>
         <button class="btn-ghost" style="color:#c03000;border-color:rgba(243,79,28,.3)" onclick="clearCsvFile()"><i class="fa-solid fa-trash"></i></button>
-      </div>
-
-      <!-- Partner type -->
-      <div class="field-row-2">
-        <div class="field-group">
-          <div class="field-label">Import as</div>
-          <select class="comm-select" style="width:100%">
-            <option>Resellers</option>
-            <option>Distributors</option>
-          </select>
-        </div>
-        <div class="field-group">
-          <div class="field-label">Assign to Distributor</div>
-          <select class="comm-select" style="width:100%">
-            <option>Pacific Distro Co.</option>
-            <option>Sunrise Distribution</option>
-            <option>CoreLink Distro</option>
-            <option>— None / Distributor upload —</option>
-          </select>
-        </div>
       </div>
 
       <!-- Column guide -->
@@ -3512,8 +4011,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
           <div class="field-group">
             <div class="field-label">Eligible Partners</div>
             <select class="comm-select" style="width:100%">
-              <option>All Partners (284)</option>
-              <option>Resellers Only (272)</option>
+              <option>All Partners (272)</option>
               <option>Gold Tier &amp; Above</option>
               <option>Diamond Tier Only</option>
             </select>
@@ -3835,53 +4333,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
       <button class="btn-primary" style="margin-top:20px" onclick="logDealClose()">Done</button>
     </div>
 
-  </div>
-</div>
-
-<!-- ══ INVITE RESELLER MODAL ══ -->
-<div class="modal-overlay" id="modal-invite-reseller" onclick="overlayClose(event,'modal-invite-reseller')">
-  <div class="modal" style="width:560px">
-    <!-- Default state -->
-    <div id="inv-res-form">
-      <div class="modal-head">
-        <div>
-          <div class="modal-title"><i class="fa-solid fa-user-plus" style="color:var(--blue)"></i> Invite Reseller</div>
-          <div class="modal-sub">New invites will be assigned to <strong>Pacific Distro Co.</strong></div>
-        </div>
-        <button class="modal-close" onclick="closeModal('modal-invite-reseller')"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body">
-        <div style="display:flex;gap:8px;margin-bottom:12px">
-          <input class="comm-input" id="inv-res-email" type="email" placeholder="reseller@company.com" style="flex:1">
-          <button class="btn-primary" onclick="addResInviteRow()" style="white-space:nowrap"><i class="fa-solid fa-plus"></i> Add</button>
-        </div>
-        <div class="invite-list" id="inv-res-list">
-          <div class="invite-row" data-email="sarah.jones@techpoint.com">
-            <i class="fa-solid fa-envelope" style="color:var(--blue);font-size:13px"></i>
-            <span style="flex:1;font-size:13px">sarah.jones@techpoint.com</span>
-            <span class="sbadge" style="background:rgba(1,166,240,.1);color:#005a8e;font-size:10px">Reseller</span>
-            <button class="invite-remove" onclick="removeResInviteRow(this)"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-        </div>
-        <div style="background:var(--bg);border-radius:8px;padding:12px;margin-top:14px;font-size:12px;color:var(--text-3)">
-          <i class="fa-solid fa-circle-info" style="color:var(--azure);margin-right:6px"></i>
-          Invitees will receive a welcome email with onboarding instructions and will be linked to your distributor network automatically.
-        </div>
-      </div>
-      <div class="modal-foot">
-        <button class="btn-ghost" onclick="closeModal('modal-invite-reseller')">Cancel</button>
-        <button class="btn-primary" onclick="sendResInvites()"><i class="fa-solid fa-paper-plane"></i> Send Invites</button>
-      </div>
-    </div>
-    <!-- Success state -->
-    <div id="inv-res-success" style="display:none;text-align:center;padding:48px 32px">
-      <div style="width:64px;height:64px;border-radius:50%;background:rgba(127,188,0,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-        <i class="fa-solid fa-check" style="font-size:28px;color:#7FBC00"></i>
-      </div>
-      <div style="font-size:1.1rem;font-weight:800;color:var(--text-1);margin-bottom:8px">Invites Sent!</div>
-      <div style="font-size:13px;color:var(--text-3);margin-bottom:24px">Your resellers will receive a welcome email with onboarding details and will appear in your My Resellers list once they sign up.</div>
-      <button class="btn-primary" onclick="closeModal('modal-invite-reseller');document.getElementById('inv-res-form').style.display='';document.getElementById('inv-res-success').style.display='none'">Done</button>
-    </div>
   </div>
 </div>
 
@@ -4297,12 +4748,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);display:fl
 // Role detection — runs before DOMContentLoaded to minimise flash
 (function(){
   var role = localStorage.getItem('sel-role') || 'reseller';
+  // Legacy distributor role is gone — fall back to partner (internally still keyed 'reseller')
+  if (role === 'distributor') role = 'reseller';
   var users = {
-    admin:       { name:'Sarah Chen',   tier:'Platform Admin', initials:'SC' },
-    distributor: { name:'Marcus Kim',   tier:'Gold Partner',   initials:'MK' },
-    reseller:    { name:'Alex Rivera',  tier:'Diamond Tier',   initials:'AR' }
+    admin:    { name:'Sarah Chen',  tier:'Platform Admin', initials:'SC' },
+    reseller: { name:'Alex Rivera', tier:'Diamond Tier',   initials:'AR' }
   };
-  var viewMap = { admin:'view-admin', distributor:'view-distributor', reseller:'view-reseller' };
+  var viewMap = { admin:'view-admin', reseller:'view-reseller' };
   window.__selRole = role;
   window.__selUser = users[role] || users.reseller;
   window.__selView = viewMap[role] || 'view-reseller';
@@ -4324,23 +4776,12 @@ window.addEventListener('DOMContentLoaded', function(){
   var sidebarConfig = {
     reseller: {
       tier: 'Diamond Tier Partner',
-      btn:  { icon: 'fa-plus', text: 'Log a Deal', action: "openModal('modal-log-deal')" },
+      btn:  null,   // No CTA on the partner sidebar — keeps the surface clean
       items: [
-        { icon: 'fa-house',           text: 'Home',         section: 'res-zone' },
-        { icon: 'fa-user-tie',        text: 'My Coach',     section: 'res-coach' },
-        { icon: 'fa-trophy',          text: 'Leaderboard',  section: 'res-leaderboard' },
-        { icon: 'fa-handshake',       text: 'My Deals',     section: 'res-deals' },
-        { icon: 'fa-gift',            text: 'Rewards',      section: 'res-rewards' }
-      ]
-    },
-    distributor: {
-      tier: 'Gold Distributor',
-      btn:  { icon: 'fa-user-plus', text: 'Invite Reseller', action: "openModal('modal-invite-reseller')" },
-      items: [
-        { icon: 'fa-gauge-high',  text: 'Overview',      section: 'dist-overview' },
-        { icon: 'fa-store',       text: 'My Resellers',  section: 'dist-resellers' },
-        { icon: 'fa-trophy',      text: 'Leaderboard',   section: 'dist-leaderboard' },
-        { icon: 'fa-file-lines',  text: 'Reports',       section: 'dist-reports' }
+        { icon: 'fa-house',           text: 'Home',  section: 'res-zone' },
+        { icon: 'fa-graduation-cap',  text: 'Learn', section: 'res-learn' },
+        { icon: 'fa-briefcase',       text: 'Sell',  section: 'res-sell' },
+        { icon: 'fa-trophy',          text: 'Earn',  section: 'res-earn' }
       ]
     },
     admin: {
@@ -4371,12 +4812,17 @@ window.addEventListener('DOMContentLoaded', function(){
       + '<i class="fa-solid ' + item.icon + '"></i> ' + item.text + '</a>';
   }).join('');
 
-  // Update refer/action button
-  document.getElementById('sb-refer-icon').className = 'fa-solid ' + cfg.btn.icon;
-  document.getElementById('sb-refer-text').textContent = cfg.btn.text;
+  // Update or hide the sidebar CTA button
   var referBtn = document.getElementById('sb-refer-btn');
-  if(cfg.btn.action){ referBtn.setAttribute('onclick', cfg.btn.action); }
-  else { referBtn.removeAttribute('onclick'); }
+  if (cfg.btn) {
+    document.getElementById('sb-refer-icon').className = 'fa-solid ' + cfg.btn.icon;
+    document.getElementById('sb-refer-text').textContent = cfg.btn.text;
+    referBtn.style.display = '';
+    if (cfg.btn.action) { referBtn.setAttribute('onclick', cfg.btn.action); }
+    else { referBtn.removeAttribute('onclick'); }
+  } else {
+    referBtn.style.display = 'none';
+  }
 
   // Re-attach sidebar click listeners after rebuild
   nav.querySelectorAll('.sb-nav-item').forEach(function(item){
@@ -4387,10 +4833,13 @@ window.addEventListener('DOMContentLoaded', function(){
       // Section switching
       var targetSection = this.getAttribute('data-role-section');
       if(targetSection){
-        var sectionClass = role === 'admin' ? '.admin-section' : role === 'distributor' ? '.dist-section' : '.reseller-section';
+        var sectionClass = role === 'admin' ? '.admin-section' : '.reseller-section';
         document.querySelectorAll(sectionClass).forEach(function(s){ s.classList.remove('active'); });
         var target = document.getElementById(targetSection);
         if(target) target.classList.add('active');
+        // When entering Learn or Sell via the sidebar, always start at the goal-picker (Step 1)
+        if (targetSection === 'res-learn' && typeof resetWizard === 'function') resetWizard('learn');
+        if (targetSection === 'res-sell'  && typeof resetWizard === 'function') resetWizard('sell');
       }
     });
   });
@@ -4412,12 +4861,6 @@ function overlayClose(e, id){
 }
 
 // ── INVITE MODAL ───────────────────────────────
-function toggleDistributorField(){
-  var role = document.getElementById('invite-role').value;
-  var wrap = document.getElementById('invite-disti-wrap');
-  wrap.style.display = role === 'distributor' ? 'none' : '';
-}
-
 function addInviteRow(){
   var list = document.getElementById('invite-list');
   var row = document.createElement('div');
@@ -4489,33 +4932,6 @@ function importCsv(){
   document.getElementById('csv-foot').style.display = 'none';
   var s = document.getElementById('csv-success');
   s.style.display = 'flex';
-}
-
-// ── RESELLER INVITE MODAL ──────────────────────
-function addResInviteRow(){
-  var inp = document.getElementById('inv-res-email');
-  var email = inp.value.trim();
-  if(!email) return;
-  var list = document.getElementById('inv-res-list');
-  var row = document.createElement('div');
-  row.className = 'invite-row';
-  row.setAttribute('data-email', email);
-  row.innerHTML = '<i class="fa-solid fa-envelope" style="color:var(--blue);font-size:13px"></i>'
-    + '<span style="flex:1;font-size:13px">' + email + '</span>'
-    + '<span class="sbadge" style="background:rgba(1,166,240,.1);color:#005a8e;font-size:10px">Reseller</span>'
-    + '<button class="invite-remove" onclick="removeResInviteRow(this)"><i class="fa-solid fa-xmark"></i></button>';
-  list.appendChild(row);
-  inp.value = '';
-  inp.focus();
-}
-
-function removeResInviteRow(btn){
-  btn.closest('.invite-row').remove();
-}
-
-function sendResInvites(){
-  document.getElementById('inv-res-form').style.display = 'none';
-  document.getElementById('inv-res-success').style.display = '';
 }
 
 // Reset modals when closed so they can be reopened cleanly
@@ -4939,6 +5355,60 @@ function goToCoach(prefill) {
   }
 }
 
+// Switch to a pillar section + activate its sidebar item. Pass 'learn' / 'sell' / 'earn'.
+function goToPillar(pillar) {
+  var sectionId = 'res-' + pillar;
+  document.querySelectorAll('.sb-nav-item').forEach(function(item) {
+    item.classList.toggle('active', item.getAttribute('data-role-section') === sectionId);
+  });
+  document.querySelectorAll('.reseller-section').forEach(function(s) { s.classList.remove('active'); });
+  var target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+  // Reset any wizard to step 1 when entering a pillar fresh
+  if (pillar === 'learn' || pillar === 'sell') resetWizard(pillar);
+}
+
+// Wizard step navigation — keeps Learn and Sell sections at "Step 1: pick a goal/situation"
+function resetWizard(pillar) {
+  var sec = document.getElementById('res-' + pillar);
+  if (!sec) return;
+  sec.querySelectorAll('.wiz-step').forEach(function(s){ s.classList.remove('active'); });
+  var step1 = sec.querySelector('.wiz-step-1');
+  if (step1) step1.classList.add('active');
+}
+function wizGoToResults(pillar, key) {
+  var sec = document.getElementById('res-' + pillar);
+  if (!sec) return;
+  sec.querySelectorAll('.wiz-step').forEach(function(s){ s.classList.remove('active'); });
+  var step2 = sec.querySelector('.wiz-step-2');
+  if (step2) {
+    step2.classList.add('active');
+    step2.setAttribute('data-active-key', key);
+    // Show only items matching this key (or all if key === 'all')
+    step2.querySelectorAll('.wiz-item').forEach(function(it){
+      var matches = key === 'all' || it.getAttribute('data-keys').split(' ').indexOf(key) !== -1;
+      it.style.display = matches ? '' : 'none';
+    });
+    // Update results sub-header
+    var titleEl = step2.querySelector('.wiz-results-title');
+    if (titleEl) titleEl.textContent = step2.querySelector('[data-keys-label][data-keys-label-key="'+key+'"]').textContent;
+  }
+}
+
+// Earn page reward filter (Swap now / Almost / Locked)
+function earnFilter(status) {
+  var sec = document.getElementById('res-earn');
+  if (!sec) return;
+  sec.querySelectorAll('.earn-chip').forEach(function(c){
+    c.classList.toggle('active', c.getAttribute('data-status') === status);
+  });
+  sec.querySelectorAll('.earn-card').forEach(function(card){
+    var s = card.getAttribute('data-status');
+    var matches = status === 'all' || s === status;
+    card.style.display = matches ? '' : 'none';
+  });
+}
+
 // ────────────────────────────────────────────────
 // RECOMMENDATION ENGINE — Sample curated content
 // (In production this lives in a DB / RAG index)
@@ -5123,7 +5593,7 @@ var kbFaqs = {
   pricing: {
     title: 'Pricing &amp; Licensing',
     items: [
-      { q: 'What\'s the discount structure for volume orders?', a: 'For Surface and accessories: <strong>tiered partner pricing</strong> kicks in at 25, 100, and 500 units — check the current quarter\'s margin sheet in DPC. For M365: <strong>Open Value</strong> for 5–249 seats, <strong>Enterprise Agreement</strong> at 500+. Always log volume deals through your distributor for the best margin.' },
+      { q: 'What\'s the discount structure for volume orders?', a: 'For Surface and accessories: <strong>tiered partner pricing</strong> kicks in at 25, 100, and 500 units — check the current quarter\'s margin sheet in DPC. For M365: <strong>Open Value</strong> for 5–249 seats, <strong>Enterprise Agreement</strong> at 500+. Always log volume deals through SEL 2.0 for the best margin.' },
       { q: 'Can customers mix licence types in one tenant?', a: 'Yes — you can have <strong>multiple SKUs in one M365 tenant</strong>. Common pattern: Business Premium for execs and IT, Business Standard for general staff, Basic for shared retail/frontline. Each user gets the features of their assigned SKU.' },
       { q: 'What\'s the difference between Open and CSP licensing?', a: '<strong>Open</strong>: customer owns perpetual licences — declining in availability. <strong>CSP (Cloud Solution Provider)</strong>: monthly or annual subscription via partner — current default for almost all M365 and Azure. CSP gives you recurring revenue and tighter customer relationship.' }
     ]
@@ -5198,6 +5668,80 @@ document.querySelectorAll('.chart-toggle-btn').forEach(function(btn){
   });
 });
 
+// ─── FLOATING AI ASSISTANT — slide-in panel, available everywhere ───
+function openCoachPanel(){
+  document.getElementById('floatCoachPanel').classList.add('open');
+  document.getElementById('floatCoachBackdrop').classList.add('open');
+  setTimeout(function(){
+    var inp = document.getElementById('fcpInput');
+    if (inp) inp.focus();
+  }, 300);
+}
+function closeCoachPanel(){
+  document.getElementById('floatCoachPanel').classList.remove('open');
+  document.getElementById('floatCoachBackdrop').classList.remove('open');
+}
+function fcpSendQuick(text){
+  var body = document.getElementById('fcpBody');
+  if (!body) return;
+  var userMsg = document.createElement('div');
+  userMsg.className = 'fcp-msg user';
+  userMsg.textContent = text;
+  body.appendChild(userMsg);
+  body.scrollTop = body.scrollHeight;
+  setTimeout(function(){
+    var botMsg = document.createElement('div');
+    botMsg.className = 'fcp-msg bot';
+    botMsg.innerHTML = "On it — here's what I'd take to a customer call on that. Want me to draft a follow-up email too?";
+    body.appendChild(botMsg);
+    body.scrollTop = body.scrollHeight;
+  }, 500);
+}
+function fcpSendFromInput(){
+  var inp = document.getElementById('fcpInput');
+  if (!inp || !inp.value.trim()) return;
+  fcpSendQuick(inp.value.trim());
+  inp.value = '';
+}
+// ESC to close
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeCoachPanel();
+});
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FLOATING AI ASSISTANT — visible on every page
+     ═══════════════════════════════════════════════════════════ -->
+<button class="float-coach" onclick="openCoachPanel()" aria-label="Open AI Assistant">
+  <i class="fa-solid fa-wand-magic-sparkles"></i>
+</button>
+
+<div class="float-coach-backdrop" id="floatCoachBackdrop" onclick="closeCoachPanel()"></div>
+
+<aside class="float-coach-panel" id="floatCoachPanel" aria-label="AI Assistant" role="complementary">
+  <div class="fcp-header">
+    <div class="fcp-title">
+      <div class="fcp-avatar"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div>
+        <div class="fcp-name">AI Assistant</div>
+        <div class="fcp-status">Online now</div>
+      </div>
+    </div>
+    <button class="fcp-close" onclick="closeCoachPanel()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="fcp-body" id="fcpBody">
+    <div class="fcp-msg bot">Hi Alex! What do you need today? I can find a course, recommend a sales tool, or tell you the single best thing to do this week.</div>
+    <div class="fcp-suggest">
+      <button class="fcp-suggest-chip" onclick="fcpSendQuick('What should I learn this week?')">What should I learn this week?</button>
+      <button class="fcp-suggest-chip" onclick="fcpSendQuick('Help me handle a pricing objection')">Handle a pricing objection</button>
+      <button class="fcp-suggest-chip" onclick="fcpSendQuick('Find a device pitch asset')">Find a device pitch asset</button>
+    </div>
+  </div>
+  <div class="fcp-input-row">
+    <input id="fcpInput" class="fcp-input" type="text" placeholder="Tell your AI Assistant what you need…" onkeydown="if(event.key==='Enter')fcpSendFromInput()">
+    <button class="fcp-send" onclick="fcpSendFromInput()" aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</aside>
+
 </body>
 </html>

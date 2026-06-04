@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Excellence League — Statement of Work (SoW)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:#0078D7; --blue-dk:#005499; --azure:#01A6F0;
+    --gold:#FFBA01; --green:#7FBC00; --orange:#F34F1C;
+    --ink:#1a1f29; --text-2:#3f4654; --text-3:#6b7280;
+    --border:#e3e8ef; --bg:#f4f6fa; --surface:#ffffff;
+    --font:'Inter',-apple-system,'Segoe UI',sans-serif;
+  }
+
+  html,body { background:var(--bg); font-family:var(--font); color:var(--ink); }
+
+  .doc {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--surface);
+    box-shadow: 0 4px 40px rgba(0,0,0,.08);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, #003f7a 0%, #0050a0 45%, #0078D7 100%);
+    color: #fff;
+    padding: 4rem 3.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content:''; position:absolute; top:-140px; right:-110px;
+    width:420px; height:420px; border-radius:50%;
+    background:rgba(1,166,240,.22);
+  }
+  .cover-ms {
+    display:grid; grid-template-columns:1fr 1fr; gap:3px;
+    width:30px; margin-bottom:1.5rem; position:relative;
+  }
+  .cover-ms span { width:13px; height:13px; }
+  .ms-r{background:#f25022}.ms-g{background:#7fba00}.ms-b{background:#00a4ef}.ms-y{background:#ffb900}
+  .cover-eyebrow {
+    font-size:12px; font-weight:700; letter-spacing:.16em;
+    text-transform:uppercase; color:rgba(255,255,255,.65);
+    margin-bottom:1.25rem; position:relative;
+  }
+  .cover-title {
+    font-size:2.9rem; font-weight:900; line-height:1.08;
+    letter-spacing:-.025em; margin-bottom:1rem; position:relative;
+  }
+  .cover-sub {
+    font-size:1.05rem; color:rgba(255,255,255,.8);
+    font-weight:400; max-width:520px; line-height:1.6;
+    position:relative; margin-bottom:2.5rem;
+  }
+  .cover-meta {
+    display:grid; grid-template-columns:repeat(2,1fr);
+    gap:1px; background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.15); border-radius:10px;
+    overflow:hidden; position:relative;
+  }
+  .cover-meta-item { background:rgba(0,40,90,.35); padding:14px 18px; }
+  .cover-meta-label {
+    font-size:10px; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:rgba(255,255,255,.55);
+    margin-bottom:4px;
+  }
+  .cover-meta-val { font-size:14px; font-weight:700; color:#fff; }
+
+  /* ── BODY ── */
+  .body { padding: 3rem 3.5rem 3.5rem; }
+
+  .toc {
+    background:var(--bg); border:1px solid var(--border);
+    border-radius:12px; padding:1.5rem 1.75rem; margin-bottom:3rem;
+  }
+  .toc-title {
+    font-size:12px; font-weight:800; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-3); margin-bottom:1rem;
+  }
+  .toc-list { list-style:none; columns:2; column-gap:2rem; }
+  .toc-list li {
+    font-size:13px; color:var(--text-2); padding:5px 0;
+    display:flex; gap:10px; break-inside:avoid;
+  }
+  .toc-list li span { color:var(--blue); font-weight:700; flex-shrink:0; }
+
+  section { margin-bottom: 2.75rem; }
+
+  .sec-num {
+    display:inline-block;
+    font-size:11px; font-weight:800; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--blue);
+    margin-bottom:8px;
+  }
+  h2 {
+    font-size:1.5rem; font-weight:900; letter-spacing:-.02em;
+    color:var(--ink); margin-bottom:1rem;
+    padding-bottom:.6rem; border-bottom:2px solid var(--border);
+  }
+  h3 {
+    font-size:1.05rem; font-weight:800; color:var(--ink);
+    margin:1.5rem 0 .65rem; letter-spacing:-.01em;
+  }
+  h4 {
+    font-size:.92rem; font-weight:800; color:var(--blue-dk);
+    margin:1.1rem 0 .5rem;
+  }
+  p { font-size:13.5px; line-height:1.7; color:var(--text-2); margin-bottom:.85rem; }
+
+  ul.list { list-style:none; margin:.5rem 0 1rem; }
+  ul.list li {
+    font-size:13px; line-height:1.6; color:var(--text-2);
+    padding:5px 0 5px 22px; position:relative;
+  }
+  ul.list li::before {
+    content:''; position:absolute; left:4px; top:12px;
+    width:6px; height:6px; border-radius:50%; background:var(--blue);
+  }
+  ul.list li strong { color:var(--ink); }
+
+  /* tables */
+  table {
+    width:100%; border-collapse:collapse; margin:.75rem 0 1.25rem;
+    font-size:12.5px;
+  }
+  thead th {
+    background:var(--ink); color:#fff;
+    text-align:left; padding:10px 12px;
+    font-size:10.5px; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  tbody td {
+    padding:10px 12px; border-bottom:1px solid var(--border);
+    color:var(--text-2); line-height:1.55; vertical-align:top;
+  }
+  tbody tr:nth-child(even) { background:#fafbfc; }
+  tbody td strong { color:var(--ink); }
+
+  /* phase banner */
+  .phase-banner {
+    display:flex; align-items:center; gap:16px;
+    border-radius:14px; padding:1.25rem 1.5rem;
+    margin-bottom:1.25rem;
+  }
+  .phase-banner.p1 { background:linear-gradient(135deg,#eef6ff,#e0eefb); border:1px solid #c5ddf5; }
+  .phase-banner.p2 { background:linear-gradient(135deg,#fff8e8,#fdf0d0); border:1px solid #f0dca8; }
+  .phase-banner.p3 { background:linear-gradient(135deg,#f0f9e8,#e4f3d4); border:1px solid #cce5ab; }
+  .phase-badge {
+    width:54px; height:54px; border-radius:13px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; font-weight:900; color:#fff;
+  }
+  .phase-banner.p1 .phase-badge { background:linear-gradient(135deg,#0078D7,#01A6F0); }
+  .phase-banner.p2 .phase-badge { background:linear-gradient(135deg,#d99e00,#FFBA01); }
+  .phase-banner.p3 .phase-badge { background:linear-gradient(135deg,#5c8a00,#7FBC00); }
+  .phase-banner-title { font-size:1.15rem; font-weight:900; color:var(--ink); letter-spacing:-.01em; }
+  .phase-banner-sub { font-size:12px; color:var(--text-3); margin-top:2px; font-weight:600; }
+
+  .callout {
+    border-left:3px solid var(--blue);
+    background:#f0f7ff; border-radius:0 8px 8px 0;
+    padding:12px 16px; margin:1rem 0; font-size:12.5px;
+    color:var(--text-2); line-height:1.6;
+  }
+  .callout strong { color:var(--blue-dk); }
+  .callout.warn { border-left-color:var(--gold); background:#fffaee; }
+  .callout.warn strong { color:#a07000; }
+
+  .pill {
+    display:inline-block; font-size:10px; font-weight:800;
+    text-transform:uppercase; letter-spacing:.05em;
+    padding:2px 9px; border-radius:20px; vertical-align:middle;
+  }
+  .pill-in   { background:rgba(127,188,0,.14); color:#3d6800; }
+  .pill-out  { background:rgba(243,79,28,.12); color:#b03612; }
+  .pill-pilot{ background:rgba(0,120,215,.12); color:#005499; }
+
+  .scope-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--border); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden; margin:1rem 0;
+  }
+  .scope-col { background:var(--surface); padding:1.1rem 1.25rem; }
+  .scope-col-head {
+    font-size:12px; font-weight:800; margin-bottom:.6rem;
+    display:flex; align-items:center; gap:7px;
+  }
+  .scope-col-head i { font-size:12px; }
+  .scope-col ul { list-style:none; }
+  .scope-col li {
+    font-size:12px; line-height:1.5; color:var(--text-2);
+    padding:4px 0 4px 16px; position:relative;
+  }
+  .scope-col li::before {
+    content:''; position:absolute; left:2px; top:10px;
+    width:5px; height:5px; border-radius:50%;
+  }
+  .scope-col.in li::before  { background:var(--green); }
+  .scope-col.out li::before { background:var(--orange); }
+
+  .footer-note {
+    margin-top:3rem; padding-top:1.5rem;
+    border-top:1px solid var(--border);
+    font-size:11px; color:var(--text-3); line-height:1.6;
+  }
+
+  .sig-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:2rem;
+    margin-top:1.5rem;
+  }
+  .sig-box { border-top:1.5px solid var(--ink); padding-top:8px; }
+  .sig-box-label { font-size:11px; color:var(--text-3); font-weight:600; }
+  .sig-box-role  { font-size:12px; color:var(--ink); font-weight:700; margin-top:2px; }
+
+  /* running header (print only) */
+  .print-head { display:none; }
+
+  @media print {
+    @page { margin: 14mm 0; }
+    html,body { background:#fff; }
+    .doc { box-shadow:none; max-width:100%; }
+    .body { padding:0 16mm; }
+    .cover { padding:3rem 16mm 2.5rem; }
+    section { page-break-inside:auto; }
+    h2 { page-break-after:avoid; }
+    h3,h4 { page-break-after:avoid; }
+    table,.scope-grid,.phase-banner,.callout { page-break-inside:avoid; }
+    .toc { page-break-after:always; }
+    .phase-banner { page-break-before:auto; }
+    * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- ════ COVER ════ -->
+  <div class="cover">
+    <div class="cover-ms">
+      <span class="ms-r"></span><span class="ms-g"></span>
+      <span class="ms-b"></span><span class="ms-y"></span>
+    </div>
+    <div class="cover-eyebrow">Statement of Work (SoW) &middot; Phased Delivery Plan</div>
+    <div class="cover-title">Sales Excellence<br>League Platform</div>
+    <div class="cover-sub">
+      A phased delivery plan for the SEL partner engagement platform —
+      beginning with a closed pilot.
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Prepared For</div>
+        <div class="cover-meta-val">Microsoft</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Prepared By</div>
+        <div class="cover-meta-val">Shoppertainment LLP</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Document Version</div>
+        <div class="cover-meta-val">v1.1 &middot; 28 May 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Delivery Model</div>
+        <div class="cover-meta-val">3 Phases &middot; Phase 1 = Pilot</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- ════ TOC ════ -->
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">
+        <li><span>1</span> Document Purpose</li>
+        <li><span>2</span> Solution Context</li>
+        <li><span>3</span> Phased Delivery Overview</li>
+        <li><span>4</span> Phase 1 — Pilot</li>
+        <li><span>5</span> Phase 2 — DPC Integration</li>
+        <li><span>6</span> Phase 3 — Rewards Go-Live</li>
+        <li><span>7</span> Technical Architecture</li>
+        <li><span>8</span> Assumptions &amp; Dependencies</li>
+        <li><span>9</span> Out of Scope</li>
+        <li><span>10</span> Governance &amp; Acceptance</li>
+        <li><span>11</span> Timeline</li>
+        <li><span>12</span> Commercials</li>
+      </ul>
+    </div>
+
+    <!-- ════ 1. PURPOSE ════ -->
+    <section>
+      <div class="sec-num">Section 01</div>
+      <h2>Document Purpose</h2>
+      <p>
+        This <strong>Statement of Work (SoW)</strong> defines the delivery scope for the
+        Sales Excellence League (SEL) platform for Microsoft. It describes a three-phase
+        delivery approach, with the first phase delivered as a closed pilot to validate the
+        core experience before broader rollout.
+      </p>
+      <p>
+        The document is intended as a shared reference between Microsoft and Shoppertainment
+        LLP. It sets out what is included in each phase, what is explicitly excluded, the
+        assumptions and dependencies that delivery relies on, and the acceptance criteria
+        for each phase. It is a living document — scope for Phases 2 and 3 will be confirmed
+        and detailed further following the outcomes of the Phase 1 pilot.
+      </p>
+      <div class="callout">
+        <strong>At a glance:</strong> Phase 1 (Pilot) integrates Device Partner University
+        content with an AI course navigator and a gamified leaderboard for a closed user
+        group. Phase 2 adds Device Partner Center marketing assets and a knowledge base.
+        Phase 3 activates the live reward shop.
+      </div>
+    </section>
+
+    <!-- ════ 2. CONTEXT ════ -->
+    <section>
+      <div class="sec-num">Section 02</div>
+      <h2>Solution Context</h2>
+      <p>
+        SEL is a <strong>facilitator and engagement layer</strong> that sits on top of
+        Microsoft's existing partner content platforms. It does not host or replace
+        Microsoft content. Instead, it curates that content, applies a gamification
+        layer to drive engagement, and uses AI to help resellers find what they need
+        quickly.
+      </p>
+      <p>The two Microsoft content platforms SEL connects to are:</p>
+      <ul class="list">
+        <li><strong>Device Partner University (DPU)</strong> — Microsoft's training and certification platform, hosting MS Learn courses, Master Training Team sessions, and webinars. <em>Addressed in Phase 1.</em></li>
+        <li><strong>Device Partner Center (DPC)</strong> — Microsoft's hub for sales and marketing collateral, campaign assets, and partner enablement material. <em>Addressed in Phase 2.</em></li>
+      </ul>
+      <p>
+        SEL's value to Microsoft is measurable: every reseller engaging through SEL is a
+        reseller engaging with DPU and DPC content. The platform turns Microsoft's existing
+        content investment into trackable partner engagement, certification uptake, and
+        sales enablement activity.
+      </p>
+    </section>
+
+    <!-- ════ 3. OVERVIEW ════ -->
+    <section>
+      <div class="sec-num">Section 03</div>
+      <h2>Phased Delivery Overview</h2>
+      <p>
+        Delivery is structured into three sequential phases. Each phase produces a
+        usable, demonstrable increment of the platform. Phase 1 is delivered as a
+        pilot to a closed user group; Phases 2 and 3 progressively expand functionality
+        and audience.
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:14%">Phase</th><th style="width:24%">Name</th><th style="width:34%">Primary Focus</th><th style="width:28%">Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 1</strong><br><span class="pill pill-pilot">Pilot</span></td>
+            <td><strong>DPU Integration &amp; Pilot Launch</strong></td>
+            <td>MS Learn courses, Master Training Team meetings &amp; webinars, AI course navigator, gamified leaderboard, reward shop preview.</td>
+            <td>Core experience validated with a closed user group.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2</strong></td>
+            <td><strong>DPC Integration</strong></td>
+            <td>Marketing asset discovery &amp; download, knowledge base (FAQs, objection handling), AI extended to DPC content.</td>
+            <td>Full sales-enablement content coverage added.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3</strong></td>
+            <td><strong>Rewards Go-Live</strong></td>
+            <td>Live reward shop, points redemption workflow, fulfilment and admin approval.</td>
+            <td>Complete programme — earn and redeem fully live.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>Note on points and rewards:</strong> Users begin earning XP / points from
+        Phase 1 onwards. The reward shop is <strong>visible but non-transactional</strong>
+        during Phases 1 and 2 (a "Coming Soon" preview state), so participants can see what
+        they are working towards. Live redemption is activated in Phase 3.
+      </div>
+    </section>
+
+    <!-- ════ 4. PHASE 1 ════ -->
+    <section>
+      <div class="sec-num">Section 04</div>
+      <h2>Phase 1 — DPU Integration &amp; Pilot Launch</h2>
+
+      <div class="phase-banner p1">
+        <div class="phase-badge">P1</div>
+        <div>
+          <div class="phase-banner-title">Pilot — Closed User Group</div>
+          <div class="phase-banner-sub">DPU integration &middot; AI course navigator &middot; Leaderboard &middot; Reward shop preview</div>
+        </div>
+      </div>
+
+      <h3>4.1 Objective</h3>
+      <p>
+        Validate the core SEL experience with a limited pilot audience — reached via a
+        private sign-up link Microsoft distributes to its intended participants — before
+        broader rollout. Phase 1 proves the platform's ability to drive engagement with DPU
+        training content, demonstrates the AI course navigator, and establishes the
+        gamification and leaderboard mechanics.
+      </p>
+
+      <h3>4.2 In Scope</h3>
+
+      <h4>A. DPU Content Integration</h4>
+      <ul class="list">
+        <li><strong>MS Learn courses</strong> — relevant courses surfaced within SEL as curated, role-based learning paths, deep-linked to the source content on DPU / MS Learn.</li>
+        <li><strong>Master Training Team meetings</strong> — scheduled training sessions surfaced in the platform with details and registration links.</li>
+        <li><strong>Webinars (conducted and hosted by Microsoft)</strong> — Microsoft-hosted webinar sessions surfaced in the platform with registration or replay links. SEL displays and deep-links to these sessions; webinar conduct, hosting, and streaming remain with Microsoft.</li>
+        <li>A curated, minimalist content structure so users are guided to relevant content rather than browsing an overwhelming catalogue.</li>
+      </ul>
+
+      <h4>B. Authentication &amp; Access (Pilot Approach)</h4>
+      <ul class="list">
+        <li><strong>Registration and login handled by a standalone, platform-managed authentication module</strong> for the pilot — an interim approach independent of MS Learn.</li>
+        <li><strong>Self-registration via a private pilot sign-up link</strong> — partners register themselves using the link Microsoft shares with its pilot audience. No admin-managed email allowlist is required.</li>
+        <li>Audience control sits with Microsoft via <strong>link distribution</strong> — the link is shared only with intended pilot participants; the platform itself does not gate by email.</li>
+        <li>Role-based access (e.g. participant, administrator) to support pilot administration.</li>
+      </ul>
+      <div class="callout warn">
+        <strong>Future state:</strong> The production target is single sign-on (SSO) parity
+        with MS Learn. SSO integration is <strong>not in scope for the Phase 1 pilot</strong> —
+        a platform-managed authentication module is the agreed interim solution. MS Learn SSO
+        will be scoped and scheduled as a post-pilot activity.
+      </div>
+
+      <h4>C. AI Course Navigator</h4>
+      <ul class="list">
+        <li>An AI assistant that helps users find the right course based on their learning path or training requirements.</li>
+        <li>The assistant is <strong>conversational</strong> — it can ask clarifying questions to better understand a user's requirement before recommending content.</li>
+        <li>The AI knowledge base is built from the <strong>MS Learn course catalogue</strong>, <strong>upcoming webinars</strong>, and <strong>past webinars</strong> provided by Microsoft.</li>
+        <li>Recommendations deep-link the user directly to the relevant course or session on DPU.</li>
+      </ul>
+
+      <h4>D. AI Certificate Validation &amp; Points Award</h4>
+      <ul class="list">
+        <li>After completing a course, users <strong>upload their certificate of completion</strong> to the platform as proof of training.</li>
+        <li>An <strong>AI validation step</strong> reviews each uploaded certificate — checking that it is a genuine completion certificate and matches the claimed course — before points are awarded.</li>
+        <li>On successful validation, <strong>points / XP are awarded automatically</strong> for the completed course, feeding the user's balance and leaderboard position.</li>
+        <li>Certificates that cannot be validated automatically are flagged for administrator review, keeping a human check in the loop.</li>
+      </ul>
+
+      <h4>E. Leaderboard</h4>
+      <ul class="list">
+        <li><strong>Global leaderboard</strong> ranking participants by points / XP earned through training engagement.</li>
+        <li><strong>Regional filters</strong> allowing the leaderboard to be viewed by region.</li>
+        <li>Points / XP earned from validated course completions and platform engagement activities, displayed against each participant.</li>
+      </ul>
+
+      <h4>F. Reward Shop — Preview Only</h4>
+      <ul class="list">
+        <li>The reward shop (Partner Growth Catalogue) is <strong>visible within the platform</strong> so pilot users can see the rewards available to them.</li>
+        <li>It is presented in a <strong>"Coming Soon"</strong> state — browsing is enabled, but redemption is not transactional in Phase 1.</li>
+        <li>Live redemption is delivered in Phase 3 (see Section 6).</li>
+      </ul>
+
+      <h4>G. Marketing Landing Page</h4>
+      <ul class="list">
+        <li><strong>Public-facing landing page</strong> introducing the SEL platform to Microsoft partners and driving sign-up into the pilot.</li>
+        <li><strong>Content creation</strong> — copy, messaging, value proposition, and the four-pillar narrative (Train, Sell, Convince, Earn) crafted for the partner audience.</li>
+        <li><strong>Section design</strong> — hero, live activity feed, pillars, content preview, leaderboard preview, AI coach showcase, reward catalogue preview, and FAQ.</li>
+        <li><strong>Sign-in flow</strong> wiring the landing page CTAs to the platform's authentication module.</li>
+        <li>Single-page, responsive, brand-aligned with Microsoft's partner identity.</li>
+      </ul>
+
+      <h3>4.3 Phase 1 Scope Boundaries</h3>
+      <div class="scope-grid">
+        <div class="scope-col in">
+          <div class="scope-col-head" style="color:#3d6800"><i class="fa-solid fa-circle-check"></i> Included in Phase 1</div>
+          <ul>
+            <li>DPU content integration (courses, training meetings, Microsoft-hosted webinars surfaced as links)</li>
+            <li>Platform-managed registration &amp; login</li>
+            <li>Self-registration via private pilot sign-up link</li>
+            <li>Conversational AI course navigator</li>
+            <li>AI certificate validation &amp; automatic points award</li>
+            <li>Global + regional leaderboard</li>
+            <li>Points / XP accrual</li>
+            <li>Reward shop in preview ("Coming Soon") state</li>
+            <li>Marketing landing page (content + design)</li>
+          </ul>
+        </div>
+        <div class="scope-col out">
+          <div class="scope-col-head" style="color:#b03612"><i class="fa-solid fa-circle-minus"></i> Not in Phase 1</div>
+          <ul>
+            <li>MS Learn SSO (interim platform-managed auth used instead)</li>
+            <li>DPC marketing assets &amp; knowledge base (Phase 2)</li>
+            <li>Live reward redemption &amp; fulfilment (Phase 3)</li>
+            <li>Public marketing of the pilot sign-up link</li>
+            <li>Production-scale rollout beyond the pilot cohort</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>4.4 Phase 1 Deliverables</h3>
+      <ul class="list">
+        <li>SEL pilot platform deployed and accessible to the closed pilot group.</li>
+        <li>DPU content integrated and presented as curated learning paths.</li>
+        <li>Microsoft-hosted webinars surfaced in the platform via registration / replay deep-links.</li>
+        <li>AI course navigator trained on the supplied MS Learn catalogue and webinar data.</li>
+        <li>AI certificate validation flow, with automatic points award on successful validation and administrator review for flagged certificates.</li>
+        <li>Global and regional leaderboard, live with pilot participant data.</li>
+        <li>Reward shop visible in preview state.</li>
+        <li>Pilot administration view for managing users, reviewing flagged certificates, and monitoring engagement.</li>
+        <li>Marketing landing page (content + design) introducing the platform and driving sign-up.</li>
+      </ul>
+
+      <h3>4.5 Phase 1 Exit Criteria</h3>
+      <p>
+        Phase 1 is considered complete when the pilot platform is live for the closed
+        pilot group, all five core capability areas (DPU content, AI course navigator, AI
+        certificate validation, leaderboard, reward preview) are demonstrably functional,
+        and a pilot feedback review has been conducted with Microsoft to inform Phase 2
+        planning.
+      </p>
+    </section>
+
+    <!-- ════ 5. PHASE 2 ════ -->
+    <section>
+      <div class="sec-num">Section 05</div>
+      <h2>Phase 2 — DPC Integration</h2>
+
+      <div class="phase-banner p2">
+        <div class="phase-badge">P2</div>
+        <div>
+          <div class="phase-banner-title">Sales &amp; Marketing Enablement</div>
+          <div class="phase-banner-sub">Marketing asset discovery &middot; Knowledge base &middot; AI extended to DPC</div>
+        </div>
+      </div>
+
+      <h3>5.1 Objective</h3>
+      <p>
+        Extend the SEL platform to cover Microsoft's sales and marketing enablement
+        content from Device Partner Center, so resellers can find and use the right
+        collateral as easily as they find training in Phase 1.
+      </p>
+
+      <h3>5.2 In Scope</h3>
+      <ul class="list">
+        <li><strong>DPC integration</strong> — connecting the platform to Device Partner Center so users can identify and download marketing assets relevant to their needs.</li>
+        <li><strong>Marketing asset discovery</strong> — curated, searchable access to sales collateral and campaign assets, rather than an unstructured file library.</li>
+        <li><strong>Knowledge base</strong> — a structured library of FAQs, objection-handling guidance, and related sales-readiness content.</li>
+        <li><strong>AI extension</strong> — the AI assistant from Phase 1 extended to understand and recommend DPC marketing assets and knowledge base content, not just training.</li>
+      </ul>
+
+      <h3>5.3 Phase 2 Deliverables</h3>
+      <ul class="list">
+        <li>DPC marketing asset discovery and download integrated into SEL.</li>
+        <li>Knowledge base (FAQs, objection handling) live and searchable.</li>
+        <li>AI assistant extended to cover DPC asset and knowledge base recommendations.</li>
+      </ul>
+      <div class="callout">
+        <strong>Scope confirmation:</strong> The detailed scope for Phase 2 will be confirmed
+        following the Phase 1 pilot review, incorporating pilot feedback and any changes to
+        DPC content structure or access.
+      </div>
+    </section>
+
+    <!-- ════ 6. PHASE 3 ════ -->
+    <section>
+      <div class="sec-num">Section 06</div>
+      <h2>Phase 3 — Rewards Go-Live</h2>
+
+      <div class="phase-banner p3">
+        <div class="phase-badge">P3</div>
+        <div>
+          <div class="phase-banner-title">Live Reward Redemption</div>
+          <div class="phase-banner-sub">Reward shop activated &middot; Redemption workflow &middot; Fulfilment</div>
+        </div>
+      </div>
+
+      <h3>6.1 Objective</h3>
+      <p>
+        Activate the reward shop so participants can redeem the points / XP they have
+        accumulated since Phase 1, completing the full earn-and-redeem programme loop.
+      </p>
+
+      <h3>6.2 In Scope</h3>
+      <ul class="list">
+        <li><strong>Live reward shop</strong> — the Partner Growth Catalogue moves from preview state to fully transactional.</li>
+        <li><strong>Redemption workflow</strong> — users can redeem accumulated points / XP for catalogue rewards.</li>
+        <li><strong>Administration &amp; approval</strong> — an admin workflow to review, approve, and track redemptions.</li>
+        <li><strong>Fulfilment handling</strong> — the process for delivering redeemed rewards to participants.</li>
+      </ul>
+
+      <h3>6.3 Phase 3 Deliverables</h3>
+      <ul class="list">
+        <li>Reward shop activated for live redemption.</li>
+        <li>End-to-end redemption and approval workflow operational.</li>
+        <li>Reward fulfilment process in place.</li>
+      </ul>
+      <div class="callout">
+        <strong>Scope confirmation:</strong> Reward catalogue contents, point values,
+        fulfilment logistics, and any procurement or tax considerations will be confirmed
+        with Microsoft ahead of Phase 3 delivery.
+      </div>
+    </section>
+
+    <!-- ════ 7. TECH ════ -->
+    <section>
+      <div class="sec-num">Section 07</div>
+      <h2>Technical Architecture</h2>
+      <p>
+        The following describes the technical approach at a high level. Detailed technical
+        design will be documented separately during delivery.
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:26%">Area</th><th style="width:34%">Pilot (Phase 1) Approach</th><th style="width:40%">Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Authentication</strong></td>
+            <td>Standalone, platform-managed registration &amp; login module</td>
+            <td>Interim. Production target is MS Learn SSO parity, scoped post-pilot.</td>
+          </tr>
+          <tr>
+            <td><strong>AI Course Navigator</strong></td>
+            <td>Retrieval-augmented AI assistant indexed on the MS Learn catalogue and webinar data</td>
+            <td>Conversational; recommends and deep-links to DPU content.</td>
+          </tr>
+          <tr>
+            <td><strong>AI Certificate Validation</strong></td>
+            <td>AI review of uploaded completion certificates, with automatic points award</td>
+            <td>Flagged certificates routed to administrator review.</td>
+          </tr>
+          <tr>
+            <td><strong>DPU Content</strong></td>
+            <td>Curated references and deep-links to MS Learn / DPU</td>
+            <td>SEL surfaces and curates content; it does not host or replicate it.</td>
+          </tr>
+          <tr>
+            <td><strong>DPC Content (Phase 2)</strong></td>
+            <td>Integration with Device Partner Center for asset discovery &amp; download</td>
+            <td>Confirmed during Phase 2 planning.</td>
+          </tr>
+          <tr>
+            <td><strong>Hosting</strong></td>
+            <td>Cloud-hosted web platform</td>
+            <td>Microsoft Azure recommended as the primary infrastructure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ════ 8. ASSUMPTIONS ════ -->
+    <section>
+      <div class="sec-num">Section 08</div>
+      <h2>Assumptions &amp; Dependencies</h2>
+      <p>Delivery of the scope above relies on the following assumptions and dependencies:</p>
+      <ul class="list">
+        <li><strong>Microsoft provides the complete MS Learn course catalogue and course details</strong> — including course titles, descriptions, learning paths, durations, and links — in a usable, structured format (export or feed). This catalogue is the source data for both the curated content structure and the AI course navigator.</li>
+        <li>Microsoft <strong>conducts and hosts all webinars</strong> at its end and provides the corresponding <strong>webinar data and registration / replay links</strong> — upcoming and past — together with details of <strong>Master Training Team meetings</strong> to be surfaced in the platform.</li>
+        <li>Microsoft <strong>distributes the private pilot sign-up link</strong> to the intended pilot audience and controls who receives it. Self-registration is enabled on the platform; no email allowlist is maintained.</li>
+        <li>The format and structure of <strong>course completion certificates</strong> to be validated are confirmed, with representative sample certificates provided.</li>
+        <li>The technical means of integrating with <strong>DPU</strong> (and, in Phase 2, <strong>DPC</strong>) — APIs, content feeds, or deep-link structures — are made available by Microsoft.</li>
+        <li>Branding guidelines are provided.</li>
+        <li>MS Learn SSO is treated as a post-pilot activity; a platform-managed authentication module is accepted for the pilot.</li>
+        <li>Reward catalogue, point values, and fulfilment approach for Phase 3 are confirmed with Microsoft ahead of that phase.</li>
+        <li>Phase 2 and Phase 3 scope is confirmed following the respective preceding phase review.</li>
+      </ul>
+      <div class="callout warn">
+        <strong>Content responsibility:</strong> The MS Learn course catalogue and course
+        details are to be supplied by Microsoft. <strong>Manually researching, hunting, or
+        compiling the course list is not part of this quote</strong> — the engagement curates,
+        structures, and surfaces the catalogue Microsoft provides; it does not source it.
+      </div>
+    </section>
+
+    <!-- ════ 9. OUT OF SCOPE ════ -->
+    <section>
+      <div class="sec-num">Section 09</div>
+      <h2>Out of Scope</h2>
+      <p>The following are explicitly excluded from this engagement unless added by written change:</p>
+      <ul class="list">
+        <li><strong>Sourcing, manually researching, hunting, or compiling the MS Learn course catalogue / course list</strong> — this is provided by Microsoft. The engagement curates and structures the supplied catalogue; it does not build it.</li>
+        <li><strong>Hosting, conducting, or streaming webinar sessions</strong> — webinars are conducted and hosted by Microsoft at its end. SEL surfaces them as registration / replay deep-links only.</li>
+        <li>MS Learn single sign-on (SSO) integration — scoped separately as a post-pilot activity.</li>
+        <li>Hosting or replication of Microsoft training videos or content within SEL — content remains on DPU / DPC.</li>
+        <li>Creation of new training, webinar, or marketing content (beyond the landing page content covered in Phase 1, Section 4.2.G).</li>
+        <li>Public marketing of the pilot sign-up link — link distribution remains private and is managed by Microsoft.</li>
+        <li>Procurement of physical reward inventory (handled via the Phase 3 fulfilment approach, confirmed separately).</li>
+      </ul>
+    </section>
+
+    <!-- ════ 10. GOVERNANCE ════ -->
+    <section>
+      <div class="sec-num">Section 10</div>
+      <h2>Governance &amp; Acceptance</h2>
+      <h3>10.1 Phase Acceptance</h3>
+      <p>
+        Each phase is reviewed against its stated deliverables and exit criteria. Microsoft's
+        sign-off on a phase confirms acceptance of that phase and authorises planning for the
+        next. The Phase 1 pilot review specifically informs the confirmed scope of Phase 2.
+      </p>
+      <h3>10.2 Change Management</h3>
+      <p>
+        Any change to the scope defined in this document is handled through a written change
+        request, agreed by both parties before work proceeds. Scope for Phases 2 and 3 is
+        expected to be refined collaboratively following each preceding phase.
+      </p>
+      <h3>10.3 Sign-off</h3>
+      <div class="sig-grid">
+        <div class="sig-box">
+          <div class="sig-box-label">Signed on behalf of Microsoft</div>
+          <div class="sig-box-role">Name / Title / Date</div>
+        </div>
+        <div class="sig-box">
+          <div class="sig-box-label">Signed on behalf of Shoppertainment LLP</div>
+          <div class="sig-box-role">Name / Title / Date</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ 11. TIMELINE ════ -->
+    <section>
+      <div class="sec-num">Section 11</div>
+      <h2>Timeline</h2>
+      <p>
+        Phase 1 (Pilot) is delivered over <strong>5 weeks</strong> from project confirmation.
+        This is conditional on the dependencies in Section 8 — in particular, Microsoft
+        providing the MS Learn course catalogue and webinar data — being available at the
+        start of the engagement.
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:20%">Phase</th><th style="width:24%">Duration</th><th style="width:56%">Scope</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 1 — Pilot</strong></td>
+            <td><strong>5 weeks</strong> from project confirmation</td>
+            <td>DPU integration, AI course navigator, AI certificate validation, leaderboard, reward shop preview, admin console.</td>
+          </tr>
+          <tr>
+            <td><strong>Pilot Review</strong></td>
+            <td>Post-deployment</td>
+            <td>Joint review of pilot outcomes and feedback with Microsoft, to inform planning of subsequent phases.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2</strong></td>
+            <td>To be confirmed</td>
+            <td>DPC integration — marketing assets &amp; knowledge base. Timeline scoped and confirmed following the pilot review.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3</strong></td>
+            <td>To be confirmed</td>
+            <td>Reward shop go-live — live redemption. Timeline scoped and confirmed following Phase 2.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>Note:</strong> The 5-week Phase 1 timeline assumes the dependencies in
+        Section 8 are met at kick-off. Delays in providing the MS Learn catalogue, webinar
+        data, or integration access will extend the timeline accordingly.
+      </div>
+    </section>
+
+    <!-- ════ 12. COMMERCIALS ════ -->
+    <section>
+      <div class="sec-num">Section 12</div>
+      <h2>Commercials</h2>
+
+      <h3>12.1 Phase 1 — Pilot Cost</h3>
+      <p>
+        The cost for Phase 1 (Pilot) is split into two line items below: portal development
+        and marketing landing page content. Phases 2 and 3 are not priced in this document —
+        their cost will be quoted separately once their scope is confirmed following the
+        pilot review.
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:60%">Item</th><th style="width:40%">Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Portal Development</strong><br>SEL pilot portal &mdash; DPU content integration (courses, training meetings, Microsoft-hosted webinar links), platform-managed authentication, conversational AI course navigator, AI certificate validation with automatic points award, global &amp; regional leaderboard, points / XP accrual, reward shop preview ("Coming Soon" state), pilot administration console, and deployment.</td>
+            <td><strong>USD 12,600</strong><br><span style="font-size:11px;color:var(--text-3)">Exclusive of applicable taxes</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marketing Landing Page Content</strong><br>Public-facing landing page introducing the SEL platform to Microsoft partners. Includes content creation (copy, messaging, four-pillar value narrative), section design (hero, live activity feed, pillars, content preview, leaderboard preview, AI coach showcase, reward catalogue preview, FAQ), and sign-in flow into the pilot.</td>
+            <td><strong>USD 3,000</strong><br><span style="font-size:11px;color:var(--text-3)">Exclusive of applicable taxes</span></td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1 Total</strong></td>
+            <td><strong>USD 15,600</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 &amp; Phase 3</strong></td>
+            <td>Quoted separately after the pilot review, once scope is confirmed.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>12.2 Payment Terms</h3>
+      <p>Payment for Phase 1 (Pilot) is structured in two instalments:</p>
+      <table>
+        <thead>
+          <tr><th style="width:18%">Instalment</th><th style="width:30%">Trigger</th><th style="width:52%">Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>50%</strong></td>
+            <td>On project confirmation</td>
+            <td>USD 7,800 &mdash; payable on confirmation of the project, to commence work.</td>
+          </tr>
+          <tr>
+            <td><strong>50%</strong></td>
+            <td>On deployment</td>
+            <td>USD 7,800 &mdash; payable once the pilot platform is deployed and made available to the closed pilot group.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-3);margin-top:.25rem">
+        All amounts are in US Dollars (USD) and are <strong>exclusive of applicable taxes</strong>.
+        Any applicable taxes will be charged extra on each invoice.
+      </p>
+
+      <h3>12.3 Monthly Recurring Charges</h3>
+      <p>
+        In addition to the one-time Phase 1 cost above, the platform carries an ongoing
+        <strong>monthly variable component</strong> covering cloud infrastructure, AI usage,
+        platform maintenance, and client servicing. This is billed monthly and is separate
+        from the Phase 1 cost. The monthly charge is detailed and confirmed separately,
+        and is also <strong>exclusive of applicable taxes</strong>.
+      </p>
+      <table>
+        <thead>
+          <tr><th style="width:34%">Component</th><th style="width:22%">Type</th><th style="width:44%">Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cloud infrastructure</strong></td>
+            <td>Variable</td>
+            <td>Hosting and platform infrastructure; scales with usage.</td>
+          </tr>
+          <tr>
+            <td><strong>AI usage</strong></td>
+            <td>Variable</td>
+            <td>AI inference for the course navigator and certificate validation; scales with active usage.</td>
+          </tr>
+          <tr>
+            <td><strong>Maintenance</strong></td>
+            <td>Recurring</td>
+            <td>Platform upkeep, updates, fixes, and security patches.</td>
+          </tr>
+          <tr>
+            <td><strong>Client servicing</strong></td>
+            <td>Recurring</td>
+            <td>Ongoing support, administration assistance, and reporting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer-note">
+      <strong>Sales Excellence League — Statement of Work (SoW) v1.1</strong> &middot; Prepared for Microsoft by Shoppertainment LLP &middot; 28 May 2026.<br>
+      This document defines the agreed delivery scope across three phases. Scope for Phases 2 and 3 will be confirmed following the respective preceding phase review. Private &amp; confidential.
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /doc -->
+
+</body>
+</html>

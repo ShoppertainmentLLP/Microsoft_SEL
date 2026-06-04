@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEL — Portal Development · SoW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  :root {
+    --blue:#0078D7; --blue-dk:#005499; --azure:#01A6F0;
+    --ink:#1a1f29; --text-2:#3f4654; --text-3:#6b7280;
+    --border:#e3e8ef; --bg:#f4f6fa; --surface:#ffffff;
+    --green:#7FBC00; --orange:#F34F1C; --gold:#FFBA01;
+    --font:'Inter',-apple-system,'Segoe UI',sans-serif;
+  }
+  html,body { background:var(--bg); font-family:var(--font); color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page {
+    max-width: 880px; margin: 24px auto;
+    background: var(--surface);
+    box-shadow: 0 4px 40px rgba(0,0,0,.08);
+    padding: 2.25rem 2.5rem 2rem;
+    min-height: calc(100vh - 48px);
+    display: flex; flex-direction: column;
+  }
+
+  /* Header */
+  .head {
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .ms-logo { display:grid; grid-template-columns:1fr 1fr; gap:2px; width:24px; margin-bottom:.85rem; }
+  .ms-logo span { width:11px; height:11px; }
+  .ms-r{background:#f25022}.ms-g{background:#7fba00}.ms-b{background:#00a4ef}.ms-y{background:#ffb900}
+  .h-eyebrow {
+    font-size:10px; font-weight:800; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue);
+    margin-bottom:.4rem;
+  }
+  h1 {
+    font-size:1.6rem; font-weight:900; line-height:1.15;
+    letter-spacing:-.022em; color:var(--ink); margin-bottom:.25rem;
+  }
+  .h-sub { font-size:12.5px; color:var(--text-3); font-weight:600; letter-spacing:.02em; }
+
+  .meta {
+    border-collapse: collapse; font-size:11px;
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .meta td { padding: 6px 12px; border-bottom: 1px solid var(--border); }
+  .meta tr:last-child td { border-bottom: none; }
+  .meta td:first-child {
+    font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--text-3); font-size:9.5px; background:#fafbfd;
+    width:100px;
+  }
+  .meta td:last-child { color:var(--ink); font-weight:700; }
+
+  /* Body */
+  .body-grid { flex: 1; }
+  section { margin-bottom: 1.1rem; }
+  h2 {
+    font-size:11px; font-weight:800; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--blue);
+    margin-bottom:.55rem;
+    padding-bottom:.35rem; border-bottom:1px solid var(--border);
+  }
+  p { font-size:12.5px; line-height:1.55; color:var(--text-2); margin-bottom:.45rem; }
+  p strong { color: var(--ink); font-weight:700; }
+  ul.list { list-style:none; }
+  ul.list li {
+    font-size:12px; line-height:1.5; color:var(--text-2);
+    padding:3px 0 3px 16px; position:relative;
+  }
+  ul.list li::before {
+    content:''; position:absolute; left:2px; top:9px;
+    width:5px; height:5px; border-radius:50%; background:var(--blue);
+  }
+  ul.list li strong { color:var(--ink); }
+
+  /* Two-column layouts */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 1.25rem; }
+
+  /* Commercials box */
+  .money-box {
+    background: linear-gradient(135deg, #eef6ff 0%, #e0eefb 100%);
+    border: 1px solid #c5ddf5; border-radius: 10px;
+    padding: 1rem 1.25rem; margin-bottom: .85rem;
+  }
+  .money-amount {
+    font-size:1.65rem; font-weight:900; color:var(--blue-dk);
+    letter-spacing:-.02em; line-height:1;
+  }
+  .money-lbl {
+    font-size:10px; font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--text-3);
+    margin-top:6px;
+  }
+  .money-tax { font-size:10.5px; color:var(--text-3); margin-top: 6px; }
+
+  .pay-row {
+    display: grid; grid-template-columns: 38px 1fr 90px;
+    gap: 10px; font-size: 11.5px; color: var(--text-2);
+    padding: 5px 0; border-bottom: 1px dashed var(--border);
+    align-items: center;
+  }
+  .pay-row:last-child { border-bottom: none; }
+  .pay-pct { font-weight: 800; color: var(--blue-dk); font-size: 12px; }
+  .pay-amt { font-weight: 700; color: var(--ink); text-align: right; font-size: 12px; }
+
+  /* Out-of-scope chip list */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chip {
+    font-size: 10.5px; font-weight: 600; color: var(--text-2);
+    background: #f4f6fa; border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px 9px;
+    line-height: 1.4;
+  }
+
+  /* Footer */
+  .ref-note {
+    margin-top: .75rem; padding: 9px 13px;
+    background: #fffaee; border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 11px; color: var(--text-2); line-height: 1.5;
+  }
+  .ref-note strong { color: #8a6300; }
+
+  .sign-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    margin-top: 1.5rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .sig-box { padding-top: 28px; border-top: 1.5px solid var(--ink); }
+  .sig-label { font-size: 10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color: var(--text-3); }
+  .sig-role { font-size: 11.5px; font-weight: 700; color: var(--ink); margin-top: 3px; }
+
+  .doc-foot {
+    margin-top: .9rem;
+    font-size: 9.5px; color: var(--text-3); letter-spacing: .01em;
+  }
+
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    html, body { background: #fff; }
+    .page { margin: 0 auto; box-shadow: none; padding: 0; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="head">
+    <div>
+      <div class="ms-logo"><span class="ms-r"></span><span class="ms-g"></span><span class="ms-y"></span><span class="ms-b"></span></div>
+      <div class="h-eyebrow">Statement of Work (SoW) &middot; v1.1 &middot; 28 May 2026</div>
+      <h1>Sales Excellence League &mdash; Portal Development</h1>
+      <div class="h-sub">Phase 1 (Pilot) &middot; SoW 1 of 2</div>
+    </div>
+    <table class="meta">
+      <tr><td>Prepared for</td><td>Microsoft</td></tr>
+      <tr><td>Prepared by</td><td>Shoppertainment LLP</td></tr>
+      <tr><td>Commercials</td><td>USD 12,600</td></tr>
+      <tr><td>Duration</td><td>5 weeks</td></tr>
+    </table>
+  </div>
+
+  <div class="body-grid">
+
+    <!-- Scope -->
+    <section>
+      <h2>Scope</h2>
+      <p>
+        Development and deployment of the <strong>Sales Excellence League (SEL)</strong> pilot portal &mdash; a facilitator and engagement layer that sits on top of Microsoft's Device Partner University (DPU) content. The portal curates DPU training content, applies a gamification layer, and uses AI to help resellers find what they need quickly. Delivered as a pilot with self-registration via a private sign-up link distributed by Microsoft.
+      </p>
+    </section>
+
+    <!-- Deliverables -->
+    <section>
+      <h2>Deliverables</h2>
+      <ul class="list">
+        <li><strong>DPU content integration</strong> &mdash; curated MS Learn courses, Master Training Team meetings, and Microsoft-hosted webinar links surfaced as role-based learning paths.</li>
+        <li><strong>Conversational AI course navigator</strong> &mdash; trained on the supplied MS Learn catalogue and webinar data; deep-links users to relevant DPU content.</li>
+        <li><strong>AI certificate validation &amp; automatic points award</strong> &mdash; AI review of uploaded completion certificates with admin escalation for flagged cases.</li>
+        <li><strong>Global &amp; regional leaderboard</strong> &mdash; live with pilot participant data; ranking by validated activity.</li>
+        <li><strong>Reward shop in preview state</strong> &mdash; Partner Growth Catalogue browsable but non-transactional in Phase 1 (live redemption in Phase 3).</li>
+        <li><strong>Platform-managed authentication</strong> &mdash; standalone registration &amp; login module (interim, ahead of MS Learn SSO).</li>
+        <li><strong>Self-registration via private pilot sign-up link</strong> &mdash; audience controlled by Microsoft through link distribution; no admin-managed email allowlist on the platform.</li>
+        <li><strong>Pilot administration console</strong> &mdash; for managing users, reviewing flagged certificates, and monitoring engagement.</li>
+        <li><strong>Cloud-hosted deployment</strong> on the agreed infrastructure (Microsoft Azure recommended).</li>
+      </ul>
+    </section>
+
+    <!-- Commercials + Timeline + Assumptions -->
+    <div class="three-col">
+      <section>
+        <h2>Commercials</h2>
+        <div class="money-box">
+          <div class="money-amount">USD 12,600</div>
+          <div class="money-lbl">Portal Development &middot; Phase 1</div>
+          <div class="money-tax">Exclusive of applicable taxes</div>
+        </div>
+        <div class="pay-row"><span class="pay-pct">50%</span><span>On project confirmation</span><span class="pay-amt">USD 6,300</span></div>
+        <div class="pay-row"><span class="pay-pct">50%</span><span>On deployment</span><span class="pay-amt">USD 6,300</span></div>
+      </section>
+
+      <section>
+        <h2>Key Assumptions &amp; Dependencies</h2>
+        <ul class="list">
+          <li>Microsoft provides the complete <strong>MS Learn course catalogue</strong>, webinar data, and Master Training Team meeting details in a usable, structured format.</li>
+          <li>Microsoft <strong>conducts and hosts all webinars</strong>; SEL surfaces them via registration / replay deep-links only.</li>
+          <li>Microsoft <strong>distributes the private pilot sign-up link</strong> to the intended pilot audience; self-registration is handled by the platform.</li>
+          <li>Sample <strong>completion certificates</strong> and integration access (APIs / feeds / deep-link structures) for DPU are provided.</li>
+          <li>Branding guidelines provided at kick-off.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Timeline</h2>
+        <p style="font-size:11.5px;line-height:1.5"><strong>5 weeks</strong> from project confirmation, conditional on dependencies being met at kick-off. Delays in providing the catalogue, participant IDs, or integration access will extend the timeline accordingly.</p>
+        <h2 style="margin-top:.85rem">Out of Scope</h2>
+        <div class="chip-list">
+          <span class="chip">MS Learn SSO</span>
+          <span class="chip">Webinar hosting / conducting</span>
+          <span class="chip">Public marketing of sign-up link</span>
+          <span class="chip">Hosting MS training content</span>
+          <span class="chip">New content creation</span>
+          <span class="chip">Landing page (separate SoW)</span>
+          <span class="chip">Phase 2 / Phase 3 scope</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="ref-note">
+      <strong>Full detail:</strong> This 1-page SoW summarises the portal development line item from the master <em>Sales Excellence League &mdash; Statement of Work (SoW) v1.1</em>. For complete scope description, technical architecture, exit criteria, and governance, refer to the master SoW document.
+    </div>
+
+  </div>
+
+  <!-- Sign-off -->
+  <div class="sign-row">
+    <div class="sig-box">
+      <div class="sig-label">Signed for Microsoft</div>
+      <div class="sig-role">Name / Title / Date</div>
+    </div>
+    <div class="sig-box">
+      <div class="sig-label">Signed for Shoppertainment LLP</div>
+      <div class="sig-role">Name / Title / Date</div>
+    </div>
+  </div>
+
+  <div class="doc-foot">
+    Sales Excellence League &mdash; Portal Development SoW &middot; v1.1 &middot; 28 May 2026 &middot; Prepared for Microsoft by Shoppertainment LLP &middot; Private &amp; confidential.
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Sales Excellence League · Your launchpad for Microsoft sales</title>
+<meta name="description" content="Everything you need from MS Learn, DPU, and DPC — in one place, guided by AI, with rewards for every step.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ─────────────── TOKENS ─────────────── */
+:root {
+  --bg:        #ffffff;
+  --bg-alt:    #f7f8fa;
+  --bg-soft:   #fbfbfd;
+  --text-1:    #0a1128;
+  --text-2:    #475569;
+  --text-3:    #94a3b8;
+  --border:    #e5e8ee;
+  --border-2:  #d6dae3;
+
+  --blue:      #0078D7;
+  --blue-dk:   #005FAA;
+  --blue-lt:   #E6F2FD;
+  --blue-glow: #4DA9F0;
+
+  --green:     #6BA300;
+  --green-lt:  #EAF3D6;
+  --orange:    #F34F1C;
+  --orange-lt: #FFE5DC;
+  --gold:      #E5A100;
+  --gold-lt:   #FFF1CF;
+  --purple:    #8B5CF6;
+  --purple-lt: #EFE9FE;
+
+  --r-sm:    8px;
+  --r-md:    14px;
+  --r-lg:    20px;
+  --r-xl:    28px;
+  --r-full:  999px;
+
+  --shadow-sm: 0 1px 3px rgba(10, 17, 40, .04), 0 1px 2px rgba(10, 17, 40, .03);
+  --shadow-md: 0 6px 20px rgba(10, 17, 40, .06), 0 2px 6px rgba(10, 17, 40, .04);
+  --shadow-lg: 0 20px 50px rgba(10, 17, 40, .10), 0 6px 16px rgba(10, 17, 40, .05);
+}
+
+/* ─────────────── BASE ─────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ─────────────── NAV ─────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 800; font-size: 15px;
+  color: var(--text-1); text-decoration: none;
+}
+.nav-logo img { width: 32px; height: 32px; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--text-2); text-decoration: none;
+  font-weight: 500; font-size: 14px;
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--text-1); }
+.nav-right { display: flex; gap: 10px; align-items: center; }
+.nav-signin {
+  color: var(--text-2); text-decoration: none;
+  font-weight: 500; font-size: 14px;
+  padding: 8px 14px; border-radius: var(--r-full);
+}
+.nav-signin:hover { background: var(--bg-alt); color: var(--text-1); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--text-1); color: #fff;
+  padding: 10px 18px; border-radius: var(--r-full);
+  font-weight: 600; font-size: 14px;
+  text-decoration: none; transition: all .2s;
+}
+.nav-cta:hover { background: var(--blue); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+/* ─────────────── HERO ─────────────── */
+.hero {
+  padding: 80px 0 60px;
+  background:
+    radial-gradient(1200px 600px at 50% -100px, rgba(0, 120, 215, .08), transparent 60%),
+    var(--bg);
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 14px 6px 8px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: 12.5px; font-weight: 600;
+  color: var(--text-2); letter-spacing: .01em;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-eyebrow .pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(107, 163, 0, .6);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%   { box-shadow: 0 0 0 0 rgba(107, 163, 0, .5); }
+  70%  { box-shadow: 0 0 0 8px rgba(107, 163, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(107, 163, 0, 0); }
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  margin-bottom: 24px;
+  max-width: 920px;
+}
+.hero h1 .accent {
+  color: var(--blue);
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-glow) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--text-2);
+  max-width: 720px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Hero pillar cards (like country flags on gainaiskills) */
+.hero-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+  max-width: 920px;
+}
+.hero-pillar {
+  --accent: var(--blue);
+  position: relative;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px 20px 20px;
+  text-decoration: none;
+  color: var(--text-1);
+  transition: all .25s cubic-bezier(.2, .8, .2, 1);
+  box-shadow: var(--shadow-sm);
+}
+.hero-pillar:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.hero-pillar-num {
+  position: absolute; top: 16px; right: 18px;
+  font-size: 11px; font-weight: 700;
+  color: var(--text-3); letter-spacing: .1em;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+.hero-pillar-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 18px;
+  transition: all .25s;
+}
+.hero-pillar:hover .hero-pillar-icon {
+  background: var(--accent); color: #fff;
+}
+.hero-pillar-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; letter-spacing: -.005em; }
+.hero-pillar-tag { font-size: 13px; color: var(--text-3); }
+.hero-pillar-arrow {
+  position: absolute; bottom: 18px; right: 18px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text-3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  transition: all .25s;
+}
+.hero-pillar:hover .hero-pillar-arrow {
+  background: var(--accent); color: #fff; transform: translateX(2px);
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 56px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--text-1); color: #fff;
+  padding: 16px 28px; border-radius: var(--r-full);
+  font-weight: 600; font-size: 15px;
+  text-decoration: none; transition: all .25s;
+  font-family: inherit; border: none; cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 120, 215, .3);
+}
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text-1);
+  padding: 16px 24px; border-radius: var(--r-full);
+  font-weight: 600; font-size: 15px;
+  text-decoration: none; border: 1.5px solid var(--border-2);
+  transition: all .25s;
+}
+.btn-outline:hover {
+  border-color: var(--text-1);
+  background: var(--text-1); color: #fff;
+}
+.hero-meta {
+  display: inline-flex; gap: 6px; align-items: center;
+  font-size: 13px; color: var(--text-3);
+}
+
+/* Hero stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+}
+.hero-stat-val {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -.025em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-stat-val .plus { color: var(--blue); }
+.hero-stat-lbl {
+  font-size: 13px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* ─────────────── SECTION SHELL ─────────────── */
+.section { padding: 100px 0; }
+.section-alt { background: var(--bg-alt); }
+.section-soft { background: var(--bg-soft); }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+  max-width: 760px;
+  margin-left: auto; margin-right: auto;
+}
+.section-header.left { text-align: left; margin-left: 0; }
+.section-eyebrow {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  color: var(--text-1);
+}
+.section h2 .accent { color: var(--blue); }
+.section-sub {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ─────────────── ABOUT (3 promises) ─────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.about-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 36px 32px;
+  transition: all .25s;
+}
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-lt);
+}
+.about-card-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px;
+  background: var(--blue-lt); color: var(--blue);
+  border-radius: 14px;
+  font-weight: 800; font-size: 15px;
+  margin-bottom: 24px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.about-card h3 {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -.015em;
+  margin-bottom: 12px;
+}
+.about-card p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.about-card p strong { color: var(--text-1); font-weight: 600; }
+
+/* ─────────────── PILLARS (4 detailed cards) ─────────────── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.pillar {
+  --accent: var(--blue);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 40px;
+  position: relative;
+  transition: all .25s;
+}
+.pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.pillar-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 24px;
+}
+.pillar-num {
+  font-size: 12px; font-weight: 700;
+  color: var(--accent); letter-spacing: .14em;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 5px 10px;
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  border-radius: var(--r-sm);
+}
+.pillar-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, #fff), color-mix(in srgb, var(--accent) 4%, #fff));
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+}
+.pillar h3 {
+  font-size: 26px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1.2;
+  margin-bottom: 12px;
+}
+.pillar p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.pillar-list { list-style: none; margin-bottom: 24px; }
+.pillar-list li {
+  padding: 10px 0;
+  font-size: 14.5px;
+  color: var(--text-2);
+  display: flex; align-items: flex-start; gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.pillar-list li:last-child { border-bottom: none; }
+.pillar-list li::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.pillar-footer {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-alt);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─────────────── HOW IT WORKS (6 steps) ─────────────── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.step-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  position: relative;
+  transition: all .25s;
+}
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  box-shadow: var(--shadow-md);
+}
+.step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 700;
+  color: var(--text-3); letter-spacing: .14em;
+  margin-bottom: 16px;
+}
+.step-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--r-md);
+  background: var(--blue-lt); color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.step-card h4 {
+  font-size: 19px; font-weight: 700;
+  letter-spacing: -.015em;
+  margin-bottom: 10px;
+}
+.step-card p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* Outcome strip (after steps) */
+.outcome-strip {
+  margin-top: 40px;
+  background: var(--text-1);
+  color: #fff;
+  border-radius: var(--r-xl);
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.outcome-item { text-align: center; position: relative; }
+.outcome-item + .outcome-item::before {
+  content: '';
+  position: absolute; left: -16px; top: 12%;
+  height: 76%; width: 1px;
+  background: rgba(255, 255, 255, .15);
+}
+.outcome-val {
+  font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.outcome-val .em { color: var(--blue-glow); }
+.outcome-lbl {
+  font-size: 13px;
+  color: rgba(255, 255, 255, .65);
+  font-weight: 500;
+}
+
+/* ─────────────── LEADERBOARD ─────────────── */
+.lb-wrap {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.lb-head {
+  display: grid;
+  grid-template-columns: 60px 1fr 200px 140px;
+  padding: 16px 32px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.lb-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 200px 140px;
+  align-items: center;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.lb-row:last-child { border-bottom: none; }
+.lb-row:hover { background: var(--bg-alt); }
+.lb-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 700;
+  color: var(--text-3);
+}
+.lb-rank.gold   { color: var(--gold); }
+.lb-rank.silver { color: #94a3b8; }
+.lb-rank.bronze { color: #cd7f32; }
+.lb-row.you { background: var(--blue-lt); }
+.lb-row.you:hover { background: var(--blue-lt); }
+.lb-person { display: flex; align-items: center; gap: 14px; }
+.lb-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+}
+.lb-name { font-weight: 600; font-size: 15px; }
+.lb-meta { font-size: 12px; color: var(--text-3); }
+.lb-org { font-size: 14px; color: var(--text-2); }
+.lb-xp {
+  text-align: right;
+  font-weight: 700; font-size: 16px;
+  color: var(--text-1);
+  font-family: 'JetBrains Mono', monospace;
+}
+.lb-xp small { font-weight: 500; color: var(--text-3); font-size: 11px; margin-left: 4px; }
+
+.lb-cta {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-3);
+}
+.lb-cta a { color: var(--blue); font-weight: 600; text-decoration: none; }
+
+/* ─────────────── AI COACH ─────────────── */
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.ai-chat {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+}
+.ai-chat-header {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 18px; margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.ai-chat-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.ai-chat-name { font-weight: 700; font-size: 14px; }
+.ai-chat-status {
+  font-size: 12px; color: var(--green);
+  display: flex; align-items: center; gap: 6px;
+}
+.ai-chat-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+.ai-msg {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 86%;
+  animation: msgIn .4s ease both;
+}
+.ai-msg.bot {
+  background: var(--bg-alt);
+  color: var(--text-1);
+  border-bottom-left-radius: 4px;
+}
+.ai-msg.user {
+  background: var(--blue);
+  color: #fff;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+.ai-msg strong { font-weight: 700; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.ai-chat-suggest {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+.ai-suggest-chip {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: var(--r-full);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.ai-features { display: grid; gap: 24px; }
+.ai-feature {
+  display: flex; gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.ai-feature:last-child { border-bottom: none; }
+.ai-feature-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  background: var(--blue-lt);
+  color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ai-feature h4 {
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -.005em;
+  margin-bottom: 6px;
+}
+.ai-feature p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ─────────────── REWARDS ─────────────── */
+.rewards-tabs {
+  display: flex; gap: 8px;
+  justify-content: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.rewards-tab {
+  padding: 9px 18px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-2);
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+}
+.rewards-tab.active {
+  background: var(--text-1);
+  color: #fff;
+  border-color: var(--text-1);
+}
+.rewards-tab:not(.active):hover {
+  border-color: var(--text-1);
+  color: var(--text-1);
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.reward-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px;
+  transition: all .25s;
+}
+.reward-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.reward-tier {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  margin-bottom: 14px;
+}
+.tier-1 { background: var(--blue-lt); color: var(--blue); }
+.tier-2 { background: var(--green-lt); color: var(--green); }
+.tier-3 { background: var(--gold-lt); color: var(--gold); }
+.tier-4 { background: var(--orange-lt); color: var(--orange); }
+.tier-5 { background: var(--purple-lt); color: var(--purple); }
+
+.reward-img {
+  width: 100%; aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--bg-alt), #fff);
+  border-radius: var(--r-md);
+  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+}
+.reward-card h4 {
+  font-size: 16px; font-weight: 700;
+  letter-spacing: -.005em;
+  margin-bottom: 4px;
+}
+.reward-card .reward-cost {
+  font-size: 13px;
+  color: var(--blue);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+}
+.reward-card .reward-meta {
+  font-size: 12px; color: var(--text-3);
+  margin-top: 4px;
+}
+
+/* ─────────────── FAQ ─────────────── */
+.faq-list { max-width: 820px; margin: 0 auto; }
+.faq-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item:hover { border-color: var(--border-2); }
+.faq-item.open { border-color: var(--blue); box-shadow: var(--shadow-sm); }
+.faq-q {
+  width: 100%;
+  padding: 22px 26px;
+  background: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.faq-q .chev {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  transition: all .25s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q .chev {
+  background: var(--blue); color: #fff; transform: rotate(180deg);
+}
+.faq-a {
+  padding: 0 26px;
+  max-height: 0;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: 14.5px;
+  line-height: 1.7;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.faq-item.open .faq-a { padding: 0 26px 22px; max-height: 500px; }
+
+/* ─────────────── CTA BANNER ─────────────── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--text-1) 0%, #1a2547 100%);
+  color: #fff;
+  border-radius: var(--r-xl);
+  padding: 56px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 60%; height: 200%;
+  background: radial-gradient(circle, var(--blue) 0%, transparent 60%);
+  opacity: .35;
+  pointer-events: none;
+}
+.cta-banner > * { position: relative; z-index: 1; }
+.cta-banner h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.cta-banner p {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.cta-banner .btn-primary {
+  background: #fff; color: var(--text-1);
+}
+.cta-banner .btn-primary:hover {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 120, 215, .4);
+}
+
+/* ─────────────── FOOTER ─────────────── */
+.footer {
+  background: var(--text-1);
+  color: rgba(255,255,255,.7);
+  padding: 48px 0 28px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 24px;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: #fff; font-weight: 700; font-size: 15px;
+  text-decoration: none;
+}
+.footer-logo img { width: 28px; height: 28px; }
+.footer-tag { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 4px; }
+.footer-links {
+  display: flex; gap: 28px;
+  list-style: none;
+  font-size: 14px;
+}
+.footer-links a {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links a:hover { color: #fff; }
+.footer-bottom {
+  display: flex; justify-content: space-between;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.45);
+  flex-wrap: wrap; gap: 8px;
+}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hero { padding: 56px 0 40px; }
+  .hero-pillars { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .section { padding: 72px 0; }
+  .about-grid, .pillars-grid, .ai-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ai-grid { gap: 40px; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .rewards-grid { grid-template-columns: repeat(2, 1fr); }
+  .outcome-strip { grid-template-columns: 1fr; }
+  .outcome-item + .outcome-item::before { display: none; }
+  .outcome-item + .outcome-item {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 24px;
+  }
+  .lb-head, .lb-row { grid-template-columns: 50px 1fr 100px; padding: 14px 16px; }
+  .lb-org { display: none; }
+  .lb-head .lb-org-col { display: none; }
+  .cta-banner { padding: 40px 24px; }
+}
+@media (max-width: 540px) {
+  .hero-pillars { grid-template-columns: 1fr; }
+  .steps-grid, .rewards-grid { grid-template-columns: 1fr; }
+  .footer-top { flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─────────────── NAV ─────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="SEL Logo.png" alt="">
+      <span>Sales Excellence League</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#leaderboard">Leaderboard</a></li>
+      <li><a href="#rewards">Rewards</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="nav-signin">Help</a>
+      <a href="#" class="nav-cta">Sign in <i class="fa-solid fa-arrow-right" style="font-size:11px"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─────────────── HERO ─────────────── -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">
+      <span class="pulse"></span>
+      Microsoft Australia &middot; Now open to all partners
+    </span>
+    <h1>Your launchpad for <span class="accent">Microsoft sales excellence</span>.</h1>
+    <p class="hero-sub">Everything you need from MS Learn, DPU, and DPC &mdash; in one place, guided by AI, with rewards for every step.</p>
+
+    <!-- 4 pillar entry cards — the "country flags" pattern -->
+    <div class="hero-pillars">
+      <a href="#pillars" class="hero-pillar" style="--accent:#0078D7">
+        <span class="hero-pillar-num">01</span>
+        <div class="hero-pillar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="hero-pillar-name">Train</div>
+        <div class="hero-pillar-tag">MS Learn + DPU</div>
+        <span class="hero-pillar-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#pillars" class="hero-pillar" style="--accent:#E5A100">
+        <span class="hero-pillar-num">02</span>
+        <div class="hero-pillar-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="hero-pillar-name">Sell</div>
+        <div class="hero-pillar-tag">DPC assets</div>
+        <span class="hero-pillar-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#pillars" class="hero-pillar" style="--accent:#6BA300">
+        <span class="hero-pillar-num">03</span>
+        <div class="hero-pillar-icon"><i class="fa-solid fa-comments"></i></div>
+        <div class="hero-pillar-name">Convince</div>
+        <div class="hero-pillar-tag">AI Coach</div>
+        <span class="hero-pillar-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="#pillars" class="hero-pillar" style="--accent:#F34F1C">
+        <span class="hero-pillar-num">04</span>
+        <div class="hero-pillar-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="hero-pillar-name">Earn</div>
+        <div class="hero-pillar-tag">Rewards</div>
+        <span class="hero-pillar-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Sign in with MS Learn <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#how" class="btn-outline">See how it works</a>
+      <span class="hero-meta">
+        <i class="fa-solid fa-shield-halved"></i>
+        No separate sign-up &middot; Use your MS Learn credentials
+      </span>
+    </div>
+
+    <!-- Stats row -->
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">127</div>
+        <div class="hero-stat-lbl">MS Learn courses, curated</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">200<span class="plus">+</span></div>
+        <div class="hero-stat-lbl">Sales assets across products</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">50<span class="plus">+</span></div>
+        <div class="hero-stat-lbl">Objection-handling playbooks</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">28</div>
+        <div class="hero-stat-lbl">Rewards in the catalogue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── ABOUT SEL ─────────────── -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">About SEL</div>
+      <h2>Built for partners to <span class="accent">grow and win</span>.</h2>
+      <p class="section-sub">Sales Excellence League helps Microsoft partners increase sales, profitability, and customer experience &mdash; through trainings, accreditations, and powerful sales tools, at no cost.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-num">01</div>
+        <h3>All in one place</h3>
+        <p>Curated <strong>MS Learn courses, DPU training, and DPC sales assets</strong> &mdash; together in a single platform. No more hunting across Microsoft sites for the right course, asset, or answer.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-num">02</div>
+        <h3>Guided by AI</h3>
+        <p>Your <strong>AI coach</strong> knows your role, your products, and your customer &mdash; surfacing the right training, the right asset, the right answer in seconds, not hours.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-num">03</div>
+        <h3>Rewards for every step</h3>
+        <p>Every course completed, deal logged, and customer onboarded <strong>earns XP</strong> &mdash; redeemable for real, cash-equivalent rewards from the Partner Growth Catalogue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PILLARS DETAIL ─────────────── -->
+<section class="section" id="pillars">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">The four pillars</div>
+      <h2>Everything a Microsoft partner <span class="accent">actually needs</span>.</h2>
+      <p class="section-sub">Four things every Microsoft seller needs to do their job well &mdash; all in one place, all curated, all guided by AI.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <article class="pillar" style="--accent:#0078D7">
+        <div class="pillar-top">
+          <div class="pillar-num">01 &middot; TRAIN</div>
+          <div class="pillar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        </div>
+        <h3>Find the right MS Learn course in seconds.</h3>
+        <p>Curated MS Learn courses, labs, certifications, and live sessions &mdash; matched to your role and products by your AI coach.</p>
+        <ul class="pillar-list">
+          <li>127 MS Learn courses &amp; labs, curated for Australian partners</li>
+          <li>43 Microsoft certifications mapped to your role</li>
+          <li>Live Master Training Team sessions</li>
+          <li>XP and points for every completion</li>
+        </ul>
+        <div class="pillar-footer">Powered by MS Learn &amp; DPU</div>
+      </article>
+
+      <article class="pillar" style="--accent:#E5A100">
+        <div class="pillar-top">
+          <div class="pillar-num">02 &middot; SELL</div>
+          <div class="pillar-icon"><i class="fa-solid fa-briefcase"></i></div>
+        </div>
+        <h3>Sales assets, ready to send.</h3>
+        <p>Customer one-pagers, email templates, and campaign collateral &mdash; already built, already on-brand. Personalise and send in minutes.</p>
+        <ul class="pillar-list">
+          <li>200+ sales assets across every Microsoft product line</li>
+          <li>Email &amp; campaign templates with industry variants</li>
+          <li>Customer one-pagers and proposal builders</li>
+          <li>Co-branded marketing assets for your business</li>
+        </ul>
+        <div class="pillar-footer">Powered by DPC</div>
+      </article>
+
+      <article class="pillar" style="--accent:#6BA300">
+        <div class="pillar-top">
+          <div class="pillar-num">03 &middot; CONVINCE</div>
+          <div class="pillar-icon"><i class="fa-solid fa-comments"></i></div>
+        </div>
+        <h3>An answer to every customer question.</h3>
+        <p>Objection handlers, competitor side-by-sides, pricing scenarios, and industry talk tracks &mdash; sourced from Microsoft&rsquo;s own playbooks.</p>
+        <ul class="pillar-list">
+          <li>50+ objection handlers for common customer pushbacks</li>
+          <li>Side-by-sides vs AWS, Google Workspace, Slack</li>
+          <li>Pricing &amp; licensing scenarios</li>
+          <li>Industry talk tracks for healthcare, retail, finance</li>
+        </ul>
+        <div class="pillar-footer">Powered by AI Coach</div>
+      </article>
+
+      <article class="pillar" style="--accent:#F34F1C">
+        <div class="pillar-top">
+          <div class="pillar-num">04 &middot; EARN</div>
+          <div class="pillar-icon"><i class="fa-solid fa-trophy"></i></div>
+        </div>
+        <h3>Every action earns real rewards.</h3>
+        <p>Courses completed, deals logged, customers onboarded &mdash; every action earns XP. Climb the leaderboard, hit tiers, redeem from the Partner Growth Catalogue.</p>
+        <ul class="pillar-list">
+          <li>5-tier reward catalogue (A$50 to A$2,500 value)</li>
+          <li>Quarterly sprints reset the leaderboard</li>
+          <li>Cash-equivalent rewards &mdash; no swag, no logos</li>
+          <li>Bonuses for top performers each sprint</li>
+        </ul>
+        <div class="pillar-footer">Powered by Sprint System</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── HOW IT WORKS ─────────────── -->
+<section class="section section-alt" id="how">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">How it works</div>
+      <h2>From sign-up to <span class="accent">SEL Champion</span> in six steps.</h2>
+      <p class="section-sub">One private link. One MS Learn sign-in. A clear path with measurable milestones every quarter.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">STEP 01</div>
+        <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+        <h4>Sign up</h4>
+        <p>Use your MS Learn account via the private partner link &mdash; no separate signup, no admin approval.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 02</div>
+        <div class="step-icon"><i class="fa-solid fa-list-check"></i></div>
+        <h4>Complete activities</h4>
+        <p>Courses, certifications, deals logged, customer onboards &mdash; across all 4 pillars.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 03</div>
+        <div class="step-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h4>Earn XP</h4>
+        <p>Every action awards points automatically &mdash; tracked by your AI coach, no paperwork.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 04</div>
+        <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h4>Climb the leaderboard</h4>
+        <p>Top 100 each quarter earn special recognition and tier bonuses.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 05</div>
+        <div class="step-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+        <h4>Grow your business</h4>
+        <p>Customer wins, certifications, and revenue lift &mdash; tracked into your partner profile.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">STEP 06</div>
+        <div class="step-icon"><i class="fa-solid fa-award"></i></div>
+        <h4>Become a SEL Champion</h4>
+        <p>Quarterly recognition, premium rewards, and a feature spot on the Champion roll.</p>
+      </div>
+    </div>
+
+    <div class="outcome-strip">
+      <div class="outcome-item">
+        <div class="outcome-val">~<span class="em">1 quarter</span></div>
+        <div class="outcome-lbl">Median path from sign-up to SEL Champion</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-val">400<span class="em">+</span></div>
+        <div class="outcome-lbl">Earnable activities across the 4 pillars</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-val">A$50&ndash;2,500</div>
+        <div class="outcome-lbl">5-tier reward catalogue, cash-equivalent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── LEADERBOARD ─────────────── -->
+<section class="section" id="leaderboard">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Live rankings</div>
+      <h2>See where you <span class="accent">rank</span>.</h2>
+      <p class="section-sub">Updated in real-time as partners complete activities, log deals, and onboard customers across Australia.</p>
+    </div>
+
+    <div class="lb-wrap">
+      <div class="lb-head">
+        <div>Rank</div>
+        <div>Partner</div>
+        <div class="lb-org-col">Organisation</div>
+        <div style="text-align:right">XP this sprint</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank gold">01</div>
+        <div class="lb-person">
+          <div class="lb-avatar" style="background:linear-gradient(135deg,#E5A100,#F34F1C)">SJ</div>
+          <div>
+            <div class="lb-name">Sarah Johnson</div>
+            <div class="lb-meta">Sydney &middot; M365 specialist</div>
+          </div>
+        </div>
+        <div class="lb-org">Cloudwave Partners</div>
+        <div class="lb-xp">12,840 <small>XP</small></div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank silver">02</div>
+        <div class="lb-person">
+          <div class="lb-avatar" style="background:linear-gradient(135deg,#94a3b8,#475569)">AK</div>
+          <div>
+            <div class="lb-name">Anika Kapoor</div>
+            <div class="lb-meta">Melbourne &middot; Security &amp; Azure</div>
+          </div>
+        </div>
+        <div class="lb-org">Nexus Solutions</div>
+        <div class="lb-xp">11,205 <small>XP</small></div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank bronze">03</div>
+        <div class="lb-person">
+          <div class="lb-avatar" style="background:linear-gradient(135deg,#cd7f32,#8b4513)">DM</div>
+          <div>
+            <div class="lb-name">David Maguire</div>
+            <div class="lb-meta">Brisbane &middot; Copilot for M365</div>
+          </div>
+        </div>
+        <div class="lb-org">Brisbane Tech Group</div>
+        <div class="lb-xp">10,560 <small>XP</small></div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">04</div>
+        <div class="lb-person">
+          <div class="lb-avatar">LC</div>
+          <div>
+            <div class="lb-name">Linh Chau</div>
+            <div class="lb-meta">Perth &middot; Modern workplace</div>
+          </div>
+        </div>
+        <div class="lb-org">Westcoast Digital</div>
+        <div class="lb-xp">9,830 <small>XP</small></div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank">05</div>
+        <div class="lb-person">
+          <div class="lb-avatar" style="background:linear-gradient(135deg,#8B5CF6,#0078D7)">JT</div>
+          <div>
+            <div class="lb-name">James Tanner</div>
+            <div class="lb-meta">Adelaide &middot; Azure infrastructure</div>
+          </div>
+        </div>
+        <div class="lb-org">Southern Cloud</div>
+        <div class="lb-xp">9,415 <small>XP</small></div>
+      </div>
+      <div class="lb-row you">
+        <div class="lb-rank">47</div>
+        <div class="lb-person">
+          <div class="lb-avatar" style="background:var(--blue)">YO</div>
+          <div>
+            <div class="lb-name">You</div>
+            <div class="lb-meta">Sign in to see your rank</div>
+          </div>
+        </div>
+        <div class="lb-org">&mdash;</div>
+        <div class="lb-xp">3,210 <small>XP</small></div>
+      </div>
+    </div>
+
+    <div class="lb-cta">
+      <a href="#">See full leaderboard <i class="fa-solid fa-arrow-right" style="font-size:11px"></i></a>
+      &nbsp;&middot;&nbsp; Resets quarterly &middot; Top 100 earn recognition
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── AI COACH ─────────────── -->
+<section class="section section-alt" id="ai-coach">
+  <div class="container">
+    <div class="section-header left" style="max-width:760px">
+      <div class="section-eyebrow">Meet your AI Coach</div>
+      <h2>Like Microsoft Copilot &mdash; <span class="accent">but for your sales day</span>.</h2>
+      <p class="section-sub">Your AI coach knows your products, your customers, and what you&rsquo;ve already done. Ask for the next best action and get a clear, personalised answer.</p>
+    </div>
+
+    <div class="ai-grid">
+
+      <div class="ai-chat">
+        <div class="ai-chat-header">
+          <div class="ai-chat-avatar"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div>
+            <div class="ai-chat-name">SEL Coach</div>
+            <div class="ai-chat-status">Powered by Microsoft Copilot</div>
+          </div>
+        </div>
+        <div class="ai-msg bot">Morning! Your top opportunity today: <strong>Mercer Group</strong> &mdash; they shortlisted Copilot for M365 last week. Want me to prep a 1-pager?</div>
+        <div class="ai-msg user">Yes please. Also, what objections should I expect?</div>
+        <div class="ai-msg bot">Sent. I&rsquo;ve also flagged 3 likely objections (privacy, ROI, change management) with talk tracks. <strong>+25 XP</strong> for logging the meeting outcome.</div>
+        <div class="ai-chat-suggest">
+          <button class="ai-suggest-chip">What course should I take next?</button>
+          <button class="ai-suggest-chip">Show me Q2 reward tiers</button>
+          <button class="ai-suggest-chip">Compare Copilot vs Gemini</button>
+        </div>
+      </div>
+
+      <div class="ai-features">
+        <div class="ai-feature">
+          <div class="ai-feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div>
+            <h4>Next-best-action coaching</h4>
+            <p>Knows your pipeline, your XP, and your accreditation gaps &mdash; tells you exactly what to do next.</p>
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-icon"><i class="fa-solid fa-file-lines"></i></div>
+          <div>
+            <h4>Asset generation on demand</h4>
+            <p>Personalised one-pagers, email drafts, and meeting prep &mdash; in seconds, on your customer&rsquo;s brand.</p>
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div>
+            <h4>Objection handling, live</h4>
+            <p>Ask &ldquo;how do I respond to X?&rdquo; mid-call &mdash; surfaces the right playbook in under 2 seconds.</p>
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-icon"><i class="fa-solid fa-lock"></i></div>
+          <div>
+            <h4>Private and partner-scoped</h4>
+            <p>Trained on Microsoft&rsquo;s own content. Your conversations stay within your partner workspace.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── REWARDS ─────────────── -->
+<section class="section" id="rewards">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Rewards that grow your business</div>
+      <h2>Real, <span class="accent">cash-equivalent rewards</span>.</h2>
+      <p class="section-sub">Five tiers, twenty-eight rewards, all redeemable for things that actually help your sales day &mdash; not branded swag.</p>
+    </div>
+
+    <div class="rewards-tabs">
+      <button class="rewards-tab active">All rewards</button>
+      <button class="rewards-tab">Tier 1 &middot; A$50</button>
+      <button class="rewards-tab">Tier 2 &middot; A$250</button>
+      <button class="rewards-tab">Tier 3 &middot; A$500</button>
+      <button class="rewards-tab">Tier 4 &middot; A$1,000</button>
+      <button class="rewards-tab">Tier 5 &middot; A$2,500</button>
+    </div>
+
+    <div class="rewards-grid">
+      <div class="reward-card">
+        <div class="reward-tier tier-1">Tier 1</div>
+        <div class="reward-img"><i class="fa-solid fa-mug-hot"></i></div>
+        <h4>Coffee credits</h4>
+        <div class="reward-cost">2,500 XP</div>
+        <div class="reward-meta">A$50 &middot; Customer meeting kit</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-1">Tier 1</div>
+        <div class="reward-img"><i class="fa-solid fa-book"></i></div>
+        <h4>Microsoft Press book bundle</h4>
+        <div class="reward-cost">2,500 XP</div>
+        <div class="reward-meta">A$50 &middot; Learning credit</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-2">Tier 2</div>
+        <div class="reward-img"><i class="fa-solid fa-headset"></i></div>
+        <h4>Microsoft Modern Headset</h4>
+        <div class="reward-cost">8,000 XP</div>
+        <div class="reward-meta">A$250 &middot; Meeting equipment</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-2">Tier 2</div>
+        <div class="reward-img"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h4>Cert exam voucher</h4>
+        <div class="reward-cost">8,000 XP</div>
+        <div class="reward-meta">A$250 &middot; Accreditation path</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-3">Tier 3</div>
+        <div class="reward-img"><i class="fa-solid fa-cloud"></i></div>
+        <h4>Azure credits</h4>
+        <div class="reward-cost">15,000 XP</div>
+        <div class="reward-meta">A$500 &middot; Customer demo lab</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-3">Tier 3</div>
+        <div class="reward-img"><i class="fa-solid fa-ticket"></i></div>
+        <h4>Microsoft event pass</h4>
+        <div class="reward-cost">15,000 XP</div>
+        <div class="reward-meta">A$500 &middot; Ignite or local summit</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-4">Tier 4</div>
+        <div class="reward-img"><i class="fa-solid fa-tablet-screen-button"></i></div>
+        <h4>Surface Go (refurb)</h4>
+        <div class="reward-cost">28,000 XP</div>
+        <div class="reward-meta">A$1,000 &middot; Mobile demo device</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-4">Tier 4</div>
+        <div class="reward-img"><i class="fa-solid fa-handshake"></i></div>
+        <h4>Co-marketing budget</h4>
+        <div class="reward-cost">28,000 XP</div>
+        <div class="reward-meta">A$1,000 &middot; Pipeline accelerator</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-5">Tier 5</div>
+        <div class="reward-img"><i class="fa-solid fa-laptop"></i></div>
+        <h4>Surface Pro</h4>
+        <div class="reward-cost">60,000 XP</div>
+        <div class="reward-meta">A$2,500 &middot; Champion-tier reward</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-5">Tier 5</div>
+        <div class="reward-img"><i class="fa-solid fa-plane-departure"></i></div>
+        <h4>Microsoft summit pass</h4>
+        <div class="reward-cost">60,000 XP</div>
+        <div class="reward-meta">A$2,500 &middot; Travel + accom included</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-5">Tier 5</div>
+        <div class="reward-img"><i class="fa-solid fa-medal"></i></div>
+        <h4>SEL Champion package</h4>
+        <div class="reward-cost">Top 10/quarter</div>
+        <div class="reward-meta">Premium rewards + recognition</div>
+      </div>
+      <div class="reward-card">
+        <div class="reward-tier tier-5">Tier 5</div>
+        <div class="reward-img"><i class="fa-solid fa-gift"></i></div>
+        <h4>Mystery prize</h4>
+        <div class="reward-cost">Random draw</div>
+        <div class="reward-meta">Quarterly bonus for top 100</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FAQ ─────────────── -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Got questions?</div>
+      <h2>The <span class="accent">straight answers</span>.</h2>
+      <p class="section-sub">If you don&rsquo;t see your question here, ask the AI Coach &mdash; or write to your Microsoft partner manager.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Who can join the Sales Excellence League?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>SEL is open to all Microsoft partners in Australia. You&rsquo;ll need a valid MS Learn account and access to the private partner sign-up link &mdash; ask your Microsoft partner manager if you don&rsquo;t have it yet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Is there a cost to participate?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>None. The whole programme &mdash; trainings, accreditations, sales assets, AI coach, rewards &mdash; is provided at no cost by Microsoft Australia for partners.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          How do I sign in? Is there a separate password?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>No separate password. SEL uses your existing MS Learn credentials. Click &ldquo;Sign in with MS Learn&rdquo;, authenticate once, and you&rsquo;re in.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          How does the XP &amp; rewards system work?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Every action awards XP automatically: course completions, certifications, deals logged, customer onboards. XP accumulates across the quarter and unlocks reward tiers (5 tiers, A$50 to A$2,500 value). Redeem any time from the Partner Growth Catalogue. Quarterly sprint resets the leaderboard but not your accumulated rewards.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Are the rewards taxable / how are they delivered?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Most rewards are cash-equivalent and delivered as digital gift cards, vouchers, or direct shipping. Tax treatment depends on your jurisdiction &mdash; please check with your accountant. We provide a redemption history for your records.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          What does the AI coach actually do?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>It surfaces the right training, the right asset, and the right answer at the right time. Examples: &ldquo;what should I learn next?&rdquo;, &ldquo;draft an objection response to X&rdquo;, &ldquo;what&rsquo;s in my pipeline for Copilot?&rdquo;. Trained on Microsoft&rsquo;s own content. Conversations stay within your partner workspace.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Who&rsquo;s on the leaderboard? Is my data shared?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>The leaderboard shows partner names + organisations + XP for top 100 each quarter (with consent). You can opt out of public ranking and still earn rewards. Your activities, customer data, and pipeline are never shared publicly &mdash; just aggregate XP.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          How long until I can become a SEL Champion?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Median path is roughly one quarter for partners who actively engage &mdash; complete 5-8 courses, log a handful of deals, and use the assets/playbooks. Top 10 each quarter earn the Champion designation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Can my whole team join, or just me?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Whole team. Each team member needs their own MS Learn account and access to the partner link. Each person earns their own XP and rewards. Aggregate team performance is also tracked for organisation-level recognition.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Where can I get help if I&rsquo;m stuck?
+          <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+        </button>
+        <div class="faq-a"><p>Three places: (1) Ask the AI Coach &mdash; it handles 80% of questions. (2) Your Microsoft partner manager. (3) The in-platform help link, which routes to a SEL ops mailbox monitored business hours AEST.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── CTA BANNER ─────────────── -->
+<section class="section" style="padding-top:48px;padding-bottom:96px">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Ready to launch your Microsoft sales year?</h2>
+      <p>Sign in with your MS Learn credentials. No separate signup. No commitment. Start earning XP from your very first course.</p>
+      <a href="#" class="btn-primary">Sign in with MS Learn <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">
+          <img src="SEL Logo.png" alt="">
+          <span>Sales Excellence League</span>
+        </a>
+        <div class="footer-tag">A Microsoft Australia partner programme</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">Terms &amp; conditions</a></li>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Cookie policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Microsoft Australia. All rights reserved.</div>
+      <div>Built with <i class="fa-solid fa-heart" style="color:var(--blue)"></i> for Microsoft partners</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll nav active state
+(function(){
+  var links = document.querySelectorAll('.nav-links a');
+  function onScroll(){
+    var y = window.scrollY + 120;
+    var current = '';
+    document.querySelectorAll('section[id]').forEach(function(s){
+      if (s.offsetTop <= y) current = s.id;
+    });
+    links.forEach(function(a){
+      var href = a.getAttribute('href').replace('#','');
+      a.style.color = href === current ? 'var(--text-1)' : '';
+      a.style.fontWeight = href === current ? '600' : '';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// Reward tab filter (visual only — no real filtering)
+document.querySelectorAll('.rewards-tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.rewards-tab').forEach(function(x){ x.classList.remove('active'); });
+    t.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
